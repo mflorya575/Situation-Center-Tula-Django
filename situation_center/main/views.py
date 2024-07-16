@@ -2,8 +2,18 @@ from django.shortcuts import render
 
 
 def index(request):
-    return render(request, 'main/index.html')
+
+    context = {
+        'title': 'Главная - Ситуационный центр',
+    }
+
+    return render(request, 'main/index.html', context)
 
 
 def about(request):
-    return render(request, 'main/about.html')
+
+    context = {
+        'title': 'О нас - Ситуационный центр',
+    }
+
+    return render(request, 'main/about.html', context)
