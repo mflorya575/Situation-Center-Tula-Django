@@ -13,17 +13,17 @@
     <link rel="apple-touch-icon" sizes="72x72" href="{% static "assets/favicon/apple-icon-72x72.png" %}">
     <link rel="apple-touch-icon" sizes="76x76" href="{% static "assets/favicon/apple-icon-76x76.png" %}">
     <link rel="apple-touch-icon" sizes="114x114" href="{% static "assets/favicon/apple-icon-114x114.png" %}">
-    <link rel="apple-touch-icon" sizes="120x120" href="assets/favicon/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="assets/favicon/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="assets/favicon/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="assets/favicon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
-    <link rel="manifest" href="assets/favicon/manifest.json">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static "assets/favicon/apple-icon-120x120.png" %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static "assets/favicon/apple-icon-144x144.png" %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static "assets/favicon/apple-icon-152x152.png" %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static "assets/favicon/apple-icon-180x180.png" %}">
+    <link rel="icon" type="image/png" sizes="192x192"  href="{% static "assets/favicon/android-icon-192x192.png" %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static "assets/favicon/favicon-32x32.png" %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static "assets/favicon/favicon-96x96.png" %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static "assets/favicon/favicon-16x16.png" %}">
+    <link rel="manifest" href="{% static "assets/favicon/manifest.json" %}">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
+    <meta name="msapplication-TileImage" content="{% static "assets/favicon/ms-icon-144x144.png" %}">
     <meta name="theme-color" content="#ffffff">
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -64,8 +64,8 @@
             <div class="mobile-menu mobile-menu__active">
                 <div class="container">
                     <div class="mobile-menu__block-img">
-                        <img src="./assets/icons/logo-light.png" alt="логотип центра" class="mobile-menu__logo">
-                        <img src="./assets/icons/menu-button.svg" alt="иконка кнопки меню" class="mobile-menu__button">
+                        <img src="{% static "./assets/icons/logo-light.png" %}" alt="логотип центра" class="mobile-menu__logo">
+                        <img src="{% static "./assets/icons/menu-button.svg" %}" alt="иконка кнопки меню" class="mobile-menu__button">
                     </div>
                     <div class="mobile-menu__block" style="display: none;">
                         <nav class="mobile-menu__nav">
@@ -77,7 +77,7 @@
                         </nav>
                         <div class="mobile-menu__block-link">
                             <div class="mobile-menu__displayp">
-                                <img src="./assets/icons/profile-icon.svg" alt="икнока пользователя" class="mobile-menu__profile">
+                                <img src="{% static "./assets/icons/profile-icon.svg" %}" alt="икнока пользователя" class="mobile-menu__profile">
                                 <a href="#" class="mobile-menu__custom-link" id="personal-account-link">Личный кабинет</a>
                             </div>
                             <div class="dropdown-content" id="dropdown-content" style="display: none; position: sticky; z-index: 100;">
@@ -143,7 +143,7 @@
                     <!-- Первая карусель -->
                   <div class="carousel-item active">
                     <div class="carousel-custom">
-                        <img src="./assets/images/news-photo.png" class="d-block w-100 carousel-img" alt="изображение новости">
+                        <img src="{% static "./assets/images/news-photo.png" %}" class="d-block w-100 carousel-img" alt="изображение новости">
                         <div class="carousel-block_texts">
                             <h2 class="carousel-block_title">10 июня открылся центр Тульского филиала</h2>
                             <p class="carousel-block_description">
@@ -166,7 +166,7 @@
                   <!-- Вторая карусель -->
                   <div class="carousel-item">
                     <div class="carousel-custom">
-                        <img src="./assets/images/news-photo.png" class="d-block w-100 carousel-img" alt="изображение новости">
+                        <img src="{% static "./assets/images/news-photo.png" %}" class="d-block w-100 carousel-img" alt="изображение новости">
                         <div class="carousel-block_texts">
                             <h2 class="carousel-block_title">10 июня открылся центр Тульского филиала</h2>
                             <p class="carousel-block_description">
@@ -191,7 +191,7 @@
                   <!-- Третья карусель -->
                   <div class="carousel-item">
                     <div class="carousel-custom">
-                        <img src="./assets/images/news-photo.png" class="d-block w-100 carousel-img" alt="изображение новости">
+                        <img src="{% static "./assets/images/news-photo.png" %}" class="d-block w-100 carousel-img" alt="изображение новости">
                         <div class="carousel-block_texts">
                             <h2 class="carousel-block_title">10 июня открылся центр Тульского филиала</h2>
                             <p class="carousel-block_description">
@@ -237,77 +237,77 @@
             <div class="third-section__wrapper">
                 <!-- Карточка здравоохранения -->
                 <div class="third-section__card">
-                    <a href="project1-hospital.html"><img src="./assets/icons/hospital-image.png" alt="иконка здравоохранения" class="third-section__img1"></a>
+                    <a href="project1-hospital.html"><img src="{% static "./assets/icons/hospital-image.png" %}" alt="иконка здравоохранения" class="third-section__img1"></a>
                     <a href="project1-hospital.html" class="third-section__text">Здравоохранение</a>
                 </div>
                 <!-- Карточка образования -->
                 <div class="third-section__card">
-                    <a href="project2-study.html"><img src="./assets/icons/study-image.png" alt="иконка образования" class="third-section__img2"></a>
+                    <a href="project2-study.html"><img src="{% static "./assets/icons/study-image.png" %}" alt="иконка образования" class="third-section__img2"></a>
                     <a href="project2-study.html" class="third-section__text">Образование</a>
                 </div>
                 <!-- Карточка демографии -->
                 <div class="third-section__card">
-                    <a href="project3-demographics.html"><img src="./assets/icons/demographics-image.png" alt="иконка демографии" class="third-section__img3"></a>
+                    <a href="project3-demographics.html"><img src="{% static "./assets/icons/demographics-image.png" %}" alt="иконка демографии" class="third-section__img3"></a>
                     <a href="project3-demographics.html" class="third-section__text">Демография</a>
                 </div>
                 <!-- Карточка культуры -->
                 <div class="third-section__card">
-                    <a href="project4-culture.html"><img src="./assets/icons/culture-image.png" alt="иконка культуры" class="third-section__img4"></a>
+                    <a href="project4-culture.html"><img src="{% static "./assets/icons/culture-image.png" %}" alt="иконка культуры" class="third-section__img4"></a>
                     <a href="project4-culture.html" class="third-section__text">Культура</a>
                 </div>
                 <!-- Карточка безопасных дорог -->
                 <div class="third-section__card">
-                    <a href="project5-roads.html"><img src="./assets/icons/road-image.png" alt="иконка безопасных дорог" class="third-section__img5"></a>
+                    <a href="project5-roads.html"><img src="{% static "./assets/icons/road-image.png" %}" alt="иконка безопасных дорог" class="third-section__img5"></a>
                     <a href="project5-roads.html" class="third-section__text">Безопасные дороги</a>
                 </div>
                 <!-- Карточка наука и университеты -->
                 <div class="third-section__card">
-                    <a href="project6-science.html"><img src="./assets/icons/science-image.png" alt="иконка науки и университетов" class="third-section__img6"></a>
+                    <a href="project6-science.html"><img src="{% static "./assets/icons/science-image.png" %}" alt="иконка науки и университетов" class="third-section__img6"></a>
                     <a href="project6-science.html" class="third-section__text">Наука и университеты</a>
                 </div>
                 <!-- Карточка экологии -->
                 <div class="third-section__card">
-                    <a href="project7-ecology.html"><img src="./assets/icons/ecology-image.png" alt="иконка экологии" class="third-section__img8"></a>
+                    <a href="project7-ecology.html"><img src="{% static "./assets/icons/ecology-image.png" %}" alt="иконка экологии" class="third-section__img8"></a>
                     <a href="project7-ecology.html" class="third-section__text">Экология</a>
                 </div>
                 <!-- Карточка предпринимательства -->
                 <div class="third-section__card">
-                    <a href="project8-businessman.html"><img src="./assets/icons/entrepreneurship-image.png" alt="иконка предпринимательства" class="third-section__img9"></a>
+                    <a href="project8-businessman.html"><img src="{% static "./assets/icons/entrepreneurship-image.png" %}" alt="иконка предпринимательства" class="third-section__img9"></a>
                     <a href="project8-businessman.html" class="third-section__text">Предпринимательство</a>
                 </div>
                 <!-- Карточка туризма и индустрии гостеприимства -->
                 <div class="third-section__card">
-                    <a href="project9-turism.html"><img src="./assets/icons/turism.png" alt="иконка туризма" class="third-section__img10"></a>
+                    <a href="project9-turism.html"><img src="{% static "./assets/icons/turism.png" %}" alt="иконка туризма" class="third-section__img10"></a>
                     <a href="project9-turism.html" class="third-section__text">Туризм и индустрия<br> гостеприимства</a>
                 </div>
                 <!-- Карточка жилья и городской среды -->
                 <div class="third-section__card">
-                    <a href="project10-housing.html"><img src="./assets/icons/housing-image.png" alt="иконка жилья и городской среды" class="third-section__img11"></a>
+                    <a href="project10-housing.html"><img src="{% static "./assets/icons/housing-image.png" %}" alt="иконка жилья и городской среды" class="third-section__img11"></a>
                     <a href="project10-housing.html" class="third-section__text">Жилье и городская среда</a>
                 </div>
                 <!-- Карточка международной кооперации и экспорта -->
                 <div class="third-section__card">
-                    <a href="project11-world.html"><img src="./assets/icons/world-image.png" alt="иконка международной кооперации и экспорта" class="third-section__img12"></a>
+                    <a href="project11-world.html"><img src="{% static "./assets/icons/world-image.png" %}" alt="иконка международной кооперации и экспорта" class="third-section__img12"></a>
                     <a href="project11-world.html" class="third-section__text2">Международная кооперация<br> и экспорт</a>
                 </div>
                 <!-- Карточка производительности труда и поддержки занятости -->
                 <div class="third-section__card">
-                    <a href="project12-labour.html"><img src="./assets/icons/labour-image.png" alt="иконка производительности труда" class="third-section__img13"></a>
+                    <a href="project12-labour.html"><img src="{% static "./assets/icons/labour-image.png" %}" alt="иконка производительности труда" class="third-section__img13"></a>
                     <a href="project12-labour.html" class="third-section__text2">Производительность труда<br> и поддержка занятости</a>
                 </div>
                 <!-- Карточка области атомной энергии -->
                 <div class="third-section__card">
-                    <a href="project13-technology.html"><img src="./assets/icons/atom-image.png" alt="иконка области атомной энергии" class="third-section__img14"></a>
+                    <a href="project13-technology.html"><img src="{% static "./assets/icons/atom-image.png" %}" alt="иконка области атомной энергии" class="third-section__img14"></a>
                     <a href="project13-technology.html" class="third-section__text2">Развитие технологий<br> в области атомной энергии</a>
                 </div>
                 <!-- Карточка цифровой экономики РФ -->
                 <div class="third-section__card">
-                    <a href="project14-econom.html"><img src="./assets/icons/economy-image.png" alt="иконка цифровой экономики РФ" class="third-section__img15"></a>
+                    <a href="project14-econom.html"><img src="{% static "./assets/icons/economy-image.png" %}" alt="иконка цифровой экономики РФ" class="third-section__img15"></a>
                     <a href="project14-econom.html" class="third-section__text">Цифровая экономика РФ</a>
                 </div>
                 <!-- Карточка расширения магистральной инфраструктуры -->
                 <div class="third-section__card card-last__margin">
-                    <a href="project15-maginf.html"><img src="./assets/icons/mainline-image.png" alt="иконка расширения магистральной инфраструктуры" class="third-section__img16"></a>
+                    <a href="project15-maginf.html"><img src="{% static "./assets/icons/mainline-image.png" %}" alt="иконка расширения магистральной инфраструктуры" class="third-section__img16"></a>
                     <a href="project15-maginf.html" class="third-section__text2">Расширение магистральной<br> инфраструктуры</a>
                 </div>
             </div>
@@ -406,7 +406,7 @@
 
             <!-- Обертка первая -->
             <div class="fifth-section__wrapper1">
-                <img src="./assets/images/index-man-left.png" alt="изображение мужчины" class="fifth-section__img1">
+                <img src="{% static "./assets/images/index-man-left.png" %}" alt="изображение мужчины" class="fifth-section__img1">
                 <div class="fifth-section__block1">
                     <h5 class="fifth-section__title">КОМПЕТЕНЦИИ</h5>
                     <hr class="fifth-section__hr">
@@ -439,7 +439,7 @@
                         государственной<br class="brrr"> власти.
                     </p>
                 </div>
-                <img src="./assets/images/index-man-right.png" alt="изображение мужчины" class="fifth-section__img2">
+                <img src="{% static "./assets/images/index-man-right.png" %}" alt="изображение мужчины" class="fifth-section__img2">
             </div>
 
         </div>
@@ -451,7 +451,7 @@
             <div class="footer-section__wrapper_main">
                 <!-- Обертка первая -->
                 <div class="footer-section__wrapper1">
-                    <a href="index.html"><img src="./assets/icons/logo-light.png" alt="логотип центра" class="footer-section__logo"></a>
+                    <a href="index.html"><img src="{% static "./assets/icons/logo-light.png" %}" alt="логотип центра" class="footer-section__logo"></a>
                     <p class="footer-section__text">
                         Адрес:<br> <span class="footer-section__span">г. Тула, просп. Ленина, 53Б</span>
                     </p>
@@ -516,7 +516,7 @@
 
                 <!-- Обертка пятая -->
                 <div class="footer-section__wrapper5">
-                    <img src="./assets/icons/strelka.svg" alt="иконка стрелки вверх" id="button" class="footer-section__strelka">
+                    <img src="{% static "./assets/icons/strelka.svg" %}" alt="иконка стрелки вверх" id="button" class="footer-section__strelka">
                 </div>
             </div>
 
@@ -537,7 +537,7 @@
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="./assets/js/main.js"></script>
+    <script src="{% static "./assets/js/main.js" %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
