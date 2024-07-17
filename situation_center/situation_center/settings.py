@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',  # кастомная админ-панель
     # Встроенные настройки
     'django.contrib.admin',
     'django.contrib.auth',
@@ -136,3 +137,10 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+JAZZMIN_SETTINGS = {
+    'site_header': 'СЦ РЭУ Тула',
+    'site_brand': 'СЦ РЭУ Тула',
+    'site_logo': 'assets/images/graph-img3.png',
+    'copyright': 'sit-center.ru',
+}
