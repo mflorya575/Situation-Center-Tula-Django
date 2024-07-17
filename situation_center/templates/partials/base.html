@@ -13,17 +13,17 @@
     <link rel="apple-touch-icon" sizes="72x72" href="{% static "assets/favicon/apple-icon-72x72.png" %}">
     <link rel="apple-touch-icon" sizes="76x76" href="{% static "assets/favicon/apple-icon-76x76.png" %}">
     <link rel="apple-touch-icon" sizes="114x114" href="{% static "assets/favicon/apple-icon-114x114.png" %}">
-    <link rel="apple-touch-icon" sizes="120x120" href="assets/favicon/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="assets/favicon/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="assets/favicon/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="assets/favicon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
-    <link rel="manifest" href="assets/favicon/manifest.json">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static "assets/favicon/apple-icon-120x120.png" %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static "assets/favicon/apple-icon-144x144.png" %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static "assets/favicon/apple-icon-152x152.png" %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static "assets/favicon/apple-icon-180x180.png" %}">
+    <link rel="icon" type="image/png" sizes="192x192"  href="{% static "assets/favicon/android-icon-192x192.png" %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static "assets/favicon/favicon-32x32.png" %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static "assets/favicon/favicon-96x96.png" %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static "assets/favicon/favicon-16x16.png" %}">
+    <link rel="manifest" href="{% static "assets/favicon/manifest.json" %}">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
+    <meta name="msapplication-TileImage" content="{% static "assets/favicon/ms-icon-144x144.png" %}">
     <meta name="theme-color" content="#ffffff">
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -31,419 +31,90 @@
     <link rel="stylesheet" href="{% static "assets/css/style.css" %}">
 </head>
 <body>
-    <!-- Первая секция и шапка сайта -->
-    <section class="main-section">
-        <div class="container main-section__container">
-            <!-- Шапка сайта -->
-            <header class="header">
-                <div class="header-block1">
-                    <ul class="header-block1-ul1">
-                        <li class="header-block1-li1"><a href="index.html" class="header-block1-link header-link_margin1" id="style-2" data-replace="Главная"><span>Главная</span></a></li>
-                        <li class="header-block1-li1"><a href="in-development.html" class="header-block1-link header-link_margin2" id="style-2" data-replace="Данные"><span>Данные</span></a></li>
-                        <li class="header-block1-li1"><a href="#" class="header-block1-link header-link_margin3" id="style-2" data-replace="Кафедры"><span>Кафедры</span></a></li>
-                    </ul>
-                </div>
-                <div class="header-block2">
-                    <a href="index.html"><img src="{% static "assets/icons/logo-light.png" %}" alt="логотип центра" class="header-block2-img"></a>
-                </div>
-                <div class="header-block3">
-                    <ul class="header-block3-ul2">
-                        <li class="header-block3-li2"><a href="in-development.html" class="header-block1-link header-link_margin4" id="style-2" data-replace="Проекты"><span>Проекты</span></a></li>
-                        <li class="header-block3-li2"><a href="contact.html" class="header-block1-link header-link_margin5" id="style-2" data-replace="Контакты"><span>Контакты</span></a></li>
-                        <li class="header-block3-li2 dropdown">
-                            <a href="account.html" class="header-block1-link_custom header-link_margin6">Личный кабинет</a>
-                            <div class="dropdown-content">
-                                <a class="dropdown-custom" href="account.html">Мой аккаунт</a>
-                                <a class="dropdown-custom" href="login.html">Вход</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </header>
-            <!-- Мобильное меню -->
-            <div class="mobile-menu mobile-menu__active">
-                <div class="container">
-                    <div class="mobile-menu__block-img">
-                        <img src="./assets/icons/logo-light.png" alt="логотип центра" class="mobile-menu__logo">
-                        <img src="./assets/icons/menu-button.svg" alt="иконка кнопки меню" class="mobile-menu__button">
-                    </div>
-                    <div class="mobile-menu__block" style="display: none;">
-                        <nav class="mobile-menu__nav">
-                            <ul class="mobile-menu__ul">
-                                <li class="mobile-menu__li"><a href="#" class="mobile-menu__link mobile-menu__margin1">Данные</a></li>
-                                <li class="mobile-menu__li"><a href="#" class="mobile-menu__link mobile-menu__margin2">Кафедры</a></li>
-                                <li class="mobile-menu__li"><a href="#" class="mobile-menu__link mobile-menu__margin3">Проекты</a></li>
-                            </ul>
-                        </nav>
-                        <div class="mobile-menu__block-link">
-                            <div class="mobile-menu__displayp">
-                                <img src="./assets/icons/profile-icon.svg" alt="икнока пользователя" class="mobile-menu__profile">
-                                <a href="#" class="mobile-menu__custom-link" id="personal-account-link">Личный кабинет</a>
-                            </div>
-                            <div class="dropdown-content" id="dropdown-content" style="display: none; position: sticky; z-index: 100;">
-                                <a class="dropdown-custom" href="#">Мой аккаунт</a>
-                                <a class="dropdown-custom" href="login.html">Вход</a>
-                            </div>
+    
+    <!-- Шапка сайта -->
+    <div class="container">
+        <!-- Шапка сайта -->
+        <header class="header">
+            <div class="header-block1">
+                <ul class="header-block1-ul1">
+                    <li class="header-block1-li1"><a href="#" class="header-block1-link header-link_margin1" id="style-3">Главная</a></li>
+                    <li class="header-block1-li1"><a href="#" class="header-block1-link header-link_margin2" id="style-3">Данные</a></li>
+                    <li class="header-block1-li1"><a href="#" class="header-block1-link header-link_margin3" id="style-3">Кафедры</a></li>
+                </ul>
+            </div>
+            <div class="header-block2">
+                <a href="index.html"><img src="{% static "./assets/icons/logo-dark.png" %}" alt="логотип центра" class="header-block2-img"></a>
+            </div>
+            <div class="header-block3">
+                <ul class="header-block3-ul2">
+                    <li class="header-block3-li2"><a href="#" class="header-block1-link header-link_margin4" id="style-3">Проекты</a></li>
+                    <li class="header-block3-li2"><a href="#" class="header-block1-link header-link_margin5" id="style-3">Контакты</a></li>
+                    <li class="header-block3-li2 dropdown">
+                        <a href="#" class="header-block1-link_custom header-link_margin6">Личный кабинет</a>
+                        <div class="dropdown-content">
+                            <a class="dropdown-custom" href="#">Мой аккаунт</a>
+                            <a class="dropdown-custom" href="login.html">Вход</a>
                         </div>
-                        <hr class="mobile-menu__hr">
-                        <div class="mobile-menu__wrapper-mini">
-                            <div class="mobile-menu__block2">
-                                <p class="mobile-menu__text1">Адрес:</p>
-                                <p class="mobile-menu__text2">г. Тула, просп. Ленина, 53Б</p>
-                            </div>
-                            <div class="mobile-menu__block22">
-                                <p class="mobile-menu__text1">Номер телефона:</p>
-                                <p class="mobile-menu__text2">8 (4872) 36-48-74</p>
-                            </div>
-                            <div class="mobile-menu__block222">
-                                <p class="mobile-menu__text1">Электронная почта:</p>
-                                <p class="mobile-menu__text2">tula@rea.ru</p>
-                            </div>
-                            <div class="mobile-menu__block2222">
-                                <p class="mobile-menu__text1">Часы работы:</p>
-                                <p class="mobile-menu__text2">8:30 - 18:00</p>
-                            </div>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <!-- Мобильное меню -->
+        <div class="mobile-menu mobile-menu__active">
+            <div class="container">
+                <div class="mobile-menu__block-img">
+                    <img src="{% static "./assets/icons/logo-dark.png" %}" alt="логотип центра" class="mobile-menu__logo">
+                    <img src="{% static "./assets/icons/menu-button.svg" %}" alt="иконка кнопки меню" class="mobile-menu__button">
+                </div>
+                <div class="mobile-menu__block" style="display: none;">
+                    <nav class="mobile-menu__nav">
+                        <ul class="mobile-menu__ul">
+                            <li class="mobile-menu__li"><a href="#" class="mobile-menu__link mobile-menu__margin1">Данные</a></li>
+                            <li class="mobile-menu__li"><a href="#" class="mobile-menu__link mobile-menu__margin2">Кафедры</a></li>
+                            <li class="mobile-menu__li"><a href="#" class="mobile-menu__link mobile-menu__margin3">Проекты</a></li>
+                        </ul>
+                    </nav>
+                    <div class="mobile-menu__block-link">
+                        <div class="mobile-menu__displayp">
+                            <img src="{% static "./assets/icons/profile-icon.svg" %}" alt="икнока пользователя" class="mobile-menu__profile">
+                            <a href="#" class="mobile-menu__custom-link" id="personal-account-link">Личный кабинет</a>
+                        </div>
+                        <div class="dropdown-content" id="dropdown-content" style="display: none; position: sticky; z-index: 100;">
+                            <a class="dropdown-custom" href="#">Мой аккаунт</a>
+                            <a class="dropdown-custom" href="login.html">Вход</a>
                         </div>
                     </div>
-                </div>
-            </div>
-            <!-- Центральный блок информации -->
-            <div class="main-section-block">
-                <h1 class="main-section_title">Ситуационный центр РЭУ им. Г.В. Плеханова<br>
-                    Тульский филиал
-                </h1>
-                    <p class="main-section_text">
-                        научно-исследовательское подразделение Российского экономического<br class="br">
-                        университета им. Г.В. Плеханова, созданное в 2024 году в рамках
-                        программы<br class="br"> инновационного развития образовательной и научной работы в вузе
-                    </p>
-                <div class="main-section_links">
-                    <button href="#" class="main-section_link-button1">Наши программы</button>
-                    <button href="#" class="main-section_link-button2">О нас</button>
-                </div>
-            </div>
-            <div class="overlay"></div>
-        </div>
-    </section>
-    <!-- Вторая секция -->
-    <section class="second-section">
-        <div class="container second-section__container">
-            <!-- Заголовок -->
-            <h2 class="second-section__title">НОВОСТИ</h2>
-            <!-- Карусель -->
-            <div id="carouselExampleIndicators" data-bs-interval="5000" class="carousel slide" data-bs-ride="carousel">
-                <!-- Кнопки снизу на карусели -->
-                <div class="carousel-indicators">
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                </div>
-                <!-- Вся карусель -->
-                <div class="carousel-inner">
-                    <!-- Первая карусель -->
-                  <div class="carousel-item active">
-                    <div class="carousel-custom">
-                        <img src="./assets/images/news-photo.png" class="d-block w-100 carousel-img" alt="изображение новости">
-                        <div class="carousel-block_texts">
-                            <h2 class="carousel-block_title">10 июня открылся центр Тульского филиала</h2>
-                            <p class="carousel-block_description">
-                                Имеется спорная точка зрения, гласящая примерно следующее:
-                                тщательные исследования конкурентов, превозмогая сложившуюся
-                                непростую экономическую ситуацию, описаны максимально подробно.
-                                В частности, семантический разбор внешних противодействий
-                                требует от нас анализа новых предложений. И нет сомнений,
-                                что реплицированные с зарубежных источников, современные
-                                исследования объединены в целые кластеры себе подобных.
-                                Наше дело не так однозначно, как может показаться:
-                                сложившаяся структура организации однозначно определяет
-                                каждого участника как способного принимать собственные
-                                решения касаемо новых предложений.
-                            </p>
-                            <p class="carousel-block_time">12.10.23</p>
+                    <hr class="mobile-menu__hr">
+                    <div class="mobile-menu__wrapper-mini">
+                        <div class="mobile-menu__block2">
+                            <p class="mobile-menu__text1">Адрес:</p>
+                            <p class="mobile-menu__text2">г. Тула, просп. Ленина, 53Б</p>
+                        </div>
+                        <div class="mobile-menu__block22">
+                            <p class="mobile-menu__text1">Номер телефона:</p>
+                            <p class="mobile-menu__text2">8 (4872) 36-48-74</p>
+                        </div>
+                        <div class="mobile-menu__block222">
+                            <p class="mobile-menu__text1">Электронная почта:</p>
+                            <p class="mobile-menu__text2">tula@rea.ru</p>
+                        </div>
+                        <div class="mobile-menu__block2222">
+                            <p class="mobile-menu__text1">Часы работы:</p>
+                            <p class="mobile-menu__text2">8:30 - 18:00</p>
                         </div>
                     </div>
-                  </div>
-                  <!-- Вторая карусель -->
-                  <div class="carousel-item">
-                    <div class="carousel-custom">
-                        <img src="./assets/images/news-photo.png" class="d-block w-100 carousel-img" alt="изображение новости">
-                        <div class="carousel-block_texts">
-                            <h2 class="carousel-block_title">10 июня открылся центр Тульского филиала</h2>
-                            <p class="carousel-block_description">
-                                Имеется спорная точка зрения, гласящая примерно следующее:
-                                тщательные исследования конкурентов, превозмогая сложившуюся
-                                непростую экономическую ситуацию, описаны максимально подробно.
-                                В частности, семантический разбор внешних противодействий
-                                требует от нас анализа новых предложений. И нет сомнений,
-                                что реплицированные с зарубежных источников, современные
-                                исследования объединены в целые кластеры себе подобных.
-                                Наше дело не так однозначно, как может показаться:
-                                сложившаяся структура организации однозначно определяет
-                                каждого участника как способного принимать собственные
-                                решения касаемо новых предложений. И нет сомнений, что
-                                элементы политического процесса объективно рассмотрены
-                                соответствующими инстанциями.
-                            </p>
-                            <p class="carousel-block_time">12.10.23</p>
-                        </div>
-                    </div>
-                  </div>
-                  <!-- Третья карусель -->
-                  <div class="carousel-item">
-                    <div class="carousel-custom">
-                        <img src="./assets/images/news-photo.png" class="d-block w-100 carousel-img" alt="изображение новости">
-                        <div class="carousel-block_texts">
-                            <h2 class="carousel-block_title">10 июня открылся центр Тульского филиала</h2>
-                            <p class="carousel-block_description">
-                                Имеется спорная точка зрения, гласящая примерно следующее:
-                                тщательные исследования конкурентов, превозмогая сложившуюся
-                                непростую экономическую ситуацию, описаны максимально подробно.
-                                В частности, семантический разбор внешних противодействий
-                                требует от нас анализа новых предложений. И нет сомнений,
-                                что реплицированные с зарубежных источников, современные
-                                исследования объединены в целые кластеры себе подобных.
-                                Наше дело не так однозначно, как может показаться.
-                            </p>
-                            <p class="carousel-block_time">12.10.23</p>
-                        </div>
-                    </div>
-                  </div>
-                  <!-- Конец 3 карусели -->
                 </div>
-                <!-- Конец всех каруселей -->
-                <!-- Кнопка влево -->
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon carousel-left" aria-hidden="true"><</span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <!-- Кнопка вправо -->
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                  <span class="carousel-control-next-icon carousel-right" aria-hidden="true">></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
             </div>
-            <!-- Кнопка новостей -->
-            <a class="second-section__button-link" href="news.html">
-                <button class="second-section__button">Все новости</button>
-            </a>
         </div>
-    </section>
-    <!-- Третья секция -->
-    <section class="third-section">
-        <div class="container third-section__container">
-            <!-- Заголовок -->
-            <h3 class="third-section__title">НАЦИОНАЛЬНЫЕ ПРОЕКТЫ</h3>
-            <!-- Обертка карточек -->
-            <div class="third-section__wrapper">
-                <!-- Карточка здравоохранения -->
-                <div class="third-section__card">
-                    <a href="project1-hospital.html"><img src="./assets/icons/hospital-image.png" alt="иконка здравоохранения" class="third-section__img1"></a>
-                    <a href="project1-hospital.html" class="third-section__text">Здравоохранение</a>
-                </div>
-                <!-- Карточка образования -->
-                <div class="third-section__card">
-                    <a href="project2-study.html"><img src="./assets/icons/study-image.png" alt="иконка образования" class="third-section__img2"></a>
-                    <a href="project2-study.html" class="third-section__text">Образование</a>
-                </div>
-                <!-- Карточка демографии -->
-                <div class="third-section__card">
-                    <a href="project3-demographics.html"><img src="./assets/icons/demographics-image.png" alt="иконка демографии" class="third-section__img3"></a>
-                    <a href="project3-demographics.html" class="third-section__text">Демография</a>
-                </div>
-                <!-- Карточка культуры -->
-                <div class="third-section__card">
-                    <a href="project4-culture.html"><img src="./assets/icons/culture-image.png" alt="иконка культуры" class="third-section__img4"></a>
-                    <a href="project4-culture.html" class="third-section__text">Культура</a>
-                </div>
-                <!-- Карточка безопасных дорог -->
-                <div class="third-section__card">
-                    <a href="project5-roads.html"><img src="./assets/icons/road-image.png" alt="иконка безопасных дорог" class="third-section__img5"></a>
-                    <a href="project5-roads.html" class="third-section__text">Безопасные дороги</a>
-                </div>
-                <!-- Карточка наука и университеты -->
-                <div class="third-section__card">
-                    <a href="project6-science.html"><img src="./assets/icons/science-image.png" alt="иконка науки и университетов" class="third-section__img6"></a>
-                    <a href="project6-science.html" class="third-section__text">Наука и университеты</a>
-                </div>
-                <!-- Карточка экологии -->
-                <div class="third-section__card">
-                    <a href="project7-ecology.html"><img src="./assets/icons/ecology-image.png" alt="иконка экологии" class="third-section__img8"></a>
-                    <a href="project7-ecology.html" class="third-section__text">Экология</a>
-                </div>
-                <!-- Карточка предпринимательства -->
-                <div class="third-section__card">
-                    <a href="project8-businessman.html"><img src="./assets/icons/entrepreneurship-image.png" alt="иконка предпринимательства" class="third-section__img9"></a>
-                    <a href="project8-businessman.html" class="third-section__text">Предпринимательство</a>
-                </div>
-                <!-- Карточка туризма и индустрии гостеприимства -->
-                <div class="third-section__card">
-                    <a href="project9-turism.html"><img src="./assets/icons/turism.png" alt="иконка туризма" class="third-section__img10"></a>
-                    <a href="project9-turism.html" class="third-section__text">Туризм и индустрия<br> гостеприимства</a>
-                </div>
-                <!-- Карточка жилья и городской среды -->
-                <div class="third-section__card">
-                    <a href="project10-housing.html"><img src="./assets/icons/housing-image.png" alt="иконка жилья и городской среды" class="third-section__img11"></a>
-                    <a href="project10-housing.html" class="third-section__text">Жилье и городская среда</a>
-                </div>
-                <!-- Карточка международной кооперации и экспорта -->
-                <div class="third-section__card">
-                    <a href="project11-world.html"><img src="./assets/icons/world-image.png" alt="иконка международной кооперации и экспорта" class="third-section__img12"></a>
-                    <a href="project11-world.html" class="third-section__text2">Международная кооперация<br> и экспорт</a>
-                </div>
-                <!-- Карточка производительности труда и поддержки занятости -->
-                <div class="third-section__card">
-                    <a href="project12-labour.html"><img src="./assets/icons/labour-image.png" alt="иконка производительности труда" class="third-section__img13"></a>
-                    <a href="project12-labour.html" class="third-section__text2">Производительность труда<br> и поддержка занятости</a>
-                </div>
-                <!-- Карточка области атомной энергии -->
-                <div class="third-section__card">
-                    <a href="project13-technology.html"><img src="./assets/icons/atom-image.png" alt="иконка области атомной энергии" class="third-section__img14"></a>
-                    <a href="project13-technology.html" class="third-section__text2">Развитие технологий<br> в области атомной энергии</a>
-                </div>
-                <!-- Карточка цифровой экономики РФ -->
-                <div class="third-section__card">
-                    <a href="project14-econom.html"><img src="./assets/icons/economy-image.png" alt="иконка цифровой экономики РФ" class="third-section__img15"></a>
-                    <a href="project14-econom.html" class="third-section__text">Цифровая экономика РФ</a>
-                </div>
-                <!-- Карточка расширения магистральной инфраструктуры -->
-                <div class="third-section__card card-last__margin">
-                    <a href="project15-maginf.html"><img src="./assets/icons/mainline-image.png" alt="иконка расширения магистральной инфраструктуры" class="third-section__img16"></a>
-                    <a href="project15-maginf.html" class="third-section__text2">Расширение магистральной<br> инфраструктуры</a>
-                </div>
-            </div>
-            <!-- Конец обертки карточек -->
-        </div>
-    </section>
-    <!-- Четвертая секция -->
-    <section class="fourth-section">
-        <div class="container fourth-section__container">
-            <!-- Заголовок -->
-            <h4 class="fourth-section__title">СТРАТЕГИЧЕСКИЕ ЗАДАЧИ</h4>
+    </div>
+    <hr class="header-hr">
+    <!-- Закончилась шапка -->
 
-            <!-- Обертка первая -->
-            <div class="fourth-section__wrapper1">
-                <!-- Левая сторона -->
-                <div class="fourth-section__wrapper1-left">
-                    <p class="fourth-section__number1">1</p>
-                    <div class="fourth-section__texts">
-                        <a href="strategy1.html" class="fourth-section__title-mini">Внешнеэкономические связи</a>
-                        <p class="fourth-section__text-mini">
-                            Расширение внешнеэкономических связей<br class="brrr"> России с
-                            партнёрами из дружественных<br class="brrr"> государств
-                        </p>
-                    </div>
-                </div>
-                <!-- Правая сторона -->
-                <div class="fourth-section__wrapper1-right">
-                    <p class="fourth-section__number2">2</p>
-                    <div class="fourth-section__texts">
-                        <a href="strategy2.html" class="fourth-section__title-mini">Развитие инфраструктуры</a>
-                        <p class="fourth-section__text-mini">
-                            Опережающее развитие инфраструктуры
-                        </p>
-                    </div>
-                </div>
-            </div>
+    {% block content %}
 
-            <!-- Обертка вторая -->
-            <div class="fourth-section__wrapper2">
-                <!-- Левая сторона -->
-                <div class="fourth-section__wrapper2-left">
-                    <p class="fourth-section__number3">3</p>
-                    <div class="fourth-section__texts">
-                        <a href="strategy3.html" class="fourth-section__title-mini">Технологический суверинетет</a>
-                        <p class="fourth-section__text-mini">
-                            Укрепление технологического<br class="brrr"> суверенитета страны
-                            и опережающий<br class="brrr"> рост обрабатывающей промышленности
-                        </p>
-                    </div>
-                </div>
-                <!-- Правая сторона -->
-                <div class="fourth-section__wrapper2-right">
-                    <p class="fourth-section__number4">4</p>
-                    <div class="fourth-section__texts">
-                        <a href="strategy4.html" class="fourth-section__title-mini">Благополучие граждан</a>
-                        <p class="fourth-section__text-mini">
-                            Повышение доходов граждан,<br class="brrr">
-                            благополучия российских семей
-                        </p>
-                    </div>
-                </div>
-            </div>
+    {% endblock content %}
 
-            <!-- Обертка третья -->
-            <div class="fourth-section__wrapper3">
-                <!-- Левая сторона -->
-                <div class="fourth-section__wrapper3-left">
-                    <p class="fourth-section__number5">5</p>
-                    <div class="fourth-section__texts">
-                        <a href="strategy5.html" class="fourth-section__title-mini">Финансовый суверинетет</a>
-                        <p class="fourth-section__text-mini">
-                            Обеспечение финансового суверенитета<br class="brrr">
-                            нашей страны
-                        </p>
-                    </div>
-                </div>
-                <!-- Правая сторона -->
-                <div class="fourth-section__wrapper3-right">
-                    <p class="fourth-section__number6">6</p>
-                    <div class="fourth-section__texts">
-                        <a href="strategy6.html" class="fourth-section__title-mini">Сбережение народа</a>
-                        <p class="fourth-section__text-mini">
-                            Сбережение народа, защита материнства и<br class="brrr">
-                            детства, рост продолжительности жизни
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
-    </section>
-    <!-- Пятая секция -->
-    <section class="fifth-section">
-        <div class="container fifth-section__container">
-
-            <!-- Обертка первая -->
-            <div class="fifth-section__wrapper1">
-                <img src="./assets/images/index-man-left.png" alt="изображение мужчины" class="fifth-section__img1">
-                <div class="fifth-section__block1">
-                    <h5 class="fifth-section__title">КОМПЕТЕНЦИИ</h5>
-                    <hr class="fifth-section__hr">
-                    <p class="fifth-section__text fifth-section__text_margin">
-                        В команде ситуационного центра РЭУ им. Г.В.<br class="brrr">
-                        Плеханова Тульского филиала работают<br class="brrr">
-                        высококвалифицированные аналитики, социологи,<br class="brrr">
-                        эксперты по созданию Data Science моделей и<br class="brrr">
-                        дизайну аналитической отчётности.
-                    </p>
-                    <div class="fifth-section__buttons">
-                        <button class="fifth-section__button1">Подробнее</button>
-                        <button class="fifth-section__button2">Скачать брошюру</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Обертка вторая -->
-            <div class="fifth-section__wrapper2">
-                <div class="fifth-section__block2">
-                    <h5 class="fifth-section__title">СОБСТВЕННАЯ РАЗРАБОТКА</h5>
-                    <hr class="fifth-section__hr">
-                    <p class="fifth-section__text">
-                        Потребности российского рынка часто требуют<br class="brrr"> индивидуального
-                        подхода, так как возможности<br class="brrr"> существующих
-                        информационно-аналитических<br class="brrr"> систем не всегда соответствуют
-                        задачам и<br class="brrr"> автоматизируемым процессам. Промышленные<br class="brrr"> предприятия
-                        часто обладают уникальными<br class="brrr"> производственным циклом и процессами,
-                        также наши<br class="brrr"> разработки востребованы в органах
-                        государственной<br class="brrr"> власти.
-                    </p>
-                </div>
-                <img src="./assets/images/index-man-right.png" alt="изображение мужчины" class="fifth-section__img2">
-            </div>
-
-        </div>
-    </section>
     <!-- Футер -->
     <footer class="footer-section">
         <div class="container footer-section__container">
@@ -451,7 +122,7 @@
             <div class="footer-section__wrapper_main">
                 <!-- Обертка первая -->
                 <div class="footer-section__wrapper1">
-                    <a href="index.html"><img src="./assets/icons/logo-light.png" alt="логотип центра" class="footer-section__logo"></a>
+                    <a href="index.html"><img src="{% static "./assets/icons/logo-light.png" %}" alt="логотип центра" class="footer-section__logo"></a>
                     <p class="footer-section__text">
                         Адрес:<br> <span class="footer-section__span">г. Тула, просп. Ленина, 53Б</span>
                     </p>
@@ -516,7 +187,7 @@
 
                 <!-- Обертка пятая -->
                 <div class="footer-section__wrapper5">
-                    <img src="./assets/icons/strelka.svg" alt="иконка стрелки вверх" id="button" class="footer-section__strelka">
+                    <img src="{% static "./assets/icons/strelka.svg" %}" alt="иконка стрелки вверх" id="button" class="footer-section__strelka">
                 </div>
             </div>
 
@@ -537,7 +208,7 @@
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="./assets/js/main.js"></script>
+    <script src="{% static "./assets/js/main.js" %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
