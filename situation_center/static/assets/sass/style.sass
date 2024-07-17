@@ -1,0 +1,2855 @@
+@import "normalizes.scss"
+@import "resets.scss"
+
+*
+    box-sizing: border-box
+
+@font-face 
+    font-family: 'TTNormsPro'
+    src: url(../fonts/TTNormsPro-Medium.ttf)
+    font-weight: 500
+    font-style: normal
+    font-display: swap
+
+@font-face 
+    font-family: 'TTNormsPro'
+    src: url(../fonts/TTNormsPro-Regular.ttf)
+    font-weight: 400
+    font-style: normal
+    font-display: swap
+
+@font-face 
+    font-family: 'TTNormsPro'
+    src: url(../fonts/TTNormsPro-Thin.ttf)
+    font-weight: 100
+    font-style: normal
+    font-display: swap
+
+@font-face 
+    font-family: 'TTNormsPro'
+    src: url(../fonts/TTNormsPro-Light.ttf)
+    font-weight: 300
+    font-style: normal
+    font-display: swap
+
+@font-face 
+    font-family: 'TTNormsPro'
+    src: url(../fonts/TTNormsPro-Bold.ttf)
+    font-weight: 700
+    font-style: normal
+    font-display: swap
+
+@font-face 
+    font-family: 'TTNormsPro'
+    src: url(../fonts/TTNormsPro-ExtraBold.ttf)
+    font-weight: 800
+    font-style: normal
+    font-display: swap
+
+@font-face 
+    font-family: 'TTNormsPro'
+    src: url(../fonts/TTNormsPro-ExtraBlack.ttf)
+    font-weight: 900
+    font-style: normal
+    font-display: swap
+
+html
+    font-family: 'TTNormsPro', sans-serif
+    font-weight: 400
+    overflow-x: hidden
+
+body
+    background: #F5EBE9
+    position: relative
+    overflow-x: hidden
+
+body::-webkit-scrollbar
+  width: 9px              /* ширина scrollbar */
+
+body::-webkit-scrollbar-track
+  background: #dbae8b     /* цвет дорожки */
+
+body::-webkit-scrollbar-thumb
+  background-color: #715c4f  /* цвет плашки */
+  border-radius: 20px    /* закругления плашки */
+  border: 1px solid #b48460  /* padding вокруг плашки */
+
+$button-color-orange: rgb(219, 174, 139)
+$button-border-color-orange: rgb(219, 174, 139)
+    
+.container
+    max-width: 1680px
+    position: relative
+    margin: 0 auto
+    /* z-index: 2 */
+
+/*********** index ***********/
+
+.mobile-menu
+    display: none
+    &__nav
+        padding-top: 47px
+        padding-left: 50px
+    &__link
+        color: rgb(245, 235, 233)
+        font-size: 20px
+        font-weight: 400
+        line-height: 24px
+        &:hover
+            text-decoration: underline
+    &__block-link
+        padding-top: 23px
+        padding-left: 50px
+    &__margin2
+        margin-top: 23px
+    &__margin3
+        margin-top: 23px
+    &__displayp
+        display: flex
+        align-items: center
+        gap: 7px
+    &__custom-link
+        color: rgb(245, 235, 233)
+        font-size: 20px
+        font-weight: 400
+        line-height: 24px
+    &__hr
+        border: 1px solid rgb(219, 174, 139)
+    &__wrapper-mini
+        padding-left: 50px
+    &__text1
+        color: rgb(245, 235, 233)
+        font-size: 20px
+        font-weight: 400
+        line-height: 24px
+        margin-bottom: 5px
+    &__text2
+        color: rgb(245, 235, 233)
+        font-size: 20px
+        font-weight: 300
+        line-height: 24px
+    &__block2
+        padding-bottom: 23px
+    &__block22
+        padding-bottom: 23px
+    &__block222
+        padding-bottom: 23px
+
+.header
+    padding-top: 52px
+    display: flex
+    align-items: center
+    position: sticky
+    z-index: 2
+    &-link_margin1
+        margin-right: 200px
+    &-link_margin2
+        margin-right: 200px
+    &-link_margin3
+        margin-right: 99px
+    &-link_margin4
+        margin-left: 99px
+    &-link_margin5
+        margin-left: 162px
+    &-link_margin6
+        margin-left: 162px
+    &-block1-ul1
+        display: flex
+    &-block3-ul2
+        display: flex
+    &-block1-link
+        color: rgb(245, 235, 233)
+        font-size: 20px
+        font-weight: 400
+        line-height: 24px
+    &-block1-link_custom
+        color: rgb(219, 174, 139)
+        font-size: 20px
+        font-weight: 400
+        line-height: 24px
+        white-space: nowrap
+        &:hover
+            color: rgb(232, 195, 166)
+
+a
+  overflow: hidden
+  position: relative
+  display: inline-block
+  text-decoration: none
+
+a::before
+a::after 
+    content: ''
+    position: absolute
+    width: 100%
+    left: 0
+
+a::before 
+  background-color: rgb(235, 206, 200)
+  height: 2px
+  bottom: 0
+  transform-origin: 100% 50%
+  transform: scaleX(0)
+  transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1)
+
+a::after 
+  content: attr(data-replace)
+  height: 100%
+  top: 0
+  transform-origin: 100% 50%
+  transform: translate3d(200%, 0, 0)
+  transition: .3s cubic-bezier(0.76, 0, 0.24, 1)
+  color: rgb(245, 235, 233)
+
+a:hover::before 
+  transform-origin: 0% 50%
+  transform: scaleX(1)
+
+a:hover::after 
+  transform: translate3d(0, 0, 0)
+
+a span 
+    display: inline-block
+    transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1)
+
+a:hover span 
+  transform: translate3d(-200%, 0, 0)
+
+.dropdown
+    position: relative
+
+.dropdown-content
+    display: none
+    position: absolute
+    border-radius: 12px
+    background: #f1decf
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)
+    z-index: 1
+    top: 100%
+    left: 50%
+    width: 160px
+
+.dropdown-content a
+    display: block
+    padding: 10px 20px
+    text-decoration: none
+    color: #333
+    transition: .3s all
+    &:hover
+        color: #e19a64
+
+.dropdown:hover .dropdown-content
+    display: block
+
+.dropdown-custom
+    color: rgb(219, 174, 139)
+    font-size: 20px
+    font-weight: 300
+    line-height: 24px
+    margin-top: 20px
+
+.main-section
+    min-height: 990px
+    background-image: url(../images/bg-main.jpeg)
+    background-size: cover
+    background-repeat: no-repeat
+    background-position: center 
+    &-block
+        position: sticky
+        z-index: 2
+        margin-top: 147px
+    &_title
+        text-align: center
+        color: rgb(219, 174, 139)
+        font-size: 45px
+        font-weight: 500
+        line-height: 54px
+        margin-bottom: 21px
+    &_text
+        text-align: center
+        color: rgb(245, 235, 233)
+        font-size: 24px
+        font-weight: 300
+        line-height: 29px
+        margin-bottom: 38px
+    &_links
+        text-align: center
+    &_link-button1
+        margin-right: 37px
+        color: rgb(245, 235, 233)
+        font-size: 24px
+        font-weight: 500
+        line-height: 29px
+        background: $button-color-orange
+        border: none
+        padding: 17px 62px
+        transition: .3s all
+        &:hover
+            cursor: pointer
+            background: #e7c9b2
+    &_link-button2
+        color: rgb(245, 235, 233)
+        font-size: 24px
+        font-weight: 500
+        line-height: 29px
+        border: 2px solid $button-border-color-orange
+        padding: 17px 62px
+        background: none
+        transition: .3s all
+        &:hover
+            cursor: pointer
+            background: $button-color-orange
+
+.overlay
+    width: 1000%
+    height: 142%
+    background: linear-gradient(180.26deg, rgb(26, 18, 11) -68.606%,rgba(115, 115, 115, 0) 204.901%)
+    position: absolute
+    top: 0
+    left: -10000px
+    z-index: 0
+
+.second-section
+    min-height: 770px
+    margin-top: 120px
+    &__title
+        color: rgb(26, 18, 11)
+        font-size: 45px
+        font-weight: 500
+        line-height: 54px
+        letter-spacing: 0%
+        margin-bottom: 60px
+    &__button
+        color: rgb(245, 235, 233)
+        font-size: 24px
+        font-weight: 500
+        line-height: 29px
+        letter-spacing: 0%
+        background: $button-color-orange
+        padding: 17px 98px
+        border: none
+        display: block
+        margin: 0 auto
+        transition: .3s all
+        &:hover
+            background: #e5be9f
+    &__button-link
+        display: block
+
+.carousel-custom
+    border: 4px solid $button-border-color-orange
+    border-radius: 37px
+    display: flex
+    align-items: center
+    margin-bottom: 68px
+
+.carousel-img
+    width: 408px
+    height: 450px
+    border-radius: 37px
+    margin: 32px 47px 32px 67px
+
+.carousel-block_texts
+    margin: 0
+
+.carousel-block_title
+    color: rgb(26, 18, 11)
+    font-size: 40px
+    font-weight: 500
+    line-height: 48px
+    letter-spacing: 0%
+    margin-bottom: 22px
+
+.carousel-block_description
+    color: rgb(26, 18, 11)
+    font-size: 24px
+    font-weight: 500
+    line-height: 29px
+    letter-spacing: 3%
+    margin-bottom: 65px
+    margin-right: 35px
+
+.carousel-block_time
+    text-align: end
+    color: rgb(26, 18, 11)
+    font-size: 24px
+    font-weight: 400
+    line-height: 29px
+    letter-spacing: 0%
+    margin-right: 28px
+
+.carousel-right
+    margin-left: 180px
+    background: #000
+    opacity: 0.6
+    border-radius: 50%
+    margin-bottom: 50px
+    font-size: 24px
+
+.carousel-left
+    margin-right: 180px
+    background: #000
+    opacity: 0.6
+    border-radius: 50%
+    margin-bottom: 50px
+    font-size: 24px
+
+.third-section
+    min-height: 500px
+    margin-top: 120px
+    &__title
+        color: rgb(26, 18, 11)
+        font-size: 45px
+        font-weight: 500
+        line-height: 54px
+        letter-spacing: 0%
+        margin-bottom: 61px
+    &__wrapper
+        display: flex
+        gap: 62px
+        overflow-x: auto
+        white-space: nowrap
+        scroll-snap-type: x mandatory
+        scrollbar-width: none
+        padding-bottom: 70px
+    &__text
+        color: rgb(26, 18, 11)
+        font-size: 40px
+        font-weight: 500
+        line-height: 48px
+        letter-spacing: 0%
+        margin-top: -70px
+        text-align: center
+    &__text2
+        color: rgb(26, 18, 11)
+        font-size: 38px
+        font-weight: 500
+        line-height: 48px
+        letter-spacing: 0%
+        margin-top: -70px
+        text-align: center
+    &__img1
+        margin-left: 40px
+    &__img2
+        margin-left: 0
+    &__img3
+        margin-left: 0
+    &__img4
+        margin-left: 0
+    &__img5
+        margin-left: 0
+    &__img6
+        margin-left: 40px
+    &__img7
+        margin-left: 0
+    &__img8
+        margin-left: 0
+    &__img9
+        margin-left: 90px
+    &__img10
+        margin-left: 20px
+    &__img11
+        margin-left: 100px
+    &__img12
+        margin-left: 110px
+    &__img13
+        margin-left: 100px
+    &__img14
+        margin-left: 85px
+    &__img15
+        margin-left: 85px
+    &__img16
+        margin-left: 85px
+    &__card
+        width: 520px
+        height: 569px
+        border-top: 21px solid rgb(219, 174, 139)
+        border-radius: 37px
+        box-shadow: 10px 14px 56.6px -15px rgba(26, 18, 11, 0.46)
+        background: rgb(248, 238, 238)
+        display: grid
+        align-items: center
+        justify-content: center
+        flex: 0 0 auto
+        flex-shrink: 0
+        &:hover
+            cursor: pointer
+
+.third-section__wrapper::-webkit-scrollbar
+    scrollbar-width: none
+
+#card-text__margin
+    margin-bottom: 10px
+
+.card-last__margin
+    margin-right: 20px
+
+.fourth-section
+    min-height: 930px
+    margin-top: 50px
+    &__title
+        color: rgb(26, 18, 11)
+        font-size: 45px
+        font-weight: 500
+        line-height: 54px
+        letter-spacing: 0%
+        margin-bottom: 40px
+    &__wrapper1
+        display: flex
+        justify-content: space-between
+    &__wrapper2
+        display: flex
+        justify-content: space-between
+    &__wrapper3
+        display: flex
+        justify-content: space-between
+    &__wrapper1-left
+        display: flex
+        align-items: center
+        gap: 20px
+    &__wrapper1-right
+        display: flex
+        align-items: center
+        gap: 20px
+    &__wrapper2-left
+        display: flex
+        align-items: center
+        gap: 20px
+    &__wrapper2-right
+        display: flex
+        align-items: center
+        gap: 20px
+        margin-right: 100px
+    &__wrapper3-left
+        display: flex
+        align-items: center
+        gap: 20px
+    &__wrapper3-right
+        display: flex
+        align-items: center
+        gap: 20px
+        margin-right: -40px
+    &__number1
+        color: rgb(219, 174, 139)
+        font-size: 245px
+        font-weight: 700
+        line-height: 294px
+        letter-spacing: 0%
+    &__number2
+        color: rgb(219, 174, 139)
+        font-size: 245px
+        font-weight: 700
+        line-height: 294px
+        letter-spacing: 0%
+    &__number3
+        color: rgb(219, 174, 139)
+        font-size: 245px
+        font-weight: 700
+        line-height: 294px
+        letter-spacing: 0%
+    &__number4
+        color: rgb(219, 174, 139)
+        font-size: 245px
+        font-weight: 700
+        line-height: 294px
+        letter-spacing: 0%
+    &__number5
+        color: rgb(219, 174, 139)
+        font-size: 245px
+        font-weight: 700
+        line-height: 294px
+        letter-spacing: 0%
+    &__number6
+        color: rgb(219, 174, 139)
+        font-size: 245px
+        font-weight: 700
+        line-height: 294px
+        letter-spacing: 0%
+    &__title-mini
+        color: rgb(26, 18, 11)
+        font-size: 40px
+        font-weight: 700
+        line-height: 48px
+        letter-spacing: 0%
+        &:hover
+            text-decoration: underline
+    &__text-mini
+        color: rgb(26, 18, 11)
+        font-size: 28px
+        font-weight: 500
+        line-height: 34px
+        letter-spacing: 3%
+
+.fifth-section
+    min-height: 610px
+    margin-top: 90px
+    margin-bottom: 211px
+    &__wrapper1
+        margin-bottom: 151px
+        display: flex
+        align-items: center
+        justify-content: space-between
+    &__wrapper2
+        display: flex
+        align-items: center
+        justify-content: space-between
+    &__title
+        color: rgb(0, 0, 0)
+        font-size: 45px
+        font-weight: 500
+        line-height: 54px
+        letter-spacing: 0%
+    &__hr
+        width: 130px
+        border: 1px solid rgb(219, 174, 139)
+    &__text
+        color: rgb(26, 18, 11)
+        font-size: 28px
+        font-weight: 500
+        line-height: 34px
+        letter-spacing: 3%
+    &__text_margin
+        margin-bottom: 64px
+    &__buttons
+        display: flex
+        gap: 30px
+    &__button1
+        color: rgb(245, 235, 233)
+        font-size: 24px
+        font-weight: 500
+        line-height: 29px
+        letter-spacing: 0%
+        padding: 19px 107px
+        background: $button-color-orange
+        border: none
+        transition: .3s all
+        &:hover
+            background: #e5be9f
+    &__button2
+        color: rgb(219, 174, 139)
+        font-size: 24px
+        font-weight: 500
+        line-height: 29px
+        letter-spacing: 0%
+        background: none
+        padding: 19px 70px
+        border: 2px solid $button-border-color-orange
+        transition: .3s all
+        &:hover
+            color: rgb(245, 235, 233)
+            background: $button-color-orange
+
+.footer-section
+    min-height: 1050px
+    background: rgb(74, 66, 60)
+    &__wrapper_main
+        display: flex
+        margin-bottom: 165px
+    &__wrapper1
+        padding-top: 45px
+        margin-right: 85px
+    &__wrapper2
+        padding-top: 45px
+        margin-right: 23px
+    &__wrapper3
+        padding-top: 45px
+        margin-right: 23px
+    &__wrapper4
+        padding-top: 45px
+        margin-right: 73px
+    &__wrapper5
+        padding-top: 45px
+    &__text
+        color: rgb(245, 235, 233)
+        font-size: 28px
+        font-weight: 500
+        line-height: 34px
+        letter-spacing: 0%
+        margin-top: 16px
+    &__span
+        font-weight: 300
+    &__h6
+        margin-bottom: 16px
+        color: rgb(245, 235, 233)
+        font-size: 33px
+        font-weight: 500
+        line-height: 40px
+        letter-spacing: 0%
+    &__li
+        list-style-type: none
+    &__link
+        margin-bottom: 16px
+        color: rgb(245, 235, 233)
+        font-size: 28px
+        font-weight: 300
+        line-height: 34px
+        letter-spacing: 0%
+        &:hover
+            text-decoration: underline
+    &__strelka
+        transition: .3s all
+        &:hover
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset
+            border-radius: 30%
+            cursor: pointer
+    &__last-info
+        padding-bottom: 36px
+    &__hr
+        border: 1px solid rgb(245, 235, 233)
+    &__last-text
+        color: rgb(245, 235, 233)
+        font-size: 16px
+        font-weight: 300
+        line-height: 19px
+        letter-spacing: 0%
+
+/*********** privacy-policy ***********/
+
+#style-3
+    color: rgb(26, 18, 11)
+    &:hover
+        text-decoration: underline
+
+.header-hr
+    border: 1px solid rgb(26, 18, 11)
+    margin-bottom: 150px
+
+.privacy-section
+    min-height: 8100px
+    margin-bottom: 150px
+    &__title
+        color: rgb(0, 0, 0)
+        font-size: 45px
+        font-weight: 500
+        line-height: 54px
+        letter-spacing: 0%
+        margin-bottom: 30px
+    &__h2
+        color: rgb(26, 18, 11)
+        font-size: 34px
+        font-weight: 700
+        letter-spacing: 3%
+    &__text
+        color: rgb(26, 18, 11)
+        font-size: 28px
+        font-weight: 500
+        line-height: 136%
+        letter-spacing: 3%
+    &__block1
+        margin-bottom: 40px
+    &__block2
+        margin-bottom: 40px
+    &__block3
+        margin-bottom: 40px
+    &__block4
+        margin-bottom: 40px
+    &__block5
+        margin-bottom: 40px
+    &__block6
+        margin-bottom: 40px
+    &__block7
+        margin-bottom: 40px
+    &__block8
+        margin-bottom: 40px
+    &__block9
+        margin-bottom: 40px
+    &__block10
+        margin-bottom: 40px
+    &__block11
+        margin-bottom: 40px
+    &__m1
+        margin-bottom: 40px
+
+/*********** 403, 404, 500 and other error pages ***********/
+
+.error-section
+    &__p1
+        font-size: 192px
+        font-weight: 800
+        line-height: 230px
+        margin-top: -90px
+    &__p2
+        color: rgb(26, 18, 11)
+        font-size: 38px
+        font-weight: 700
+        line-height: 46px
+        margin-bottom: 30px
+    &__button
+        color: rgb(255, 255, 255)
+        font-size: 24px
+        font-weight: 500
+        line-height: 29px
+        border-radius: 15px
+        padding: 12px 34px
+        border: none
+        background: $button-color-orange
+        transition: .3s all
+        &:hover
+            background: rgb(232, 195, 166)
+    &__dev
+        color: rgb(26, 18, 11)
+        font-size: 59px
+        font-weight: 800
+        line-height: 116.89%
+        letter-spacing: 4%
+        margin-bottom: 19px
+        margin-top: 19px
+    &__dev-text
+        color: rgb(26, 18, 11)
+        font-size: 30px
+        font-weight: 500
+        line-height: 36px
+        margin-bottom: 30px
+
+#error-section__span
+    color: rgb(219, 174, 139)
+
+.error-block
+    text-align: center
+    margin-top: 110px
+
+/*********** login.html ***********/
+
+.login-section
+    min-height: 350px
+    margin-bottom: 150px
+    &__wrapper-main
+        display: flex
+        align-items: center
+        justify-content: center
+    &__wrapper-left
+        margin-right: 110px
+    &__img
+        margin-left: -100px
+    &__block1
+        margin-bottom: 15px
+    &__block2
+        display: flex
+        gap: 5px
+    &__login-text
+        color: rgb(26, 18, 11)
+        font-size: 55px
+        font-weight: 500
+        margin-left: -4px
+        margin-bottom: 5px
+    &__login-none
+        color: rgb(26, 18, 11)
+        font-size: 18px
+        font-weight: 500
+        line-height: 116%
+        letter-spacing: 1%
+    &__login-link
+        color: #DBAE8B
+        font-size: 18px
+        font-weight: 400
+        line-height: 116%
+        letter-spacing: 1%
+        &:hover
+            text-decoration: underline
+    &__input1
+        width: 430px
+        height: 42px
+        background: none
+        border: 1px solid rgb(74, 66, 60)
+        border-radius: 8px
+        margin-bottom: 33px
+        color: rgb(78, 70, 70)
+        font-size: 14px
+        font-weight: 300
+        line-height: 17px
+        padding: 12px 0 12px 20px
+        &::placeholder
+            color: rgb(78, 70, 70)
+            font-size: 14px
+            font-weight: 300
+            line-height: 17px
+    &__input2
+        width: 430px
+        height: 42px
+        background: none
+        border: 1px solid rgb(74, 66, 60)
+        border-radius: 8px
+        margin-bottom: 33px
+        color: rgb(78, 70, 70)
+        font-size: 14px
+        font-weight: 300
+        line-height: 17px
+        padding: 12px 0 12px 20px
+        &::placeholder
+            color: rgb(78, 70, 70)
+            font-size: 14px
+            font-weight: 300
+            line-height: 17px
+    &__login_footer
+        display: flex
+        align-items: center
+        margin-bottom: 41px
+    &__input3
+        width: 180px
+        height: 42px
+        background: none
+        border: 1px solid rgb(74, 66, 60)
+        border-radius: 8px
+        margin-right: 122px
+        color: rgb(78, 70, 70)
+        font-size: 14px
+        font-weight: 300
+        line-height: 17px
+        padding: 12px 0 12px 20px
+        &::placeholder
+            color: rgb(78, 70, 70)
+            font-size: 14px
+            font-weight: 300
+            line-height: 17px
+    &__security-code
+        width: 120px
+        height: 42px
+        background: none
+        border: 1px solid rgb(74, 66, 60)
+        border-radius: 8px
+        text-align: center
+    &__login_footer2
+        display: flex
+        align-items: center
+        justify-content: space-between
+        margin-bottom: 41px
+    &__custome-checkbox
+        display: flex
+        gap: 13px
+    &__form-check-input
+        margin-top: 0
+        border: 1px solid rgba(78, 70, 70, 0.46)
+        background: none
+    &__form-check-label
+        color: rgb(78, 70, 70)
+        font-size: 13px
+        font-weight: 300
+        line-height: 16px
+    &__text-muted
+        color: rgb(168, 159, 158)
+        font-size: 13px
+        font-weight: 300
+        line-height: 16px
+        &:hover
+            text-decoration: underline
+    &__btn
+        color: rgb(245, 235, 233)
+        font-size: 18px
+        font-weight: 500
+        line-height: 22px
+        border-radius: 8px
+        background: $button-color-orange
+        border: none
+        padding: 10px 26px
+        transition: .3s all
+        &:hover
+            background: #e7c9b2
+            cursor: pointer
+    
+.text-new
+    font-size: 34px
+
+.text-hot
+    font-size: 34px
+
+.text-sale
+    font-size: 34px
+
+.text-best
+    font-size: 34px
+
+/*********** register.html ***********/
+
+.register-section
+    min-height: 500px
+    margin-bottom: 150px
+    &__wrapper-main
+        display: flex
+        align-items: center
+        justify-content: space-evenly
+    &__wrapper-left
+    &__security-code
+        width: 120px
+        height: 42px
+        background: none
+        border: 1px solid rgb(74, 66, 60)
+        border-radius: 8px
+        text-align: center
+    &__login_footer
+        display: flex
+        align-items: center
+        margin-bottom: 41px
+    &__chek-form
+        margin-right: 126px
+    &__create
+        color: rgb(26, 18, 11)
+        font-size: 55px
+        font-weight: 500
+        line-height: 66px
+        margin-bottom: 5px
+        margin-left: -4px
+    &__block1
+        display: flex
+        align-items: center
+        gap: 5px
+        margin-bottom: 37px
+    &__question
+        color: rgb(26, 18, 11)
+        font-size: 20px
+        font-weight: 400
+        line-height: 24px
+    &__link
+        color: rgb(219, 174, 139)
+        font-size: 20px
+        font-weight: 400
+        line-height: 24px
+        &:hover
+            text-decoration: underline
+    &__input1
+        width: 430px
+        height: 42px
+        background: none
+        border: 1px solid rgb(74, 66, 60)
+        border-radius: 8px
+        margin-bottom: 33px
+        color: rgb(78, 70, 70)
+        font-size: 14px
+        font-weight: 300
+        line-height: 17px
+        padding: 12px 0 12px 20px
+        &::placeholder
+            color: rgb(78, 70, 70)
+            font-size: 14px
+            font-weight: 300
+            line-height: 17px
+    &__input2
+        width: 430px
+        height: 42px
+        background: none
+        border: 1px solid rgb(74, 66, 60)
+        border-radius: 8px
+        margin-bottom: 33px
+        color: rgb(78, 70, 70)
+        font-size: 14px
+        font-weight: 300
+        line-height: 17px
+        padding: 12px 0 12px 20px
+        &::placeholder
+            color: rgb(78, 70, 70)
+            font-size: 14px
+            font-weight: 300
+            line-height: 17px
+    &__input3
+        width: 430px
+        height: 42px
+        background: none
+        border: 1px solid rgb(74, 66, 60)
+        border-radius: 8px
+        margin-bottom: 33px
+        color: rgb(78, 70, 70)
+        font-size: 14px
+        font-weight: 300
+        line-height: 17px
+        padding: 12px 0 12px 20px
+        &::placeholder
+            color: rgb(78, 70, 70)
+            font-size: 14px
+            font-weight: 300
+            line-height: 17px
+    &__input4
+        width: 430px
+        height: 42px
+        background: none
+        border: 1px solid rgb(74, 66, 60)
+        border-radius: 8px
+        margin-bottom: 33px
+        color: rgb(78, 70, 70)
+        font-size: 14px
+        font-weight: 300
+        line-height: 17px
+        padding: 12px 0 12px 20px
+        &::placeholder
+            color: rgb(78, 70, 70)
+            font-size: 14px
+            font-weight: 300
+            line-height: 17px
+    &__input5
+        width: 430px
+        height: 42px
+        background: none
+        border: 1px solid rgb(74, 66, 60)
+        border-radius: 8px
+        margin-bottom: 33px
+        color: rgb(78, 70, 70)
+        font-size: 14px
+        font-weight: 300
+        line-height: 17px
+        padding: 12px 0 12px 20px
+        &::placeholder
+            color: rgb(78, 70, 70)
+            font-size: 14px
+            font-weight: 300
+            line-height: 17px
+    &__input6
+        width: 180px
+        height: 42px
+        background: none
+        border: 1px solid rgb(74, 66, 60)
+        border-radius: 8px
+        color: rgb(78, 70, 70)
+        font-size: 14px
+        font-weight: 300
+        line-height: 17px
+        padding: 12px 0 12px 20px
+        &::placeholder
+            color: rgb(78, 70, 70)
+            font-size: 14px
+            font-weight: 300
+            line-height: 17px
+    &__custome-checkboxes
+        display: flex
+        gap: 13px
+        align-items: center
+        margin-right: 113px
+    &__login_footer2
+        display: flex
+        align-items: center
+        margin-bottom: 41px
+    &__form-check-label
+        color: rgb(78, 70, 70)
+        font-size: 13px
+        font-weight: 300
+        line-height: 16px
+    &__pp-link
+        color: rgb(219, 174, 139)
+        font-size: 13px
+        font-weight: 300
+        line-height: 16px
+    &__btn
+        color: rgb(245, 235, 233)
+        font-size: 18px
+        font-weight: 500
+        line-height: 22px
+        border-radius: 8px
+        background: $button-color-orange
+        border: none
+        padding: 10px 26px
+        transition: .3s all
+        margin-bottom: 25px
+        &:hover
+            background: #e7c9b2
+            cursor: pointer
+    &__text-end
+        max-width: 356px
+        color: rgb(78, 70, 70)
+        font-size: 12px
+        font-weight: 300
+        line-height: 14px
+
+/*********** reset-password.html ***********/
+
+.rpassword-section
+    min-height: 200px
+    margin-bottom: 150px
+    &__title
+        color: rgb(26, 18, 11)
+        font-size: 48px
+        font-weight: 500
+        line-height: 58px
+        margin-bottom: 39px
+        text-align: center
+    &__block
+        display: grid
+        justify-content: center
+    &__input1
+        width: 430px
+        height: 42px
+        background: none
+        border: 1px solid rgb(74, 66, 60)
+        border-radius: 8px
+        color: rgb(78, 70, 70)
+        font-size: 14px
+        font-weight: 300
+        line-height: 17px
+        padding: 12px 0 12px 20px
+        margin-bottom: 33px
+        &::placeholder
+            color: rgb(78, 70, 70)
+            font-size: 14px
+            font-weight: 300
+            line-height: 17px
+    &__input2
+        width: 430px
+        height: 42px
+        background: none
+        border: 1px solid rgb(74, 66, 60)
+        border-radius: 8px
+        color: rgb(78, 70, 70)
+        font-size: 14px
+        font-weight: 300
+        line-height: 17px
+        padding: 12px 0 12px 20px
+        margin-bottom: 47px
+        &::placeholder
+            color: rgb(78, 70, 70)
+            font-size: 14px
+            font-weight: 300
+            line-height: 17px
+    &__form-group3
+        display: flex
+        justify-content: center
+    &__btn
+        color: rgb(245, 235, 233)
+        font-size: 18px
+        font-weight: 500
+        line-height: 22px
+        border-radius: 8px
+        background: rgb(219, 174, 139)
+        border: none
+        padding: 10px 31px
+        transition: .3s all
+        &:hover
+            background: #e7c9b2
+
+/*********** forgot-password.html ***********/
+
+.forgotp-section
+    min-height: 230px
+    margin-bottom: 150px
+    &__title
+        color: rgb(26, 18, 11)
+        font-size: 48px
+        font-weight: 500
+        line-height: 58px
+        text-align: center
+        margin-bottom: 39px
+    &__block2
+        display: grid
+        justify-content: center
+    &__input1
+        width: 430px
+        height: 42px
+        background: none
+        border: 1px solid rgb(74, 66, 60)
+        border-radius: 8px
+        color: rgb(78, 70, 70)
+        font-size: 14px
+        font-weight: 300
+        line-height: 17px
+        padding: 12px 0 12px 20px
+        margin-bottom: 33px
+        &::placeholder
+            color: rgb(78, 70, 70)
+            font-size: 14px
+            font-weight: 300
+            line-height: 17px
+    &__input2
+        width: 180px
+        height: 42px
+        background: none
+        border: 1px solid rgb(74, 66, 60)
+        border-radius: 8px
+        color: rgb(78, 70, 70)
+        font-size: 14px
+        font-weight: 300
+        line-height: 17px
+        padding: 12px 0 12px 20px
+        margin-right: 126px
+        margin-bottom: 33px
+        &::placeholder
+            color: rgb(78, 70, 70)
+            font-size: 14px
+            font-weight: 300
+            line-height: 17px
+    &__security-code
+        border: 1px solid rgb(74, 66, 60)
+        border-radius: 8px
+        padding: 5px 10px
+    &__login_footer5
+        display: flex
+        align-items: start
+        justify-content: space-between
+    &__login_footer
+        display: flex
+        margin-bottom: 39px
+        justify-content: space-between
+    &__form-check-label
+        color: rgb(78, 70, 70)
+        font-size: 13px
+        font-weight: 300
+        line-height: 16px
+    &__custome-checkbox
+        display: flex
+        align-items: center
+        gap: 10px
+    &__text-muted
+        color: rgb(219, 174, 139)
+        font-size: 13px
+        font-weight: 300
+        line-height: 16px
+        &:hover
+            text-decoration: underline
+    &__form-group3
+        display: flex
+        justify-content: center
+    &__btn
+        color: rgb(245, 235, 233)
+        font-size: 18px
+        font-weight: 500
+        line-height: 22px
+        border-radius: 8px
+        background: rgb(219, 174, 139)
+        border: none
+        padding: 10px 31px
+        transition: .3s all
+        &:hover
+            background: #e7c9b2
+            cursor: pointer
+
+/*********** contact.html ***********/
+
+.contact-section
+    min-height: 500px
+    margin-bottom: 150px
+    &__title
+        color: rgb(26, 18, 11)
+        font-size: 45px
+        font-weight: 500
+        line-height: 54px
+        margin-bottom: 40px
+    &__text
+        color: rgb(26, 18, 11)
+        font-size: 38px
+        font-weight: 400
+        line-height: 46px
+    &__wrapper
+        display: flex
+        align-items: center
+        justify-content: space-between
+    &__wrapper-left
+        display: flex
+    &__iframe
+        width: 500px
+        height: 390px
+    &__block1
+        margin-right: 90px
+    &__part1
+        display: flex
+        margin-bottom: 70px
+        align-items: center
+        gap: 19px
+    &__part2
+        display: flex
+        align-items: center
+        gap: 19px
+    &__part3
+        display: flex
+        margin-bottom: 70px
+        align-items: center
+        gap: 19px
+    &__part4
+        display: flex
+        align-items: center
+        gap: 19px
+
+#contact-section__id
+    font-weight: 300
+
+.contactform-section
+    min-height: 100px
+    margin-bottom: 150px
+    &__title
+        color: rgb(26, 18, 11)
+        font-size: 45px
+        font-weight: 500
+        line-height: 54px
+        margin-bottom: 44px
+    &__wrapper
+        display: flex
+        justify-content: center
+        align-items: center
+        border: 4px solid rgb(219, 174, 139)
+        border-radius: 37px
+    &__img
+        margin-top: -80px
+    &__left
+        padding: 65px 0 65px 0
+    &__right
+        margin-left: 165px
+        padding: 65px 0 65px 0
+    &__input1
+        width: 420px
+        height: 42px
+        background: none
+        border: 1px solid rgb(74, 66, 60)
+        border-radius: 8px
+        color: rgb(78, 70, 70)
+        font-size: 14px
+        font-weight: 300
+        line-height: 17px
+        padding: 12px 0 12px 20px
+        margin-bottom: 33px
+        &::placeholder
+            color: rgb(78, 70, 70)
+            font-size: 14px
+            font-weight: 300
+            line-height: 17px
+    &__input2
+        width: 420px
+        height: 42px
+        background: none
+        border: 1px solid rgb(74, 66, 60)
+        border-radius: 8px
+        color: rgb(78, 70, 70)
+        font-size: 14px
+        font-weight: 300
+        line-height: 17px
+        padding: 12px 0 12px 20px
+        margin-bottom: 33px
+        &::placeholder
+            color: rgb(78, 70, 70)
+            font-size: 14px
+            font-weight: 300
+            line-height: 17px
+    &__input3
+        width: 420px
+        height: 42px
+        background: none
+        border: 1px solid rgb(74, 66, 60)
+        border-radius: 8px
+        color: rgb(78, 70, 70)
+        font-size: 14px
+        font-weight: 300
+        line-height: 17px
+        padding: 12px 0 12px 20px
+        margin-bottom: 33px
+        &::placeholder
+            color: rgb(78, 70, 70)
+            font-size: 14px
+            font-weight: 300
+            line-height: 17px
+    &__input4
+        width: 420px
+        height: 42px
+        background: none
+        border: 1px solid rgb(74, 66, 60)
+        border-radius: 8px
+        color: rgb(78, 70, 70)
+        font-size: 14px
+        font-weight: 300
+        line-height: 17px
+        padding: 12px 0 12px 20px
+        margin-bottom: 33px
+        &::placeholder
+            color: rgb(78, 70, 70)
+            font-size: 14px
+            font-weight: 300
+            line-height: 17px
+    &__textarea
+        width: 420px
+        height: 140px
+        background: none
+        border: 1px solid rgb(74, 66, 60)
+        border-radius: 8px
+        color: rgb(78, 70, 70)
+        font-size: 14px
+        font-weight: 300
+        line-height: 17px
+        padding: 12px 0 12px 20px
+        margin-bottom: 33px
+        resize: none
+        &::placeholder
+            color: rgb(78, 70, 70)
+            font-size: 14px
+            font-weight: 300
+            line-height: 17px
+    &__btn
+        color: rgb(245, 235, 233)
+        font-size: 18px
+        font-weight: 500
+        line-height: 22px
+        padding: 10px 22px
+        border: none
+        border-radius: 8px
+        background: rgb(219, 174, 139)
+        transition: .3s all
+        &:hover
+            background: rgb(227, 185, 154)
+
+/*********** account.html ***********/
+
+.account-section
+    min-height: 300px
+    margin-bottom: 150px
+    &__title
+        color: rgb(26, 18, 11)
+        font-size: 45px
+        font-weight: 500
+        line-height: 54px
+        margin-bottom: 70px
+        text-align: center
+    &__title-mini
+        color: rgb(0, 0, 0)
+        font-size: 35px
+        font-weight: 500
+        line-height: 42px
+        margin-bottom: 60px
+    &__wrapper1
+        margin-bottom: 96px
+    &__blocks
+        display: flex
+        justify-content: space-between
+    &__block1
+        display: grid
+    &__block2
+        display: grid
+    &__block3
+        display: grid
+    &__block11
+        display: grid
+    &__block22
+        display: grid
+    &__block33
+        display: grid
+    &__link
+        color: rgb(219, 174, 139)
+        font-size: 28px
+        font-weight: 500
+        line-height: 34px
+        letter-spacing: 3%
+        text-align: center
+        margin-bottom: 25px
+        &:last-child
+            margin-bottom: 0
+        &:hover
+            text-decoration: underline
+
+/*********** about-us.html ***********/
+
+.about-section
+    min-height: 430px
+    margin-bottom: 130px
+    &__title
+        color: rgb(26, 18, 11)
+        font-size: 45px
+        font-weight: 500
+        line-height: 54px
+        text-align: center
+        margin-bottom: 43px
+    &__text
+        color: rgb(26, 18, 11)
+        font-size: 28px
+        font-weight: 500
+        line-height: 34px
+        letter-spacing: 3%
+        margin-right: 105px
+    &__wrapper
+        display: flex
+        align-items: center
+
+.aboutcom-section
+    min-height: 130px
+    margin-bottom: 130px
+    &__title
+        color: rgb(26, 18, 11)
+        font-size: 45px
+        font-weight: 500
+        line-height: 54px
+        text-align: center
+        margin-bottom: 43px
+    &__text
+        color: rgb(26, 18, 11)
+        font-size: 28px
+        font-weight: 500
+        line-height: 34px
+        letter-spacing: 3%
+        text-align: center
+        margin-bottom: 43px
+    &__wrapper
+        display: flex
+        justify-content: space-between
+    &__worker
+        display: flex
+        align-items: center
+        justify-content: center
+        gap: 8px
+        border: 4px solid rgb(219, 174, 139)
+        border-radius: 37px
+    &__icon
+        padding: 29px 0 29px 15px
+    &__text-mini
+        color: rgb(26, 18, 11)
+        font-size: 26px
+        font-weight: 700
+        line-height: 31px
+        letter-spacing: 3%
+        padding-right: 15px
+
+#worker-margin
+    margin-bottom: 15px
+
+.aboutrec-section
+    min-height: 130px
+    margin-bottom: 100px
+    &__title
+        color: rgb(26, 18, 11)
+        font-size: 45px
+        font-weight: 500
+        line-height: 54px
+        margin-bottom: 50px
+    &__wrapper
+        display: flex
+        align-items: center
+        margin-bottom: 50px
+    &__wrapper-left
+        margin-right: 85px
+    &__text
+        color: rgb(26, 18, 11)
+        font-size: 28px
+        font-weight: 500
+        line-height: 34px
+        letter-spacing: 3%
+        text-align: center
+        max-width: 790px
+        border: 4px solid rgb(219, 174, 139)
+        border-radius: 37px
+    &__padding1
+        padding: 54px 40px
+    &__padding2
+        padding: 71px 33px
+    &__wrapper-req
+        border: 4px solid rgb(219, 174, 139)
+        border-radius: 37px
+    &__text-req
+        padding: 35px 13px 35px 42px
+    &__title-mini
+        color: rgb(26, 18, 11)
+        font-size: 28px
+        font-weight: 700
+        line-height: 34px
+        letter-spacing: 3%
+        margin-bottom: 14px
+    &__descr
+        color: rgb(26, 18, 11)
+        font-size: 28px
+        font-weight: 500
+        line-height: 34px
+        letter-spacing: 3%
+
+#aboutrec-section__span
+    font-weight: 600
+
+.aboutform-section
+    min-height: 100px
+    margin-bottom: 150px
+    &__wrapper
+        border-radius: 37px
+        background: rgb(219, 174, 139)
+    &__title
+        color: rgb(245, 235, 233)
+        font-size: 45px
+        font-weight: 700
+        line-height: 54px
+        margin-bottom: 47px
+        padding-top: 39px
+        text-align: center
+    &__text
+        color: rgb(245, 235, 233)
+        font-size: 28px
+        font-weight: 400
+        line-height: 34px
+        letter-spacing: 3%
+        margin-bottom: 47px
+        text-align: center
+    &__open-modal
+        color: rgb(219, 174, 139)
+        font-size: 21px
+        font-weight: 700
+        line-height: 25px
+        border-radius: 8px
+        background: rgb(245, 235, 233)
+        border: none
+        padding: 17px 37px
+        display: block
+        margin: 0 auto
+        transition: .3s all
+        &:hover
+            background: rgb(228, 156, 101)
+            color: rgb(245, 235, 233)
+    &__padding3
+        color: #F5EBE9
+        padding-bottom: 40px
+        display: block
+    &__modal
+        width: 560px
+        min-height: 800px
+        background: #DBAE8B
+        border: none
+        border-radius: 37px
+    &__title-dialog
+        color: rgb(245, 235, 233)
+        font-size: 45px
+        font-weight: 500
+        line-height: 54px
+        text-align: center
+        margin-bottom: 15px
+        padding-top: 20px
+    &__descr
+        color: rgb(245, 235, 233)
+        font-size: 20px
+        font-weight: 400
+        line-height: 24px
+        letter-spacing: -1%
+        text-align: center
+        margin-bottom: 15px
+    &__input1
+        width: 430px
+        height: 42px
+        background: rgb(245, 235, 233)
+        border: none
+        border-radius: 8px
+        color: #4e4646
+        font-size: 14px
+        font-weight: 300
+        line-height: 17px
+        padding: 12px 0 12px 20px
+        display: block
+        margin: 0 auto
+        &::placeholder
+            color: rgb(78, 70, 70)
+            font-size: 14px
+            font-weight: 300
+            line-height: 17px
+    &__form-group1
+        margin-bottom: 15px
+    &__input2
+        width: 430px
+        height: 42px
+        background: rgb(245, 235, 233)
+        border: none
+        border-radius: 8px
+        color: #4e4646
+        font-size: 14px
+        font-weight: 300
+        line-height: 17px
+        padding: 12px 0 12px 20px
+        display: block
+        margin: 0 auto
+        &::placeholder
+            color: rgb(78, 70, 70)
+            font-size: 14px
+            font-weight: 300
+            line-height: 17px
+    &__form-group2
+        margin-bottom: 15px
+    &__input3
+        width: 430px
+        height: 42px
+        background: rgb(245, 235, 233)
+        border: none
+        border-radius: 8px
+        color: #4e4646
+        font-size: 14px
+        font-weight: 300
+        line-height: 17px
+        padding: 12px 0 12px 20px
+        display: block
+        margin: 0 auto
+        &::placeholder
+            color: rgb(78, 70, 70)
+            font-size: 14px
+            font-weight: 300
+            line-height: 17px
+    &__form-group3
+        margin-bottom: 15px
+    &__input4
+        width: 430px
+        height: 42px
+        background: rgb(245, 235, 233)
+        border: none
+        border-radius: 8px
+        color: #4e4646
+        font-size: 14px
+        font-weight: 300
+        line-height: 17px
+        padding: 12px 0 12px 20px
+        display: block
+        margin: 0 auto
+        &::placeholder
+            color: rgb(78, 70, 70)
+            font-size: 14px
+            font-weight: 300
+            line-height: 17px
+    &__form-group4
+        margin-bottom: 15px
+    &__textarea
+        width: 430px
+        height: 300px
+        background: rgb(245, 235, 233)
+        border: none
+        border-radius: 8px
+        color: #4e4646
+        font-size: 14px
+        font-weight: 300
+        line-height: 17px
+        padding: 12px 0 12px 20px
+        display: block
+        margin: 0 auto
+        resize: none
+        &::placeholder
+            color: rgb(78, 70, 70)
+            font-size: 14px
+            font-weight: 300
+            line-height: 17px
+    &__form-group5
+        margin-bottom: 15px
+    &__btn
+        color: rgb(219, 174, 139)
+        font-size: 21px
+        font-weight: 500
+        line-height: 25px
+        border-radius: 8px
+        border: none
+        background: rgb(245, 235, 233)
+        padding: 17px 142px
+        display: block
+        margin: 0 auto
+        transition: .3s all
+        &:hover
+            background: rgb(223, 147, 89)
+            color: rgb(245, 235, 233)
+    &__text-end
+        margin-top: 8px
+        margin-bottom: 10px
+        color: rgb(245, 235, 233)
+        font-size: 14px
+        font-weight: 300
+        line-height: 17px
+        text-align: center
+    &__close-modal
+        color: rgb(219, 174, 139)
+        font-size: 14px
+        font-weight: 400
+        line-height: 18px
+        border-radius: 8px
+        border: none
+        background: rgb(245, 235, 233)
+        padding: 12px 50px
+        display: block
+        margin: 0 auto
+        transition: .3s all
+        &:hover
+            background: rgb(223, 147, 89)
+            color: rgb(245, 235, 233)
+
+/*********** news.html ***********/
+
+.news-section
+    min-height: 730px
+    margin-bottom: 150px
+    &__news1
+        margin-bottom: 20px
+    &__title-block
+        display: flex
+        align-items: center
+        justify-content: space-between
+        margin-bottom: 60px
+    &__title
+        color: rgb(26, 18, 11)
+        font-size: 45px
+        font-weight: 500
+        line-height: 54px
+    &__form
+        position: relative
+    &__input
+        width: 276px
+        height: 55px
+        border-radius: 37px
+        background: rgba(219, 174, 139, 0.64)
+        border: none
+        color: rgba(26, 18, 11, 0.66)
+        font-size: 29px
+        font-weight: 300
+        line-height: 35px
+        padding: 10px 0 10px 69px
+        &::placeholder
+            color: rgba(26, 18, 11, 0.66)
+            font-size: 29px
+            font-weight: 300
+            line-height: 35px
+        &-btn
+            background: none
+            border: none
+            position: absolute
+            top: 11px
+            left: 27px
+    &__wrapper
+        display: flex
+        flex-wrap: wrap
+        justify-content: space-evenly
+        gap: 20px
+        margin-bottom: 90px
+    &__block-img-tags
+        margin-bottom: 20px
+    &__img
+        width: 490px
+        height: 547px
+        border-radius: 37px
+        margin-bottom: 20px
+    &__tags
+        display: flex
+        flex-wrap: wrap
+        gap: 10px
+        width: 450px
+    &__p-tag
+        color: rgb(26, 18, 11)
+        font-size: 12px
+        font-weight: 400
+        line-height: 14px
+        border-radius: 14px
+        background: rgba(219, 174, 139, 0.7)
+        padding: 9px 31px
+        transition: .3s all
+        &:hover
+            background: rgba(230, 198, 174, 0.7)
+            cursor: pointer
+    &__title-mini
+        color: rgb(0, 0, 0)
+        font-size: 35px
+        font-weight: 500
+        line-height: 42px
+        margin-bottom: 20px
+        &:hover
+            text-decoration: underline
+    &__description
+        max-width: 489px
+        color: rgb(0, 0, 0)
+        font-size: 26px
+        font-weight: 400
+        line-height: 31px
+    &__block-btns
+        display: flex
+        justify-content: center
+        gap: 17px
+    &__link-pg
+        color: rgb(26, 18, 11)
+        font-size: 24px
+        font-weight: 300
+        line-height: 29px
+        background: rgba(219, 174, 139, 0.52)
+        border-radius: 50%
+        padding: 4px 15px
+        &:hover
+            cursor: pointer
+        &:active
+            transform: translateY(1px)
+            background-color: rgba(219, 174, 139, 0.8)
+            box-shadow: inset 0px 0px 5px rgba(0,0,0,0.3)
+    &__link-pgg
+        color: rgb(26, 18, 11)
+        font-size: 24px
+        font-weight: 300
+        line-height: 29px
+        background: rgba(219, 174, 139, 0.52)
+        border-radius: 50px
+        padding: 4px 30px
+        &:hover
+            cursor: pointer
+        &:active
+            transform: translateY(1px)
+            background-color: rgba(219, 174, 139, 0.8)
+            box-shadow: inset 0px 0px 5px rgba(0,0,0,0.3)
+
+/*********** detail-news.html ***********/
+
+.detailn-section
+    min-height: 730px
+    margin-bottom: 150px
+    &__wrapper
+        display: flex
+        margin-bottom: 39px
+    &__wrapper-left
+        margin-right: 96px
+    &__title
+        color: rgb(26, 18, 11)
+        font-size: 45px
+        font-weight: 500
+        line-height: 54px
+        margin-bottom: 19px
+    &__description
+        color: rgb(26, 18, 11)
+        font-size: 28px
+        font-weight: 400
+        line-height: 34px
+        max-width: 743px
+    &__img
+        margin-bottom: 21px
+        width: 840px
+        height: 600px
+    &__data
+        color: rgb(26, 18, 11)
+        font-size: 28px
+        font-weight: 500
+        line-height: 34px
+    &__link
+        color: rgb(0, 0, 0)
+        font-size: 22px
+        font-weight: 300
+        line-height: 26px
+        &:hover
+            text-decoration: underline
+
+#detailn-section__data-span
+    font-weight: 400
+
+/*********** projects (hospital etc.) ***********/
+
+.hospital-section
+    min-height: 600px
+    margin-bottom: 150px
+    &__title
+        color: rgb(26, 18, 11)
+        font-size: 45px
+        font-weight: 500
+        line-height: 54px
+        text-align: center
+        margin-bottom: 60px
+    &__title-project
+        color: rgb(0, 0, 0)
+        font-size: 40px
+        font-weight: 700
+        line-height: 48px
+        margin-bottom: 30px
+    &__text1
+        color: rgb(0, 0, 0)
+        font-size: 28px
+        font-weight: 400
+        line-height: 34px
+        margin-bottom: 30px
+    &__text2
+        color: rgb(0, 0, 0)
+        font-size: 28px
+        font-weight: 400
+        line-height: 34px
+        margin-bottom: 30px
+    &__text3
+        color: rgb(0, 0, 0)
+        font-size: 28px
+        font-weight: 400
+        line-height: 34px
+        margin-bottom: 30px
+    &__text4
+        color: rgb(0, 0, 0)
+        font-size: 28px
+        font-weight: 400
+        line-height: 34px
+        margin-bottom: 114px
+    &__wrapper
+        display: flex
+        flex-wrap: wrap
+        justify-content: start
+        gap: 60px
+        margin-bottom: 30px
+    &__card
+        display: grid
+        margin-bottom: 60px
+    &__img
+        width: 490px
+        height: 547px
+        border-radius: 37px
+        margin-bottom: 24px
+    &__link
+        color: rgb(0, 0, 0)
+        font-size: 35px
+        font-weight: 500
+        line-height: 42px
+        &:hover
+            text-decoration: underline
+
+/*********** project-detail.html ***********/
+
+.detailpr-section
+    min-height: 600px
+    margin-bottom: 150px
+    &__title
+        color: rgb(0, 0, 0)
+        font-size: 40px
+        font-weight: 700
+        line-height: 48px
+        margin-bottom: 60px
+    &__img
+        margin-bottom: 108px
+    &__block
+        display: grid
+        text-align: center
+        justify-content: center
+        margin-bottom: 108px
+    &__description
+        color: rgb(0, 0, 0)
+        font-size: 35px
+        font-weight: 500
+        line-height: 42px
+
+/*********** strategies (etc.) ***********/
+
+.strategy-section
+    min-height: 300px
+    margin-bottom: 150px
+    &__link-main
+        color: rgb(26, 18, 11)
+        font-size: 22px
+        font-weight: 300
+        line-height: 26px
+        margin-bottom: 48px
+        &:hover
+            text-decoration: underline
+    &__title
+        color: rgb(26, 18, 11)
+        font-size: 37px
+        font-weight: 500
+        margin-bottom: 30px
+    &__text
+        color: rgb(26, 18, 11)
+        font-size: 28px
+        font-weight: 500
+        margin-bottom: 50px
+    &__img
+        border-radius: 37px
+        width: 683px
+        height: 648px
+    &__wrapper
+        display: flex
+    &__wrapper-left
+        margin-right: 85px
+    &__title-mini
+        color: rgb(0, 0, 0)
+        font-size: 40px
+        font-weight: 700
+        line-height: 48px
+        margin-bottom: 28px
+    &__link-str
+        color: rgb(0, 0, 0)
+        font-size: 34px
+        font-weight: 500
+        line-height: 41px
+        border: 4px solid rgb(219, 174, 139)
+        border-radius: 37px
+        padding: 32px 35px
+        margin-bottom: 18px
+        transition: .3s all
+        &:last-child
+            margin-bottom: 0
+        &:hover
+            background: rgb(223, 202, 186)
+
+
+/*********** adaptives ***********/
+
+@media (max-width: 1750px)
+    .container
+        max-width: 1450px
+    /*********** ------------ ***********/
+    .header-link_margin1
+        margin-right: 150px
+    .header-link_margin2
+        margin-right: 150px
+    .header-link_margin3
+        margin-right: 80px
+    .header-link_margin4
+        margin-left: 80px
+    .header-link_margin5
+        margin-left: 150px
+    .header-link_margin6
+        margin-left: 150px
+    .header-block1-link
+        font-size: 18px
+        line-height: 21px
+    .header-block1-link_custom
+        font-size: 18px
+        line-height: 21px
+    /*********** projects ***********/
+    .hospital-section__wrapper
+        justify-content: space-around
+    /*********** detail-news.html ***********/
+    .detailn-section__title
+        font-size: 40px
+    .detailn-section__description
+        font-size: 26px
+        line-height: 32px
+    .detailn-section__img
+        width: 740px
+        height: 500px
+    .detailn-section__data
+        font-size: 26px
+        line-height: 32px
+    /*********** contact.html ***********/
+    .contact-section__text
+        font-size: 32px
+    .contact-section__title
+        font-size: 42px
+        margin-bottom: 30px
+    .contactform-section__title
+        font-size: 42px
+
+@media (max-width: 1485px)
+    /*********** ------------ ***********/
+    .header-link_margin1
+        margin-right: 120px
+    .header-link_margin2
+        margin-right: 120px
+    .header-link_margin3
+        margin-right: 130px
+    .header-link_margin4
+        margin-left: 50px
+    .header-link_margin5
+        margin-left: 120px
+    .header-link_margin6
+        margin-left: 120px
+    /*********** detail-news.html ***********/
+    .detailn-section__wrapper
+        flex-direction: column-reverse
+    .detailn-section__img
+        width: 840px
+        height: 600px
+    .detailn-section__wrapper-right
+        margin-bottom: 20px
+    .detailn-section__description
+        max-width: none
+    /*********** contact.html ***********/
+    .contact-section__wrapper
+        display: block
+    .contact-section__wrapper-left
+        margin-bottom: 30px
+    .contact-section__block1 
+        margin-right: 150px
+    .contact-section__iframe 
+        width: 1000px
+
+@media (max-width: 1400px)
+    .container
+        max-width: 1180px
+    /*********** index.html ***********/
+    .header
+        display: none
+    .overlay
+        height: 152%
+    .mobile-menu
+        position: sticky
+        z-index: 2
+        &__button
+            right: 50px
+            position: fixed
+            top: 60px
+            z-index: 77
+        &__block-img
+            display: flex
+            align-items: center
+            justify-content: space-between
+            padding-top: 10px
+        &__active
+            display: block
+        &__block
+            position: fixed
+            top: 0
+            right: 0
+            width: 341px
+            height: 100vh
+            background: rgba(26, 18, 11, 0.87)
+    .carousel-left
+        display: none
+    .carousel-right
+        display: none
+    .carousel-block_title
+        font-size: 32px
+    .carousel-block_description
+        font-size: 18px
+        line-height: 24px
+    .carousel-block_time
+        font-size: 20px
+    .fourth-section__title-mini
+        font-size: 32px
+    .fourth-section__text-mini
+        font-size: 18px
+    .fourth-section__wrapper3-right
+        margin-right: 0
+    .second-section__title
+        font-size: 36px
+    .third-section__title
+        font-size: 36px
+    .fourth-section__title
+        font-size: 36px
+    .fifth-section__title
+        font-size: 36px
+    .fifth-section__text
+        font-size: 18px
+    .fifth-section__img1
+        width: 590px
+        height: 300px
+    .fifth-section__img2
+        width: 590px
+        height: 300px
+    .fifth-section__button1
+        font-size: 18px
+        line-height: 24px
+        padding: 12px 77px
+    .fifth-section__button2
+        font-size: 18px
+        line-height: 24px
+        padding: 10px 36px
+    .footer-section__h6
+        font-size: 28px
+    .footer-section__link
+        font-size: 22px
+    .footer-section__text
+        font-size: 22px
+    /*********** login.html ***********/
+    .login-section__img
+        width: 400px
+        height: 200px
+    .login-section__login-text
+        font-size: 46px
+    .login-section__login-none
+        font-size: 16px
+    .login-section__login-link
+        font-size: 16px
+    /*********** policy-privacy.html ***********/
+    .privacy-section__title
+        font-size: 40px
+    .privacy-section__h2
+        font-size: 32px
+    .privacy-section__text
+        font-size: 24px
+    /*********** contact.html ***********/
+    .contactform-section__input1
+        width: 390px
+    .contactform-section__input2
+        width: 390px
+    .contactform-section__input3
+        width: 390px
+    .contactform-section__input4
+        width: 390px
+    .contactform-section__textarea
+        width: 390px
+    .contactform-section__right
+        margin-left: 50px
+
+@media (max-width: 1110px)
+    .overlay
+        width: 1900%
+        height: 152%
+    /*********** register.html ***********/
+    .register-section__img
+        display: none
+    .register-section__wrapper-main
+        justify-content: center
+
+@media (max-width: 1070px)
+    .container
+        max-width: 780px
+    /*********** index.html ***********/
+    .overlay
+        height: 145%
+    .main-section_title
+        font-size: 38px
+    .main-section_text
+        font-size: 18px
+        margin-bottom: 25px
+    .main-section_link-button1
+        font-size: 18px
+        line-height: 24px
+        padding: 15px 45px
+    .main-section_link-button2
+        font-size: 18px
+        line-height: 24px
+        padding: 15px 45px
+    .carousel-custom
+        display: block
+    .carousel-img
+        margin: 0
+        padding: 30px
+        border-radius: 80px
+        height: 490px
+    .carousel-block_texts
+        margin-left: 30px
+    .second-section
+        margin-top: 70px
+    .second-section__title
+        margin-bottom: 50px
+    .third-section
+        margin-top: 70px
+    .third-section__title
+        margin-bottom: 50px
+    .brrr
+        display: none
+    .fourth-section
+        margin-top: 20px
+    .fourth-section__title
+        margin-bottom: 0
+    .fourth-section__wrapper1
+        display: block
+    .fourth-section__wrapper2
+        display: block
+    .fourth-section__wrapper3
+        display: block
+    .fourth-section__number1
+        line-height: 220px
+    .fourth-section__number2 
+        line-height: 220px
+    .fourth-section__number3 
+        line-height: 220px
+    .fourth-section__number4 
+        line-height: 220px
+    .fourth-section__number5 
+        line-height: 220px
+    .fourth-section__number6 
+        line-height: 220px
+    .fifth-section
+        margin-top: 70px
+    .fifth-section__img1
+        display: none
+    .fifth-section__img2
+        display: none
+    .fifth-section__text_margin
+        margin-bottom: 30px
+    .fifth-section__wrapper1
+        margin-bottom: 100px
+    .brrr
+        display: none
+    .fifth-section
+        margin-bottom: 150px
+    .footer-section__wrapper_main
+        display: block
+    /*********** projects ***********/
+    .hospital-section__wrapper
+        justify-content: center
+    /*********** contact.html ***********/
+    .contactform-section__img
+        display: none
+    .contactform-section__right
+        margin-left: 0
+    .contactform-section__btn
+        display: block
+        justify-content: center
+    .contact-section__text
+        font-size: 20px
+    .contact-section__title
+        font-size: 36px
+    .contactform-section__title
+        text-align: center
+        font-size: 36px
+    .contact-section__iframe
+        width: 600px
+        display: block
+        margin: 0 auto
+    .contact-section
+        margin-bottom: 100px
+    .contactform-section
+        margin-bottom: 100px
+
+@media (max-width: 991px)
+    /*********** login.html ***********/
+    .login-section__img
+        display: none
+    .login-section__wrapper-left
+        margin-right: 0
+    /*********** detail-news.html ***********/
+    .detailn-section__img
+        width: 740px
+        height: 500px
+    .detailn-section__title
+        font-size: 32px
+    /*********** project-detail.html ***********/
+    .detailpr-section__title
+        font-size: 34px
+        text-align: center
+    .detailpr-section__description
+        font-size: 28px
+        line-height: 28px
+        font-weight: 400
+
+@media (max-width: 780px)
+    /*********** index.html ***********/
+    .br
+        display: none
+    /*********** detail-news.html ***********/
+    .detailn-section__img
+        width: 540px
+        height: 300px
+    .detailn-section__data
+        font-size: 24px
+    .detailn-section__description
+        font-size: 24px
+    /*********** policy-privacy.html ***********/
+    .privacy-section__title
+        font-size: 34px
+    .privacy-section__h2
+        font-size: 28px
+    .privacy-section__text
+        font-size: 20px
+        line-height: 120%
+    /*********** contact.html ***********/
+    .contact-section__wrapper-left
+        display: block
+    .contact-section__part1
+        margin-bottom: 20px
+    .contact-section__part2
+        margin-bottom: 20px
+    .contact-section__part3
+        margin-bottom: 20px
+
+@media (max-width: 650px)
+    /*********** index.html ***********/
+    .main-section-block
+        margin-top: 80px
+    .overlay
+        width: 4000%
+        height: 150%
+    .second-section__button
+        font-size: 18px
+        line-height: 24px
+        padding: 12px 60px
+    .third-section__card
+        width: 450px
+        height: 450px
+    .fourth-section__title-mini
+        font-size: 24px
+        line-height: 30px
+    .fourth-section__text-mini
+        font-size: 14px
+        line-height: 30px
+    .fifth-section__text
+        line-height: 24px
+        font-size: 14px
+    .fifth-section__button1
+        font-size: 14px
+        line-height: 14px
+        padding: 8px 42px
+    .fifth-section__button2
+        font-size: 14px
+        line-height: 14px
+        padding: 8px 42px
+    /*********** error pages ***********/
+    .error-pencil
+        width: 400px
+    .error-section__p1
+        margin-top: 0
+    /*********** in-development.html ***********/
+    .error-pencil
+        width: 300px
+    .error-section__dev
+        font-size: 28px
+        line-height: 92.89%
+    .error-section__dev-text
+        font-size: 14px
+        line-height: 20px
+        margin-bottom: 20px
+    /*********** news.html ***********/
+    .news-section__title
+        font-size: 36px
+        line-height: 36px
+    .news-section__input
+        width: 190px
+        height: 50px
+        padding: 10px 0 10px 60px
+    .news-section__input-btn
+        top: 10px
+        left: 15px
+    .news-section__img
+        width: 320px
+        height: 400px
+    .news-section__tags
+        width: 320px
+    .news-section__description
+        font-size: 18px
+        line-height: 24px
+    .news-section__block-btns
+        gap: 5px
+    .news-section__link-pg
+        font-size: 14px
+        line-height: 22px
+        padding: 4px 12px
+    .news-section__link-pgg
+        font-size: 14px
+        line-height: 22px
+        padding: 4px 22px
+    /*********** projects ***********/
+    .hospital-section__title
+        font-size: 38px
+        line-height: 48px
+        margin-bottom: 50px
+    .hospital-section__title-project
+        font-size: 34px
+        line-height: 42px
+        margin-bottom: 20px
+    .hospital-section__text1
+        font-size: 22px
+        line-height: 30px
+        margin-bottom: 20px
+    .hospital-section__text2
+        font-size: 22px
+        line-height: 30px
+        margin-bottom: 20px
+    .hospital-section__text3
+        font-size: 22px
+        line-height: 30px
+        margin-bottom: 20px
+    .hospital-section__text4
+        font-size: 22px
+        line-height: 30px
+        margin-bottom: 40px
+    .hospital-section__img
+        width: 350px
+        height: 400px
+    .hospital-section__link
+        font-size: 28px
+        line-height: 32px
+    .hospital-section__card
+        margin-bottom: 20px
+    /*********** detail-news.html ***********/
+    .detailn-section__img
+        width: 340px
+        height: 200px
+    .detailn-section__data
+        font-size: 20px
+    .detailn-section__description
+        font-size: 20px
+    .detailn-section__wrapper-left
+        margin-right: 0
+    /*********** forgot-password.html ***********/
+    .forgotp-section__title
+        font-size: 40px
+    /*********** policy-privacy.html ***********/
+    .privacy-section__title
+        font-size: 30px
+    /*********** contact.html ***********/
+    .contact-section__iframe
+        width: 300px
+        height: 320px
+    .contactform-section__input1
+        width: 320px
+    .contactform-section__input2
+        width: 320px
+    .contactform-section__input3
+        width: 320px
+    .contactform-section__input4
+        width: 320px
+    .contactform-section__textarea
+        width: 320px
+    .contactform-section__left
+        padding: 30px 0 30px 0
+    .contact-section__block1
+        margin-right: 0
+
+@media (max-width: 520px)
+    .overlay
+        height: 144%
+    /*********** forgot-password.html ***********/
+    .forgotp-section__title
+        font-size: 36px
+    .forgotp-section__input1
+        width: 400px
+    .forgotp-section__input2
+        margin-right: 96px
+
+@media (max-width: 460px)
+    /*********** index.html ***********/
+    .main-section-block
+        margin-top: 50px
+    .main-section_link-button1
+        font-size: 14px
+        line-height: 18px
+        padding: 10px 25px
+    .main-section_link-button2
+        font-size: 14px
+        line-height: 18px
+        padding: 10px 25px
+    .fourth-section__number1
+        font-size: 200px
+    .fourth-section__number2
+        font-size: 200px
+    .fourth-section__number3
+        font-size: 200px
+    .fourth-section__number4
+        font-size: 200px
+    .fourth-section__number5
+        font-size: 200px
+    .fourth-section__number6
+        font-size: 200px
+    .fourth-section__title-mini
+        font-size: 18px
+    .fourth-section__text-mini
+        font-size: 12px
+        line-height: 18px
+    .fifth-section__button1
+        font-size: 12px
+        line-height: 12px
+        padding: 8px 32px
+    .fifth-section__button2
+        font-size: 12px
+        line-height: 12px
+        padding: 8px 32px
+    /*********** error pages ***********/
+    .error-pencil
+        width: 300px
+    .error-section__p1
+        font-size: 130px
+        line-height: 110px
+    .error-section__p2
+        font-size: 18px
+        line-height: 40px
+        margin-bottom: 20px
+    /*********** news.html ***********/
+    .news-section__title-block
+        display: block
+    .news-section__title
+        margin-bottom: 10px
+    /*********** projects ***********/
+    .hospital-section__img
+        width: 300px
+        height: 350px
+    .hospital-section__link
+        font-size: 24px
+        line-height: 22px
+    .hospital-section__card
+        margin-bottom: 10px
+    .hospital-section__title
+        font-size: 28px
+    .hospital-section__title-project
+        font-size: 26px
+    /*********** login.html ***********/
+    .login-section__input1
+        width: 320px
+        height: 40px
+    .login-section__input2
+        width: 320px
+        height: 40px
+    .login-section__input3
+        margin-right: 22px
+    /*********** reset-password.html ***********/
+    .rpassword-section__title
+        font-size: 38px
+    .rpassword-section__input1
+        width: 320px
+    .rpassword-section__input2
+        width: 320px
+    /*********** project-detail.html ***********/
+    .detailpr-section__title
+        font-size: 28px
+    /*********** forgot-password.html ***********/
+    .forgotp-section__title
+        font-size: 34px
+    .forgotp-section__input1
+        width: 320px
+    .forgotp-section__input2
+        margin-right: 16px
+    .forgotp-section__form-check-label
+        font-size: 12px
+    .forgotp-section__text-muted
+        font-size: 12px
+    /*********** register.html ***********/
+    .register-section__create
+        font-size: 42px
+    .register-section__question
+        font-size: 16px
+    .register-section__link
+        font-size: 16px
+    .register-section__form-check-label
+        font-size: 12px
+    .register-section__pp-link
+        font-size: 12px
+    .register-section__input1
+        width: 320px
+    .register-section__input2
+        width: 320px
+    .register-section__input3
+        width: 320px
+    .register-section__input4
+        width: 320px
+    .register-section__input5
+        width: 320px
+    .register-section__chek-form
+        margin-right: 20px
+    .register-section__btn
+        font-size: 16px
+        line-height: 20px
+        padding: 8px 22px
+    .register-section__custome-checkboxes
+        margin-right: 30px
+    /*********** policy-privacy.html ***********/
+    .privacy-section__title
+        font-size: 26px
+        text-align: center
+    .privacy-section__h2
+        font-size: 24px
+    .privacy-section__text
+        font-size: 18px
+
+@media (max-width: 460px)
+    .overlay
+        height: 137%
+
+@media (max-width: 380px)
+    .overlay
+        height: 126%
+    /*********** detail-news.html ***********/
+    .detailn-section__img
+        width: 300px
+        height: 200px
+    .detailn-section__link
+        font-size: 20px
+    /*********** contact.html ***********/
+    .contact-section__title
+        font-size: 30px
+    .contactform-section__title
+        font-size: 30px
+    .contact-section__text
+        font-size: 18px
+        line-height: 30px
+    .contactform-section__input1
+        width: 280px
+    .contactform-section__input2
+        width: 280px
+    .contactform-section__input3
+        width: 280px
+    .contactform-section__input4
+        width: 280px
+    .contactform-section__textarea
+        width: 280px
+    .contactform-section__btn
+            font-size: 16px
+            font-weight: 400
+            line-height: 20px
+            padding: 8px 16px
+
+@media (max-width: 320px)
+    /*********** index.html ***********/
+    .main-section_link-button1
+        font-size: 12px
+        line-height: 16px
+        padding: 8px 20px
+    .main-section_link-button2
+        font-size: 12px
+        line-height: 16px
+        padding: 8px 20px
+    .fourth-section__number1
+        font-size: 180px
+    .fourth-section__number2
+        font-size: 180px
+    .fourth-section__number3
+        font-size: 180px
+    .fourth-section__number4
+        font-size: 180px
+    .fourth-section__number5
+        font-size: 180px
+    .fourth-section__number6
+        font-size: 180px
+    /*********** error pages ***********/
+    .error-section__button
+        font-size: 14px
+        line-height: 24px
+        padding: 10px 26px
+    
+
+
+
+
