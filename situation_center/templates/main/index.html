@@ -134,81 +134,30 @@
             <div id="carouselExampleIndicators" data-bs-interval="5000" class="carousel slide" data-bs-ride="carousel">
                 <!-- Кнопки снизу на карусели -->
                 <div class="carousel-indicators">
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    {% for new in news %}
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ forloop.counter0 }}" 
+                            class="{% if forloop.first %}active{% endif %}" aria-current="{% if forloop.first %}true{% endif %}" 
+                            aria-label="Slide {{ forloop.counter }}"></button>
+                    {% endfor %}
                 </div>
                 <!-- Вся карусель -->
                 <div class="carousel-inner">
-                    <!-- Первая карусель -->
-                  <div class="carousel-item active">
+                    
+                {% for new in news %}
+                  <div class="carousel-item {% if forloop.first %}active{% endif %}">
                     <div class="carousel-custom">
-                        <img src="{% static "./assets/images/news-photo.png" %}" class="d-block w-100 carousel-img" alt="изображение новости">
+                        <img src="{{ new.thumbnail.url }}" class="d-block w-100 carousel-img" alt="изображение новости">
                         <div class="carousel-block_texts">
-                            <h2 class="carousel-block_title">10 июня открылся центр Тульского филиала</h2>
+                            <h2 class="carousel-block_title">{{ new.title }}</h2>
                             <p class="carousel-block_description">
-                                Имеется спорная точка зрения, гласящая примерно следующее:
-                                тщательные исследования конкурентов, превозмогая сложившуюся
-                                непростую экономическую ситуацию, описаны максимально подробно.
-                                В частности, семантический разбор внешних противодействий
-                                требует от нас анализа новых предложений. И нет сомнений,
-                                что реплицированные с зарубежных источников, современные
-                                исследования объединены в целые кластеры себе подобных.
-                                Наше дело не так однозначно, как может показаться:
-                                сложившаяся структура организации однозначно определяет
-                                каждого участника как способного принимать собственные
-                                решения касаемо новых предложений.
+                                {{ new.text|truncatewords:80 }}
                             </p>
-                            <p class="carousel-block_time">12.10.23</p>
+                            <p class="carousel-block_time">{{ new.create|date:"d.m.Y" }}</p>
                         </div>
                     </div>
                   </div>
-                  <!-- Вторая карусель -->
-                  <div class="carousel-item">
-                    <div class="carousel-custom">
-                        <img src="{% static "./assets/images/news-photo.png" %}" class="d-block w-100 carousel-img" alt="изображение новости">
-                        <div class="carousel-block_texts">
-                            <h2 class="carousel-block_title">10 июня открылся центр Тульского филиала</h2>
-                            <p class="carousel-block_description">
-                                Имеется спорная точка зрения, гласящая примерно следующее:
-                                тщательные исследования конкурентов, превозмогая сложившуюся
-                                непростую экономическую ситуацию, описаны максимально подробно.
-                                В частности, семантический разбор внешних противодействий
-                                требует от нас анализа новых предложений. И нет сомнений,
-                                что реплицированные с зарубежных источников, современные
-                                исследования объединены в целые кластеры себе подобных.
-                                Наше дело не так однозначно, как может показаться:
-                                сложившаяся структура организации однозначно определяет
-                                каждого участника как способного принимать собственные
-                                решения касаемо новых предложений. И нет сомнений, что
-                                элементы политического процесса объективно рассмотрены
-                                соответствующими инстанциями.
-                            </p>
-                            <p class="carousel-block_time">12.10.23</p>
-                        </div>
-                    </div>
-                  </div>
-                  <!-- Третья карусель -->
-                  <div class="carousel-item">
-                    <div class="carousel-custom">
-                        <img src="{% static "./assets/images/news-photo.png" %}" class="d-block w-100 carousel-img" alt="изображение новости">
-                        <div class="carousel-block_texts">
-                            <h2 class="carousel-block_title">10 июня открылся центр Тульского филиала</h2>
-                            <p class="carousel-block_description">
-                                Имеется спорная точка зрения, гласящая примерно следующее:
-                                тщательные исследования конкурентов, превозмогая сложившуюся
-                                непростую экономическую ситуацию, описаны максимально подробно.
-                                В частности, семантический разбор внешних противодействий
-                                требует от нас анализа новых предложений. И нет сомнений,
-                                что реплицированные с зарубежных источников, современные
-                                исследования объединены в целые кластеры себе подобных.
-                                Наше дело не так однозначно, как может показаться.
-                            </p>
-                            <p class="carousel-block_time">12.10.23</p>
-                        </div>
-                    </div>
-                  </div>
-                  <!-- Конец 3 карусели -->
+                {% endfor %}
+                  
                 </div>
                 <!-- Конец всех каруселей -->
                 <!-- Кнопка влево -->
@@ -223,7 +172,7 @@
                 </button>
             </div>
             <!-- Кнопка новостей -->
-            <a class="second-section__button-link" href="news.html">
+            <a class="second-section__button-link" href="{% url "news:news" %}">
                 <button class="second-section__button">Все новости</button>
             </a>
         </div>

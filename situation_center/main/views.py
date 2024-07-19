@@ -1,10 +1,16 @@
 from django.shortcuts import render
 
+from news.models import News
+
 
 def index(request):
+    news = News.objects.all()[:3]
+
     context = {
+        'news': news,
         'title': 'СЦ РЭУ филиал им. Г.В. Плеханова',
     }
+
     return render(request, 'main/index.html', context)
 
 
