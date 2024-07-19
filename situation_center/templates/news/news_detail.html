@@ -6,37 +6,24 @@
 <section class="detailn-section">
     <div class="container">
         <!-- Заголовок -->
-        <h1 class="detailn-section__title">КОНФЕРЕНЦИЯ</h1>
+        <h1 class="detailn-section__title">{{ news_item.title }}</h1>
         <!-- Обертка общая -->
         <div class="detailn-section__wrapper">
             <!-- Левая часть -->
             <div class="detailn-section__wrapper-left">
                 <p class="detailn-section__description">
-                    В работе Всероссийской Научно-практической конференции
-                    (с международным участием) «Измерение и анализ благосостояния»,
-                    25-27.01.2024 г. в г. Санкт-петербурге директором Ситуационного
-                    центра представлен доклад на тему: «Методы оценки взаимосвязи
-                    показателей бюджетных инвестиций и показателей социо-эколого- экономического
-                    развития».Доклад директора Ситуационного центра на конференции «Измерение
-                    и анализ благосостояния» в Санкт-Петербурге был посвящен методам оценки
-                    взаимосвязи между показателями бюджетных инвестиций и показателями
-                    социо-эколого-экономического развития. 
-                    В своем выступлении он представил результаты исследований, проведенных в рамках
-                    центра, и обсудил возможные подходы к анализу данных важных для развития общества
-                    областей. Доклад вызвал интерес у участников конференции и спровоцировал живые
-                    дискуссии о важности взаимодействия между финансовыми и экономическими показателями
-                    для обеспечения устойчивого развития.
+                    {{ news_item.text }}
                 </p>
             </div>
             <!-- Правая часть -->
             <div class="detailn-section__wrapper-right">
-                <img src="./assets/images/detail-news-image.png" alt="фото новости" class="detailn-section__img">
-                <p class="detailn-section__data">Дата публикации: <span id="detailn-section__data-span">27.01.2024</span></p>
+                <img src="{{ news_item.thumbnail.url }}" alt="{{ news_item.title }}" class="detailn-section__img" style="border-radius: 30px;">
+                <p class="detailn-section__data">Дата публикации: <span id="detailn-section__data-span">{{ formatted_date }}</span></p>
             </div>
         </div>
 
         <!-- Ссылка возврата на общую страницу новостей -->
-        <a href="news.html" class="detailn-section__link">Вернуться к странице “Новости”</a>
+        <a href="{% url 'news:news' %}" class="detailn-section__link">Вернуться к странице “Новости”</a>
 
 
     </div>

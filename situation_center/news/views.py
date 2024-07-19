@@ -17,9 +17,13 @@ def news(request):
 def news_detail(request, news_slug):
     news_item = get_object_or_404(News, slug=news_slug)
 
+    # Форматирование даты
+    formatted_date = news_item.create.strftime('%d.%m.%Y')
+
     context = {
         'news_item': news_item,
-        'title': news_item.title,
+        'formatted_date': formatted_date,
+        'title': f'{news_item.title} | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
 
     return render(request, 'news/news_detail.html', context)
