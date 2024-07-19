@@ -21,209 +21,29 @@
         </div>
         <!-- Обертка новостей -->
         <div class="news-section__wrapper">
-            <!-- Первая новость -->
+            
+            {% for new in news_all %}
             <div class="news-section__news1">
                 <div class="news-section__block-img-tags">
-                    <img src="{% static "./assets/images/news1.png" %}" alt="фото новости" class="news-section__img">
+                    <img src="{{ new.thumbnail.url }}" alt="{{ new.title }}" class="news-section__img">
                     <div class="news-section__tags">
-                        <a href="#" class="news-section__p-tag">Конференция</a>
-                        <a href="#" class="news-section__p-tag">Сертификат</a>
-                        <a href="#" class="news-section__p-tag">Сертификат</a>
-                        <a href="#" class="news-section__p-tag">Сертификат</a>
-                        <a href="#" class="news-section__p-tag">Сертификат</a>
-                        <a href="#" class="news-section__p-tag">Сертификат</a>
+                        {% for tag in new.tags.all %}
+                            <a href="#" class="news-section__p-tag">{{ tag.name }}</a>
+                        {% endfor %}
                     </div>
                 </div>
                 <div class="news-section__block-texts">
-                    <a href="#" class="news-section__title-mini">Конференция</a>
+                    <a href="{% url 'news:news_detail' news_slug=new.slug %}" class="news-section__title-mini">{{ new.title }}</a>
                     <p class="news-section__description">
-                        Сотрудники СЦ приняли участие во всероссийской научно-практической
-                        конференции «Измерение и анализ благосостояния», 25-27.01.2024 г. в г.
-                        Санкт-Петербурге...
+                        {{ new.description|truncatewords:20 }}
                     </p>
                 </div>
             </div>
-            <!-- Вторая новость -->
-            <div class="news-section__news1">
-                <div class="news-section__block-img-tags">
-                    <img src="{% static "./assets/images/news2.png" %}" alt="фото новости" class="news-section__img">
-                    <div class="news-section__tags">
-                        <a href="#" class="news-section__p-tag">Конференция</a>
-                        <a href="#" class="news-section__p-tag">Сертификат</a>
-                    </div>
-                </div>
-                <div class="news-section__block-texts">
-                    <a href="#" class="news-section__title-mini">Конференция</a>
-                    <p class="news-section__description">
-                        В работе Всероссийской научно-практической конференции
-                        «измерение и анализ благосостояния», 25-27.01.2024 г.
-                        в г. Санкт-Петербурге...
-                    </p>
-                </div>
-            </div>
-            <!-- Третья новость -->
-            <div class="news-section__news1">
-                <div class="news-section__block-img-tags">
-                    <img src="{% static "./assets/images/news3.png" %}" alt="фото новости" class="news-section__img">
-                    <div class="news-section__tags">
-                        <a href="#" class="news-section__p-tag">Мастер-класс</a>
-                    </div>
-                </div>
-                <div class="news-section__block-texts">
-                    <a href="#" class="news-section__title-mini">Мастер-класс</a>
-                    <p class="news-section__description">
-                        Проведен мастер-класс (практическое занятие) с
-                        использованием ресурсов Ситуационного центра...
-                    </p>
-                </div>
-            </div>
-            <!-- Четвертая новость -->
-            <div class="news-section__news1">
-                <div class="news-section__block-img-tags">
-                    <img src="{% static "./assets/images/news3.png" %}" alt="фото новости" class="news-section__img">
-                    <div class="news-section__tags">
-                        <a href="#" class="news-section__p-tag">Мастер-класс</a>
-                    </div>
-                </div>
-                <div class="news-section__block-texts">
-                    <a href="#" class="news-section__title-mini">Мастер-класс</a>
-                    <p class="news-section__description">
-                        Проведен мастер-класс (практическое занятие) с
-                        использованием ресурсов Ситуационного центра...
-                    </p>
-                </div>
-            </div>
-            <!-- Пятая новость -->
-            <div class="news-section__news1">
-                <div class="news-section__block-img-tags">
-                    <img src="{% static "./assets/images/news3.png" %}" alt="фото новости" class="news-section__img">
-                    <div class="news-section__tags">
-                        <a href="#" class="news-section__p-tag">Мастер-класс</a>
-                    </div>
-                </div>
-                <div class="news-section__block-texts">
-                    <a href="#" class="news-section__title-mini">Мастер-класс</a>
-                    <p class="news-section__description">
-                        Проведен мастер-класс (практическое занятие) с
-                        использованием ресурсов Ситуационного центра...
-                    </p>
-                </div>
-            </div>
-            <!-- Шестая новость -->
-            <div class="news-section__news1">
-                <div class="news-section__block-img-tags">
-                    <img src="{% static "./assets/images/news1.png" %}" alt="фото новости" class="news-section__img">
-                    <div class="news-section__tags">
-                        <a href="#" class="news-section__p-tag">Мастер-класс</a>
-                    </div>
-                </div>
-                <div class="news-section__block-texts">
-                    <a href="#" class="news-section__title-mini">Мастер-класс</a>
-                    <p class="news-section__description">
-                        Проведен мастер-класс (практическое занятие) с
-                        использованием ресурсов Ситуационного центра...
-                    </p>
-                </div>
-            </div>
-            <!-- Седьмая новость -->
-            <div class="news-section__news1">
-                <div class="news-section__block-img-tags">
-                    <img src="{% static "./assets/images/news2.png" %}" alt="фото новости" class="news-section__img">
-                    <div class="news-section__tags">
-                        <a href="#" class="news-section__p-tag">Мастер-класс</a>
-                    </div>
-                </div>
-                <div class="news-section__block-texts">
-                    <a href="#" class="news-section__title-mini">Мастер-класс</a>
-                    <p class="news-section__description">
-                        Проведен мастер-класс (практическое занятие) с
-                        использованием ресурсов Ситуационного центра...
-                    </p>
-                </div>
-            </div>
-            <!-- Восьмая новость -->
-            <div class="news-section__news1">
-                <div class="news-section__block-img-tags">
-                    <img src="{% static "./assets/images/news2.png" %}" alt="фото новости" class="news-section__img">
-                    <div class="news-section__tags">
-                        <a href="#" class="news-section__p-tag">Мастер-класс</a>
-                    </div>
-                </div>
-                <div class="news-section__block-texts">
-                    <a href="#" class="news-section__title-mini">Мастер-класс</a>
-                    <p class="news-section__description">
-                        Проведен мастер-класс (практическое занятие) с
-                        использованием ресурсов Ситуационного центра...
-                    </p>
-                </div>
-            </div>
-            <!-- Девятая новость -->
-            <div class="news-section__news1">
-                <div class="news-section__block-img-tags">
-                    <img src="{% static "./assets/images/news1.png" %}" alt="фото новости" class="news-section__img">
-                    <div class="news-section__tags">
-                        <a href="#" class="news-section__p-tag">Мастер-класс</a>
-                    </div>
-                </div>
-                <div class="news-section__block-texts">
-                    <a href="#" class="news-section__title-mini">Мастер-класс</a>
-                    <p class="news-section__description">
-                        Проведен мастер-класс (практическое занятие) с
-                        использованием ресурсов Ситуационного центра...
-                    </p>
-                </div>
-            </div>
-            <!-- Десятая новость -->
-            <div class="news-section__news1">
-                <div class="news-section__block-img-tags">
-                    <img src="{% static "./assets/images/news3.png" %}" alt="фото новости" class="news-section__img">
-                    <div class="news-section__tags">
-                        <a href="#" class="news-section__p-tag">Мастер-класс</a>
-                    </div>
-                </div>
-                <div class="news-section__block-texts">
-                    <a href="#" class="news-section__title-mini">Мастер-класс</a>
-                    <p class="news-section__description">
-                        Проведен мастер-класс (практическое занятие) с
-                        использованием ресурсов Ситуационного центра...
-                    </p>
-                </div>
-            </div>
-            <!-- Одиннадцатая новость -->
-            <div class="news-section__news1">
-                <div class="news-section__block-img-tags">
-                    <img src="{% static "./assets/images/news3.png" %}" alt="фото новости" class="news-section__img">
-                    <div class="news-section__tags">
-                        <a href="#" class="news-section__p-tag">Мастер-класс</a>
-                    </div>
-                </div>
-                <div class="news-section__block-texts">
-                    <a href="#" class="news-section__title-mini">Мастер-класс</a>
-                    <p class="news-section__description">
-                        Проведен мастер-класс (практическое занятие) с
-                        использованием ресурсов Ситуационного центра...
-                    </p>
-                </div>
-            </div>
-            <!-- Двенадцатая новость -->
-            <div class="news-section__news1">
-                <div class="news-section__block-img-tags">
-                    <img src="{% static "./assets/images/news2.png" %}" alt="фото новости" class="news-section__img">
-                    <div class="news-section__tags">
-                        <a href="#" class="news-section__p-tag">Мастер-класс</a>
-                    </div>
-                </div>
-                <div class="news-section__block-texts">
-                    <a href="#" class="news-section__title-mini">Мастер-класс</a>
-                    <p class="news-section__description">
-                        Проведен мастер-класс (практическое занятие) с
-                        использованием ресурсов Ситуационного центра...
-                    </p>
-                </div>
-            </div>
+            {% endfor %}
+            
         </div>
         <!-- Пагинация -->
-        <nav aria-label="news-section__nav">
+        {% comment %} <nav aria-label="news-section__nav">
             <ul class="news-section__ul">
                 <div class="news-section__block-btns">
                     <li class="news-section__li disabled">
@@ -238,7 +58,7 @@
                     </li>
                 </div>
             </ul>
-        </nav>
+        </nav> {% endcomment %}
 
 
 

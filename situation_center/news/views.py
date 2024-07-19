@@ -4,9 +4,13 @@ from .models import News
 
 
 def news(request):
+    news_all = News.objects.all()
+
     context = {
+        'news_all': news_all,
         'title': 'Новости | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
+
     return render(request, 'news/news.html', context)
 
 
