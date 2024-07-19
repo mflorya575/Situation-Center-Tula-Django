@@ -3,6 +3,7 @@ from django.core.validators import FileExtensionValidator
 from django.contrib.auth.models import User
 
 from mptt.models import MPTTModel, TreeForeignKey
+from taggit.managers import TaggableManager
 
 
 class Category(MPTTModel):
@@ -69,6 +70,7 @@ class News(models.Model):
         upload_to='images/thumbnails/',
         validators=[FileExtensionValidator(allowed_extensions=('png', 'jpg', 'webp', 'jpeg', 'gif'))]
     )
+    tags = TaggableManager()
     status = models.CharField(choices=STATUS_OPTIONS, default='published', verbose_name='Статус записи', max_length=10)
     create = models.DateTimeField(auto_now_add=True, verbose_name='Время добавления')
     update = models.DateTimeField(auto_now=True, verbose_name='Время обновления')

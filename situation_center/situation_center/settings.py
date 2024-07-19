@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     # Сторонние библиотеки
     'mptt',
     'django_mptt_admin',
+    'taggit',
 ]
 
 MIDDLEWARE = [
