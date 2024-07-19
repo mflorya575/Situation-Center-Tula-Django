@@ -43,6 +43,9 @@ INSTALLED_APPS = [
 
     # Приложения
     'main.apps.MainConfig',
+
+    # Сторонние библиотеки
+    'mptt',
 ]
 
 MIDDLEWARE = [
