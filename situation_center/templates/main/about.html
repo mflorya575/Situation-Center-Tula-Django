@@ -3,4 +3,189 @@
 
 {% block content %}
 
+<!-- Первая секция -->
+<section class="about-section">
+    <div class="container">
+        <!-- Заголовок -->
+        <h1 class="about-section__title">СИТУАЦИОННЫЙ ЦЕНТР</h1>
+        <!-- Обертка -->
+        <div class="about-section__wrapper">
+            <!-- Левая сторона -->
+            <div class="about-section__wrapper-left">
+                <p class="about-section__text">
+                    Ситуационный центр РЭУ им. Г.В. Плеханова Тульский филиал – системный
+                    интегратор, который осуществляет разработку, внедрение и поддержку
+                    информационно-аналитических решений на базе отечественной BI-платформы.<br><br>
+
+                    Мы убеждены, что анализ данных является ключевым фактором цифровой
+                    трансформации государственного управления и развития бизнеса.
+                    Компании, принимающие решения на основе данных, – это сильные и
+                    устойчивые организации. И мы видим своей целью создание комплексных
+                    систем и решений на базе российского BI для государства и бизнеса,
+                    которые решают широкий спектр задач.<br><br>
+                    
+                    Поэтому Ситуационный центр наращивает и развивает свои компетенции именно
+                    в области разработки информационно-аналитических систем, тем самым создавая
+                    центр компетенций BI-решений. В нашей команде работает более 60 data-специалистов
+                    с более чем 20-летним опытом создания ситуационных центров.
+                </p>
+            </div>
+            <!-- Правая сторона -->
+            <div class="about-section__wrapper-right">
+                <img src="{% static "./assets/images/about-image.png" %}" alt="изображение компьютера с графиками" class="about-section__img">
+            </div>
+        </div>
+        
+    </div>
+</section>
+<!-- Вторая секция -->
+<section class="aboutcom-section">
+    <div class="container">
+        <!-- Заголовок -->
+        <h2 class="aboutcom-section__title">КОМАНДА ЭКСПЕРТОВ</h2>
+        <!-- Текст -->
+        <p class="aboutcom-section__text">
+            Наш ресурс – это команда с глубокой экспертизой построения архитектуры проектов,
+            хранилища и визуализации данных как в России, так и за рубежом. Мы
+            разрабатываем собственные продукты и создаем решения на базе российского BI для цифровой
+            трансформации государственного и коммерческого управления.
+        </p>
+        <!-- Обертка плашек -->
+        <div class="aboutcom-section__wrapper">
+            <!-- Первая часть -->
+            <div class="aboutcom-section__block1">
+                <div class="aboutcom-section__worker" id="worker-margin">
+                    <img src="{% static "./assets/icons/icon-people.svg" %}" alt="иконка людей" class="aboutcom-section__icon">
+                    <p class="aboutcom-section__text-mini">Аналитики прикладных решений</p>
+                </div>
+                <div class="aboutcom-section__worker">
+                    <img src="{% static "./assets/icons/icon-people.svg" %}" alt="иконка людей" class="aboutcom-section__icon">
+                    <p class="aboutcom-section__text-mini">Социологи</p>
+                </div>
+            </div>
+            <!-- Вторая часть -->
+            <div class="aboutcom-section__block2">
+                <div class="aboutcom-section__worker" id="worker-margin">
+                    <img src="{% static "./assets/icons/icon-people.svg" %}" alt="иконка людей" class="aboutcom-section__icon">
+                    <p class="aboutcom-section__text-mini">Руководители проектов</p>
+                </div>
+                <div class="aboutcom-section__worker">
+                    <img src="{% static "./assets/icons/icon-people.svg" %}" alt="иконка людей" class="aboutcom-section__icon">
+                    <p class="aboutcom-section__text-mini">Экономисты</p>
+                </div>
+            </div>
+            <!-- Третья часть -->
+            <div class="aboutcom-section__block3">
+                <div class="aboutcom-section__worker" id="worker-margin">
+                    <img src="{% static "./assets/icons/icon-people.svg" %}" alt="иконка людей" class="aboutcom-section__icon">
+                    <p class="aboutcom-section__text-mini">Программисты</p>
+                </div>
+                <div class="aboutcom-section__worker">
+                    <img src="{% static "./assets/icons/icon-people.svg" %}" alt="иконка людей" class="aboutcom-section__icon">
+                    <p class="aboutcom-section__text-mini">Дизайнеры</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- Третья секция -->
+<section class="aboutrec-section">
+    <div class="container">
+        <!-- Заголовок -->
+        <h3 class="aboutrec-section__title">
+            В СИТУАЦИОННОМ ЦЕНТРЕ РАСПОЛОЖЕНЫ УНИКАЛЬНЫЕ ДАННЫЕ
+        </h3>
+        <!-- Обертка -->
+        <div class="aboutrec-section__wrapper">
+            <!-- Левая часть -->
+            <div class="aboutrec-section__wrapper-left">
+                <p class="aboutrec-section__text aboutrec-section__padding1">
+                    <span id="aboutrec-section__span">В нашем центре существует 6 уникальных
+                    основных векторов изучения:</span>
+                    внешнеэномические связи, развитие инфраструктуры, технологический
+                    суверинетет, благополучие граждан, финансовый суверинетет, сбережение народа
+                </p>
+            </div>
+            <!-- Правая часть -->
+            <div class="aboutrec-section__wrapper-right">
+                <p class="aboutrec-section__text aboutrec-section__padding2">
+                    <span id="aboutrec-section__span">Ситуационный центр оперирует данными
+                    из множества отраслей:</span>
+                    здравоохранение, образование, демография, культура, безопасные
+                    дороги, наука, экология, предпринимательство и др.
+                </p>
+            </div>
+        </div>
+        <!-- Реквизиты -->
+        <div class="aboutrec-section__wrapper-req">
+            <div class="aboutrec-section__text-req">
+                <!-- Заголовок -->
+                <h4 class="aboutrec-section__title-mini">Реквизиты компании</h4>
+                <!-- Тексты -->
+                <p class="aboutrec-section__descr">Общество с ограниченной ответственностью «Ситуационный центр»</p>
+                <p class="aboutrec-section__descr">ИНН 7727457593</p>
+                <p class="aboutrec-section__descr">ОГРН 1207700500424</p>
+                <p class="aboutrec-section__descr">Юридический адрес: 117218, Москва г.,
+                    Кржижановского ул., дом 29, корпус К. 2, офис АНТРЕСОЛЬ 3 ПОМЕЩЕНИЕ X КОМНАТА №10
+                </p>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- Четвертая секция -->
+<section class="aboutform-section">
+    <div class="container">
+        <!-- Обертка -->
+        <div class="aboutform-section__wrapper">
+            <!-- Заголовок -->
+            <h5 class="aboutform-section__title">ПРИНИМАЙТЕ РЕШЕНИЯ НА ОСНОВЕ ДАННЫХ</h5>
+            <p class="aboutform-section__text">
+                Заполните форму и наши сотрудники свяжутся с вами<br class="brich">
+                для обсуждения деталей проекта 
+            </p>
+            <button class="aboutform-section__open-modal">ХОЧУ ПРОЕКТ</button>
+            <span class="aboutform-section__padding3">r</span>
+            <!-- Диалоговое окно -->
+            <dialog class="aboutform-section__modal">
+                <!-- Заголовок -->
+                <h5 class="aboutform-section__title-dialog">ОБСУДИТЬ ПРОЕКТ</h5>
+                <!-- Текст -->
+                <p class="aboutform-section__descr">
+                    Заполните форму и наши сотрудники свяжутся с вами для обсуждения деталей проекта
+                </p>
+                <!-- Форма -->
+                <form action="#" method="POST">
+                    <div class="aboutform-section__form-group1">
+                        <input class="aboutform-section__input1" type="text" required="" name="username" placeholder="Ваше имя*" />
+                    </div>
+                    <div class="aboutform-section__form-group2">
+                        <input class="aboutform-section__input2" type="text" required="" name="Ваш Email*" placeholder="Ваш Email*" />
+                    </div>
+                    <div class="aboutform-section__form-group3">
+                        <input class="aboutform-section__input3" type="tel" required="" name="second-name" placeholder="Номер телефона*" />
+                    </div>
+                    <div class="aboutform-section__form-group4">
+                        <input class="aboutform-section__input4" type="text" required="" name="second-name" placeholder="Название организации*" />
+                    </div>
+                    <div class="aboutform-section__form-group5">
+                        <textarea name="" id="" placeholder="Сообщение" rows="10" class="aboutform-section__textarea"></textarea>
+                    </div>
+                    <div class="register-section__form-group">
+                        <button type="submit" class="aboutform-section__btn" name="login">Отправить</button>
+                    </div>
+                    <p class="aboutform-section__text-end">
+                        Нажимая на кнопку «Отправить», я даю согласие на обработку
+                        своих персональных данных и соглашаюсь с политикой конфиденциальности.
+                    </p>
+                </form>
+                <!-- Кнопка закрытия окна -->
+                <button class="aboutform-section__close-modal">Закрыть</button>
+            </dialog>
+        </div>
+
+    </div>
+</section>
+
 {% endblock content %}
