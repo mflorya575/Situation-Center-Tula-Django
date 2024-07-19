@@ -44,7 +44,7 @@
                 </ul>
             </div>
             <div class="header-block2">
-                <a href="index.html"><img src="{% static "./assets/icons/logo-dark.png" %}" alt="логотип центра" class="header-block2-img"></a>
+                <a href="{% url "main:index" %}"><img src="{% static "./assets/icons/logo-dark.png" %}" alt="логотип центра" class="header-block2-img"></a>
             </div>
             <div class="header-block3">
                 <ul class="header-block3-ul2">
@@ -122,7 +122,7 @@
             <div class="footer-section__wrapper_main">
                 <!-- Обертка первая -->
                 <div class="footer-section__wrapper1">
-                    <a href="index.html"><img src="{% static "./assets/icons/logo-light.png" %}" alt="логотип центра" class="footer-section__logo"></a>
+                    <a href="{% url "main:index" %}"><img src="{% static "./assets/icons/logo-light.png" %}" alt="логотип центра" class="footer-section__logo"></a>
                     <p class="footer-section__text">
                         Адрес:<br> <span class="footer-section__span">г. Тула, просп. Ленина, 53Б</span>
                     </p>

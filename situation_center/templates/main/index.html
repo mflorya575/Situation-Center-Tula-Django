@@ -44,7 +44,7 @@
                     </ul>
                 </div>
                 <div class="header-block2">
-                    <a href="index.html"><img src="{% static "assets/icons/logo-light.png" %}" alt="логотип центра" class="header-block2-img"></a>
+                    <a href="{% url "main:index" %}"><img src="{% static "assets/icons/logo-light.png" %}" alt="логотип центра" class="header-block2-img"></a>
                 </div>
                 <div class="header-block3">
                     <ul class="header-block3-ul2">
@@ -118,8 +118,12 @@
                         программы<br class="br"> инновационного развития образовательной и научной работы в вузе
                     </p>
                 <div class="main-section_links">
-                    <button href="#" class="main-section_link-button1">Наши программы</button>
-                    <button href="#" class="main-section_link-button2">О нас</button>
+                    <a href="#">
+                        <button href="#" class="main-section_link-button1">Наши программы</button>
+                    </a>
+                    <a href="{% url "main:about" %}">
+                        <button href="{% url "main:about" %}" class="main-section_link-button2">О нас</button>
+                    </a>
                 </div>
             </div>
             <div class="overlay"></div>
@@ -367,7 +371,9 @@
                         дизайну аналитической отчётности.
                     </p>
                     <div class="fifth-section__buttons">
-                        <button class="fifth-section__button1">Подробнее</button>
+                        <a href="{% url "main:about" %}">
+                            <button class="fifth-section__button1">Подробнее</button>
+                        </a>
                         <button class="fifth-section__button2">Скачать брошюру</button>
                     </div>
                 </div>
@@ -400,7 +406,7 @@
             <div class="footer-section__wrapper_main">
                 <!-- Обертка первая -->
                 <div class="footer-section__wrapper1">
-                    <a href="index.html"><img src="{% static "./assets/icons/logo-light.png" %}" alt="логотип центра" class="footer-section__logo"></a>
+                    <a href="{% url "main:index" %}"><img src="{% static "./assets/icons/logo-light.png" %}" alt="логотип центра" class="footer-section__logo"></a>
                     <p class="footer-section__text">
                         Адрес:<br> <span class="footer-section__span">г. Тула, просп. Ленина, 53Б</span>
                     </p>
