@@ -1,0 +1,101 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Секция контактов -->
+<section class="contact-section">
+    <div class="container">
+        <!-- Заголовок -->
+        <h1 class="contact-section__title">НАШИ КОНТАКТЫ</h1>
+        <!-- Обертка -->
+        <div class="contact-section__wrapper">
+            <!-- Левая сторона -->
+            <div class="contact-section__wrapper-left">
+                <div class="contact-section__block1">
+                    <div class="contact-section__part1">
+                        <img src="{% static "./assets/icons/contact-map.svg" %}" alt="иконка карты" class="contact-section__img">
+                        <p class="contact-section__text">
+                            Адрес:<br> <span id="contact-section__id">г. Тула, просп. Ленина, 53Б</span>
+                        </p>
+                    </div>
+                    <div class="contact-section__part2">
+                        <img src="{% static "./assets/icons/contact-letter.svg" %}" alt="иконка письма" class="contact-section__img">
+                        <p class="contact-section__text">
+                            Электронная почта:<br> <span id="contact-section__id">tula@rea.ru</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="contact-section__block2">
+                    <div class="contact-section__part3">
+                        <img src="{% static "./assets/icons/contact-call.svg" %}" alt="иконка телефона" class="contact-section__img">
+                        <p class="contact-section__text">
+                            Номер телефона:<br> <span id="contact-section__id">+7 (4872) 36-48-74</span>
+                        </p>
+                    </div>
+                    <div class="contact-section__part4">
+                        <img src="{% static "./assets/icons/contact-watch.svg" %}" alt="иконка часов" class="contact-section__img">
+                        <p class="contact-section__text">
+                            Часы работы:<br> <span id="contact-section__id">8:30 - 18:00</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Правая сторона -->
+            <div class="contact-section__wrapper-right">
+                <iframe class="contact-section__iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2334.757193585647!2d37.60640827667307!3d54.18437587254418!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x41343f88bd22e9af%3A0x9460f036eb13078a!2z0L_RgC4g0JvQtdC90LjQvdCwLCA1M9CRLCDQotGD0LvQsCwg0KLRg9C70YzRgdC60LDRjyDQvtCx0LsuLCAzMDAwNDE!5e0!3m2!1sru!2sru!4v1713717563860!5m2!1sru!2sru" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- Секция формы -->
+<section class="contactform-section">
+    <div class="container">
+        <!-- Обертка -->
+        <div class="contactform-section__wrapper">
+            <!-- Форма (левая сторона) -->
+            <div class="contactform-section__left">
+                <!-- Заголовок -->
+                <h2 class="contactform-section__title">НАПИШИТЕ НАМ</h2>
+                <form class="contactform-section__form" id="contact-form" action="#" method="POST">
+                    <div class="contactform-section__row">
+                        <div class="contactform-section__div1">
+                            <div class="c">
+                                <input class="contactform-section__input1" name="name" placeholder="Ваше ФИО*" type="text" />
+                            </div>
+                        </div>
+                        <div class="contactform-section__div2">
+                            <div class="c">
+                                <input class="contactform-section__input2" name="email" placeholder="Ваш Email*" type="email" />
+                            </div>
+                        </div>
+                        <div class="contactform-section__div3">
+                            <div class="c">
+                                <input class="contactform-section__input3" name="telephone" placeholder="Ваш номер телефона*" type="tel" />
+                            </div>
+                        </div>
+                        <div class="contactform-section__div4">
+                            <div class="c">
+                                <input class="contactform-section__input4" name="subject" placeholder="Тема сообщения" type="text" />
+                            </div>
+                        </div>
+                        <div class="contactform-section__div5">
+                            <div class="c">
+                                <textarea class="contactform-section__textarea" name="message" placeholder="Сообщение"></textarea>
+                            </div>
+                            <button class="contactform-section__btn" type="submit">Отправить сообщение</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Правая сторона -->
+            <div class="contactform-section__right">
+                <img src="{% static "./assets/images/contact-form-image.png" %}" alt="изображение двух девушек" class="contactform-section__img">
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endblock content %}

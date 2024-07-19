@@ -138,6 +138,8 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+# Настройки кастомной админ-панели django-jazzmin
 JAZZMIN_SETTINGS = {
     'site_header': 'СЦ РЭУ Тула',
     'site_brand': 'СЦ РЭУ Тула',
