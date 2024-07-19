@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.core.validators import FileExtensionValidator
 from django.contrib.auth.models import User
 
@@ -81,6 +82,10 @@ class News(models.Model):
         indexes = [models.Index(fields=['-fixed', '-create', 'status'])]
         verbose_name = 'Новость'
         verbose_name_plural = 'Новости'
+
+    def get_absolute_url(self):
+        # Возвращает URL для подробного просмотра новости
+        return reverse('news:news_detail', args=[self.slug])
 
     def __str__(self):
         return self.title

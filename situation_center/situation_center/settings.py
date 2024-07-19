@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+SITE_ID = 1
+
 INSTALLED_APPS = [
     'jazzmin',  # кастомная админ-панель
     # Встроенные настройки
@@ -49,6 +51,10 @@ INSTALLED_APPS = [
     'mptt',
     'django_mptt_admin',
     'taggit',
+
+    # Карта сайта
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
 ]
 
 MIDDLEWARE = [
