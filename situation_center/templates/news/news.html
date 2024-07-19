@@ -28,7 +28,7 @@
                     <img src="{{ new.thumbnail.url }}" alt="{{ new.title }}" class="news-section__img">
                     <div class="news-section__tags">
                         {% for tag in new.tags.all %}
-                            <a href="#" class="news-section__p-tag">{{ tag.name }}</a>
+                            <a href="{% url 'news:news' %}?tag={{ tag.name }}" class="news-section__p-tag">{{ tag.name }}</a>
                         {% endfor %}
                     </div>
                 </div>
