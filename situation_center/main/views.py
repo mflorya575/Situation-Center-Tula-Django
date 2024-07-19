@@ -13,7 +13,16 @@ def index(request):
 def about(request):
 
     context = {
-        'title': 'О нас - Ситуационный центр',
+        'title': 'О нас | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
 
     return render(request, 'main/about.html', context)
+
+
+def policy_privacy(request):
+
+    context = {
+        'title': 'Политика конфиденциальности | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+
+    return render(request, 'main/policy_privacy.html', context)
