@@ -195,8 +195,8 @@
                 </div>
                 <!-- Карточка образования -->
                 <div class="third-section__card">
-                    <a href="project2-study.html"><img src="{% static "./assets/icons/study-image.png" %}" alt="иконка образования" class="third-section__img2"></a>
-                    <a href="project2-study.html" class="third-section__text">Образование</a>
+                    <a href="{% url "nathprojects:study" %}"><img src="{% static "./assets/icons/study-image.png" %}" alt="иконка образования" class="third-section__img2"></a>
+                    <a href="{% url "nathprojects:study" %}" class="third-section__text">Образование</a>
                 </div>
                 <!-- Карточка демографии -->
                 <div class="third-section__card">
