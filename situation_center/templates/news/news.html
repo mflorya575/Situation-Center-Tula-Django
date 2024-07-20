@@ -11,8 +11,8 @@
             <h1 class="news-section__title">НОВОСТИ</h1>
             <!-- Поле поиска -->
             <div class="news-section__search-block">
-                <form class="news-section__form" role="search" action="{% url 'news:search' %}" method="GET"> 
-                    <input class="news-section__input" type="search" name="q" placeholder="Поиск" aria-label="Search">
+                <form class="news-section__form" role="search" action="{% if request.GET.q %}{% url 'news:search' %}{% else %}{% url "news:news" %}{% endif %}" method="GET"> 
+                    <input class="news-section__input" type="search" name="q" placeholder="Поиск" aria-label="Search" value="{{ request.GET.q|default:'' }}">
                     <button class="news-section__input-btn" type="submit">
                         <img class="news-section__img-search" src="{% static "./assets/icons/search-icon.svg" %}" alt="иконка лупы">
                     </button>

@@ -3,12 +3,16 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 from .models import News
 from taggit.models import Tag
+from news.utils import q_search
 
 
 def news(request, page=1):
     tag = request.GET.get('tag', None)
+    query = request.GET.get('q', None)
 
-    if tag:
+    if query:
+        news_all = q_search(query)
+    elif tag:
         news_all = News.objects.filter(tags__name=tag)
     else:
         news_all = News.objects.all()
