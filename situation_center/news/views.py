@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 from .models import News
 from taggit.models import Tag
 
 
-def news(request):
+def news(request, page=1):
     tag = request.GET.get('tag', None)
 
     if tag:
@@ -15,8 +16,16 @@ def news(request):
     # Получаем все теги, связанные с моделью News
     tags = Tag.objects.all()
 
+    paginator = Paginator(news_all, 3)  # 3 новости на страницу
+    try:
+        current_page = paginator.page(page)
+    except PageNotAnInteger:
+        current_page = paginator.page(1)
+    except EmptyPage:
+        current_page = paginator.page(paginator.num_pages)
+
     context = {
-        'news_all': news_all,
+        'news_all': current_page,
         'tags': tags,
         'title': 'Новости | СЦ РЭУ филиал им. Г.В. Плеханова',
     }

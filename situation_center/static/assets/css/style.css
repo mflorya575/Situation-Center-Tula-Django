@@ -2877,6 +2877,12 @@ a:hover span {
 }
 
 /*********** news.html ***********/
+.news-section__li.active a {
+  /* font-weight: bold; */
+  /* color: #fff; */
+  background-color: rgb(255 112 0 / 60%);
+}
+
 .news-section {
   min-height: 730px;
   margin-bottom: 150px;

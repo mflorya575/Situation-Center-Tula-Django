@@ -43,22 +43,38 @@
             
         </div>
         <!-- Пагинация -->
-        {% comment %} <nav aria-label="news-section__nav">
+        <nav aria-label="news-section__nav">
             <ul class="news-section__ul">
                 <div class="news-section__block-btns">
-                    <li class="news-section__li disabled">
-                      <a class="news-section__link-pgg">Назад</a>
-                    </li>
-                    <li class="news-section__li"><a class="news-section__link-pg" href="#">1</a></li>
-                    <li class="news-section__li"><a class="news-section__link-pg" href="#">2</a></li>
-                    <li class="news-section__li"><a class="news-section__link-pg" href="#">3</a></li>
-                    <li class="news-section__li"><a class="news-section__link-pg" href="#">4</a></li>
-                    <li class="news-section__li">
-                      <a class="news-section__link-pgg" href="#">Далее</a>
-                    </li>
+                    {% if news_all.has_previous %}
+                        <li class="news-section__li">
+                            <a class="news-section__link-pgg" href="{% url 'news:news_paginated' news_all.previous_page_number %}">Назад</a>
+                        </li>
+                    {% else %}
+                        <li class="news-section__li disabled">
+                            <a class="news-section__link-pgg">Назад</a>
+                        </li>
+                    {% endif %}
+
+                    {% for page_num in news_all.paginator.page_range %}
+                        <li class="news-section__li{% if news_all.number == page_num %} active{% endif %}">
+                            <a class="news-section__link-pg" href="{% url 'news:news_paginated' page_num %}">{{ page_num }}</a>
+                        </li>
+                    {% endfor %}
+
+                    {% if news_all.has_next %}
+                        <li class="news-section__li">
+                            <a class="news-section__link-pgg" href="{% url 'news:news_paginated' news_all.next_page_number %}">Далее</a>
+                        </li>
+                    {% else %}
+                        <li class="news-section__li disabled">
+                            <a class="news-section__link-pgg">Далее</a>
+                        </li>
+                    {% endif %}
+
                 </div>
             </ul>
-        </nav> {% endcomment %}
+        </nav>
 
 
 
