@@ -10,10 +10,29 @@
         <!-- Обертка графиков -->
         <div class="detailpr-section__wrapper">
             <!-- Первый график -->
-            <div id="chart" class="detailpr-section__img">{{ chart|safe }}</div>
+            {% comment %} <div id="chart" class="detailpr-section__img">{{ chart|safe }}</div> {% endcomment %}
+            {% comment %} <div id="chart" class="detailpr-section__img">
+                <h2>Линейный график</h2>
+                <div>{{ line_chart|safe }}</div>
+            </div>
+            
+            <div id="chart" class="detailpr-section__img">
+                <h2>Столбчатая диаграмма</h2>
+                <div>{{ bar_chart|safe }}</div>
+            </div> {% endcomment %}
+            <div id="chart" class="detailpr-section__img">
+                <h2>Комбинированный график</h2>
+                <div>{{ combined_chart|safe }}</div>
+            </div>
             <div class="detailpr-section__block">
                 <p class="detailpr-section__description">{{ hospital.description }}</p>
             </div>
+
+            
+            {% comment %} <div>
+                <h2>Круговая диаграмма</h2>
+                <div>{{ pie_chart|safe }}</div>
+            </div> {% endcomment %}
             <!-- Второй график -->
             {% comment %} <div class="detailpr-section__block">
                 <img src="./assets/images/graph-img2.png" alt="график" class="detailpr-section__img">

@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 import plotly.express as px
 import pandas as pd
+import plotly.graph_objects as go
 
 from .models import Hospital
 
@@ -24,15 +25,31 @@ def hospital_detail(request, slug):
     # Преобразуем данные в DataFrame для удобства работы с Plotly
     df = pd.DataFrame(list(hospital_data.values()))
 
-    # Создание графика с помощью Plotly Express
-    fig = px.line(df, x='year', y='deaths', title=f'{hospital.title}', markers=True,
-                  labels={'year': 'Годы', 'deaths': 'Смертей'})
+    # Создание комбинированного графика
+    fig = go.Figure()
+
+    # Добавление линейного графика
+    fig.add_trace(go.Scatter(x=df['year'], y=df['deaths'],
+                             mode='lines+markers',
+                             name='Линейный график'))
+
+    # Добавление столбчатой диаграммы
+    fig.add_trace(go.Bar(x=df['year'], y=df['deaths'],
+                         name='Столбчатая диаграмма'))
+
+    # Настройка осей и заголовка
+    fig.update_layout(
+        title=f'{hospital.title} - Комбинированный график',
+        xaxis_title='Годы',
+        yaxis_title='Смертей'
+    )
 
     # Преобразование графика в HTML
-    chart = fig.to_html(full_html=False)
+    combined_chart = fig.to_html(full_html=False)
 
     context = {
-        'chart': chart,
+        'combined_chart': combined_chart,
         'hospital': hospital,
+        'title': 'СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'nathprojects/project_detail.html', context)
