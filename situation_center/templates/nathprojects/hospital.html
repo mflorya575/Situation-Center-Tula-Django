@@ -44,7 +44,7 @@
             {% for hospital in hospitals %}
             <div class="hospital-section__card">
                 <img src="{% static "./assets/images/project-img1.jpg" %}" alt="изображение графиков" class="hospital-section__img">
-                <a href="{% url 'nathprojects:hospital_detail' slug=hospital.slug %}" class="hospital-section__link">{{ hospital.title }}</a>
+                <a href="{% url 'nathprojects:hospital_detail' slug=hospital.slug %}" class="hospital-section__link">{{ hospital.title|truncatewords:2 }}</a>
             </div>
             {% endfor %}
 

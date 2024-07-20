@@ -190,8 +190,8 @@
             <div class="third-section__wrapper">
                 <!-- Карточка здравоохранения -->
                 <div class="third-section__card">
-                    <a href="project1-hospital.html"><img src="{% static "./assets/icons/hospital-image.png" %}" alt="иконка здравоохранения" class="third-section__img1"></a>
-                    <a href="project1-hospital.html" class="third-section__text">Здравоохранение</a>
+                    <a href="{% url "nathprojects:hospital" %}"><img src="{% static "./assets/icons/hospital-image.png" %}" alt="иконка здравоохранения" class="third-section__img1"></a>
+                    <a href="{% url "nathprojects:hospital" %}" class="third-section__text">Здравоохранение</a>
                 </div>
                 <!-- Карточка образования -->
                 <div class="third-section__card">
