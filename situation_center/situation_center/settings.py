@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     # Приложения
     'main.apps.MainConfig',
     'news.apps.NewsConfig',
+    'nathprojects.apps.NathprojectsConfig',
 
     # Сторонние библиотеки
     'mptt',
