@@ -1,0 +1,32 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="detailpr-section">
+    <div class="container">
+        <!-- Заголовок -->
+        <div class="detailpr-section__title">{{ hospital.title }}</div>
+        <!-- Обертка графиков -->
+        <div class="detailpr-section__wrapper">
+            <!-- Первый график -->
+            <div id="chart" class="detailpr-section__img">{{ chart|safe }}</div>
+            <div class="detailpr-section__block">
+                <p class="detailpr-section__description">{{ hospital.description }}</p>
+            </div>
+            <!-- Второй график -->
+            {% comment %} <div class="detailpr-section__block">
+                <img src="./assets/images/graph-img2.png" alt="график" class="detailpr-section__img">
+                <p class="detailpr-section__description">Диаграмма аналитики по ТО то того</p>
+            </div> {% endcomment %}
+            <!-- Третий график -->
+            {% comment %} <div class="detailpr-section__block">
+                <img src="./assets/images/graph-img3.png" alt="график" class="detailpr-section__img">
+                <p class="detailpr-section__description">Диаграмма аналитики по ТО то того</p>
+            </div> {% endcomment %}
+        </div>
+
+    </div>
+</section>
+
+{% endblock content %}

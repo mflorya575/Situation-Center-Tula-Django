@@ -3211,7 +3211,7 @@ a:hover span {
 
 .detailpr-section__block {
   display: grid;
-  text-align: center;
+  /* text-align: center; */
   justify-content: center;
   margin-bottom: 108px;
 }

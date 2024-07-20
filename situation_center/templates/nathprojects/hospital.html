@@ -35,70 +35,19 @@
             а также помогают принимать информированные решения на основе актуальных данных.
         </p>
 
-        <div id="chart">{{ chart|safe }}</div>
+        {% comment %} <div id="chart">{{ chart|safe }}</div> {% endcomment %}
 
         <!-- Обертка проектов -->
         <div class="hospital-section__wrapper">
             <!-- Первый проект -->
+
+            {% for hospital in hospitals %}
             <div class="hospital-section__card">
-                <img src="./assets/images/project-img1.jpg" alt="изображение графиков" class="hospital-section__img">
-                <a href="project-detail.html" class="hospital-section__link">Аналитика по ТО того того</a>
+                <img src="{% static "./assets/images/project-img1.jpg" %}" alt="изображение графиков" class="hospital-section__img">
+                <a href="{% url 'nathprojects:hospital_detail' slug=hospital.slug %}" class="hospital-section__link">{{ hospital.title }}</a>
             </div>
-            <!-- Второй проект -->
-            <div class="hospital-section__card">
-                <img src="./assets/images/project-img2.jpeg" alt="изображение графиков" class="hospital-section__img">
-                <a href="project-detail.html" class="hospital-section__link">Аналитика по ТО того того</a>
-            </div>
-            <!-- Третий проект -->
-            <div class="hospital-section__card">
-                <img src="./assets/images/project-img1.jpg" alt="изображение графиков" class="hospital-section__img">
-                <a href="project-detail.html" class="hospital-section__link">Аналитика по ТО того того</a>
-            </div>
-            <!-- Четвертый проект -->
-            <div class="hospital-section__card">
-                <img src="./assets/images/project-img1.jpg" alt="изображение графиков" class="hospital-section__img">
-                <a href="project-detail.html" class="hospital-section__link">Аналитика по ТО того того</a>
-            </div>
-            <!-- Пятый проект -->
-            <div class="hospital-section__card">
-                <img src="./assets/images/project-img1.jpg" alt="изображение графиков" class="hospital-section__img">
-                <a href="project-detail.html" class="hospital-section__link">Аналитика по ТО того того</a>
-            </div>
-            <!-- Шестой проект -->
-            <div class="hospital-section__card">
-                <img src="./assets/images/project-img2.jpeg" alt="изображение графиков" class="hospital-section__img">
-                <a href="project-detail.html" class="hospital-section__link">Аналитика по ТО того того</a>
-            </div>
-            <!-- Седьмой проект -->
-            <div class="hospital-section__card">
-                <img src="./assets/images/project-img2.jpeg" alt="изображение графиков" class="hospital-section__img">
-                <a href="project-detail.html" class="hospital-section__link">Аналитика по ТО того того</a>
-            </div>
-            <!-- Восьмой проект -->
-            <div class="hospital-section__card">
-                <img src="./assets/images/project-img2.jpeg" alt="изображение графиков" class="hospital-section__img">
-                <a href="project-detail.html" class="hospital-section__link">Аналитика по ТО того того</a>
-            </div>
-            <!-- Девятый проект -->
-            <div class="hospital-section__card">
-                <img src="./assets/images/project-img1.jpg" alt="изображение графиков" class="hospital-section__img">
-                <a href="project-detail.html" class="hospital-section__link">Аналитика по ТО того того</a>
-            </div>
-            <!-- Десятый проект -->
-            <div class="hospital-section__card">
-                <img src="./assets/images/project-img2.jpeg" alt="изображение графиков" class="hospital-section__img">
-                <a href="project-detail.html" class="hospital-section__link">Аналитика по ТО того того</a>
-            </div>
-            <!-- Одиннадцатый проект -->
-            <div class="hospital-section__card">
-                <img src="./assets/images/project-img2.jpeg" alt="изображение графиков" class="hospital-section__img">
-                <a href="project-detail.html" class="hospital-section__link">Аналитика по ТО того того</a>
-            </div>
-            <!-- Двенадцатый проект -->
-            <div class="hospital-section__card">
-                <img src="./assets/images/project-img1.jpg" alt="изображение графиков" class="hospital-section__img">
-                <a href="project-detail.html" class="hospital-section__link">Аналитика по ТО того того</a>
-            </div>
+            {% endfor %}
+
         </div>
         <!-- Пагинация -->
         <nav aria-label="news-section__nav">

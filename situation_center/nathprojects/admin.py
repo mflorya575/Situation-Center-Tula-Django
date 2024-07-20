@@ -1,44 +1,37 @@
 from django.contrib import admin
-from django.http import HttpResponseRedirect
-from django.urls import reverse
 
-from .models import Hospital
+from .models import Hospital, HospitalData
 
 
-@admin.register(Hospital)
+class HospitalDataInline(admin.TabularInline):
+    model = HospitalData
+    extra = 1
+
+
 class HospitalAdmin(admin.ModelAdmin):
-    list_display = ('year', 'deaths')
-    list_editable = ('deaths',)
-    list_per_page = 20  # Для удобства можно установить количество записей на страницу
+    list_display = ('title', 'slug')
+    list_filter = ('title',)  # Фильтр по названию
+    search_fields = ('title', 'description')  # Поля для поиска
+    ordering = ['title']  # Сортировка по умолчанию
+    inlines = [HospitalDataInline]
 
-    def get_changelist_form(self, request, **kwargs):
-        """
-        Это нужно для возможности редактирования полей прямо в списке объектов.
-        """
-        kwargs['form'] = self.get_form(request, **kwargs)
-        return super().get_changelist_form(request, **kwargs)
 
-    def save_model(self, request, obj, form, change):
-        """
-        Сохранение модели.
-        """
-        super().save_model(request, obj, form, change)
-        if "_addanother" in request.POST:
-            obj.pk = None
+class HospitalDataAdmin(admin.ModelAdmin):
+    list_display = ('hospital', 'year', 'deaths')
+    list_filter = ('hospital', 'year')  # Фильтр по больнице и году
+    search_fields = ('hospital__title', 'year')  # Поля для поиска
+    ordering = ['hospital']
 
-    def response_add(self, request, obj, post_url_continue=None):
+    def get_search_results(self, request, queryset, search_term):
         """
-        После добавления новой записи, остаёмся на той же странице, чтобы добавить ещё.
+        Переопределение метода для улучшения поиска по полю hospital.
         """
-        if "_addanother" in request.POST:
-            return self.response_add_same(request, obj)
-        return super().response_add(request, obj, post_url_continue)
+        queryset, use_distinct = super().get_search_results(request, queryset, search_term)
+        if search_term:
+            # Фильтруем по названию hospital, если есть поисковый запрос
+            queryset = queryset.filter(hospital__title__icontains=search_term)
+        return queryset, use_distinct
 
-    def response_add_same(self, request, obj):
-        """
-        Настройка кнопки "Сохранить и добавить другой".
-        """
-        opts = self.model._meta
-        return HttpResponseRedirect(
-            reverse('admin:%s_%s_add' % (opts.app_label, opts.model_name))
-        )
+
+admin.site.register(Hospital, HospitalAdmin)
+admin.site.register(HospitalData, HospitalDataAdmin)
