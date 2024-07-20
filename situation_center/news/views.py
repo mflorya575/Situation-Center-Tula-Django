@@ -16,7 +16,7 @@ def news(request, page=1):
     # Получаем все теги, связанные с моделью News
     tags = Tag.objects.all()
 
-    paginator = Paginator(news_all, 3)  # 3 новости на страницу
+    paginator = Paginator(news_all, 12)  # 12 новости на страницу
     try:
         current_page = paginator.page(page)
     except PageNotAnInteger:
