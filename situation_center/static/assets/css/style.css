@@ -3161,16 +3161,16 @@ a:hover span {
 }
 
 .hospital-section__wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: start;
-  gap: 60px;
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+  /* justify-content: start; */
+  /* gap: 60px; */
   margin-bottom: 30px;
 }
 
 .hospital-section__card {
   display: grid;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 }
 
 .hospital-section__img {

@@ -43,14 +43,14 @@
 
             {% for hospital in hospitals %}
             <div class="hospital-section__card">
-                <img src="{% static "./assets/images/project-img1.jpg" %}" alt="изображение графиков" class="hospital-section__img">
-                <a href="{% url 'nathprojects:hospital_detail' slug=hospital.slug %}" class="hospital-section__link">{{ hospital.title|truncatewords:2 }}</a>
+                {% comment %} <img src="{% static "./assets/images/project-img1.jpg" %}" alt="изображение графиков" class="hospital-section__img"> {% endcomment %}
+                <a href="{% url 'nathprojects:hospital_detail' slug=hospital.slug %}" class="hospital-section__link">{{ hospital.title }}</a>
             </div>
             {% endfor %}
 
         </div>
         <!-- Пагинация -->
-        <nav aria-label="news-section__nav">
+        {% comment %} <nav aria-label="news-section__nav">
             <ul class="news-section__ul">
                 <div class="news-section__block-btns">
                     <li class="news-section__li disabled">
@@ -65,7 +65,7 @@
                     </li>
                 </div>
             </ul>
-        </nav>
+        </nav> {% endcomment %}
 
     </div>
 </section>
