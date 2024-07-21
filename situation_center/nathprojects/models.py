@@ -2,6 +2,12 @@ from django.db import models
 from django.utils.text import slugify
 
 
+REGION_CHOICES = [
+    ('tula', 'Тульская область'),
+    ('moscow', 'Московская область'),
+]
+
+
 class Hospital(models.Model):
     title = models.CharField(max_length=200, verbose_name='Название', blank=True, null=True)
     slug = models.SlugField(unique=True, blank=True, null=True)
@@ -24,6 +30,7 @@ class HospitalData(models.Model):
     hospital = models.ForeignKey(Hospital, related_name='data', on_delete=models.CASCADE)
     year = models.IntegerField()
     deaths = models.IntegerField()
+    region = models.CharField(max_length=50, choices=REGION_CHOICES, verbose_name='Регион', blank=True)
 
     class Meta:
         verbose_name = 'Данные по смертности'

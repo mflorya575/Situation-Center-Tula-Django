@@ -11,15 +11,15 @@ class HospitalDataInline(admin.TabularInline):
 class HospitalAdmin(admin.ModelAdmin):
     list_display = ('title', 'slug')
     list_filter = ('title',)  # Фильтр по названию
-    search_fields = ('title', 'description')  # Поля для поиска
+    search_fields = ('title', 'description',)  # Поля для поиска
     ordering = ['title']  # Сортировка по умолчанию
     inlines = [HospitalDataInline]
 
 
 class HospitalDataAdmin(admin.ModelAdmin):
-    list_display = ('hospital', 'year', 'deaths')
-    list_filter = ('hospital', 'year')  # Фильтр по больнице и году
-    search_fields = ('hospital__title', 'year')  # Поля для поиска
+    list_display = ('hospital', 'year', 'deaths', 'region')
+    list_filter = ('hospital', 'year', 'region')  # Фильтр по больнице и году
+    search_fields = ('hospital__title', 'year', 'region')  # Поля для поиска
     ordering = ['hospital']
 
     def get_search_results(self, request, queryset, search_term):
