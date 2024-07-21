@@ -3168,6 +3168,31 @@ a:hover span {
   margin-bottom: 30px;
 }
 
+.custom-form-pr {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+select#id_region {
+  padding: 5px 15px;
+  border-radius: 10px;
+}
+
+.custom-form-btn {
+  padding: 5px 15px;
+  border-radius: 10px;
+  border: none;
+  background: #dbae8b;
+  color: #f5ebe9;
+}
+
+.custom-form-btn:hover {
+  background: #b48b6d;
+  cursor: pointer;
+}
+
 .hospital-section__card {
   display: grid;
   margin-bottom: 40px;
