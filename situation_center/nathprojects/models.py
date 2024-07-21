@@ -63,6 +63,7 @@ class StudyData(models.Model):
     study = models.ForeignKey(Study, related_name='data', on_delete=models.CASCADE)
     year = models.IntegerField()
     pupil = models.IntegerField()
+    region = models.CharField(max_length=50, choices=REGION_CHOICES, verbose_name='Регион', blank=True)
 
     class Meta:
         verbose_name = 'Данные по образованию'

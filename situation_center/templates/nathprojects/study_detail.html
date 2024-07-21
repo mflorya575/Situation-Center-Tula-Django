@@ -9,6 +9,18 @@
         <div class="detailpr-section__title">{{ study.title }}</div>
         <!-- Обертка графиков -->
         <div class="detailpr-section__wrapper">
+            <form class="custom-form-pr" method="get" action="{% url 'nathprojects:study_detail' slug=study.slug %}">
+                <div class="form-group">
+                    <select name="region" id="id_region">
+                        {% for value, display in region_form.fields.region.choices %}
+                            <option value="{{ value }}" {% if value == region_form.initial.region %}selected{% endif %}>
+                                {{ display }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button class="custom-form-btn" type="submit">Фильтр</button>
+            </form>
             <!-- Первый график -->
             {% comment %} <div id="chart" class="detailpr-section__img">{{ chart|safe }}</div> {% endcomment %}
             {% comment %} <div id="chart" class="detailpr-section__img">
@@ -20,6 +32,9 @@
                 <h2>Столбчатая диаграмма</h2>
                 <div>{{ bar_chart|safe }}</div>
             </div> {% endcomment %}
+            {% if selected_region %}
+                <h2>Выбранный регион: {{ selected_region }}</h2>
+            {% endif %}
             <div id="chart" class="detailpr-section__img">
                 <h2>Комбинированный график</h2>
                 <div>{{ combined_chart|safe }}</div>

@@ -47,9 +47,9 @@ class StudyAdmin(admin.ModelAdmin):
 
 
 class StudyDataAdmin(admin.ModelAdmin):
-    list_display = ('study', 'year', 'pupil')
-    list_filter = ('study', 'year')  # Фильтр по больнице и году
-    search_fields = ('study__title', 'year')  # Поля для поиска
+    list_display = ('study', 'year', 'pupil', 'region')
+    list_filter = ('study', 'year', 'region')  # Фильтр по больнице и году
+    search_fields = ('study__title', 'year', 'region')  # Поля для поиска
     ordering = ['study']
 
     def get_search_results(self, request, queryset, search_term):
