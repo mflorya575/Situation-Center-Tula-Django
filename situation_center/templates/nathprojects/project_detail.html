@@ -9,6 +9,10 @@
         <div class="detailpr-section__title">{{ hospital.title }}</div>
         <!-- Обертка графиков -->
         <div class="detailpr-section__wrapper">
+            <form method="get" action="{% url 'nathprojects:hospital_detail' slug=hospital.slug %}">
+                {{ region_form.as_p }}
+                <button type="submit">Фильтр</button>
+            </form>
             <!-- Первый график -->
             {% comment %} <div id="chart" class="detailpr-section__img">{{ chart|safe }}</div> {% endcomment %}
             {% comment %} <div id="chart" class="detailpr-section__img">
@@ -20,6 +24,11 @@
                 <h2>Столбчатая диаграмма</h2>
                 <div>{{ bar_chart|safe }}</div>
             </div> {% endcomment %}
+            {% if selected_region %}
+                <div class="detailpr-section__block">
+                    <p>Выбранный регион: {{ selected_region }}</p>
+                </div>
+            {% endif %}
             <div id="chart" class="detailpr-section__img">
                 <h2>Комбинированный график</h2>
                 <div>{{ combined_chart|safe }}</div>
