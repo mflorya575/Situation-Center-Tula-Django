@@ -24,10 +24,11 @@ from news.sitemaps import NewsSitemap
 from django.conf import settings
 
 
+handler404 = 'errors.views.tr_handler404'
+
 sitemaps = {
     'posts': NewsSitemap,
 }
-
 
 urlpatterns = [
     path('admin/', admin.site.urls),
