@@ -21,4 +21,6 @@ urlpatterns = [
     # Дороги
     path('project-road/', views.road, name='road'),
     path('project-road/<slug:slug>/', views.road_detail, name='road_detail'),
+    # Наука
+    path('project-science/', views.science, name='science'),
 ]

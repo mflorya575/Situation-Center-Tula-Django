@@ -3,7 +3,7 @@ import plotly.express as px
 import pandas as pd
 import plotly.graph_objects as go
 
-from .models import Hospital, Study, REGION_CHOICES, Demographics, Culture, Road
+from .models import Hospital, Study, REGION_CHOICES, Demographics, Culture, Road, Science
 from .forms import RegionForm
 
 
@@ -315,3 +315,14 @@ def road_detail(request, slug):
         'title': 'СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'nathprojects/road_detail.html', context)
+
+
+def science(request):
+    # Получаем данные из базы данных и сортируем их по годам
+    sciences = Science.objects.all()
+
+    context = {
+        'sciences': sciences,
+        'title': 'Наука и университеты | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'nathprojects/science.html', context)
