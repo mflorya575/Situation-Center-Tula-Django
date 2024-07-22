@@ -210,8 +210,8 @@
                 </div>
                 <!-- Карточка безопасных дорог -->
                 <div class="third-section__card">
-                    <a href="project5-roads.html"><img src="{% static "./assets/icons/road-image.png" %}" alt="иконка безопасных дорог" class="third-section__img5"></a>
-                    <a href="project5-roads.html" class="third-section__text">Безопасные дороги</a>
+                    <a href="{% url "nathprojects:road" %}"><img src="{% static "./assets/icons/road-image.png" %}" alt="иконка безопасных дорог" class="third-section__img5"></a>
+                    <a href="{% url "nathprojects:road" %}" class="third-section__text">Безопасные дороги</a>
                 </div>
                 <!-- Карточка наука и университеты -->
                 <div class="third-section__card">
