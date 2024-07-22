@@ -24,6 +24,7 @@ from news.sitemaps import NewsSitemap
 from django.conf import settings
 
 
+handler403 = 'errors.views.tr_handler403'
 handler404 = 'errors.views.tr_handler404'
 handler500 = 'errors.views.tr_handler500'
 
