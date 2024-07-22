@@ -41,7 +41,7 @@
 
             {% for culture in cultures %}
             <div class="hospital-section__card">
-                <a href="project-detail.html" class="hospital-section__link">{{ culture.title }}</a>
+                <a href="{% url 'nathprojects:culture_detail' slug=culture.slug %}" class="hospital-section__link">{{ culture.title }}</a>
             </div>
             {% endfor %}
 
