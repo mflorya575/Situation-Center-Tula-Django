@@ -3,7 +3,7 @@ import plotly.express as px
 import pandas as pd
 import plotly.graph_objects as go
 
-from .models import Hospital, Study, REGION_CHOICES, Demographics
+from .models import Hospital, Study, REGION_CHOICES, Demographics, Culture
 from .forms import RegionForm
 
 
@@ -191,3 +191,14 @@ def demographics_detail(request, slug):
         'title': 'СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'nathprojects/demographics_detail.html', context)
+
+
+def culture(request):
+    # Получаем данные из базы данных и сортируем их по годам
+    cultures = Culture.objects.all()
+
+    context = {
+        'cultures': cultures,
+        'title': 'Культура | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'nathprojects/culture.html', context)
