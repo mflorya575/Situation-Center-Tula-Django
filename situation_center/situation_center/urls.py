@@ -27,6 +27,7 @@ from django.conf import settings
 handler400 = 'errors.views.tr_handler400'
 handler403 = 'errors.views.tr_handler403'
 handler404 = 'errors.views.tr_handler404'
+handler429 = 'errors.views.tr_handler429'
 handler500 = 'errors.views.tr_handler500'
 
 sitemaps = {

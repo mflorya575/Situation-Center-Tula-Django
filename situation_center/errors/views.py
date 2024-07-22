@@ -42,3 +42,12 @@ def tr_handler400(request, exception):
     return render(request=request, template_name='errors/error400.html', status=400, context={
         'title': '400 Bad Request',
     })
+
+
+def tr_handler429(request, exception):
+    """
+    Обработка ошибки 429
+    """
+    return render(request=request, template_name='errors/error429.html', status=429, context={
+        'title': '429 Too Many Requests',
+    })

@@ -1,0 +1,18 @@
+{% extends 'partials/base_errors.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="error-section">
+    <div class="container">
+
+        <div class="error-block">
+            <img src="{% static "./assets/images/pencil-error.png" %}" alt="изображение сломанного карандаша" class="error-pencil">
+            <p class="error-section__p1">4<span id="error-section__span">2</span>9</p>
+            <p class="error-section__p2">СЛИШКОМ МНОГО ЗАПРОСОВ</p>
+            <a href="{% url "main:index" %}"><button class="error-section__button">Вернуться на главную</button></a>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
