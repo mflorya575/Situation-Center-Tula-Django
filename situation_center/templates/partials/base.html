@@ -48,13 +48,13 @@
             </div>
             <div class="header-block3">
                 <ul class="header-block3-ul2">
-                    <li class="header-block3-li2"><a href="#" class="header-block1-link header-link_margin4" id="style-3">Проекты</a></li>
-                    <li class="header-block3-li2"><a href="#" class="header-block1-link header-link_margin5" id="style-3">Контакты</a></li>
+                    <li class="header-block3-li2"><a href="{% url "errors:development" %}" class="header-block1-link header-link_margin4" id="style-3">Проекты</a></li>
+                    <li class="header-block3-li2"><a href="{% url "main:contact" %}" class="header-block1-link header-link_margin5" id="style-3">Контакты</a></li>
                     <li class="header-block3-li2 dropdown">
-                        <a href="#" class="header-block1-link_custom header-link_margin6">Личный кабинет</a>
+                        <a href="{% url "errors:development" %}" class="header-block1-link_custom header-link_margin6">Личный кабинет</a>
                         <div class="dropdown-content">
-                            <a class="dropdown-custom" href="#">Мой аккаунт</a>
-                            <a class="dropdown-custom" href="login.html">Вход</a>
+                            <a class="dropdown-custom" href="{% url "errors:development" %}">Мой аккаунт</a>
+                            <a class="dropdown-custom" href="{% url "errors:development" %}">Вход</a>
                         </div>
                     </li>
                 </ul>
@@ -70,19 +70,19 @@
                 <div class="mobile-menu__block" style="display: none;">
                     <nav class="mobile-menu__nav">
                         <ul class="mobile-menu__ul">
-                            <li class="mobile-menu__li"><a href="#" class="mobile-menu__link mobile-menu__margin1">Данные</a></li>
-                            <li class="mobile-menu__li"><a href="#" class="mobile-menu__link mobile-menu__margin2">Кафедры</a></li>
-                            <li class="mobile-menu__li"><a href="#" class="mobile-menu__link mobile-menu__margin3">Проекты</a></li>
+                            <li class="mobile-menu__li"><a href="{% url "errors:development" %}" class="mobile-menu__link mobile-menu__margin1">Данные</a></li>
+                            <li class="mobile-menu__li"><a href="{% url "errors:development" %}" class="mobile-menu__link mobile-menu__margin2">Кафедры</a></li>
+                            <li class="mobile-menu__li"><a href="{% url "errors:development" %}" class="mobile-menu__link mobile-menu__margin3">Проекты</a></li>
                         </ul>
                     </nav>
                     <div class="mobile-menu__block-link">
                         <div class="mobile-menu__displayp">
                             <img src="{% static "./assets/icons/profile-icon.svg" %}" alt="икнока пользователя" class="mobile-menu__profile">
-                            <a href="#" class="mobile-menu__custom-link" id="personal-account-link">Личный кабинет</a>
+                            <a href="{% url "errors:development" %}" class="mobile-menu__custom-link" id="personal-account-link">Личный кабинет</a>
                         </div>
                         <div class="dropdown-content" id="dropdown-content" style="display: none; position: sticky; z-index: 100;">
-                            <a class="dropdown-custom" href="#">Мой аккаунт</a>
-                            <a class="dropdown-custom" href="login.html">Вход</a>
+                            <a class="dropdown-custom" href="{% url "errors:development" %}">Мой аккаунт</a>
+                            <a class="dropdown-custom" href="{% url "errors:development" %}">Вход</a>
                         </div>
                     </div>
                     <hr class="mobile-menu__hr">
@@ -141,14 +141,14 @@
                 <div class="footer-section__wrapper2">
                     <h6 class="footer-section__h6">Главное</h6>
                     <ul class="footer-section__ul">
-                        <li class="footer-section__li"><a href="#" class="footer-section__link">О центре</a></li>
-                        <li class="footer-section__li"><a href="#" class="footer-section__link">Данные</a></li>
-                        <li class="footer-section__li"><a href="#" class="footer-section__link">Проекты</a></li>
-                        <li class="footer-section__li"><a href="#" class="footer-section__link">Контакты</a></li>
-                        <li class="footer-section__li"><a href="news.html" class="footer-section__link">Новости</a></li>
-                        <li class="footer-section__li"><a href="policy-privacy.html" class="footer-section__link">Интеллектуальная<br>
+                        <li class="footer-section__li"><a href="{% url "main:about" %}" class="footer-section__link">О центре</a></li>
+                        <li class="footer-section__li"><a href="{% url "errors:development" %}" class="footer-section__link">Данные</a></li>
+                        <li class="footer-section__li"><a href="{% url "errors:development" %}" class="footer-section__link">Проекты</a></li>
+                        <li class="footer-section__li"><a href="{% url "main:contact" %}" class="footer-section__link">Контакты</a></li>
+                        <li class="footer-section__li"><a href="{% url "news:news" %}" class="footer-section__link">Новости</a></li>
+                        <li class="footer-section__li"><a href="{% url "main:policy_privacy" %}" class="footer-section__link">Интеллектуальная<br>
                             собственность</a></li>
-                        <li class="footer-section__li"><a href="in-development.html" class="footer-section__link">Основной сайт</a></li>
+                        <li class="footer-section__li"><a href="{% url "errors:development" %}" class="footer-section__link">Основной сайт</a></li>
                     </ul>
                 </div>
 
@@ -156,7 +156,7 @@
                 <div class="footer-section__wrapper3">
                     <h6 class="footer-section__h6">Национальные проекты</h6>
                     <ul class="footer-section__ul">
-                        <li class="footer-section__li"><a href="project1-hospital.html" class="footer-section__link">Здавоохранение</a></li>
+                        <li class="footer-section__li"><a href="{% url "nathprojects:hospital" %}" class="footer-section__link">Здавоохранение</a></li>
                         <li class="footer-section__li"><a href="#" class="footer-section__link">Образование</a></li>
                         <li class="footer-section__li"><a href="#" class="footer-section__link">Демография</a></li>
                         <li class="footer-section__li"><a href="#" class="footer-section__link">Культура</a></li>
