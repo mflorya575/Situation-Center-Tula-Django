@@ -18,4 +18,5 @@ urlpatterns = [
     # Культура
     path('project-culture/', views.culture, name='culture'),
     path('project-culture/<slug:slug>/', views.culture_detail, name='culture_detail'),
+    # Дороги
 ]
