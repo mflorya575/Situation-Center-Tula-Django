@@ -26,3 +26,12 @@ def tr_handler403(request, exception):
     return render(request=request, template_name='errors/error403.html', status=403, context={
         'title': '403 Access is Closed',
     })
+
+
+def tr_handler400(request, exception):
+    """
+    Обработка ошибки 400
+    """
+    return render(request=request, template_name='errors/error400.html', status=400, context={
+        'title': '400 Bad Request',
+    })
