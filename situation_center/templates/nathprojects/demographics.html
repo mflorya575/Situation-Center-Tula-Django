@@ -40,7 +40,7 @@
 
             {% for demographics in demographicses %}
             <div class="hospital-section__card">
-                <a href="project-detail.html" class="hospital-section__link">{{ demographics.title }}</a>
+                <a href="{% url 'nathprojects:demographics_detail' slug=demographics.slug %}" class="hospital-section__link">{{ demographics.title }}</a>
             </div>
             {% endfor %}
 
