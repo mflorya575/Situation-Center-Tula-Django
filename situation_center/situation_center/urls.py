@@ -25,6 +25,7 @@ from django.conf import settings
 
 
 handler404 = 'errors.views.tr_handler404'
+handler500 = 'errors.views.tr_handler500'
 
 sitemaps = {
     'posts': NewsSitemap,

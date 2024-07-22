@@ -1,4 +1,3 @@
-
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +21,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{% static "./assets/favicon/favicon-32x32.png" %}">
     <link rel="icon" type="image/png" sizes="96x96" href="{% static "./assets/favicon/favicon-96x96.png" %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static "./assets/favicon/favicon-16x16.png" %}">
-    <link rel="manifest" href="{% static "./assets/favicon/manifest.json" %}">
+    <link rel="manifest" href="{% static "{% static "./assets/favicon/manifest.json" %}" %}">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="{% static "./assets/favicon/ms-icon-144x144.png" %}">
     <meta name="theme-color" content="#ffffff">
@@ -37,8 +36,8 @@
 
             <div class="error-block">
                 <img src="{% static "./assets/images/pencil-error.png" %}" alt="изображение сломанного карандаша" class="error-pencil">
-                <p class="error-section__p1">4<span id="error-section__span">0</span>4</p>
-                <p class="error-section__p2">СТРАНИЦА НЕ НАЙДЕНА</p>
+                <p class="error-section__p1">5<span id="error-section__span">0</span>0</p>
+                <p class="error-section__p2">ОШИБКА СЕРВЕРА</p>
                 <a href="{% url "main:index" %}"><button class="error-section__button">Вернуться на главную</button></a>
             </div>
         </div>

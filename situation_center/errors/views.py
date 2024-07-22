@@ -8,3 +8,12 @@ def tr_handler404(request, exception):
     return render(request=request, template_name='errors/error404.html', status=404, context={
         'title': '404 Not Found',
     })
+
+
+def tr_handler500(request):
+    """
+    Обработка ошибки 500
+    """
+    return render(request=request, template_name='errors/error500.html', status=500, context={
+        'title': '500 Server Error',
+    })
