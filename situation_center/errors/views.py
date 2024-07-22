@@ -1,6 +1,13 @@
 from django.shortcuts import render
 
 
+def in_development(request):
+    context = {
+        'title': 'В разработке | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'errors/in_development.html', context)
+
+
 def tr_handler404(request, exception):
     """
     Обработка ошибки 404

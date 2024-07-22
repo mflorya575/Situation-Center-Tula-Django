@@ -1,0 +1,18 @@
+{% extends 'partials/base_in_development.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="error-section">
+    <div class="container">
+
+        <div class="error-block">
+            <img src="{% static "./assets/images/in-development-image.png" %}" alt="изображение карандаша с шестеренкой" class="error-pencil">
+            <p class="error-section__dev">СТРАНИЦА В РАЗРАБОТКЕ</p>
+            <p class="error-section__dev-text">ПОЖАЛУЙСТА, ПОПРОБУЙТЕ ЗАЙТИ ПОЗЖЕ</p>
+            <a href="{% url "main:index" %}"><button class="error-section__button">Вернуться на главную</button></a>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

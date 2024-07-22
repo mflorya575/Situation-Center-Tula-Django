@@ -38,9 +38,9 @@
             <header class="header">
                 <div class="header-block1">
                     <ul class="header-block1-ul1">
-                        <li class="header-block1-li1"><a href="index.html" class="header-block1-link header-link_margin1" id="style-2" data-replace="Главная"><span>Главная</span></a></li>
-                        <li class="header-block1-li1"><a href="in-development.html" class="header-block1-link header-link_margin2" id="style-2" data-replace="Данные"><span>Данные</span></a></li>
-                        <li class="header-block1-li1"><a href="#" class="header-block1-link header-link_margin3" id="style-2" data-replace="Кафедры"><span>Кафедры</span></a></li>
+                        <li class="header-block1-li1"><a href="{% url "main:index" %}" class="header-block1-link header-link_margin1" id="style-2" data-replace="Главная"><span>Главная</span></a></li>
+                        <li class="header-block1-li1"><a href="{% url "errors:development" %}" class="header-block1-link header-link_margin2" id="style-2" data-replace="Данные"><span>Данные</span></a></li>
+                        <li class="header-block1-li1"><a href="{% url "errors:development" %}" class="header-block1-link header-link_margin3" id="style-2" data-replace="Кафедры"><span>Кафедры</span></a></li>
                     </ul>
                 </div>
                 <div class="header-block2">
