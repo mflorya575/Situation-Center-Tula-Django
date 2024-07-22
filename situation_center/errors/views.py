@@ -51,3 +51,12 @@ def tr_handler429(request, exception):
     return render(request=request, template_name='errors/error429.html', status=429, context={
         'title': '429 Too Many Requests',
     })
+
+
+def tr_handler503(request, exception):
+    """
+    Обработка ошибки 503
+    """
+    return render(request=request, template_name='errors/error503.html', status=503, context={
+        'title': '503 Service Unavailable',
+    })
