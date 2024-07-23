@@ -35,4 +35,5 @@ urlpatterns = [
     path('project-turism/<slug:slug>/', views.turism_detail, name='turism_detail'),
     # Жилье
     path('project-house/', views.house, name='house'),
+    path('project-house/<slug:slug>/', views.house_detail, name='house_detail'),
 ]

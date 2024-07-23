@@ -41,7 +41,7 @@
 
             {% for house in houses %}
             <div class="hospital-section__card">
-                <a href="project-detail.html" class="hospital-section__link">{{ house.title }}</a>
+                <a href="{% url 'nathprojects:house_detail' slug=house.slug %}" class="hospital-section__link">{{ house.title }}</a>
             </div>
             {% endfor %}
 
