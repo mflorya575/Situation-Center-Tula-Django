@@ -1,0 +1,93 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="strategy-section">
+    <div class="container">
+        <!-- Ссылка-возварт на главную страницу -->
+        <a href="{% url "main:index" %}" class="strategy-section__link-main">
+            Вернуться к странице “Главная”
+        </a>
+        <!-- Заголовок -->
+        <h1 class="strategy-section__title">ЗАДАЧА 2</h1>
+        <p class="strategy-section__text">
+            Укрепление технологического суверенитета нашей страны и опережающий рост обрабатывающей промышленности
+        </p>
+        <!-- Обертка -->
+        <div class="strategy-section__wrapper">
+            <!-- Левая часть -->
+            <div class="strategy-section__wrapper-left">
+                <img src="{% static "./assets/images/str-image2.png" %}" alt="изображение задачи" class="strategy-section__img">
+            </div>
+            <!-- Правая часть -->
+            <div class="strategy-section__wrapper-right">
+                <h2 class="strategy-section__title-mini">ПОКАЗАТЕЛИ ПО РФ:<br class="brstr">
+                    ДИНАМИКА, ПРОГНОЗ
+                </h2>
+                <div class="strategy-section__block-links">
+                    <a href="{% url "errors:development" %}" class="strategy-section__link-str">
+                        Промышленные роботы в РФ
+                    </a>
+                    <a href="{% url "errors:development" %}" class="strategy-section__link-str">
+                        1. Число роботов на 10 000 работников, ед.
+                    </a>
+                    <a href="{% url "errors:development" %}" class="strategy-section__link-str">
+                        2. Число передовых производственных технологий на 1000 работников, шт.
+                    </a>
+                    <a href="{% url "errors:development" %}" class="strategy-section__link-str">
+                        3. Удельный вес организаций, осуществлявляющих технологические инновации, в общем числе обследованных организаций, %
+                    </a>
+                    <a href="{% url "errors:development" %}" class="strategy-section__link-str">
+                        4. Удельный вес организаций промышленности, осуществлявляющих технологические инновации, в общем числе обследованных организаций промышленного производства, %
+                    </a>
+                    <a href="{% url "errors:development" %}" class="strategy-section__link-str">
+                        5. Количество специалистов в области искусственного интеллекта, подготовленных в рамках программ высшего образования (D7), человек
+                    </a>
+                    <a href="{% url "errors:development" %}" class="strategy-section__link-str">
+                        6. Количество компаний - разработчиков ИИ-решений, получивших государственную поддержку в рамках федерального проекта 'Искусственный интеллект', ед.
+                    </a>
+                    <a href="{% url "errors:development" %}" class="strategy-section__link-str">
+                        7. Публикации российских специалистов на конференциях в области искусственного интеллекта уровня А* (D7), ед.
+                    </a>
+                    <a href="{% url "errors:development" %}" class="strategy-section__link-str">
+                        8. Энергоемкость валового внутреннего продукта (ВРП) в постоянных ценах 2016 г., кг условного топлива/ на 10 тыс.рублей
+                    </a>
+                    <a href="{% url "errors:development" %}" class="strategy-section__link-str">
+                        9. Доля продукции высокотехнологичных и наукоемких отраслей в валовом внутреннем продукте, %
+                    </a>
+                    <a href="{% url "errors:development" %}" class="strategy-section__link-str">
+                        10. Индекс промышленного производства, %
+                    </a>
+                    <a href="{% url "errors:development" %}" class="strategy-section__link-str">
+                        11. Индекс промышленного производства летательных аппаратов, включая космические, и соответствующего оборудования, %
+                    </a>
+                    <a href="{% url "errors:development" %}" class="strategy-section__link-str">
+                        12. Индекс промышленного производства компьютеров, электронных и оптических изделий, %
+                    </a>
+                    <a href="{% url "errors:development" %}" class="strategy-section__link-str">
+                        13. Индекс промышленного производства лекарственных средств и материалов, применяемых в медицинских целях, %
+                    </a>
+                    <a href="{% url "errors:development" %}" class="strategy-section__link-str">
+                        14. Индекс промышленного производства станков, машин и оборудования для обработки металлов и прочих твердых материалов, %
+                    </a>
+                    <a href="{% url "errors:development" %}" class="strategy-section__link-str">
+                        15. Число персональных компьютеров на 100 работников, шт.
+                    </a>
+                    <a href="{% url "errors:development" %}" class="strategy-section__link-str">
+                        16. Доля населения, использовавшего сеть Интернет каждый день или почти каждый день, %
+                    </a>
+                    <a href="{% url "errors:development" %}" class="strategy-section__link-str">
+                        17. Используемые передовые производственные технологии, ед.
+                    </a>
+                    <a href="{% url "errors:development" %}" class="strategy-section__link-str">
+                        18. Среднесписочная численность работников, человек
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endblock content %}
