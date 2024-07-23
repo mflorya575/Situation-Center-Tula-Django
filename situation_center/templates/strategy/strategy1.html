@@ -1,0 +1,56 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="strategy-section">
+    <div class="container">
+        <!-- Ссылка-возварт на главную страницу -->
+        <a href="{% url "main:index" %}" class="strategy-section__link-main">
+            Вернуться к странице “Главная”
+        </a>
+        <!-- Заголовок -->
+        <h1 class="strategy-section__title">ЗАДАЧА 1</h1>
+        <p class="strategy-section__text">
+            Расширение внешнеэкономических связей России с
+            партнёрами из дружественных государств.
+        </p>
+        <!-- Обертка -->
+        <div class="strategy-section__wrapper">
+            <!-- Левая часть -->
+            <div class="strategy-section__wrapper-left">
+                <img src="{% static "./assets/images/str-image1.png" %}" alt="изображение задачи" class="strategy-section__img">
+            </div>
+            <!-- Правая часть -->
+            <div class="strategy-section__wrapper-right">
+                <h2 class="strategy-section__title-mini">ПОКАЗАТЕЛИ ПО РФ:<br class="brstr">
+                    ДИНАМИКА, ПРОГНОЗ
+                </h2>
+                <div class="strategy-section__block-links">
+                    <a href="{% url "errors:development" %}" class="strategy-section__link-str">
+                        1. Доля импорта в валовом внутреннем продукте, %
+                    </a>
+                    <a href="{% url "errors:development" %}" class="strategy-section__link-str">
+                        2. Индексы физического объема валового внутреннего продукта , %
+                    </a>
+                    <a href="{% url "errors:development" %}" class="strategy-section__link-str">
+                        3. Валовый внутренний продукт на душу населения (в текущих ценах), руб. на человека
+                    </a>
+                    <a href="{% url "errors:development" %}" class="strategy-section__link-str">
+                        4. Индексы потребительских цен на товары и услуги (декабрь к декабрю), %
+                    </a>
+                    <a href="{% url "errors:development" %}" class="strategy-section__link-str">
+                        5. Индексы потребительских цен на продукты питания (декабрь к декабрю), %
+                    </a>
+                    <a href="{% url "errors:development" %}" class="strategy-section__link-str">
+                        6. Долларовый объем финансовой и технической помощи развивающимся странам (в том числе оказываемой по линии Север-Юг, Юг-Юг и в рамках трехстороннего сотрудничества, млн долл. США
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</section>
+
+{% endblock content %}

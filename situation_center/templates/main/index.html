@@ -279,7 +279,7 @@
                 <div class="fourth-section__wrapper1-left">
                     <p class="fourth-section__number1">1</p>
                     <div class="fourth-section__texts">
-                        <a href="strategy1.html" class="fourth-section__title-mini">Внешнеэкономические связи</a>
+                        <a href="{% url "strategy:strategy1" %}" class="fourth-section__title-mini">Внешнеэкономические связи</a>
                         <p class="fourth-section__text-mini">
                             Расширение внешнеэкономических связей<br class="brrr"> России с
                             партнёрами из дружественных<br class="brrr"> государств
@@ -453,7 +453,7 @@
                         <li class="footer-section__li"><a href="{% url "nathprojects:world" %}" class="footer-section__link">Международная кооперация</a></li>
                         <li class="footer-section__li"><a href="{% url "nathprojects:labour" %}" class="footer-section__link">Производительность труда</a></li>
                         <li class="footer-section__li"><a href="{% url "errors:development" %}" class="footer-section__link">Атомная энергия</a></li>
-                        <li class="footer-section__li"><a href="{% url "nathprojects:economy" %}" class="footer-section__link">Цифровая экономика РФ</a></li>
+                        <li class="footer-section__li"><a href="{% url "nathprojects:econom" %}" class="footer-section__link">Цифровая экономика РФ</a></li>
                         <li class="footer-section__li"><a href="{% url "errors:development" %}" class="footer-section__link">Магистральная инфраструктура</a></li>
                     </ul>
                 </div>
@@ -461,7 +461,7 @@
                 <!-- Обертка четвертая -->
                 <div class="footer-section__wrapper4">
                     <h6 class="footer-section__h6">Стратегические задачи</h6>
-                    <li class="footer-section__li"><a href="#" class="footer-section__link">Внешнеэкономические связи</a></li>
+                    <li class="footer-section__li"><a href="{% url "strategy:strategy1" %}" class="footer-section__link">Внешнеэкономические связи</a></li>
                     <li class="footer-section__li"><a href="#" class="footer-section__link">Развитие инфраструктуры</a></li>
                     <li class="footer-section__li"><a href="#" class="footer-section__link">Технологический суверенитет</a></li>
                     <li class="footer-section__li"><a href="#" class="footer-section__link">Благополучие граждан</a></li>
