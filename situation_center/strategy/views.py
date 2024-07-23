@@ -20,3 +20,10 @@ def strategy3(request):
         'title': 'Технологический суверенитет | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'strategy/strategy3.html', context)
+
+
+def strategy4(request):
+    context = {
+        'title': 'Благополучие граждан | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'strategy/strategy4.html', context)
