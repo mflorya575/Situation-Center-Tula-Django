@@ -32,4 +32,5 @@ urlpatterns = [
     path('project-business/<slug:slug>/', views.business_detail, name='business_detail'),
     # Туризм
     path('project-turism/', views.turism, name='turism'),
+    path('project-turism/<slug:slug>/', views.turism_detail, name='turism_detail'),
 ]

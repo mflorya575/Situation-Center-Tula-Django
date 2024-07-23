@@ -41,7 +41,7 @@
 
             {% for turism in turisms %}
             <div class="hospital-section__card">
-                <a href="project-detail.html" class="hospital-section__link">{{ turism.title }}</a>
+                <a href="{% url 'nathprojects:turism_detail' slug=turism.slug %}" class="hospital-section__link">{{ turism.title }}</a>
             </div>
             {% endfor %}
 
