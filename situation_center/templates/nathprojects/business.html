@@ -41,7 +41,7 @@
 
             {% for business in businesses %}
             <div class="hospital-section__card">
-                <a href="project-detail.html" class="hospital-section__link">{{ business.title }}</a>
+                <a href="{% url 'nathprojects:business_detail' slug=business.slug %}" class="hospital-section__link">{{ business.title }}</a>
             </div>
             {% endfor %}
 
