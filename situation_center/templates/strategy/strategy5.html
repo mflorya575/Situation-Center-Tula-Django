@@ -1,0 +1,52 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="strategy-section">
+    <div class="container">
+        <!-- Ссылка-возварт на главную страницу -->
+        <a href="{% url "main:index" %}" class="strategy-section__link-main">
+            Вернуться к странице “Главная”
+        </a>
+        <!-- Заголовок -->
+        <h1 class="strategy-section__title">ЗАДАЧА 5</h1>
+        <p class="strategy-section__text">
+            Повышение доходов граждан, благополучия российских семей
+        </p>
+        <!-- Обертка -->
+        <div class="strategy-section__wrapper">
+            <!-- Левая часть -->
+            <div class="strategy-section__wrapper-left">
+                <img src="{% static "./assets/images/str-image5.png" %}" alt="изображение задачи" class="strategy-section__img">
+            </div>
+            <!-- Правая часть -->
+            <div class="strategy-section__wrapper-right">
+                <h2 class="strategy-section__title-mini">ПОКАЗАТЕЛИ ПО РФ:<br class="brstr">
+                    ДИНАМИКА, ПРОГНОЗ
+                </h2>
+                <div class="strategy-section__block-links">
+                    <a href="{% url "errors:development" %}" class="strategy-section__link-str">
+                        1. Доля населения с доходами ниже прожиточного минимума в общей численности населения, %
+                    </a>
+                    <a href="{% url "errors:development" %}" class="strategy-section__link-str">
+                        2. Коэффициент фондов (соотношение денежных доходов 10% наиболее и 10% наименее обеспеченного населения), раз
+                    </a>
+                    <a href="{% url "errors:development" %}" class="strategy-section__link-str">
+                        3. Реальные располагаемые денежные доходы населения, %
+                    </a>
+                    <a href="{% url "errors:development" %}" class="strategy-section__link-str">
+                        4. Соотношение среднемесячной заработной платы и прожиточного минимума трудоспособного населения, раз
+                    </a>
+                    <a href="{% url "errors:development" %}" class="strategy-section__link-str">
+                        5. Индекс потребительской уверенности, %
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</section>
+
+{% endblock content %}

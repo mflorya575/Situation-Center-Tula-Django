@@ -27,3 +27,10 @@ def strategy4(request):
         'title': 'Благополучие граждан | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'strategy/strategy4.html', context)
+
+
+def strategy5(request):
+    context = {
+        'title': 'Финансовый суверенитет | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'strategy/strategy5.html', context)
