@@ -36,4 +36,6 @@ urlpatterns = [
     # Жилье
     path('project-house/', views.house, name='house'),
     path('project-house/<slug:slug>/', views.house_detail, name='house_detail'),
+    # Международка
+    path('project-world/', views.world, name='world'),
 ]

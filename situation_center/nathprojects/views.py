@@ -4,7 +4,7 @@ import pandas as pd
 import plotly.graph_objects as go
 
 from .models import Hospital, Study, REGION_CHOICES, Demographics, Culture, Road, Science, Ecology, Business, Turism, \
-    House
+    House, World
 from .forms import RegionForm
 
 
@@ -626,3 +626,14 @@ def house_detail(request, slug):
         'title': 'СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'nathprojects/house_detail.html', context)
+
+
+def world(request):
+    # Получаем данные из базы данных и сортируем их по годам
+    worlds = World.objects.all()
+
+    context = {
+        'worlds': worlds,
+        'title': 'Международная кооперация и экспорт | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'nathprojects/world.html', context)
