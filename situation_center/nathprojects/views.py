@@ -3,8 +3,7 @@ import plotly.express as px
 import pandas as pd
 import plotly.graph_objects as go
 
-from .models import Hospital, Study, REGION_CHOICES, Demographics, Culture, Road, Science, Ecology, Business, Turism, \
-    House, World, Labour
+from .models import *
 from .forms import RegionForm
 
 
@@ -750,3 +749,14 @@ def labour_detail(request, slug):
         'title': 'СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'nathprojects/labour_detail.html', context)
+
+
+def econom(request):
+    # Получаем данные из базы данных и сортируем их по годам
+    economs = Econom.objects.all()
+
+    context = {
+        'economs': economs,
+        'title': 'Цифровая экономика | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'nathprojects/econom.html', context)

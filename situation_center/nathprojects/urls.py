@@ -42,4 +42,7 @@ urlpatterns = [
     # Труд
     path('project-labour/', views.labour, name='labour'),
     path('project-labour/<slug:slug>/', views.labour_detail, name='labour_detail'),
+    # Технологии
+    # Экономика
+    path('project-econom/', views.econom, name='econom'),
 ]
