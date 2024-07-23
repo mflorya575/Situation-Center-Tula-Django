@@ -41,7 +41,7 @@
 
             {% for econom in economs %}
             <div class="hospital-section__card">
-                <a href="project-detail.html" class="hospital-section__link">{{ econom.title }}</a>
+                <a href="{% url 'nathprojects:econom_detail' slug=econom.slug %}" class="hospital-section__link">{{ econom.title }}</a>
             </div>
             {% endfor %}
 
