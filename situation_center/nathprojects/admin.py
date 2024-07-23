@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from .models import Hospital, HospitalData, Study, StudyData, Demographics, DemographicsData, Culture, CultureData, \
-    Road, RoadData, Science, ScienceData, Ecology, EcologyData, Business, BusinessData
+    Road, RoadData, Science, ScienceData, Ecology, EcologyData, Business, BusinessData, Turism, TurismData
 
 
 class HospitalDataInline(admin.TabularInline):
@@ -244,6 +244,36 @@ class BusinessDataAdmin(admin.ModelAdmin):
         return queryset, use_distinct
 
 
+class TurismDataInline(admin.TabularInline):
+    model = TurismData
+    extra = 1
+
+
+class TurismAdmin(admin.ModelAdmin):
+    list_display = ('title', 'slug')
+    list_filter = ('title',)  # Фильтр по названию
+    search_fields = ('title', 'description')  # Поля для поиска
+    ordering = ['title']  # Сортировка по умолчанию
+    inlines = [TurismDataInline]
+
+
+class TurismDataAdmin(admin.ModelAdmin):
+    list_display = ('name', 'year', 'data', 'region')
+    list_filter = ('name', 'year', 'region')  # Фильтр по больнице и году
+    search_fields = ('name__title', 'year', 'region')  # Поля для поиска
+    ordering = ['name']
+
+    def get_search_results(self, request, queryset, search_term):
+        """
+        Переопределение метода для улучшения поиска по полю name.
+        """
+        queryset, use_distinct = super().get_search_results(request, queryset, search_term)
+        if search_term:
+            # Фильтруем по названию hospital, если есть поисковый запрос
+            queryset = queryset.filter(name__title__icontains=search_term)
+        return queryset, use_distinct
+
+
 # Здравоохранение
 
 
@@ -323,3 +353,13 @@ class BusinessAdmin(admin.ModelAdmin):
 
 
 admin.site.register(BusinessData, BusinessDataAdmin)
+
+
+# Туризм
+
+@admin.register(Turism)
+class TurismAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('title',)}
+
+
+admin.site.register(TurismData, TurismDataAdmin)

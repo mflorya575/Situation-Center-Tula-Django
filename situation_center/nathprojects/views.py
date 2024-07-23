@@ -3,7 +3,7 @@ import plotly.express as px
 import pandas as pd
 import plotly.graph_objects as go
 
-from .models import Hospital, Study, REGION_CHOICES, Demographics, Culture, Road, Science, Ecology, Business
+from .models import Hospital, Study, REGION_CHOICES, Demographics, Culture, Road, Science, Ecology, Business, Turism
 from .forms import RegionForm
 
 
@@ -501,3 +501,14 @@ def business_detail(request, slug):
         'title': 'СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'nathprojects/business_detail.html', context)
+
+
+def turism(request):
+    # Получаем данные из базы данных и сортируем их по годам
+    turisms = Turism.objects.all()
+
+    context = {
+        'turisms': turisms,
+        'title': 'Туризм | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'nathprojects/turism.html', context)

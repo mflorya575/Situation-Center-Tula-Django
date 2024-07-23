@@ -30,4 +30,6 @@ urlpatterns = [
     # Предпринимательство
     path('project-business/', views.business, name='business'),
     path('project-business/<slug:slug>/', views.business_detail, name='business_detail'),
+    # Туризм
+    path('project-turism/', views.turism, name='turism'),
 ]
