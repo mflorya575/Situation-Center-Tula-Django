@@ -1,0 +1,49 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="strategy-section">
+    <div class="container">
+        <!-- Ссылка-возварт на главную страницу -->
+        <a href="{% url "main:index" %}" class="strategy-section__link-main">
+            Вернуться к странице “Главная”
+        </a>
+        <!-- Заголовок -->
+        <h1 class="strategy-section__title">ЗАДАЧА 6</h1>
+        <p class="strategy-section__text">
+            Сбережение народа, защита материнства и детства, рост продолжительности жизни
+        </p>
+        <!-- Обертка -->
+        <div class="strategy-section__wrapper">
+            <!-- Левая часть -->
+            <div class="strategy-section__wrapper-left">
+                <img src="{% static "./assets/images/str-image6.png" %}" alt="изображение задачи" class="strategy-section__img">
+            </div>
+            <!-- Правая часть -->
+            <div class="strategy-section__wrapper-right">
+                <h2 class="strategy-section__title-mini">ПОКАЗАТЕЛИ ПО РФ:<br class="brstr">
+                    ДИНАМИКА, ПРОГНОЗ
+                </h2>
+                <div class="strategy-section__block-links">
+                    <a href="{% url "errors:development" %}" class="strategy-section__link-str">
+                        1. Коэффициент естественного прироста населения, промилле
+                    </a>
+                    <a href="{% url "errors:development" %}" class="strategy-section__link-str">
+                        2. Суммарный коэффициент рождаемости, промилле
+                    </a>
+                    <a href="{% url "errors:development" %}" class="strategy-section__link-str">
+                        3. Ожидаемая продолжительности жизни при рождении, лет
+                    </a>
+                    <a href="{% url "errors:development" %}" class="strategy-section__link-str">
+                        4. Смертность населения в трудоспособном возрасте, число умерших на 100 000 человек соответствующего возраста
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</section>
+
+{% endblock content %}

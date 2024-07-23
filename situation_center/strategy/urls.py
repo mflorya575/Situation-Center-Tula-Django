@@ -16,4 +16,6 @@ urlpatterns = [
     path('strategy-4/', views.strategy4, name='strategy4'),
     # Стратегия 5
     path('strategy-5/', views.strategy5, name='strategy5'),
+    # Стратегия 6
+    path('strategy-6/', views.strategy6, name='strategy6'),
 ]
