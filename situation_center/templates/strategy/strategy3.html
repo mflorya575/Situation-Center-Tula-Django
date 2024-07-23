@@ -1,0 +1,49 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="strategy-section">
+    <div class="container">
+        <!-- Ссылка-возварт на главную страницу -->
+        <a href="{% url "main:index" %}" class="strategy-section__link-main">
+            Вернуться к странице “Главная”
+        </a>
+        <!-- Заголовок -->
+        <h1 class="strategy-section__title">ЗАДАЧА 3</h1>
+        <p class="strategy-section__text">
+            Обеспечение финансового суверенитета нашей страны
+        </p>
+        <!-- Обертка -->
+        <div class="strategy-section__wrapper">
+            <!-- Левая часть -->
+            <div class="strategy-section__wrapper-left">
+                <img src="{% static "./assets/images/str-image3.png" %}" alt="изображение задачи" class="strategy-section__img">
+            </div>
+            <!-- Правая часть -->
+            <div class="strategy-section__wrapper-right">
+                <h2 class="strategy-section__title-mini">ПОКАЗАТЕЛИ ПО РФ:<br class="brstr">
+                    ДИНАМИКА, ПРОГНОЗ
+                </h2>
+                <div class="strategy-section__block-links">
+                    <a href="{% url "errors:development" %}" class="strategy-section__link-str">
+                        1. Государственный долг Российской Федерации в процентах от ВВП, %
+                    </a>
+                    <a href="{% url "errors:development" %}" class="strategy-section__link-str">
+                        2. Сальдо финансовых операций частного сектора (чистое кредитование (+) / чистое заимствование (-)), млрд долл. США
+                    </a>
+                    <a href="{% url "errors:development" %}" class="strategy-section__link-str">
+                        3. Налоговые поступления в федеральный бюджет в процентах от ВВП, %
+                    </a>
+                    <a href="{% url "errors:development" %}" class="strategy-section__link-str">
+                        4. Годовой темп роста широкой денежной массы, %
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</section>
+
+{% endblock content %}
