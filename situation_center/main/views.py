@@ -1,10 +1,19 @@
+from django.http import HttpResponse
 from django.shortcuts import render
+from django.core.cache import cache
 
 from news.models import News
 
 
 def index(request):
-    news = News.objects.all()[:3]
+    # Попробуйте получить данные из кэша
+    news = cache.get('latest_news')
+
+    if not news:
+        # Если данные не найдены в кэше, получите их из базы данных
+        news = News.objects.all()[:3]
+        # Сохраните данные в кэше на 15 минут
+        cache.set('latest_news', news, timeout=60*60*24*21)
 
     context = {
         'news': news,
