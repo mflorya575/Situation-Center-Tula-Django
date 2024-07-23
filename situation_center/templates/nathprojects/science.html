@@ -41,7 +41,7 @@
 
             {% for science in sciences %}
             <div class="hospital-section__card">
-                <a href="project-detail.html" class="hospital-section__link">{{ science.title }}</a>
+                <a href="{% url 'nathprojects:science_detail' slug=science.slug %}" class="hospital-section__link">{{ science.title }}</a>
             </div>
             {% endfor %}
 
