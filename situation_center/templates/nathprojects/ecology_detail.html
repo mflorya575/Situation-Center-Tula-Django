@@ -6,10 +6,10 @@
 <section class="detailpr-section">
     <div class="container">
         <!-- Заголовок -->
-        <div class="detailpr-section__title">{{ science.title }}</div>
+        <div class="detailpr-section__title">{{ ecology.title }}</div>
         <!-- Обертка графиков -->
         <div class="detailpr-section__wrapper">
-            <form class="custom-form-pr" method="get" action="{% url 'nathprojects:science_detail' slug=science.slug %}">
+            <form class="custom-form-pr" method="get" action="{% url 'nathprojects:ecology_detail' slug=ecology.slug %}">
                 <div class="form-group">
                     <select name="region" id="id_region">
                         {% for value, display in region_form.fields.region.choices %}
@@ -40,7 +40,7 @@
                 <div>{{ combined_chart|safe }}</div>
             </div>
             <div class="detailpr-section__block">
-                <p class="detailpr-section__description">{{ science.description }}</p>
+                <p class="detailpr-section__description">{{ ecology.description }}</p>
             </div>
 
             

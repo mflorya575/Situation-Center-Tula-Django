@@ -40,7 +40,7 @@
 
             {% for ecology in ecologys %}
             <div class="hospital-section__card">
-                <a href="project-detail.html" class="hospital-section__link">{{ ecology.title }}</a>
+                <a href="{% url 'nathprojects:ecology_detail' slug=ecology.slug %}" class="hospital-section__link">{{ ecology.title }}</a>
             </div>
             {% endfor %}
 
