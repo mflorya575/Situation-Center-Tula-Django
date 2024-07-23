@@ -280,3 +280,36 @@ class BusinessData(models.Model):
 
     def __str__(self):
         return f"{self.year} - {self.data} предпринимательства"
+
+
+class Turism(models.Model):
+    title = models.CharField(max_length=200, verbose_name='Название', blank=True, null=True)
+    slug = models.SlugField(unique=True, blank=True, null=True)
+    description = models.TextField(verbose_name='Описание', blank=True)
+
+    class Meta:
+        verbose_name = 'Туризм'
+        verbose_name_plural = 'Туризм'
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.title if self.title else 'Без названия'
+
+
+class TurismData(models.Model):
+    name = models.ForeignKey(Turism, related_name='data', on_delete=models.CASCADE)
+    year = models.IntegerField()
+    data = models.FloatField()
+    region = models.CharField(max_length=50, choices=REGION_CHOICES, verbose_name='Регион', blank=True)
+
+    class Meta:
+        verbose_name = 'Данные по туризму'
+        verbose_name_plural = 'Данные по туризму'
+        ordering = ['name']
+
+    def __str__(self):
+        return f"{self.year} - {self.data} туризма"
