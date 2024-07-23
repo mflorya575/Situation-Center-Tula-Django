@@ -41,4 +41,5 @@ urlpatterns = [
     path('project-world/<slug:slug>/', views.world_detail, name='world_detail'),
     # Труд
     path('project-labour/', views.labour, name='labour'),
+    path('project-labour/<slug:slug>/', views.labour_detail, name='labour_detail'),
 ]

@@ -41,7 +41,7 @@
 
             {% for labour in labours %}
             <div class="hospital-section__card">
-                <a href="project-detail.html" class="hospital-section__link">{{ labour.title }}</a>
+                <a href="{% url 'nathprojects:labour_detail' slug=labour.slug %}" class="hospital-section__link">{{ labour.title }}</a>
             </div>
             {% endfor %}
 
