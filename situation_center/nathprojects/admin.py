@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from .models import Hospital, HospitalData, Study, StudyData, Demographics, DemographicsData, Culture, CultureData, \
-    Road, RoadData, Science, ScienceData, Ecology, EcologyData
+    Road, RoadData, Science, ScienceData, Ecology, EcologyData, Business, BusinessData
 
 
 class HospitalDataInline(admin.TabularInline):
@@ -214,6 +214,36 @@ class EcologyDataAdmin(admin.ModelAdmin):
         return queryset, use_distinct
 
 
+class BusinessDataInline(admin.TabularInline):
+    model = BusinessData
+    extra = 1
+
+
+class BusinessAdmin(admin.ModelAdmin):
+    list_display = ('title', 'slug')
+    list_filter = ('title',)  # Фильтр по названию
+    search_fields = ('title', 'description')  # Поля для поиска
+    ordering = ['title']  # Сортировка по умолчанию
+    inlines = [BusinessDataInline]
+
+
+class BusinessDataAdmin(admin.ModelAdmin):
+    list_display = ('name', 'year', 'data', 'region')
+    list_filter = ('name', 'year', 'region')  # Фильтр по больнице и году
+    search_fields = ('name__title', 'year', 'region')  # Поля для поиска
+    ordering = ['name']
+
+    def get_search_results(self, request, queryset, search_term):
+        """
+        Переопределение метода для улучшения поиска по полю name.
+        """
+        queryset, use_distinct = super().get_search_results(request, queryset, search_term)
+        if search_term:
+            # Фильтруем по названию hospital, если есть поисковый запрос
+            queryset = queryset.filter(name__title__icontains=search_term)
+        return queryset, use_distinct
+
+
 # Здравоохранение
 
 
@@ -283,3 +313,13 @@ class EcologyAdmin(admin.ModelAdmin):
 
 
 admin.site.register(EcologyData, EcologyDataAdmin)
+
+
+# Предпринимательство
+
+@admin.register(Business)
+class BusinessAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('title',)}
+
+
+admin.site.register(BusinessData, BusinessDataAdmin)
