@@ -260,8 +260,8 @@
                 </div>
                 <!-- Карточка расширения магистральной инфраструктуры -->
                 <div class="third-section__card card-last__margin">
-                    <a href="project15-maginf.html"><img src="{% static "./assets/icons/mainline-image.png" %}" alt="иконка расширения магистральной инфраструктуры" class="third-section__img16"></a>
-                    <a href="project15-maginf.html" class="third-section__text2">Расширение магистральной<br> инфраструктуры</a>
+                    <a href="{% url "errors:development" %}"><img src="{% static "./assets/icons/mainline-image.png" %}" alt="иконка расширения магистральной инфраструктуры" class="third-section__img16"></a>
+                    <a href="{% url "errors:development" %}" class="third-section__text2">Расширение магистральной<br> инфраструктуры</a>
                 </div>
             </div>
             <!-- Конец обертки карточек -->
@@ -441,20 +441,20 @@
                     <h6 class="footer-section__h6">Национальные проекты</h6>
                     <ul class="footer-section__ul">
                         <li class="footer-section__li"><a href="{% url "nathprojects:hospital" %}" class="footer-section__link">Здавоохранение</a></li>
-                        <li class="footer-section__li"><a href="#" class="footer-section__link">Образование</a></li>
-                        <li class="footer-section__li"><a href="#" class="footer-section__link">Демография</a></li>
-                        <li class="footer-section__li"><a href="#" class="footer-section__link">Культура</a></li>
-                        <li class="footer-section__li"><a href="#" class="footer-section__link">Безопасные дороги</a></li>
-                        <li class="footer-section__li"><a href="#" class="footer-section__link">Наука и университеты</a></li>
-                        <li class="footer-section__li"><a href="#" class="footer-section__link">Экология</a></li>
-                        <li class="footer-section__li"><a href="#" class="footer-section__link">Предпринимательство</a></li>
-                        <li class="footer-section__li"><a href="#" class="footer-section__link">Туризм</a></li>
-                        <li class="footer-section__li"><a href="#" class="footer-section__link">Жилье и городская среда</a></li>
-                        <li class="footer-section__li"><a href="#" class="footer-section__link">Международная кооперация</a></li>
-                        <li class="footer-section__li"><a href="#" class="footer-section__link">Производительность труда</a></li>
-                        <li class="footer-section__li"><a href="#" class="footer-section__link">Атомная энергия</a></li>
-                        <li class="footer-section__li"><a href="#" class="footer-section__link">Цифровая экономика РФ</a></li>
-                        <li class="footer-section__li"><a href="#" class="footer-section__link">Магистральная инфраструктура</a></li>
+                        <li class="footer-section__li"><a href="{% url "nathprojects:study" %}" class="footer-section__link">Образование</a></li>
+                        <li class="footer-section__li"><a href="{% url "nathprojects:demographics" %}" class="footer-section__link">Демография</a></li>
+                        <li class="footer-section__li"><a href="{% url "nathprojects:culture" %}" class="footer-section__link">Культура</a></li>
+                        <li class="footer-section__li"><a href="{% url "nathprojects:road" %}" class="footer-section__link">Безопасные дороги</a></li>
+                        <li class="footer-section__li"><a href="{% url "nathprojects:science" %}" class="footer-section__link">Наука и университеты</a></li>
+                        <li class="footer-section__li"><a href="{% url "nathprojects:ecology" %}" class="footer-section__link">Экология</a></li>
+                        <li class="footer-section__li"><a href="{% url "nathprojects:business" %}" class="footer-section__link">Предпринимательство</a></li>
+                        <li class="footer-section__li"><a href="{% url "nathprojects:turism" %}" class="footer-section__link">Туризм</a></li>
+                        <li class="footer-section__li"><a href="{% url "nathprojects:house" %}" class="footer-section__link">Жилье и городская среда</a></li>
+                        <li class="footer-section__li"><a href="{% url "nathprojects:world" %}" class="footer-section__link">Международная кооперация</a></li>
+                        <li class="footer-section__li"><a href="{% url "nathprojects:labour" %}" class="footer-section__link">Производительность труда</a></li>
+                        <li class="footer-section__li"><a href="{% url "errors:development" %}" class="footer-section__link">Атомная энергия</a></li>
+                        <li class="footer-section__li"><a href="{% url "nathprojects:economy" %}" class="footer-section__link">Цифровая экономика РФ</a></li>
+                        <li class="footer-section__li"><a href="{% url "errors:development" %}" class="footer-section__link">Магистральная инфраструктура</a></li>
                     </ul>
                 </div>
 
