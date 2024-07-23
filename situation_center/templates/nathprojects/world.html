@@ -41,7 +41,7 @@
 
             {% for world in worlds %}
             <div class="hospital-section__card">
-                <a href="project-detail.html" class="hospital-section__link">{{ world.title }}</a>
+                <a href="{% url 'nathprojects:world_detail' slug=world.slug %}" class="hospital-section__link">{{ world.title }}</a>
             </div>
             {% endfor %}
 

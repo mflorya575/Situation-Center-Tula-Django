@@ -637,3 +637,54 @@ def world(request):
         'title': 'Международная кооперация и экспорт | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'nathprojects/world.html', context)
+
+
+def world_detail(request, slug):
+    # Получаем конкретную запись из базы данных по slug
+    world = get_object_or_404(World, slug=slug)
+    world_data = world.data.all().order_by('year')
+
+    selected_region = request.GET.get('region')
+    if selected_region:
+        world_data = world_data.filter(region=selected_region)
+
+    # Преобразуем данные в DataFrame для удобства работы с Plotly
+    df = pd.DataFrame(list(world_data.values()))
+
+    # Проверка наличия данных
+    if df.empty:
+        combined_chart = "Нет данных для отображения."
+    else:
+        # Создание комбинированного графика
+        fig = go.Figure()
+
+        # Добавление линейного графика
+        fig.add_trace(go.Scatter(x=df['year'], y=df['data'],
+                                 mode='lines+markers',
+                                 name='Линейный график'))
+
+        # Добавление столбчатой диаграммы
+        fig.add_trace(go.Bar(x=df['year'], y=df['data'],
+                             name='Столбчатая диаграмма'))
+
+        # Настройка осей и заголовка
+        fig.update_layout(
+            title=f'{world.title} - Комбинированный график',
+            xaxis_title='Годы',
+            yaxis_title='Количество'
+        )
+
+        # Преобразование графика в HTML
+        combined_chart = fig.to_html(full_html=False)
+
+    # Создание формы для выбора региона
+    region_form = RegionForm(request.GET or None)
+
+    context = {
+        'combined_chart': combined_chart,
+        'world': world,
+        'region_form': region_form,
+        'selected_region': dict(REGION_CHOICES).get(selected_region, 'Не выбран'),
+        'title': 'СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'nathprojects/world_detail.html', context)
