@@ -39,4 +39,6 @@ urlpatterns = [
     # Международка
     path('project-world/', views.world, name='world'),
     path('project-world/<slug:slug>/', views.world_detail, name='world_detail'),
+    # Труд
+    path('project-labour/', views.labour, name='labour'),
 ]
