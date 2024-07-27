@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'nathprojects.apps.NathprojectsConfig',
     'errors.apps.ErrorsConfig',
     'strategy.apps.StrategyConfig',
+    'userauth.apps.UserauthConfig',
 
     # Сторонние библиотеки
     'mptt',
