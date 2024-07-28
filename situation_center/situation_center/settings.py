@@ -174,6 +174,8 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+AUTH_USER_MODEL = 'userauth.MyUser'
+
 
 # Настройки кастомной админ-панели django-jazzmin
 JAZZMIN_SETTINGS = {

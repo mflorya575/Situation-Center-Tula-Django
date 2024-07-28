@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 from django.urls import reverse
 from django.core.validators import FileExtensionValidator
 from django.contrib.auth.models import User
@@ -70,9 +71,9 @@ class News(models.Model):
     status = models.CharField(choices=STATUS_OPTIONS, default='published', verbose_name='Статус записи', max_length=10)
     create = models.DateTimeField(auto_now_add=True, verbose_name='Время добавления')
     update = models.DateTimeField(auto_now=True, verbose_name='Время обновления')
-    author = models.ForeignKey(to=User, verbose_name='Автор', on_delete=models.SET_DEFAULT, related_name='author_post',
-                               default=1)
-    updater = models.ForeignKey(to=User, verbose_name='Обновил', on_delete=models.SET_NULL, null=True,
+    author = models.ForeignKey(to=settings.AUTH_USER_MODEL, verbose_name='Автор', on_delete=models.SET_DEFAULT,
+                               related_name='author_post', default=1)
+    updater = models.ForeignKey(to=settings.AUTH_USER_MODEL, verbose_name='Обновил', on_delete=models.SET_NULL, null=True,
                                 related_name='updater_post', blank=True)
     fixed = models.BooleanField(verbose_name='Прикреплено', default=False)
 
