@@ -36,8 +36,10 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             auth_login(request, user)
+            messages.success(request, 'Вы успешно вошли в систему.')
             return redirect('main:index')
         else:
+            messages.error(request, 'Неверный email или пароль')
             return render(request, 'userauth/login.html', {'form': form, 'error': 'Неверный email или пароль'})
     else:
         form = CustomAuthenticationForm()
