@@ -1,0 +1,66 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="register-section">
+    <div class="container">
+        <!-- Обертка общая -->
+        <div class="register-section__wrapper-main">
+            <!-- Левая часть -->
+            <div class="register-section__wrapper-left">
+                <div class="register-section__heading">
+                    <h1 class="register-section__create">Создать аккаунт</h1>
+                    <div class="register-section__block1">
+                        <p class="register-section__question">У вас уже есть аккаунт?</p>
+                        <a class="register-section__link" href="login.html">Вход</a>
+                    </div>
+                </div>
+                <form action="{% url 'userauth:register' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="register-section__form-group">
+                        <input class="register-section__input1" type="text" required name="first_name" placeholder="Ваше имя*" />
+                    </div>
+                    <div class="register-section__form-group">
+                        <input class="register-section__input2" type="text" required name="last_name" placeholder="Ваша фамилия*" />
+                    </div>
+                    <div class="register-section__form-group">
+                        <input class="register-section__input3" type="email" required name="email" placeholder="Ваш Email*" />
+                    </div>
+                    <div class="register-section__form-group">
+                        <input class="register-section__input4" required type="password" name="password1" placeholder="Ваш пароль*" />
+                    </div>
+                    <div class="register-section__form-group">
+                        <input class="register-section__input5" required type="password" name="password2" placeholder="Повторите пароль*" />
+                    </div>
+                    <div class="register-section__login_footer2">
+                        <div class="register-section__chek-form-block2">
+                            <div class="register-section__custome-checkboxes">
+                                <input class="register-section__form-check-input" type="checkbox" required name="terms" id="exampleCheckbox12" />
+                                <label class="register-section__form-check-label" for="exampleCheckbox12">Я согласен с условиями и политикой</label>
+                            </div>
+                        </div>
+                        <a class="register-section__pp-link" href="policy-privacy.html">Подробнее</a>
+                    </div>
+                    <div class="register-section__form-group">
+                        <button type="submit" class="register-section__btn" name="register">Зарегистрироваться</button>
+                    </div>
+                    <p class="register-section__text-end">
+                        Ваши персональные данные будут использоваться для
+                        поддержки вашего взаимодействия на этом веб-сайте,
+                        для управления доступом к вашей учетной записи и для других целей,
+                        описанных в нашей политике конфиденциальности.
+                    </p>
+                </form>
+            </div>
+            <!-- Правая часть -->
+            <div class="register-section__wrapper-right">
+                <img src="{% static "./assets/images/register-man-image.png" %}" alt="изображение мужчины" class="register-section__img">
+            </div>
+        </div>
+
+
+    </div>
+</section>
+
+{% endblock content %}
