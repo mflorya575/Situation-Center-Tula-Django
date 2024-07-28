@@ -20,8 +20,10 @@ def register(request):
             # Если кодовое слово верное, сохраняем пользователя
             user = form.save()
             auth_login(request, user)
+            messages.success(request, 'Вы успешно зарегистрировались.')
             return redirect('main:index')
         else:
+            messages.error(request, 'Пожалуйста, исправьте ошибки в форме.')
             return render(request, 'userauth/register.html', {'form': form})
     else:
         form = UserCreationForm()
