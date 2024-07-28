@@ -54,7 +54,11 @@
                         <a href="{% url "errors:development" %}" class="header-block1-link_custom header-link_margin6">Личный кабинет</a>
                         <div class="dropdown-content">
                             <a class="dropdown-custom" href="{% url "errors:development" %}">Мой аккаунт</a>
-                            <a class="dropdown-custom" href="{% url "errors:development" %}">Вход</a>
+                            {% if user.is_authenticated %}
+                                <a class="dropdown-custom" href="{% url 'userauth:logout' %}">Выход</a>
+                            {% else %}
+                                <a class="dropdown-custom" href="{% url 'userauth:login' %}">Вход</a>
+                            {% endif %}
                         </div>
                     </li>
                 </ul>
