@@ -4,8 +4,10 @@ from .models import MyUser
 
 
 class UserCreationForm(forms.ModelForm):
-    password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
+    password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Подтверждение пароля', widget=forms.PasswordInput)
+    code_word = forms.CharField(label='Кодовое слово',
+                                widget=forms.TextInput(attrs={'placeholder': 'Введите кодовое слово'}))
 
     class Meta:
         model = MyUser
@@ -15,8 +17,14 @@ class UserCreationForm(forms.ModelForm):
         password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")
         if password1 and password2 and password1 != password2:
-            raise forms.ValidationError("Пароли не совпадает")
+            raise forms.ValidationError("Пароли не совпадают")
         return password2
+
+    def clean_code_word(self):
+        code_word = self.cleaned_data.get('code_word')
+        if code_word != 'arnbbErTbUla':
+            raise forms.ValidationError("Неверное кодовое слово")
+        return code_word
 
     def save(self, commit=True):
         user = super().save(commit=False)
@@ -35,4 +43,12 @@ class UserChangeForm(forms.ModelForm):
 
 
 class CustomAuthenticationForm(AuthenticationForm):
-    username = forms.EmailField(label='Email')
+    username = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'autofocus': True}))
+
+    def confirm_login_allowed(self, user):
+        # Если требуется дополнительная проверка при аутентификации
+        if not user.is_active:
+            raise forms.ValidationError(
+                "Этот аккаунт не активен.",
+                code='inactive',
+            )

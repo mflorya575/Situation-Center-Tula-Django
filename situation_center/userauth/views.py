@@ -1,29 +1,42 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
-from .forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth import login as auth_login
+from django.contrib import messages
+from .forms import UserCreationForm, CustomAuthenticationForm
 
 
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
+            # Получаем кодовое слово из формы
+            code_word = request.POST.get('code_word')
+
+            # Проверяем кодовое слово
+            if code_word != 'arnbbErTbUla':
+                messages.error(request, 'Неверное кодовое слово.')
+                return render(request, 'userauth/register.html', {'form': form})
+
+            # Если кодовое слово верное, сохраняем пользователя
             user = form.save()
-            login(request, user)
+            auth_login(request, user)
             return redirect('main:index')
+        else:
+            return render(request, 'userauth/register.html', {'form': form})
     else:
         form = UserCreationForm()
-    return render(request, 'userauth/register.html', {'form': form})
+        return render(request, 'userauth/register.html', {'form': form})
 
 
 def login_view(request):
     if request.method == 'POST':
-        form = AuthenticationForm(data=request.POST)
+        form = CustomAuthenticationForm(request, data=request.POST)
         if form.is_valid():
             user = form.get_user()
-            login(request, user)
+            auth_login(request, user)
             return redirect('main:index')
         else:
-            return render(request, 'userauth/login.html', {'form': form, 'error': 'Неправильный Email или пароль'})
+            return render(request, 'userauth/login.html', {'form': form, 'error': 'Неверный email или пароль'})
     else:
-        form = AuthenticationForm()
+        form = CustomAuthenticationForm()
     return render(request, 'userauth/login.html', {'form': form})
