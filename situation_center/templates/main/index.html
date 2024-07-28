@@ -204,8 +204,17 @@
             <div class="third-section__wrapper">
                 <!-- Карточка здравоохранения -->
                 <div class="third-section__card">
-                    <a href="{% url "nathprojects:hospital" %}"><img src="{% static "./assets/icons/hospital-image.png" %}" alt="иконка здравоохранения" class="third-section__img1"></a>
-                    <a href="{% url "nathprojects:hospital" %}" class="third-section__text">Здравоохранение</a>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'nathprojects:hospital' %}">
+                            <img src="{% static 'assets/icons/hospital-image.png' %}" alt="иконка здравоохранения" class="third-section__img1">
+                        </a>
+                        <a href="{% url 'nathprojects:hospital' %}" class="third-section__text">Здравоохранение</a>
+                    {% else %}
+                        <a href="{% url 'userauth:login' %}">
+                            <img src="{% static 'assets/icons/hospital-image.png' %}" alt="иконка здравоохранения" class="third-section__img1">
+                        </a>
+                        <a href="{% url 'userauth:login' %}" class="third-section__text">Здравоохранение</a>
+                    {% endif %}
                 </div>
                 <!-- Карточка образования -->
                 <div class="third-section__card">

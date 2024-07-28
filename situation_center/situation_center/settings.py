@@ -178,6 +178,8 @@ AUTH_USER_MODEL = 'userauth.MyUser'
 
 LOGOUT_REDIRECT_URL = 'main:index'
 
+LOGIN_URL = 'userauth:login'
+
 
 # Настройки кастомной админ-панели django-jazzmin
 JAZZMIN_SETTINGS = {
