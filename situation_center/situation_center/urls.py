@@ -42,6 +42,7 @@ urlpatterns = [
     path('projects/', include('nathprojects.urls', namespace='nathprojects')),
     path('', include('errors.urls', namespace='errors')),
     path('', include('strategy.urls', namespace='strategy')),
+    path('', include('userauth.urls', namespace='userauth')),
 
     # Карта сайта
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap')
