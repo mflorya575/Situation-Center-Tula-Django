@@ -14,7 +14,6 @@ class MyUserAdmin(UserAdmin):
         (None, {'fields': ('email', 'password')}),
         ('Personal info', {'fields': ('first_name', 'last_name')}),
         ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
-        # Удалено поле 'Important dates', так как 'date_joined' не существует
     )
     add_fieldsets = (
         (None, {

@@ -1,0 +1,56 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="login-section">
+    <div class="container">
+        <!-- Обертка общая -->
+        <div class="login-section__wrapper-main">
+            <!-- Левая часть -->
+            <div class="login-section__wrapper-left">
+                <img src="{% static "./assets/images/login-man-image.png" %}" alt="изображение мужчины" class="login-section__img">
+            </div>
+            <!-- Правая часть -->
+            <div class="login-section__wrapper-right">
+                <div class="login-section__block1">
+                    <h1 class="login-section__login-text">Вход</h1>
+                    <div class="login-section__block2">
+                        <p class="login-section__login-none">Нет аккаунта?</p>
+                        <a href="register.html" class="login-section__login-link">Создать здесь</a>
+                    </div>
+                </div>
+                <!-- Форма -->
+                <form action="{% url 'userauth:login' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="login-section__form-group1">
+                        <input class="login-section__input1" type="text" required name="username" placeholder="Ваш Email*" />
+                    </div>
+                    <div class="login-section__form-group2">
+                        <input class="login-section__input2" required type="password" name="password" placeholder="Ваш пароль*" />
+                    </div>
+                    {% if error %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ error }}
+                        </div>
+                    {% endif %}
+                    <div class="login-section__login_footer2">
+                        <div class="login-section__chek-form2">
+                            <div class="login-section__custome-checkbox">
+                                <input class="login-section__form-check-input" type="checkbox" name="remember_me" id="exampleCheckbox1" />
+                                <label class="login-section__form-check-label" for="exampleCheckbox1"><span>Запомнить меня</span></label>
+                            </div>
+                        </div>
+                        <a class="login-section__text-muted" href="#">Забыли пароль?</a>
+                    </div>
+                    <div class="login-section__form-group3">
+                        <button type="submit" class="login-section__btn">Войти</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endblock content %}

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
-from .forms import UserCreationForm
+from .forms import UserCreationForm, AuthenticationForm
 
 
 def register(request):
@@ -17,12 +17,13 @@ def register(request):
 
 def login_view(request):
     if request.method == 'POST':
-        email = request.POST['email']
-        password = request.POST['password']
-        user = authenticate(request, email=email, password=password)
-        if user is not None:
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
             login(request, user)
             return redirect('main:index')
         else:
-            return render(request, 'userauth/login.html', {'error': 'Invalid email or password'})
-    return render(request, 'userauth/login.html')
+            return render(request, 'userauth/login.html', {'form': form, 'error': 'Неправильный Email или пароль'})
+    else:
+        form = AuthenticationForm()
+    return render(request, 'userauth/login.html', {'form': form})
