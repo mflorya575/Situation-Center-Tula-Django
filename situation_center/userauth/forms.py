@@ -1,9 +1,12 @@
 from django import forms
 from django.contrib.auth.forms import ReadOnlyPasswordHashField, AuthenticationForm
 from .models import MyUser
+from django_recaptcha.fields import ReCaptchaField
 
 
 class UserCreationForm(forms.ModelForm):
+    recaptcha = ReCaptchaField()
+
     password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Подтверждение пароля', widget=forms.PasswordInput)
     code_word = forms.CharField(label='Кодовое слово',
@@ -11,7 +14,7 @@ class UserCreationForm(forms.ModelForm):
 
     class Meta:
         model = MyUser
-        fields = ('email', 'first_name', 'last_name')
+        fields = ('email', 'first_name', 'last_name', 'recaptcha')
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
@@ -36,10 +39,11 @@ class UserCreationForm(forms.ModelForm):
 
 class UserChangeForm(forms.ModelForm):
     password = ReadOnlyPasswordHashField()
+    recaptcha = ReCaptchaField()
 
     class Meta:
         model = MyUser
-        fields = ('email', 'password', 'first_name', 'last_name', 'is_active', 'is_staff', 'is_superuser')
+        fields = ('email', 'password', 'first_name', 'last_name', 'is_active', 'is_staff', 'is_superuser', 'recaptcha')
 
 
 class CustomAuthenticationForm(AuthenticationForm):

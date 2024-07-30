@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'mptt',
     'django_mptt_admin',
     'taggit',
+    'django_recaptcha',
 
     # Карта сайта
     'django.contrib.sites',
@@ -121,6 +122,9 @@ CACHES = {
 # Session configuration
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
+
+RECAPTCHA_PUBLIC_KEY = '6LfbyhsqAAAAAMxJcOUnSEEWnKXyT4QjY50o3ZVF'
+RECAPTCHA_PRIVATE_KEY = '6LfbyhsqAAAAAGyFmxY8sS7DxRwOOtHHU6DQ4KKP'
 
 
 # Password validation
