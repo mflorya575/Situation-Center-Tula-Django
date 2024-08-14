@@ -39,7 +39,7 @@ def hospital_detail(request, slug):
         if selected_region:
             df = df[df['region'] == selected_region]
 
-        # Преобразование данных для карты
+        # Преобразование данных для графика
         df_melted = df.melt(id_vars=['region'], var_name='year', value_name='deaths')
 
         # Проверка наличия данных
@@ -47,6 +47,26 @@ def hospital_detail(request, slug):
             combined_chart = "Нет данных для отображения."
             map_chart = "Нет данных для отображения на карте."
         else:
+            # Создание комбинированного графика
+            fig = go.Figure()
+
+            # Добавление линейного графика
+            fig.add_trace(
+                go.Scatter(x=df_melted['year'], y=df_melted['deaths'], mode='lines+markers', name='Линейный график'))
+
+            # Добавление столбчатой диаграммы
+            fig.add_trace(go.Bar(x=df_melted['year'], y=df_melted['deaths'], name='Столбчатая диаграмма'))
+
+            # Настройка осей и заголовка
+            fig.update_layout(
+                title=f'{hospital.title} - Комбинированный график',
+                xaxis_title='Годы',
+                yaxis_title='Смертей'
+            )
+
+            # Преобразование графика в HTML
+            combined_chart = fig.to_html(full_html=False)
+
             # Отображение карты для последнего доступного года
             latest_year = df_melted['year'].max()
             df_latest = df_melted[df_melted['year'] == latest_year]
@@ -66,9 +86,6 @@ def hospital_detail(request, slug):
 
             # Преобразование карты в HTML
             map_chart = map_fig.to_html(full_html=False)
-
-            # Заменим временно комбинированный график просто заглушкой
-            combined_chart = "График временно отключен для диагностики."
 
     except Exception as e:
         combined_chart = f"Ошибка при обработке данных: {e}"
