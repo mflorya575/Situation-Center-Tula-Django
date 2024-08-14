@@ -13,7 +13,7 @@ def register(request):
             code_word = request.POST.get('code_word')
 
             # Проверяем кодовое слово
-            if code_word != 'arnbbErTbUla':
+            if code_word != 'arnbbErTbrlgmroRiogrgirGJRI38447NGGRGByrgbuirUla':
                 messages.error(request, 'Неверное кодовое слово.')
                 return render(request, 'userauth/register.html', {'form': form})
 
@@ -27,7 +27,8 @@ def register(request):
             return render(request, 'userauth/register.html', {'form': form})
     else:
         form = UserCreationForm()
-        return render(request, 'userauth/register.html', {'form': form})
+        return render(request, 'userauth/register.html', {'form': form,
+                                                          'title': 'Регистрация | СЦ РЭУ филиал им. Г.В. Плеханова'})
 
 
 def login_view(request):
@@ -43,4 +44,5 @@ def login_view(request):
             return render(request, 'userauth/login.html', {'form': form, 'error': 'Неверный email или пароль'})
     else:
         form = CustomAuthenticationForm()
-    return render(request, 'userauth/login.html', {'form': form})
+    return render(request, 'userauth/login.html', {'form': form,
+                                                   'title': 'Авторизация | СЦ РЭУ филиал им. Г.В. Плеханова'})
