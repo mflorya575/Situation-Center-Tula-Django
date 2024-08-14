@@ -3,6 +3,8 @@ import plotly.express as px
 import pandas as pd
 import plotly.graph_objects as go
 import os
+import folium
+from folium.plugins import MarkerCluster
 
 from .models import *
 from .forms import RegionForm
@@ -28,49 +30,56 @@ def hospital_detail(request, slug):
         # Загрузка данных из CSV
         df = pd.read_csv(csv_file_path)
 
-        # Проверьте, что столбец 'region' присутствует
+        # Проверка на наличие столбца 'region'
         if 'region' not in df.columns:
             raise ValueError("Столбец 'region' не найден в CSV-файле.")
 
-        # Если выбран регион, фильтруем данные
+        # Фильтрация по выбранному региону
         selected_region = request.GET.get('region')
         if selected_region:
             df = df[df['region'] == selected_region]
 
-        # Преобразование данных для графика
+        # Преобразование данных для карты
         df_melted = df.melt(id_vars=['region'], var_name='year', value_name='deaths')
 
         # Проверка наличия данных
         if df_melted.empty:
             combined_chart = "Нет данных для отображения."
+            map_chart = "Нет данных для отображения на карте."
         else:
-            fig = go.Figure()
+            # Отображение карты для последнего доступного года
+            latest_year = df_melted['year'].max()
+            df_latest = df_melted[df_melted['year'] == latest_year]
 
-            # Добавление линейного графика
-            fig.add_trace(
-                go.Scatter(x=df_melted['year'], y=df_melted['deaths'], mode='lines+markers', name='Линейный график'))
+            # Создание карты
+            map_fig = px.choropleth(df_latest,
+                                    locations='region',
+                                    locationmode='geojson-id',
+                                    geojson='https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/russia.geojson',  # Гео-данные
+                                    featureidkey="properties.name",  # Ключ для соответствия регионам
+                                    color='deaths',
+                                    hover_name='region',
+                                    title=f'{hospital.title} - Карта смертности за {latest_year}',
+                                    color_continuous_scale='Reds')
 
-            # Добавление столбчатой диаграммы
-            fig.add_trace(go.Bar(x=df_melted['year'], y=df_melted['deaths'], name='Столбчатая диаграмма'))
+            map_fig.update_geos(fitbounds="locations", visible=False)
 
-            # Настройка осей и заголовка
-            fig.update_layout(
-                title=f'{hospital.title} - Комбинированный график',
-                xaxis_title='Годы',
-                yaxis_title='Смертей'
-            )
+            # Преобразование карты в HTML
+            map_chart = map_fig.to_html(full_html=False)
 
-            # Преобразование графика в HTML
-            combined_chart = fig.to_html(full_html=False)
+            # Заменим временно комбинированный график просто заглушкой
+            combined_chart = "График временно отключен для диагностики."
 
     except Exception as e:
         combined_chart = f"Ошибка при обработке данных: {e}"
+        map_chart = "Ошибка при создании карты."
 
     # Создание формы для выбора региона
     region_form = RegionForm(request.GET or None, hospital_slug=slug)
 
     context = {
         'combined_chart': combined_chart,
+        'map_chart': map_chart,
         'hospital': hospital,
         'region_form': region_form,
         'selected_region': request.GET.get('region') or 'Не выбран',
