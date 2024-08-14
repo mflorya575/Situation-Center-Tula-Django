@@ -13,7 +13,7 @@
                 <div class="form-group">
                     <select name="region" id="id_region">
                         {% for value, display in region_form.fields.region.choices %}
-                            <option value="{{ value }}" {% if value == region_form.initial.region %}selected{% endif %}>
+                            <option value="{{ value }}" {% if value == selected_region %}selected{% endif %}>
                                 {{ display }}
                             </option>
                         {% endfor %}

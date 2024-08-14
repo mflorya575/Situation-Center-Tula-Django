@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 import plotly.express as px
 import pandas as pd
 import plotly.graph_objects as go
+import os
 
 from .models import *
 from .forms import RegionForm
@@ -19,51 +20,60 @@ def hospital(request):
 
 
 def hospital_detail(request, slug):
-    # Получаем конкретную запись из базы данных по slug
     hospital = get_object_or_404(Hospital, slug=slug)
-    hospital_data = hospital.data.all().order_by('year')
 
-    selected_region = request.GET.get('region')
-    if selected_region:
-        hospital_data = hospital_data.filter(region=selected_region)
+    csv_file_path = hospital.csv_file.path
 
-    # Преобразуем данные в DataFrame для удобства работы с Plotly
-    df = pd.DataFrame(list(hospital_data.values()))
+    try:
+        # Загрузка данных из CSV
+        df = pd.read_csv(csv_file_path)
 
-    # Проверка наличия данных
-    if df.empty:
-        combined_chart = "Нет данных для отображения."
-    else:
-        # Создание комбинированного графика
-        fig = go.Figure()
+        # Проверьте, что столбец 'region' присутствует
+        if 'region' not in df.columns:
+            raise ValueError("Столбец 'region' не найден в CSV-файле.")
 
-        # Добавление линейного графика
-        fig.add_trace(go.Scatter(x=df['year'], y=df['deaths'],
-                                 mode='lines+markers',
-                                 name='Линейный график'))
+        # Если выбран регион, фильтруем данные
+        selected_region = request.GET.get('region')
+        if selected_region:
+            df = df[df['region'] == selected_region]
 
-        # Добавление столбчатой диаграммы
-        fig.add_trace(go.Bar(x=df['year'], y=df['deaths'],
-                             name='Столбчатая диаграмма'))
+        # Преобразование данных для графика
+        df_melted = df.melt(id_vars=['region'], var_name='year', value_name='deaths')
 
-        # Настройка осей и заголовка
-        fig.update_layout(
-            title=f'{hospital.title} - Комбинированный график',
-            xaxis_title='Годы',
-            yaxis_title='Смертей'
-        )
+        # Проверка наличия данных
+        if df_melted.empty:
+            combined_chart = "Нет данных для отображения."
+        else:
+            fig = go.Figure()
 
-        # Преобразование графика в HTML
-        combined_chart = fig.to_html(full_html=False)
+            # Добавление линейного графика
+            fig.add_trace(
+                go.Scatter(x=df_melted['year'], y=df_melted['deaths'], mode='lines+markers', name='Линейный график'))
+
+            # Добавление столбчатой диаграммы
+            fig.add_trace(go.Bar(x=df_melted['year'], y=df_melted['deaths'], name='Столбчатая диаграмма'))
+
+            # Настройка осей и заголовка
+            fig.update_layout(
+                title=f'{hospital.title} - Комбинированный график',
+                xaxis_title='Годы',
+                yaxis_title='Смертей'
+            )
+
+            # Преобразование графика в HTML
+            combined_chart = fig.to_html(full_html=False)
+
+    except Exception as e:
+        combined_chart = f"Ошибка при обработке данных: {e}"
 
     # Создание формы для выбора региона
-    region_form = RegionForm(request.GET or None)
+    region_form = RegionForm(request.GET or None, hospital_slug=slug)
 
     context = {
         'combined_chart': combined_chart,
         'hospital': hospital,
         'region_form': region_form,
-        'selected_region': dict(REGION_CHOICES).get(selected_region, 'Не выбран'),
+        'selected_region': request.GET.get('region') or 'Не выбран',
         'title': 'СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'nathprojects/project_detail.html', context)

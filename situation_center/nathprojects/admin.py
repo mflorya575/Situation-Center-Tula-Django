@@ -3,34 +3,18 @@ from django.contrib import admin
 from .models import *
 
 
-class HospitalDataInline(admin.TabularInline):
-    model = HospitalData
-    extra = 1
-
-
+@admin.register(Hospital)
 class HospitalAdmin(admin.ModelAdmin):
     list_display = ('title', 'slug')
-    list_filter = ('title',)  # Фильтр по названию
-    search_fields = ('title', 'description',)  # Поля для поиска
-    ordering = ['title']  # Сортировка по умолчанию
-    inlines = [HospitalDataInline]
+    prepopulated_fields = {'slug': ('title',)}
+    search_fields = ('title',)
 
-
-class HospitalDataAdmin(admin.ModelAdmin):
-    list_display = ('hospital', 'year', 'deaths', 'region')
-    list_filter = ('hospital', 'year', 'region')  # Фильтр по больнице и году
-    search_fields = ('hospital__title', 'year', 'region')  # Поля для поиска
-    ordering = ['hospital']
-
-    def get_search_results(self, request, queryset, search_term):
-        """
-        Переопределение метода для улучшения поиска по полю study.
-        """
-        queryset, use_distinct = super().get_search_results(request, queryset, search_term)
-        if search_term:
-            # Фильтруем по названию hospital, если есть поисковый запрос
-            queryset = queryset.filter(hospital__title__icontains=search_term)
-        return queryset, use_distinct
+    # Позволяет просматривать и загружать CSV файл
+    fieldsets = (
+        (None, {
+            'fields': ('title', 'slug', 'description', 'csv_file')
+        }),
+    )
 
 
 class StudyDataInline(admin.TabularInline):
@@ -392,16 +376,6 @@ class EconomDataAdmin(admin.ModelAdmin):
             queryset = queryset.filter(name__title__icontains=search_term)
         return queryset, use_distinct
 
-
-# Здравоохранение
-
-
-@admin.register(Hospital)
-class HospitalAdmin(admin.ModelAdmin):
-    prepopulated_fields = {'slug': ('title',)}
-
-
-admin.site.register(HospitalData, HospitalDataAdmin)
 
 # Образование
 
