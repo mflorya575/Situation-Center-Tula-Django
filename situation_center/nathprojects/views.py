@@ -42,6 +42,12 @@ def hospital_detail(request, slug):
         # Преобразование данных для графика
         df_melted = df.melt(id_vars=['region'], var_name='year', value_name='deaths')
 
+        # Удаление всех типов пробелов и табуляций в столбце 'region'
+        df['region'] = df['region'].str.strip()
+
+        # Преобразование данных для таблицы
+        table_html = df.to_html(index=False, classes='table table-striped')
+
         # Проверка наличия данных
         if df_melted.empty:
             combined_chart = "Нет данных для отображения."
@@ -130,6 +136,7 @@ def hospital_detail(request, slug):
         combined_chart_log = f"Ошибка при обработке данных: {e}"
         map_chart_linear = "Ошибка при создании карты."
         map_chart_log = "Ошибка при создании карты."
+        table_html = f"Ошибка при создании таблицы: {e}"
 
     # Создание формы для выбора региона
     region_form = RegionForm(request.GET or None, hospital_slug=slug)
@@ -139,6 +146,7 @@ def hospital_detail(request, slug):
         'combined_chart_log': combined_chart_log,
         'map_chart_linear': map_chart_linear,
         'map_chart_log': map_chart_log,
+        'table_html': table_html,
         'hospital': hospital,
         'region_form': region_form,
         'selected_region': request.GET.get('region') or 'Не выбран',
