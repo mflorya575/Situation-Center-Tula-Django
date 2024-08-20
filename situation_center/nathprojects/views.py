@@ -24,6 +24,13 @@ def hospital(request):
 def hospital_detail(request, slug):
     hospital = get_object_or_404(Hospital, slug=slug)
 
+    # Изначально установим переменные для обработки ошибок
+    combined_chart_linear = "Ошибка при обработке данных"
+    combined_chart_log = "Ошибка при обработке данных"
+    map_chart_linear = "Ошибка при создании карты"
+    map_chart_log = "Ошибка при создании карты"
+    table_html = "Ошибка при создании таблицы"
+
     csv_file_path = hospital.csv_file.path
 
     try:
@@ -50,48 +57,32 @@ def hospital_detail(request, slug):
 
         # Проверка наличия данных
         if df_melted.empty:
-            combined_chart = "Нет данных для отображения."
-            map_chart = "Нет данных для отображения на карте."
+            combined_chart_linear = "Нет данных для отображения."
+            map_chart_linear = "Нет данных для отображения на карте."
         else:
             # Создание комбинированного графика с линейной шкалой
             fig_linear = go.Figure()
-
-            # Добавление линейного графика
             fig_linear.add_trace(
                 go.Scatter(x=df_melted['year'], y=df_melted['deaths'], mode='lines+markers', name='Линейный график'))
-
-            # Добавление столбчатой диаграммы
             fig_linear.add_trace(go.Bar(x=df_melted['year'], y=df_melted['deaths'], name='Столбчатая диаграмма'))
-
-            # Настройка осей и заголовка
             fig_linear.update_layout(
                 title=f'{hospital.title} - Комбинированный график (Линейная шкала)',
                 xaxis_title='Годы',
                 yaxis_title='Смертей'
             )
-
-            # Преобразование графика в HTML
             combined_chart_linear = fig_linear.to_html(full_html=False)
 
             # Создание комбинированного графика с логарифмической шкалой
             fig_log = go.Figure()
-
-            # Добавление линейного графика
             fig_log.add_trace(
                 go.Scatter(x=df_melted['year'], y=df_melted['deaths'], mode='lines+markers', name='Линейный график'))
-
-            # Добавление столбчатой диаграммы
             fig_log.add_trace(go.Bar(x=df_melted['year'], y=df_melted['deaths'], name='Столбчатая диаграмма'))
-
-            # Настройка осей и заголовка с логарифмической шкалой
             fig_log.update_layout(
                 title=f'{hospital.title} - Комбинированный график (Логарифмическая шкала)',
                 xaxis_title='Годы',
                 yaxis_title='Смертей',
-                yaxis_type='log'  # Логарифмическая шкала
+                yaxis_type='log'
             )
-
-            # Преобразование графика в HTML
             combined_chart_log = fig_log.to_html(full_html=False)
 
             # Отображение карты для последнего доступного года
@@ -100,38 +91,37 @@ def hospital_detail(request, slug):
 
             # Создание карты с линейной шкалой
             map_fig_linear = px.choropleth(df_latest,
-                                            locations='region',
-                                            locationmode='geojson-id',
-                                            geojson='https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/russia.geojson',  # Гео-данные
-                                            featureidkey="properties.name",  # Ключ для соответствия регионам
-                                            color='deaths',
-                                            hover_name='region',
-                                            title=f'{hospital.title} - Карта смертности за {latest_year} (Линейная шкала)',
-                                            color_continuous_scale='Reds')
-
+                                           locations='region',
+                                           locationmode='geojson-id',
+                                           geojson='https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/russia.geojson',
+                                           featureidkey="properties.name",
+                                           color='deaths',
+                                           hover_name='region',
+                                           title=f'{hospital.title} - Карта смертности за {latest_year} (Линейная шкала)',
+                                           color_continuous_scale='Reds')
             map_fig_linear.update_geos(fitbounds="locations", visible=False)
-
-            # Преобразование карты в HTML
             map_chart_linear = map_fig_linear.to_html(full_html=False)
 
             # Создание карты с логарифмической шкалой
             map_fig_log = px.choropleth(df_latest,
                                         locations='region',
                                         locationmode='geojson-id',
-                                        geojson='https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/russia.geojson',  # Гео-данные
-                                        featureidkey="properties.name",  # Ключ для соответствия регионам
+                                        geojson='https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/russia.geojson',
+                                        featureidkey="properties.name",
                                         color='deaths',
                                         hover_name='region',
                                         title=f'{hospital.title} - Карта смертности за {latest_year} (Логарифмическая шкала)',
                                         color_continuous_scale='Reds',
                                         range_color=[df_latest['deaths'].min(), df_latest['deaths'].max()],
                                         color_continuous_midpoint=0.1)
-
             map_fig_log.update_geos(fitbounds="locations", visible=False)
-            map_fig_log.update_layout(coloraxis_colorbar=dict(title="Смертей", ticks="outside", tickvals=[10, 100, 1000], ticktext=["10", "100", "1000"]))
+            map_fig_log.update_layout(
+                coloraxis_colorbar=dict(title="Смертей", ticks="outside", tickvals=[10, 100, 1000],
+                                        ticktext=["10", "100", "1000"]))
             map_chart_log = map_fig_log.to_html(full_html=False)
 
     except Exception as e:
+        # Если возникла ошибка, отобразить ее
         combined_chart_linear = f"Ошибка при обработке данных: {e}"
         combined_chart_log = f"Ошибка при обработке данных: {e}"
         map_chart_linear = "Ошибка при создании карты."
