@@ -104,10 +104,11 @@ class Road(models.Model):
     title = models.CharField(max_length=200, verbose_name='Название', blank=True, null=True)
     slug = models.SlugField(unique=True, blank=True, null=True)
     description = models.TextField(verbose_name='Описание', blank=True)
+    csv_file = models.FileField(upload_to=csv_upload_to, verbose_name='CSV файл', blank=True, null=True)
 
     class Meta:
-        verbose_name = 'Безопас. дороги'
-        verbose_name_plural = 'Безопас. дороги'
+        verbose_name = 'Дороги'
+        verbose_name_plural = 'Дороги'
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -116,21 +117,6 @@ class Road(models.Model):
 
     def __str__(self):
         return self.title if self.title else 'Без названия'
-
-
-class RoadData(models.Model):
-    name = models.ForeignKey(Road, related_name='data', on_delete=models.CASCADE)
-    year = models.IntegerField()
-    quantity = models.FloatField()
-    region = models.CharField(max_length=50, choices=REGION_CHOICES, verbose_name='Регион', blank=True)
-
-    class Meta:
-        verbose_name = 'Данные по дорогам'
-        verbose_name_plural = 'Данные по дорогам'
-        ordering = ['name']
-
-    def __str__(self):
-        return f"{self.year} - {self.quantity} дороги"
 
 
 class Science(models.Model):
