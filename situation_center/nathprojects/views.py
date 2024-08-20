@@ -97,7 +97,7 @@ def hospital_detail(request, slug):
                                            featureidkey="properties.name",
                                            color='deaths',
                                            hover_name='region',
-                                           title=f'{hospital.title} - Карта смертности за {latest_year} (Линейная шкала)',
+                                           title=f'{hospital.title} - {latest_year} (Линейная шкала)',
                                            color_continuous_scale='Reds')
             map_fig_linear.update_geos(fitbounds="locations", visible=False)
             map_chart_linear = map_fig_linear.to_html(full_html=False)
@@ -110,7 +110,7 @@ def hospital_detail(request, slug):
                                         featureidkey="properties.name",
                                         color='deaths',
                                         hover_name='region',
-                                        title=f'{hospital.title} - Карта смертности за {latest_year} (Логарифмическая шкала)',
+                                        title=f'{hospital.title} - {latest_year} (Логарифмическая шкала)',
                                         color_continuous_scale='Reds',
                                         range_color=[df_latest['deaths'].min(), df_latest['deaths'].max()],
                                         color_continuous_midpoint=0.1)
