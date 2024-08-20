@@ -17,34 +17,18 @@ class HospitalAdmin(admin.ModelAdmin):
     )
 
 
-class StudyDataInline(admin.TabularInline):
-    model = StudyData
-    extra = 1
-
-
+@admin.register(Study)
 class StudyAdmin(admin.ModelAdmin):
     list_display = ('title', 'slug')
-    list_filter = ('title',)  # Фильтр по названию
-    search_fields = ('title', 'description')  # Поля для поиска
-    ordering = ['title']  # Сортировка по умолчанию
-    inlines = [StudyDataInline]
+    prepopulated_fields = {'slug': ('title',)}
+    search_fields = ('title',)
 
-
-class StudyDataAdmin(admin.ModelAdmin):
-    list_display = ('study', 'year', 'pupil', 'region')
-    list_filter = ('study', 'year', 'region')  # Фильтр по больнице и году
-    search_fields = ('study__title', 'year', 'region')  # Поля для поиска
-    ordering = ['study']
-
-    def get_search_results(self, request, queryset, search_term):
-        """
-        Переопределение метода для улучшения поиска по полю hospital.
-        """
-        queryset, use_distinct = super().get_search_results(request, queryset, search_term)
-        if search_term:
-            # Фильтруем по названию hospital, если есть поисковый запрос
-            queryset = queryset.filter(study__title__icontains=search_term)
-        return queryset, use_distinct
+    # Позволяет просматривать и загружать CSV файл
+    fieldsets = (
+        (None, {
+            'fields': ('title', 'slug', 'description', 'csv_file')
+        }),
+    )
 
 
 class DemographicsDataInline(admin.TabularInline):
@@ -376,16 +360,6 @@ class EconomDataAdmin(admin.ModelAdmin):
             queryset = queryset.filter(name__title__icontains=search_term)
         return queryset, use_distinct
 
-
-# Образование
-
-
-@admin.register(Study)
-class StudyAdmin(admin.ModelAdmin):
-    prepopulated_fields = {'slug': ('title',)}
-
-
-admin.site.register(StudyData, StudyDataAdmin)
 
 
 # Демография

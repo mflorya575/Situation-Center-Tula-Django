@@ -47,6 +47,7 @@ class Study(models.Model):
     title = models.CharField(max_length=200, verbose_name='Название', blank=True, null=True)
     slug = models.SlugField(unique=True, blank=True, null=True)
     description = models.TextField(verbose_name='Описание', blank=True)
+    csv_file = models.FileField(upload_to=csv_upload_to, verbose_name='CSV файл', blank=True, null=True)
 
     class Meta:
         verbose_name = 'Образование'
@@ -59,21 +60,6 @@ class Study(models.Model):
 
     def __str__(self):
         return self.title if self.title else 'Без названия'
-
-
-class StudyData(models.Model):
-    study = models.ForeignKey(Study, related_name='data', on_delete=models.CASCADE)
-    year = models.IntegerField()
-    pupil = models.IntegerField()
-    region = models.CharField(max_length=50, choices=REGION_CHOICES, verbose_name='Регион', blank=True)
-
-    class Meta:
-        verbose_name = 'Данные по образованию'
-        verbose_name_plural = 'Данные по образованию'
-        ordering = ['study']
-
-    def __str__(self):
-        return f"{self.year} - {self.pupil} учащихся"
 
 
 class Demographics(models.Model):
