@@ -167,51 +167,134 @@ def study(request):
 
 
 def study_detail(request, slug):
-    # Получаем конкретную запись из базы данных по slug
     study = get_object_or_404(Study, slug=slug)
-    study_data = study.data.all().order_by('year')
 
-    selected_region = request.GET.get('region')
-    if selected_region:
-        study_data = study_data.filter(region=selected_region)
+    csv_file_path = study.csv_file.path
 
-    # Преобразуем данные в DataFrame для удобства работы с Plotly
-    df = pd.DataFrame(list(study_data.values()))
+    try:
+        # Загрузка данных из CSV
+        df = pd.read_csv(csv_file_path)
 
-    # Проверка наличия данных
-    if df.empty:
-        combined_chart = "Нет данных для отображения."
-    else:
-        # Создание комбинированного графика
-        fig = go.Figure()
+        # Проверка на наличие столбца 'region'
+        if 'region' not in df.columns:
+            raise ValueError("Столбец 'region' не найден в CSV-файле.")
 
-        # Добавление линейного графика
-        fig.add_trace(go.Scatter(x=df['year'], y=df['pupil'],
-                                 mode='lines+markers',
-                                 name='Линейный график'))
+        # Фильтрация по выбранному региону
+        selected_region = request.GET.get('region')
+        if selected_region:
+            df = df[df['region'] == selected_region]
 
-        # Добавление столбчатой диаграммы
-        fig.add_trace(go.Bar(x=df['year'], y=df['pupil'],
-                             name='Столбчатая диаграмма'))
+        # Преобразование данных для графика
+        df_melted = df.melt(id_vars=['region'], var_name='year', value_name='students')
 
-        # Настройка осей и заголовка
-        fig.update_layout(
-            title=f'{study.title} - Комбинированный график',
-            xaxis_title='Годы',
-            yaxis_title='Обучающихся'
-        )
+        # Удаление всех типов пробелов и табуляций в столбце 'region'
+        df['region'] = df['region'].str.strip()
 
-        # Преобразование графика в HTML
-        combined_chart = fig.to_html(full_html=False)
+        # Преобразование данных для таблицы
+        table_html = df.to_html(index=False, classes='table table-striped')
+
+        # Проверка наличия данных
+        if df_melted.empty:
+            combined_chart = "Нет данных для отображения."
+            map_chart = "Нет данных для отображения на карте."
+        else:
+            # Создание комбинированного графика с линейной шкалой
+            fig_linear = go.Figure()
+
+            # Добавление линейного графика
+            fig_linear.add_trace(
+                go.Scatter(x=df_melted['year'], y=df_melted['students'], mode='lines+markers', name='Линейный график'))
+
+            # Добавление столбчатой диаграммы
+            fig_linear.add_trace(go.Bar(x=df_melted['year'], y=df_melted['students'], name='Столбчатая диаграмма'))
+
+            # Настройка осей и заголовка
+            fig_linear.update_layout(
+                title=f'{study.title} - Комбинированный график (Линейная шкала)',
+                xaxis_title='Годы',
+                yaxis_title='Обучающиеся'
+            )
+
+            # Преобразование графика в HTML
+            combined_chart_linear = fig_linear.to_html(full_html=False)
+
+            # Создание комбинированного графика с логарифмической шкалой
+            fig_log = go.Figure()
+
+            # Добавление линейного графика
+            fig_log.add_trace(
+                go.Scatter(x=df_melted['year'], y=df_melted['students'], mode='lines+markers', name='Линейный график'))
+
+            # Добавление столбчатой диаграммы
+            fig_log.add_trace(go.Bar(x=df_melted['year'], y=df_melted['students'], name='Столбчатая диаграмма'))
+
+            # Настройка осей и заголовка с логарифмической шкалой
+            fig_log.update_layout(
+                title=f'{study.title} - Комбинированный график (Логарифмическая шкала)',
+                xaxis_title='Годы',
+                yaxis_title='Обучающиеся',
+                yaxis_type='log'  # Логарифмическая шкала
+            )
+
+            # Преобразование графика в HTML
+            combined_chart_log = fig_log.to_html(full_html=False)
+
+            # Отображение карты для последнего доступного года
+            latest_year = df_melted['year'].max()
+            df_latest = df_melted[df_melted['year'] == latest_year]
+
+            # Создание карты с линейной шкалой
+            map_fig_linear = px.choropleth(df_latest,
+                                            locations='region',
+                                            locationmode='geojson-id',
+                                            geojson='https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/russia.geojson',  # Гео-данные
+                                            featureidkey="properties.name",  # Ключ для соответствия регионам
+                                            color='students',
+                                            hover_name='region',
+                                            title=f'{study.title} - {latest_year} (Линейная шкала)',
+                                            color_continuous_scale='Reds')
+
+            map_fig_linear.update_geos(fitbounds="locations", visible=False)
+
+            # Преобразование карты в HTML
+            map_chart_linear = map_fig_linear.to_html(full_html=False)
+
+            # Создание карты с логарифмической шкалой
+            map_fig_log = px.choropleth(df_latest,
+                                        locations='region',
+                                        locationmode='geojson-id',
+                                        geojson='https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/russia.geojson',  # Гео-данные
+                                        featureidkey="properties.name",  # Ключ для соответствия регионам
+                                        color='students',
+                                        hover_name='region',
+                                        title=f'{study.title} - {latest_year} (Логарифмическая шкала)',
+                                        color_continuous_scale='Reds',
+                                        range_color=[df_latest['students'].min(), df_latest['students'].max()],
+                                        color_continuous_midpoint=0.1)
+
+            map_fig_log.update_geos(fitbounds="locations", visible=False)
+            map_fig_log.update_layout(coloraxis_colorbar=dict(title="Обучающиеся", ticks="outside", tickvals=[10, 100, 1000], ticktext=["10", "100", "1000"]))
+            map_chart_log = map_fig_log.to_html(full_html=False)
+
+    except Exception as e:
+        combined_chart_linear = f"Ошибка при обработке данных: {e}"
+        combined_chart_log = f"Ошибка при обработке данных: {e}"
+        map_chart_linear = "Ошибка при создании карты."
+        map_chart_log = "Ошибка при создании карты."
+        table_html = f"Ошибка при создании таблицы: {e}"
 
     # Создание формы для выбора региона
-    region_form = RegionForm(request.GET or None)
+    region_form = StudyForm(request.GET or None, study_slug=slug)
 
     context = {
-        'combined_chart': combined_chart,
+        'combined_chart_linear': combined_chart_linear,
+        'combined_chart_log': combined_chart_log,
+        'map_chart_linear': map_chart_linear,
+        'map_chart_log': map_chart_log,
+        'table_html': table_html,
         'study': study,
         'region_form': region_form,
-        'selected_region': dict(REGION_CHOICES).get(selected_region, 'Не выбран'),
+        'selected_region': request.GET.get('region') or 'Не выбран',
         'title': 'СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'nathprojects/study_detail.html', context)
