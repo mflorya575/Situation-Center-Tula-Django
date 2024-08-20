@@ -7,7 +7,7 @@ import folium
 from folium.plugins import MarkerCluster
 
 from .models import *
-from .forms import RegionForm
+from .forms import *
 
 
 def hospital(request):

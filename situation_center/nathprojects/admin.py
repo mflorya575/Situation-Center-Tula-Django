@@ -361,7 +361,6 @@ class EconomDataAdmin(admin.ModelAdmin):
         return queryset, use_distinct
 
 
-
 # Демография
 
 @admin.register(Demographics)
