@@ -45,34 +45,18 @@ class DemographicsAdmin(admin.ModelAdmin):
     )
 
 
-class CultureDataInline(admin.TabularInline):
-    model = CultureData
-    extra = 1
-
-
+@admin.register(Culture)
 class CultureAdmin(admin.ModelAdmin):
     list_display = ('title', 'slug')
-    list_filter = ('title',)  # Фильтр по названию
-    search_fields = ('title', 'description')  # Поля для поиска
-    ordering = ['title']  # Сортировка по умолчанию
-    inlines = [CultureDataInline]
+    prepopulated_fields = {'slug': ('title',)}
+    search_fields = ('title',)
 
-
-class CultureDataAdmin(admin.ModelAdmin):
-    list_display = ('name', 'year', 'people', 'region')
-    list_filter = ('name', 'year', 'region')  # Фильтр по больнице и году
-    search_fields = ('name__title', 'year', 'region')  # Поля для поиска
-    ordering = ['name']
-
-    def get_search_results(self, request, queryset, search_term):
-        """
-        Переопределение метода для улучшения поиска по полю name.
-        """
-        queryset, use_distinct = super().get_search_results(request, queryset, search_term)
-        if search_term:
-            # Фильтруем по названию hospital, если есть поисковый запрос
-            queryset = queryset.filter(name__title__icontains=search_term)
-        return queryset, use_distinct
+    # Позволяет просматривать и загружать CSV файл
+    fieldsets = (
+        (None, {
+            'fields': ('title', 'slug', 'description', 'csv_file')
+        }),
+    )
 
 
 class RoadDataInline(admin.TabularInline):
@@ -343,16 +327,6 @@ class EconomDataAdmin(admin.ModelAdmin):
             # Фильтруем по названию hospital, если есть поисковый запрос
             queryset = queryset.filter(name__title__icontains=search_term)
         return queryset, use_distinct
-
-
-# Культура
-
-@admin.register(Culture)
-class CultureAdmin(admin.ModelAdmin):
-    prepopulated_fields = {'slug': ('title',)}
-
-
-admin.site.register(CultureData, CultureDataAdmin)
 
 
 # Дороги
