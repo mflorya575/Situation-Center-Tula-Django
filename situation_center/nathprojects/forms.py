@@ -391,7 +391,7 @@ class LabourForm(forms.Form):
         super(LabourForm, self).__init__(*args, **kwargs)
 
         try:
-            # Найти мир по slug и загрузить CSV
+            # Найти труд по slug и загрузить CSV
             labour = Labour.objects.get(slug=labour_slug)
             csv_file_path = labour.csv_file.path
             df = pd.read_csv(csv_file_path)
