@@ -425,7 +425,7 @@ class EconomForm(forms.Form):
         super(EconomForm, self).__init__(*args, **kwargs)
 
         try:
-            # Найти труд по slug и загрузить CSV
+            # Найти экономику по slug и загрузить CSV
             econom = Econom.objects.get(slug=econom_slug)
             csv_file_path = econom.csv_file.path
             df = pd.read_csv(csv_file_path)
