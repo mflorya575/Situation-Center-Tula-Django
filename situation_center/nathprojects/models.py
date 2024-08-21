@@ -142,6 +142,7 @@ class Ecology(models.Model):
     title = models.CharField(max_length=200, verbose_name='Название', blank=True, null=True)
     slug = models.SlugField(unique=True, blank=True, null=True)
     description = models.TextField(verbose_name='Описание', blank=True)
+    csv_file = models.FileField(upload_to=csv_upload_to, verbose_name='CSV файл', blank=True, null=True)
 
     class Meta:
         verbose_name = 'Экология'
@@ -154,21 +155,6 @@ class Ecology(models.Model):
 
     def __str__(self):
         return self.title if self.title else 'Без названия'
-
-
-class EcologyData(models.Model):
-    name = models.ForeignKey(Ecology, related_name='data', on_delete=models.CASCADE)
-    year = models.IntegerField()
-    data = models.FloatField()
-    region = models.CharField(max_length=50, choices=REGION_CHOICES, verbose_name='Регион', blank=True)
-
-    class Meta:
-        verbose_name = 'Данные по экологии'
-        verbose_name_plural = 'Данные по экологии'
-        ordering = ['name']
-
-    def __str__(self):
-        return f"{self.year} - {self.data} экологии"
 
 
 class Business(models.Model):
