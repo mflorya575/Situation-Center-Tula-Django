@@ -1898,3 +1898,14 @@ def econom_detail(request, slug):
         'title': 'СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'nathprojects/econom_detail.html', context)
+
+
+def mainline(request):
+    # Получаем данные из базы данных и сортируем их по годам
+    mainlines = Mainline.objects.all()
+
+    context = {
+        'mainlines': mainlines,
+        'title': 'Расширение магистральной инфраструктуры | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'nathprojects/mainline.html', context)
