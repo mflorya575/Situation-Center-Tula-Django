@@ -13,7 +13,7 @@
                 <div class="form-group">
                     <select name="region" id="id_region">
                         {% for value, display in region_form.fields.region.choices %}
-                            <option value="{{ value }}" {% if value == region_form.initial.region %}selected{% endif %}>
+                            <option value="{{ value }}" {% if value == selected_region %}selected{% endif %}>
                                 {{ display }}
                             </option>
                         {% endfor %}
@@ -37,7 +37,19 @@
             {% endif %}
             <div id="chart" class="detailpr-section__img">
                 <h2>Комбинированный график</h2>
-                <div>{{ combined_chart|safe }}</div>
+                <div>{{ combined_chart_linear|safe }}</div>
+            </div>
+            <div id="chart" class="detailpr-section__img">
+                <h3>Логарифмическая шкала</h3>
+                <div>{{ combined_chart_log|safe }}</div>
+            </div>
+            <div id="chart" class="detailpr-section__img">
+                <h3>Карта смертности</h3>
+                <div>{{ map_chart_linear|safe }}</div>
+            </div>
+            <div id="chart" class="detailpr-section__img">
+                <h3>Таблица данных</h3>
+                <div>{{ table_html|safe }}</div>
             </div>
             <div class="detailpr-section__block">
                 <p class="detailpr-section__description">{{ world.description }}</p>
