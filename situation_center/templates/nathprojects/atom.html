@@ -41,7 +41,7 @@
 
             {% for atom in atoms %}
             <div class="hospital-section__card">
-                <a href="#" class="hospital-section__link">{{ atom.title }}</a>
+                <a href="{% url 'nathprojects:atom_detail' slug=atom.slug %}" class="hospital-section__link">{{ atom.title }}</a>
             </div>
             {% endfor %}
 
