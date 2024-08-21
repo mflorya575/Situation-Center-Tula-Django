@@ -221,7 +221,7 @@ class EcologyForm(forms.Form):
         super(EcologyForm, self).__init__(*args, **kwargs)
 
         try:
-            # Найти науку по slug и загрузить CSV
+            # Найти экологию по slug и загрузить CSV
             ecology = Ecology.objects.get(slug=ecology_slug)
             csv_file_path = ecology.csv_file.path
             df = pd.read_csv(csv_file_path)
@@ -255,7 +255,7 @@ class BusinessForm(forms.Form):
         super(BusinessForm, self).__init__(*args, **kwargs)
 
         try:
-            # Найти науку по slug и загрузить CSV
+            # Найти предпринимательство по slug и загрузить CSV
             business = Business.objects.get(slug=business_slug)
             csv_file_path = business.csv_file.path
             df = pd.read_csv(csv_file_path)
@@ -289,7 +289,7 @@ class TurismForm(forms.Form):
         super(TurismForm, self).__init__(*args, **kwargs)
 
         try:
-            # Найти науку по slug и загрузить CSV
+            # Найти туризм по slug и загрузить CSV
             turism = Turism.objects.get(slug=turism_slug)
             csv_file_path = turism.csv_file.path
             df = pd.read_csv(csv_file_path)
@@ -323,9 +323,43 @@ class HouseForm(forms.Form):
         super(HouseForm, self).__init__(*args, **kwargs)
 
         try:
-            # Найти науку по slug и загрузить CSV
+            # Найти жилье по slug и загрузить CSV
             house = House.objects.get(slug=house_slug)
             csv_file_path = house.csv_file.path
+            df = pd.read_csv(csv_file_path)
+
+            # Проверьте, что столбец 'region' присутствует
+            if 'region' not in df.columns:
+                raise ValueError("Столбец 'region' не найден в CSV-файле.")
+
+            # Получить уникальные регионы из CSV-файла
+            unique_regions = df['region'].unique()
+
+            # Обновить choices на основе данных из CSV
+            self.fields['region'].choices = [(region, region) for region in unique_regions]
+
+        except Exception as e:
+            # Обработка ошибок чтения файла или поиска больницы
+            print(f"Ошибка: {e}")
+            self.fields['region'].choices = [('Ошибка', 'Ошибка загрузки данных')]
+
+
+class WorldForm(forms.Form):
+    region = forms.ChoiceField(
+        choices=[],  # Начальное значение, будет заменено в __init__
+        label='Выберите регион',
+        required=True,
+    )
+
+    def __init__(self, *args, **kwargs):
+        # Получаем slug больницы из kwargs
+        world_slug = kwargs.pop('world_slug')
+        super(WorldForm, self).__init__(*args, **kwargs)
+
+        try:
+            # Найти мир по slug и загрузить CSV
+            world = World.objects.get(slug=world_slug)
+            csv_file_path = world.csv_file.path
             df = pd.read_csv(csv_file_path)
 
             # Проверьте, что столбец 'region' присутствует
