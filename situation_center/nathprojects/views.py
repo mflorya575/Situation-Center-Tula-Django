@@ -1630,6 +1630,17 @@ def labour_detail(request, slug):
     return render(request, 'nathprojects/labour_detail.html', context)
 
 
+def atom(request):
+    # Получаем данные из базы данных и сортируем их по годам
+    atoms = Atom.objects.all()
+
+    context = {
+        'atoms': atoms,
+        'title': 'Развитие технологий в области атомной энергии | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'nathprojects/atom.html', context)
+
+
 def econom(request):
     # Получаем данные из базы данных и сортируем их по годам
     economs = Econom.objects.all()
