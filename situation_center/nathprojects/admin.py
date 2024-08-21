@@ -197,3 +197,17 @@ class EconomAdmin(admin.ModelAdmin):
             'fields': ('title', 'slug', 'description', 'csv_file')
         }),
     )
+
+
+@admin.register(Mainline)
+class MainlineAdmin(admin.ModelAdmin):
+    list_display = ('title', 'slug')
+    prepopulated_fields = {'slug': ('title',)}
+    search_fields = ('title',)
+
+    # Позволяет просматривать и загружать CSV файл
+    fieldsets = (
+        (None, {
+            'fields': ('title', 'slug', 'description', 'csv_file')
+        }),
+    )
