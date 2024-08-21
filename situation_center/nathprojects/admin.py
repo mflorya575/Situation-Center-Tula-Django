@@ -73,34 +73,18 @@ class RoadAdmin(admin.ModelAdmin):
     )
 
 
-class ScienceDataInline(admin.TabularInline):
-    model = ScienceData
-    extra = 1
-
-
+@admin.register(Science)
 class ScienceAdmin(admin.ModelAdmin):
     list_display = ('title', 'slug')
-    list_filter = ('title',)  # Фильтр по названию
-    search_fields = ('title', 'description')  # Поля для поиска
-    ordering = ['title']  # Сортировка по умолчанию
-    inlines = [ScienceDataInline]
+    prepopulated_fields = {'slug': ('title',)}
+    search_fields = ('title',)
 
-
-class ScienceDataAdmin(admin.ModelAdmin):
-    list_display = ('name', 'year', 'data', 'region')
-    list_filter = ('name', 'year', 'region')  # Фильтр по больнице и году
-    search_fields = ('name__title', 'year', 'region')  # Поля для поиска
-    ordering = ['name']
-
-    def get_search_results(self, request, queryset, search_term):
-        """
-        Переопределение метода для улучшения поиска по полю name.
-        """
-        queryset, use_distinct = super().get_search_results(request, queryset, search_term)
-        if search_term:
-            # Фильтруем по названию hospital, если есть поисковый запрос
-            queryset = queryset.filter(name__title__icontains=search_term)
-        return queryset, use_distinct
+    # Позволяет просматривать и загружать CSV файл
+    fieldsets = (
+        (None, {
+            'fields': ('title', 'slug', 'description', 'csv_file')
+        }),
+    )
 
 
 class EcologyDataInline(admin.TabularInline):
@@ -311,16 +295,6 @@ class EconomDataAdmin(admin.ModelAdmin):
             # Фильтруем по названию hospital, если есть поисковый запрос
             queryset = queryset.filter(name__title__icontains=search_term)
         return queryset, use_distinct
-
-
-# Наука
-
-@admin.register(Science)
-class ScienceAdmin(admin.ModelAdmin):
-    prepopulated_fields = {'slug': ('title',)}
-
-
-admin.site.register(ScienceData, ScienceDataAdmin)
 
 
 # Экология
