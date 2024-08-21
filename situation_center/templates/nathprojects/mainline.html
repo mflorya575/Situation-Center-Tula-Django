@@ -42,7 +42,7 @@
 
             {% for mainline in mainlines %}
             <div class="hospital-section__card">
-                <a href="#" class="hospital-section__link">{{ mainline.title }}</a>
+                <a href="{% url 'nathprojects:mainline_detail' slug=mainline.slug %}" class="hospital-section__link">{{ mainline.title }}</a>
             </div>
             {% endfor %}
 

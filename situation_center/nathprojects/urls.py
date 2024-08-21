@@ -50,4 +50,5 @@ urlpatterns = [
     path('project-econom/<slug:slug>/', views.econom_detail, name='econom_detail'),
     # Магистральная
     path('project-mainline/', views.mainline, name='mainline'),
+    path('project-mainline/<slug:slug>/', views.mainline_detail, name='mainline_detail'),
 ]
