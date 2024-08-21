@@ -252,6 +252,25 @@ class Labour(models.Model):
         return self.title if self.title else 'Без названия'
 
 
+class Atom(models.Model):
+    title = models.CharField(max_length=200, verbose_name='Название', blank=True, null=True)
+    slug = models.SlugField(unique=True, blank=True, null=True)
+    description = models.TextField(verbose_name='Описание', blank=True)
+    csv_file = models.FileField(upload_to=csv_upload_to, verbose_name='CSV файл', blank=True, null=True)
+
+    class Meta:
+        verbose_name = 'Атомка'
+        verbose_name_plural = 'Атомка'
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.title if self.title else 'Без названия'
+
+
 class Econom(models.Model):
     title = models.CharField(max_length=200, verbose_name='Название', blank=True, null=True)
     slug = models.SlugField(unique=True, blank=True, null=True)

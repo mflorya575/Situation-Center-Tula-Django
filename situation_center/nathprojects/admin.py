@@ -171,6 +171,20 @@ class LabourAdmin(admin.ModelAdmin):
     )
 
 
+@admin.register(Atom)
+class AtomAdmin(admin.ModelAdmin):
+    list_display = ('title', 'slug')
+    prepopulated_fields = {'slug': ('title',)}
+    search_fields = ('title',)
+
+    # Позволяет просматривать и загружать CSV файл
+    fieldsets = (
+        (None, {
+            'fields': ('title', 'slug', 'description', 'csv_file')
+        }),
+    )
+
+
 @admin.register(Econom)
 class EconomAdmin(admin.ModelAdmin):
     list_display = ('title', 'slug')
