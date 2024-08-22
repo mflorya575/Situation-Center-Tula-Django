@@ -81,6 +81,17 @@ def investing(request):
 
     context = {
         'investings': investings,
-        'title': 'Услуги | СЦ РЭУ филиал им. Г.В. Плеханова',
+        'title': 'Инвестиции | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'operdata/investing.html', context)
+
+
+def finpr(request):
+    # Получаем данные из базы данных и сортируем их по годам
+    finprs = FinPr.objects.all()
+
+    context = {
+        'finprs': finprs,
+        'title': 'Финансы предприятий | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'operdata/finpr.html', context)

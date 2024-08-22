@@ -20,4 +20,6 @@ urlpatterns = [
     path('operdata-uslugi/', views.uslugi, name='uslugi'),
     # Инвестиции
     path('operdata-investing/', views.investing, name='investing'),
+    # Финансы предприятий
+    path('operdata-finpr/', views.finpr, name='finpr'),
 ]
