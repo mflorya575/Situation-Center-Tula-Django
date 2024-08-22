@@ -44,6 +44,7 @@ urlpatterns = [
     path('', include('strategy.urls', namespace='strategy')),
     path('', include('userauth.urls', namespace='userauth')),
     path('api/', include('api.urls', namespace='api')),
+    path('operdata/', include('operdata.urls', namespace='operdata')),
 
     # Карта сайта
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap')
