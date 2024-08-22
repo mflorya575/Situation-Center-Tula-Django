@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'taggit',
     'django_recaptcha',
     'rest_framework',
+    'drf_spectacular',
 
     # Карта сайта
     'django.contrib.sites',
@@ -117,7 +118,14 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
 
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 20
+    'PAGE_SIZE': 20,
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Sit Center API",
+    "DESCRIPTION": "This API from Situation Center Tula.s university",
+    "VERSION": "1.0.0",
 }
 
 # Cache configuration
