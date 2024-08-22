@@ -32,4 +32,6 @@ urlpatterns = [
     path('operdata-salary/', views.salary, name='salary'),
     # Безработица
     path('operdata-joblessness/', views.joblessness, name='joblessness'),
+    # Рынок труда
+    path('operdata-jobmarket/', views.jobmarket, name='jobmarket'),
 ]

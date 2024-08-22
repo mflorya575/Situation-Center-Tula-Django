@@ -150,3 +150,14 @@ def joblessness(request):
         'title': 'Безработица | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'operdata/joblessness.html', context)
+
+
+def jobmarket(request):
+    # Получаем данные из базы данных и сортируем их по годам
+    jobmarkets = JobMarket.objects.all()
+
+    context = {
+        'jobmarkets': jobmarkets,
+        'title': 'Рынок труда | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'operdata/jobmarket.html', context)
