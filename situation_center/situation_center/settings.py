@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'strategy.apps.StrategyConfig',
     'userauth.apps.UserauthConfig',
     'api.apps.ApiConfig',
+    'operdata.apps.OperdataConfig',
 
     # Сторонние библиотеки
     'mptt',
