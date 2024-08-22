@@ -28,4 +28,6 @@ urlpatterns = [
     path('operdata-prodprice/', views.prodprice, name='prodprice'),
     # Доходы
     path('operdata-revenue/', views.revenue, name='revenue'),
+    # Зарплата
+    path('operdata-salary/', views.salary, name='salary'),
 ]

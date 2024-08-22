@@ -128,3 +128,14 @@ def revenue(request):
         'title': 'Доходы | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'operdata/revenue.html', context)
+
+
+def salary(request):
+    # Получаем данные из базы данных и сортируем их по годам
+    salaries = Salary.objects.all()
+
+    context = {
+        'salaries': salaries,
+        'title': 'Зарплата | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'operdata/salary.html', context)
