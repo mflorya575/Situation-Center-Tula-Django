@@ -297,7 +297,7 @@
             <h3 class="container third-section__title">ОПЕРАТИВНЫЕ ДАННЫЕ</h3>
             <!-- Обертка карточек -->
             <div class="third-section__wrapper">
-                <!-- Карточка здравоохранения -->
+                <!-- Карточка промышленности -->
                 <div class="third-section__card">
                     {% if user.is_authenticated %}
                         <a href="{% url 'operdata:industry' %}">
@@ -311,17 +311,17 @@
                         <a href="{% url 'userauth:login' %}" class="third-section__text">Промышленность</a>
                     {% endif %}
                 </div>
-                <!-- Карточка образования -->
+                <!-- Карточка с/х -->
                 <div class="third-section__card">
                     <a href="{% url "operdata:agro" %}"><img src="{% static "./assets/icons/study-image.png" %}" alt="иконка образования" class="third-section__img2"></a>
                     <a href="{% url "operdata:agro" %}" class="third-section__text">Сельское<br> хозяйство</a>
                 </div>
-                <!-- Карточка демографии -->
+                <!-- Карточка строительства -->
                 <div class="third-section__card">
                     <a href="{% url "operdata:building" %}"><img src="{% static "./assets/icons/demographics-image.png" %}" alt="иконка демографии" class="third-section__img3"></a>
                     <a href="{% url "operdata:building" %}" class="third-section__text">Строительство</a>
                 </div>
-                <!-- Карточка культуры -->
+                <!-- Карточка транспорта -->
                 <div class="third-section__card">
                     <a href="{% url "operdata:transport" %}"><img src="{% static "./assets/icons/culture-image.png" %}" alt="иконка культуры" class="third-section__img4"></a>
                     <a href="{% url "operdata:transport" %}" class="third-section__text">Транспорт</a>
@@ -336,7 +336,12 @@
                     <a href="{% url "nathprojects:science" %}"><img src="{% static "./assets/icons/science-image.png" %}" alt="иконка науки и университетов" class="third-section__img6"></a>
                     <a href="{% url "nathprojects:science" %}" class="third-section__text">Наука и университеты</a>
                 </div>
-                <!-- Карточка экологии -->
+                <!-- Карточка услуги -->
+                <div class="third-section__card">
+                    <a href="{% url "operdata:uslugi" %}"><img src="{% static "./assets/icons/ecology-image.png" %}" alt="иконка экологии" class="third-section__img8"></a>
+                    <a href="{% url "operdata:uslugi" %}" class="third-section__text">Услуги</a>
+                </div>
+                <!-- Карточка торговли -->
                 <div class="third-section__card">
                     <a href="{% url "operdata:trading" %}"><img src="{% static "./assets/icons/ecology-image.png" %}" alt="иконка экологии" class="third-section__img8"></a>
                     <a href="{% url "operdata:trading" %}" class="third-section__text">Торговля</a>

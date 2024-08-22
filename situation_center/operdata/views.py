@@ -62,3 +62,14 @@ def trading(request):
         'title': 'Торговля | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'operdata/trading.html', context)
+
+
+def uslugi(request):
+    # Получаем данные из базы данных и сортируем их по годам
+    uslugis = Uslugi.objects.all()
+
+    context = {
+        'uslugis': uslugis,
+        'title': 'Услуги | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'operdata/uslugi.html', context)
