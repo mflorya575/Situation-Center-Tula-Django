@@ -51,12 +51,14 @@ INSTALLED_APPS = [
     'errors.apps.ErrorsConfig',
     'strategy.apps.StrategyConfig',
     'userauth.apps.UserauthConfig',
+    'api.apps.ApiConfig',
 
     # Сторонние библиотеки
     'mptt',
     'django_mptt_admin',
     'taggit',
     'django_recaptcha',
+    'rest_framework',
 
     # Карта сайта
     'django.contrib.sites',
