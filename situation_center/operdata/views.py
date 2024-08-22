@@ -95,3 +95,14 @@ def finpr(request):
         'title': 'Финансы предприятий | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'operdata/finpr.html', context)
+
+
+def price(request):
+    # Получаем данные из базы данных и сортируем их по годам
+    prices = Price.objects.all()
+
+    context = {
+        'prices': prices,
+        'title': 'Потребительские цены | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'operdata/price.html', context)
