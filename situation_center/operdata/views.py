@@ -51,3 +51,14 @@ def transport(request):
         'title': 'Транспорт | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'operdata/transport.html', context)
+
+
+def trading(request):
+    # Получаем данные из базы данных и сортируем их по годам
+    tradings = Trading.objects.all()
+
+    context = {
+        'tradings': tradings,
+        'title': 'Торговля | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'operdata/trading.html', context)
