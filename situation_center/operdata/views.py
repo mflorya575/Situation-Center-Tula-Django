@@ -139,3 +139,14 @@ def salary(request):
         'title': 'Зарплата | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'operdata/salary.html', context)
+
+
+def joblessness(request):
+    # Получаем данные из базы данных и сортируем их по годам
+    joblessnesses = Joblessness.objects.all()
+
+    context = {
+        'joblessnesses': joblessnesses,
+        'title': 'Безработица | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'operdata/joblessness.html', context)
