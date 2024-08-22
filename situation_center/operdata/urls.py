@@ -12,4 +12,6 @@ urlpatterns = [
     path('operdata-agro/', views.agro, name='agro'),
     # Строительство
     path('operdata-building/', views.building, name='building'),
+    # Транспорт
+    path('operdata-transport/', views.transport, name='transport'),
 ]
