@@ -1,10 +1,10 @@
 from django.urls import path
 
-from . import views
+from .views import *
 
 
 app_name = 'api'
 
 urlpatterns = [
-
+    path('hospital/<slug:slug>/', HospitalDetailAPIView.as_view(), name='hospital-detail-api'),
 ]
