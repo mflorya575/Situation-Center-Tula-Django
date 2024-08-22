@@ -300,10 +300,10 @@
                 <!-- Карточка здравоохранения -->
                 <div class="third-section__card">
                     {% if user.is_authenticated %}
-                        <a href="{% url 'nathprojects:hospital' %}">
+                        <a href="{% url 'operdata:industry' %}">
                             <img src="{% static 'assets/icons/hospital-image.png' %}" alt="иконка здравоохранения" class="third-section__img1">
                         </a>
-                        <a href="{% url 'nathprojects:hospital' %}" class="third-section__text">Промышленность</a>
+                        <a href="{% url 'operdata:industry' %}" class="third-section__text">Промышленность</a>
                     {% else %}
                         <a href="{% url 'userauth:login' %}">
                             <img src="{% static 'assets/icons/hospital-image.png' %}" alt="иконка здравоохранения" class="third-section__img1">
