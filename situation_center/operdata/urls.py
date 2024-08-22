@@ -24,4 +24,6 @@ urlpatterns = [
     path('operdata-finpr/', views.finpr, name='finpr'),
     # Потребительские цены
     path('operdata-price/', views.price, name='price'),
+    # Цены производителей
+    path('operdata-prodprice/', views.prodprice, name='prodprice'),
 ]

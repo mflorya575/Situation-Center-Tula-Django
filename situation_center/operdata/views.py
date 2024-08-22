@@ -106,3 +106,14 @@ def price(request):
         'title': 'Потребительские цены | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'operdata/price.html', context)
+
+
+def prodprice(request):
+    # Получаем данные из базы данных и сортируем их по годам
+    prodprices = ProdPrice.objects.all()
+
+    context = {
+        'prodprices': prodprices,
+        'title': 'Цены производителей | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'operdata/prodprice.html', context)
