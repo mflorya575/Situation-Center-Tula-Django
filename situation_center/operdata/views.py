@@ -161,3 +161,14 @@ def jobmarket(request):
         'title': 'Рынок труда | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'operdata/jobmarket.html', context)
+
+
+def smcompany(request):
+    # Получаем данные из базы данных и сортируем их по годам
+    smcompanies = SmallMediumCompany.objects.all()
+
+    context = {
+        'smcompanies': smcompanies,
+        'title': 'Малые и средние предприятия | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'operdata/smcompany.html', context)
