@@ -10,4 +10,6 @@ urlpatterns = [
     path('operdata-industry/', views.industry, name='industry'),
     # Сельское хозяйство
     path('operdata-agro/', views.agro, name='agro'),
+    # Строительство
+    path('operdata-building/', views.building, name='building'),
 ]
