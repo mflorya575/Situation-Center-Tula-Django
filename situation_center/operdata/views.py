@@ -18,3 +18,14 @@ def industry(request):
         'title': 'Промышленность | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'operdata/industry.html', context)
+
+
+def agro(request):
+    # Получаем данные из базы данных и сортируем их по годам
+    agros = Agro.objects.all()
+
+    context = {
+        'agros': agros,
+        'title': 'Сельское хозяйство | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'operdata/agro.html', context)
