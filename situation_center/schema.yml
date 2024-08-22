@@ -1,0 +1,33 @@
+openapi: 3.0.3
+info:
+  title: Sit Center API
+  version: 1.0.0
+  description: This API from Situation Center Tula.s university
+paths:
+  /api/hospital/{slug}/:
+    get:
+      operationId: api_hospital_retrieve
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
