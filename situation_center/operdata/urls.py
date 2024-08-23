@@ -17,6 +17,7 @@ urlpatterns = [
     path('operdata-building/<slug:slug>/', views.building_detail, name='building_detail'),
     # Транспорт
     path('operdata-transport/', views.transport, name='transport'),
+    path('operdata-transport/<slug:slug>/', views.transport_detail, name='transport_detail'),
     # Торговля
     path('operdata-trading/', views.trading, name='trading'),
     # Услуги
