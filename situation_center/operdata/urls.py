@@ -50,4 +50,5 @@ urlpatterns = [
     path('operdata-jobmarket/<slug:slug>/', views.jobmarket_detail, name='jobmarket_detail'),
     # Малые и средние предприятия
     path('operdata-smcompany/', views.smcompany, name='smcompany'),
+    path('operdata-smcompany/<slug:slug>/', views.smcompany_detail, name='smcompany_detail'),
 ]
