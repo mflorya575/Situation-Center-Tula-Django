@@ -39,7 +39,11 @@
         <div class="hospital-section__wrapper">
             <!-- Первый проект -->
 
-            
+            {% for finpr in finprs %}
+            <div class="hospital-section__card">
+                <a href="{% url 'operdata:finpr_detail' slug=finpr.slug %}" class="hospital-section__link">{{ finpr.title }}</a>
+            </div>
+            {% endfor %}
 
         </div>
 

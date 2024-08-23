@@ -29,6 +29,7 @@ urlpatterns = [
     path('operdata-investing/<slug:slug>/', views.investing_detail, name='investing_detail'),
     # Финансы предприятий
     path('operdata-finpr/', views.finpr, name='finpr'),
+    path('operdata-finpr/<slug:slug>/', views.finpr_detail, name='finpr_detail'),
     # Потребительские цены
     path('operdata-price/', views.price, name='price'),
     # Цены производителей
