@@ -1677,6 +1677,133 @@ def joblessness(request):
     return render(request, 'operdata/joblessness.html', context)
 
 
+def joblessness_detail(request, slug):
+    joblessness = get_object_or_404(Joblessness, slug=slug)
+
+    # Изначально установим переменные для обработки ошибок
+    combined_chart_linear = "Ошибка при обработке данных"
+    combined_chart_log = "Ошибка при обработке данных"
+    map_chart_linear = "Ошибка при создании карты"
+    map_chart_log = "Ошибка при создании карты"
+    table_html = "Ошибка при создании таблицы"
+
+    csv_file_path = joblessness.csv_file.path
+
+    try:
+        # Загрузка данных из CSV
+        df = pd.read_csv(csv_file_path)
+
+        # Проверка на наличие столбца 'region'
+        if 'region' not in df.columns:
+            raise ValueError("Столбец 'region' не найден в CSV-файле.")
+
+        # Фильтрация по выбранному региону
+        selected_region = request.GET.get('region')
+        if selected_region:
+            df = df[df['region'] == selected_region]
+
+        # Преобразование данных для графика
+        df_melted = df.melt(id_vars=['region'], var_name='year', value_name='data')
+
+        # Удаление всех типов пробелов и табуляций в столбце 'region'
+        df['region'] = df['region'].str.strip()
+
+        # Преобразование данных для таблицы
+        table_html = df.to_html(index=False, classes='table table-striped')
+
+        # Оборачиваем таблицу в div с классом
+        table_html = f'<div class="table-container">{table_html}</div>'
+
+        # Проверка наличия данных
+        if df_melted.empty:
+            combined_chart_linear = "Нет данных для отображения."
+            map_chart_linear = "Нет данных для отображения на карте."
+        else:
+            # Создание комбинированного графика с линейной шкалой
+            fig_linear = go.Figure()
+            fig_linear.add_trace(
+                go.Scatter(x=df_melted['year'], y=df_melted['data'], mode='lines+markers', name='Линейный график'))
+            fig_linear.add_trace(go.Bar(x=df_melted['year'], y=df_melted['data'], name='Столбчатая диаграмма'))
+            fig_linear.update_layout(
+                title=f'{joblessness.title} - Комбинированный график (Линейная шкала)',
+                xaxis_title='Годы',
+                yaxis_title='Количество'
+            )
+            combined_chart_linear = fig_linear.to_html(full_html=False)
+
+            # Создание комбинированного графика с логарифмической шкалой
+            fig_log = go.Figure()
+            fig_log.add_trace(
+                go.Scatter(x=df_melted['year'], y=df_melted['data'], mode='lines+markers', name='Линейный график'))
+            fig_log.add_trace(go.Bar(x=df_melted['year'], y=df_melted['data'], name='Столбчатая диаграмма'))
+            fig_log.update_layout(
+                title=f'{joblessness.title} - Комбинированный график (Логарифмическая шкала)',
+                xaxis_title='Годы',
+                yaxis_title='Количество',
+                yaxis_type='log'
+            )
+            combined_chart_log = fig_log.to_html(full_html=False)
+
+            # Отображение карты для последнего доступного года
+            latest_year = df_melted['year'].max()
+            df_latest = df_melted[df_melted['year'] == latest_year]
+
+            # Создание карты с линейной шкалой
+            map_fig_linear = px.choropleth(df_latest,
+                                           locations='region',
+                                           locationmode='geojson-id',
+                                           geojson='https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/russia.geojson',
+                                           featureidkey="properties.name",
+                                           color='data',
+                                           hover_name='region',
+                                           title=f'{joblessness.title} - {latest_year} (Линейная шкала)',
+                                           color_continuous_scale='Reds')
+            map_fig_linear.update_geos(fitbounds="locations", visible=False)
+            map_chart_linear = map_fig_linear.to_html(full_html=False)
+
+            # Создание карты с логарифмической шкалой
+            map_fig_log = px.choropleth(df_latest,
+                                        locations='region',
+                                        locationmode='geojson-id',
+                                        geojson='https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/russia.geojson',
+                                        featureidkey="properties.name",
+                                        color='data',
+                                        hover_name='region',
+                                        title=f'{joblessness.title} - {latest_year} (Логарифмическая шкала)',
+                                        color_continuous_scale='Reds',
+                                        range_color=[df_latest['data'].min(), df_latest['data'].max()],
+                                        color_continuous_midpoint=0.1)
+            map_fig_log.update_geos(fitbounds="locations", visible=False)
+            map_fig_log.update_layout(
+                coloraxis_colorbar=dict(title="Количество", ticks="outside", tickvals=[10, 100, 1000],
+                                        ticktext=["10", "100", "1000"]))
+            map_chart_log = map_fig_log.to_html(full_html=False)
+
+    except Exception as e:
+        # Если возникла ошибка, отобразить ее
+        combined_chart_linear = f"Ошибка при обработке данных: {e}"
+        combined_chart_log = f"Ошибка при обработке данных: {e}"
+        map_chart_linear = "Ошибка при создании карты."
+        map_chart_log = "Ошибка при создании карты."
+        table_html = f"Ошибка при создании таблицы: {e}"
+
+    # Создание формы для выбора региона
+    region_form = JoblessnessForm(request.GET or None, joblessness_slug=slug)
+
+    context = {
+        'combined_chart_linear': combined_chart_linear,
+        'combined_chart_log': combined_chart_log,
+        'map_chart_linear': map_chart_linear,
+        'map_chart_log': map_chart_log,
+        'table_html': table_html,
+        'joblessness': joblessness,
+        'region_form': region_form,
+        'selected_region': request.GET.get('region') or 'Не выбран',
+        'title': 'СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'operdata/joblessness_detail.html', context)
+
+
 def jobmarket(request):
     # Получаем данные из базы данных и сортируем их по годам
     jobmarkets = JobMarket.objects.all()

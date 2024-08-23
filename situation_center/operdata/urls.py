@@ -44,6 +44,7 @@ urlpatterns = [
     path('operdata-salary/<slug:slug>/', views.salary_detail, name='salary_detail'),
     # Безработица
     path('operdata-joblessness/', views.joblessness, name='joblessness'),
+    path('operdata-joblessness/<slug:slug>/', views.joblessness_detail, name='joblessness_detail'),
     # Рынок труда
     path('operdata-jobmarket/', views.jobmarket, name='jobmarket'),
     # Малые и средние предприятия
