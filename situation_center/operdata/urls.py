@@ -8,6 +8,7 @@ app_name = 'operdata'
 urlpatterns = [
     # Промышленность
     path('operdata-industry/', views.industry, name='industry'),
+    path('operdata-industry/<slug:slug>/', views.industry_detail, name='industry_detail'),
     # Сельское хозяйство
     path('operdata-agro/', views.agro, name='agro'),
     # Строительство
