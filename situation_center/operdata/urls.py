@@ -14,6 +14,7 @@ urlpatterns = [
     path('operdata-agro/<slug:slug>/', views.agro_detail, name='agro_detail'),
     # Строительство
     path('operdata-building/', views.building, name='building'),
+    path('operdata-building/<slug:slug>/', views.building_detail, name='building_detail'),
     # Транспорт
     path('operdata-transport/', views.transport, name='transport'),
     # Торговля
