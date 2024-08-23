@@ -55,6 +55,9 @@ def industry_detail(request, slug):
         # Преобразование данных для таблицы
         table_html = df.to_html(index=False, classes='table table-striped')
 
+        # Оборачиваем таблицу в div с классом
+        table_html = f'<div class="table-container">{table_html}</div>'
+
         # Проверка наличия данных
         if df_melted.empty:
             combined_chart_linear = "Нет данных для отображения."
@@ -189,6 +192,9 @@ def agro_detail(request, slug):
 
         # Преобразование данных для таблицы
         table_html = df.to_html(index=False, classes='table table-striped')
+
+        # Оборачиваем таблицу в div с классом
+        table_html = f'<div class="table-container">{table_html}</div>'
 
         # Проверка наличия данных
         if df_melted.empty:
@@ -325,6 +331,9 @@ def building_detail(request, slug):
         # Преобразование данных для таблицы
         table_html = df.to_html(index=False, classes='table table-striped')
 
+        # Оборачиваем таблицу в div с классом
+        table_html = f'<div class="table-container">{table_html}</div>'
+
         # Проверка наличия данных
         if df_melted.empty:
             combined_chart_linear = "Нет данных для отображения."
@@ -459,6 +468,9 @@ def transport_detail(request, slug):
 
         # Преобразование данных для таблицы
         table_html = df.to_html(index=False, classes='table table-striped')
+
+        # Оборачиваем таблицу в div с классом
+        table_html = f'<div class="table-container">{table_html}</div>'
 
         # Проверка наличия данных
         if df_melted.empty:
@@ -595,6 +607,9 @@ def trading_detail(request, slug):
         # Преобразование данных для таблицы
         table_html = df.to_html(index=False, classes='table table-striped')
 
+        # Оборачиваем таблицу в div с классом
+        table_html = f'<div class="table-container">{table_html}</div>'
+
         # Проверка наличия данных
         if df_melted.empty:
             combined_chart_linear = "Нет данных для отображения."
@@ -729,6 +744,9 @@ def uslugi_detail(request, slug):
 
         # Преобразование данных для таблицы
         table_html = df.to_html(index=False, classes='table table-striped')
+
+        # Оборачиваем таблицу в div с классом
+        table_html = f'<div class="table-container">{table_html}</div>'
 
         # Проверка наличия данных
         if df_melted.empty:

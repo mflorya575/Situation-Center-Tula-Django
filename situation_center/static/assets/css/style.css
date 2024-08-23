@@ -483,6 +483,16 @@ body::-webkit-scrollbar-thumb {
   /* z-index: 2 */
 }
 
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  min-width: 800px; /* Минимальная ширина таблицы, чтобы принудительно включить скролл при переполнении */
+}
+
 /*********** index ***********/
 .mobile-menu {
   display: none;
