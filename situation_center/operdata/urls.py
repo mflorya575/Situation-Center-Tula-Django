@@ -23,6 +23,7 @@ urlpatterns = [
     path('operdata-trading/<slug:slug>/', views.trading_detail, name='trading_detail'),
     # Услуги
     path('operdata-uslugi/', views.uslugi, name='uslugi'),
+    path('operdata-uslugi/<slug:slug>/', views.uslugi_detail, name='uslugi_detail'),
     # Инвестиции
     path('operdata-investing/', views.investing, name='investing'),
     # Финансы предприятий
