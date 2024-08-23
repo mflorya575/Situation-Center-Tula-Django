@@ -39,7 +39,11 @@
         <div class="hospital-section__wrapper">
             <!-- Первый проект -->
 
-            
+            {% for revenue in revenues %}
+            <div class="hospital-section__card">
+                <a href="{% url 'operdata:revenue_detail' slug=revenue.slug %}" class="hospital-section__link">{{ revenue.title }}</a>
+            </div>
+            {% endfor %}
 
         </div>
 
