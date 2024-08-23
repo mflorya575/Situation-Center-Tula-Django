@@ -55,6 +55,9 @@ def hospital_detail(request, slug):
         # Преобразование данных для таблицы
         table_html = df.to_html(index=False, classes='table table-striped')
 
+        # Оборачиваем таблицу в div с классом
+        table_html = f'<div class="table-container">{table_html}</div>'
+
         # Проверка наличия данных
         if df_melted.empty:
             combined_chart_linear = "Нет данных для отображения."
@@ -189,6 +192,9 @@ def study_detail(request, slug):
 
         # Преобразование данных для таблицы
         table_html = df.to_html(index=False, classes='table table-striped')
+
+        # Оборачиваем таблицу в div с классом
+        table_html = f'<div class="table-container">{table_html}</div>'
 
         # Проверка наличия данных
         if df_melted.empty:
@@ -325,6 +331,9 @@ def demographics_detail(request, slug):
         # Преобразование данных для таблицы
         table_html = df.to_html(index=False, classes='table table-striped')
 
+        # Оборачиваем таблицу в div с классом
+        table_html = f'<div class="table-container">{table_html}</div>'
+
         # Проверка наличия данных
         if df_melted.empty:
             combined_chart_linear = "Нет данных для отображения."
@@ -459,6 +468,9 @@ def culture_detail(request, slug):
 
         # Преобразование данных для таблицы
         table_html = df.to_html(index=False, classes='table table-striped')
+
+        # Оборачиваем таблицу в div с классом
+        table_html = f'<div class="table-container">{table_html}</div>'
 
         # Проверка наличия данных
         if df_melted.empty:
@@ -595,6 +607,9 @@ def road_detail(request, slug):
         # Преобразование данных для таблицы
         table_html = df.to_html(index=False, classes='table table-striped')
 
+        # Оборачиваем таблицу в div с классом
+        table_html = f'<div class="table-container">{table_html}</div>'
+
         # Проверка наличия данных
         if df_melted.empty:
             combined_chart_linear = "Нет данных для отображения."
@@ -729,6 +744,9 @@ def science_detail(request, slug):
 
         # Преобразование данных для таблицы
         table_html = df.to_html(index=False, classes='table table-striped')
+
+        # Оборачиваем таблицу в div с классом
+        table_html = f'<div class="table-container">{table_html}</div>'
 
         # Проверка наличия данных
         if df_melted.empty:
@@ -865,6 +883,9 @@ def ecology_detail(request, slug):
         # Преобразование данных для таблицы
         table_html = df.to_html(index=False, classes='table table-striped')
 
+        # Оборачиваем таблицу в div с классом
+        table_html = f'<div class="table-container">{table_html}</div>'
+
         # Проверка наличия данных
         if df_melted.empty:
             combined_chart_linear = "Нет данных для отображения."
@@ -999,6 +1020,9 @@ def business_detail(request, slug):
 
         # Преобразование данных для таблицы
         table_html = df.to_html(index=False, classes='table table-striped')
+
+        # Оборачиваем таблицу в div с классом
+        table_html = f'<div class="table-container">{table_html}</div>'
 
         # Проверка наличия данных
         if df_melted.empty:
@@ -1135,6 +1159,9 @@ def turism_detail(request, slug):
         # Преобразование данных для таблицы
         table_html = df.to_html(index=False, classes='table table-striped')
 
+        # Оборачиваем таблицу в div с классом
+        table_html = f'<div class="table-container">{table_html}</div>'
+
         # Проверка наличия данных
         if df_melted.empty:
             combined_chart_linear = "Нет данных для отображения."
@@ -1269,6 +1296,9 @@ def house_detail(request, slug):
 
         # Преобразование данных для таблицы
         table_html = df.to_html(index=False, classes='table table-striped')
+
+        # Оборачиваем таблицу в div с классом
+        table_html = f'<div class="table-container">{table_html}</div>'
 
         # Проверка наличия данных
         if df_melted.empty:
@@ -1405,6 +1435,9 @@ def world_detail(request, slug):
         # Преобразование данных для таблицы
         table_html = df.to_html(index=False, classes='table table-striped')
 
+        # Оборачиваем таблицу в div с классом
+        table_html = f'<div class="table-container">{table_html}</div>'
+
         # Проверка наличия данных
         if df_melted.empty:
             combined_chart_linear = "Нет данных для отображения."
@@ -1539,6 +1572,9 @@ def labour_detail(request, slug):
 
         # Преобразование данных для таблицы
         table_html = df.to_html(index=False, classes='table table-striped')
+
+        # Оборачиваем таблицу в div с классом
+        table_html = f'<div class="table-container">{table_html}</div>'
 
         # Проверка наличия данных
         if df_melted.empty:
@@ -1675,6 +1711,9 @@ def atom_detail(request, slug):
         # Преобразование данных для таблицы
         table_html = df.to_html(index=False, classes='table table-striped')
 
+        # Оборачиваем таблицу в div с классом
+        table_html = f'<div class="table-container">{table_html}</div>'
+
         # Проверка наличия данных
         if df_melted.empty:
             combined_chart_linear = "Нет данных для отображения."
@@ -1810,6 +1849,9 @@ def econom_detail(request, slug):
         # Преобразование данных для таблицы
         table_html = df.to_html(index=False, classes='table table-striped')
 
+        # Оборачиваем таблицу в div с классом
+        table_html = f'<div class="table-container">{table_html}</div>'
+
         # Проверка наличия данных
         if df_melted.empty:
             combined_chart_linear = "Нет данных для отображения."
@@ -1944,6 +1986,9 @@ def mainline_detail(request, slug):
 
         # Преобразование данных для таблицы
         table_html = df.to_html(index=False, classes='table table-striped')
+
+        # Оборачиваем таблицу в div с классом
+        table_html = f'<div class="table-container">{table_html}</div>'
 
         # Проверка наличия данных
         if df_melted.empty:
