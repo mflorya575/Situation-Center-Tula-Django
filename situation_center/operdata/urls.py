@@ -35,6 +35,7 @@ urlpatterns = [
     path('operdata-price/<slug:slug>/', views.price_detail, name='price_detail'),
     # Цены производителей
     path('operdata-prodprice/', views.prodprice, name='prodprice'),
+    path('operdata-prodprice/<slug:slug>/', views.prodprice_detail, name='prodprice_detail'),
     # Доходы
     path('operdata-revenue/', views.revenue, name='revenue'),
     # Зарплата
