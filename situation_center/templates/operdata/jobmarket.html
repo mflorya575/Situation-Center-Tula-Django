@@ -39,7 +39,11 @@
         <div class="hospital-section__wrapper">
             <!-- Первый проект -->
 
-            
+            {% for jobmarket in jobmarkets %}
+            <div class="hospital-section__card">
+                <a href="{% url 'operdata:jobmarket_detail' slug=jobmarket.slug %}" class="hospital-section__link">{{ jobmarket.title }}</a>
+            </div>
+            {% endfor %}
 
         </div>
 
