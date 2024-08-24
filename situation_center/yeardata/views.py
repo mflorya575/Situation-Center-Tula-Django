@@ -62,3 +62,14 @@ def capitalassets(request):
         'title': 'Основные фонды | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'yeardata/capitalassets.html', context)
+
+
+def organization(request):
+    # Получаем данные из базы данных и сортируем их по годам
+    organizations = Organization.objects.all()
+
+    context = {
+        'organizations': organizations,
+        'title': 'Предприятия и организации | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'yeardata/organization.html', context)
