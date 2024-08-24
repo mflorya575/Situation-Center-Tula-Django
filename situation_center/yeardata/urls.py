@@ -12,4 +12,6 @@ urlpatterns = [
     path('yeardata-levelhealth/', views.levelhealth, name='levelhealth'),
     # Здравоохранение
     path('yeardata-hospital/', views.hospital, name='hospital'),
+    # Охрана природы
+    path('yeardata-securenature/', views.securenature, name='securenature'),
 ]

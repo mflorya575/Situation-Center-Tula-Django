@@ -40,3 +40,14 @@ def hospital(request):
         'title': 'Здравоохранение | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'yeardata/hospital.html', context)
+
+
+def securenature(request):
+    # Получаем данные из базы данных и сортируем их по годам
+    securenatures = SecureNature.objects.all()
+
+    context = {
+        'securenatures': securenatures,
+        'title': 'Охрана природы | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'yeardata/securenature.html', context)
