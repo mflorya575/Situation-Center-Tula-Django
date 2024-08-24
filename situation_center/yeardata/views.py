@@ -161,3 +161,14 @@ def culture(request):
         'title': 'Культура, отдых и туризм | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'yeardata/culture.html', context)
+
+
+def vrp(request):
+    # Получаем данные из базы данных и сортируем их по годам
+    vrps = VRP.objects.all()
+
+    context = {
+        'vrps': vrps,
+        'title': 'Валовой региональный продукт | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'yeardata/vrp.html', context)

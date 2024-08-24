@@ -34,4 +34,6 @@ urlpatterns = [
     path('yeardata-study/', views.study, name='study'),
     # Культура
     path('yeardata-culture/', views.culture, name='culture'),
+    # Валовой региональный продукт
+    path('yeardata-vrp/', views.vrp, name='vrp'),
 ]
