@@ -117,3 +117,14 @@ def finance(request):
         'title': 'Финансы | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'yeardata/finance.html', context)
+
+
+def foreigntrading(request):
+    # Получаем данные из базы данных и сортируем их по годам
+    foreigntradings = ForeignTrading.objects.all()
+
+    context = {
+        'foreigntradings': foreigntradings,
+        'title': 'Внешняя торговля | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'yeardata/foreigntrading.html', context)
