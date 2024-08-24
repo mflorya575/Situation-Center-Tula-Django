@@ -40,4 +40,6 @@ urlpatterns = [
     path('yeardata-investing/', views.investing, name='investing'),
     # Промышленное производство
     path('yeardata-industrialprod/', views.industrialprod, name='industrialprod'),
+    # Строительство
+    path('yeardata-building/', views.building, name='building'),
 ]
