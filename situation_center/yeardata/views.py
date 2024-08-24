@@ -227,3 +227,14 @@ def science(request):
         'title': 'Наука и инновации | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'yeardata/science.html', context)
+
+
+def price(request):
+    # Получаем данные из базы данных и сортируем их по годам
+    prices = Price.objects.all()
+
+    context = {
+        'prices': prices,
+        'title': 'Цены и тарифы | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'yeardata/price.html', context)
