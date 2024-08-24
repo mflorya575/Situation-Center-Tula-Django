@@ -139,3 +139,14 @@ def labour(request):
         'title': 'Труд | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'yeardata/labour.html', context)
+
+
+def study(request):
+    # Получаем данные из базы данных и сортируем их по годам
+    studies = Study.objects.all()
+
+    context = {
+        'studies': studies,
+        'title': 'Образование | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'yeardata/study.html', context)

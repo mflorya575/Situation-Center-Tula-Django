@@ -30,4 +30,6 @@ urlpatterns = [
     path('yeardata-foreigntrading/', views.foreigntrading, name='foreigntrading'),
     # Труд
     path('yeardata-labour/', views.labour, name='labour'),
+    # Образование
+    path('yeardata-study/', views.study, name='study'),
 ]
