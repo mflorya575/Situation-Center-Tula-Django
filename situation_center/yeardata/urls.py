@@ -6,5 +6,8 @@ from . import views
 app_name = 'yeardata'
 
 urlpatterns = [
+    # Население
     path('yeardata-population/', views.population, name='population'),
+    # Уровень жизни населения
+    path('yeardata-levelhealth/', views.levelhealth, name='levelhealth'),
 ]
