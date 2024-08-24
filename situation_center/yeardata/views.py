@@ -84,3 +84,14 @@ def shlrr(request):
         'title': 'Сельское, лесное хозяйство, рыболовство и рыбоводство | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'yeardata/shlrr.html', context)
+
+
+def trading(request):
+    # Получаем данные из базы данных и сортируем их по годам
+    tradings = Trading.objects.all()
+
+    context = {
+        'tradings': tradings,
+        'title': 'Торговля и услуги населению | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'yeardata/trading.html', context)

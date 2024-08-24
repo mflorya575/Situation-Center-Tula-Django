@@ -20,4 +20,6 @@ urlpatterns = [
     path('yeardata-organization/', views.organization, name='organization'),
     # С/X и т.д.
     path('yeardata-shlrr/', views.shlrr, name='shlrr'),
+    # Торговля
+    path('yeardata-trading/', views.trading, name='trading'),
 ]
