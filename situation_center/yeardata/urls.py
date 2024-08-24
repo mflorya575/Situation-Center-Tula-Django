@@ -36,4 +36,6 @@ urlpatterns = [
     path('yeardata-culture/', views.culture, name='culture'),
     # Валовой региональный продукт
     path('yeardata-vrp/', views.vrp, name='vrp'),
+    # Инвестиции
+    path('yeardata-investing/', views.investing, name='investing'),
 ]
