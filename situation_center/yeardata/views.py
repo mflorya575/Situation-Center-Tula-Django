@@ -128,3 +128,14 @@ def foreigntrading(request):
         'title': 'Внешняя торговля | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'yeardata/foreigntrading.html', context)
+
+
+def labour(request):
+    # Получаем данные из базы данных и сортируем их по годам
+    labours = Labour.objects.all()
+
+    context = {
+        'labours': labours,
+        'title': 'Труд | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'yeardata/labour.html', context)
