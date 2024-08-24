@@ -106,3 +106,14 @@ def infotechnology(request):
         'title': 'Информационные и комунникационные технологии | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'yeardata/infotechnology.html', context)
+
+
+def finance(request):
+    # Получаем данные из базы данных и сортируем их по годам
+    finances = Finance.objects.all()
+
+    context = {
+        'finances': finances,
+        'title': 'Финансы | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'yeardata/finance.html', context)
