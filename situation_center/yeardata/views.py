@@ -183,3 +183,14 @@ def investing(request):
         'title': 'Инвестиции | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'yeardata/investing.html', context)
+
+
+def industrialprod(request):
+    # Получаем данные из базы данных и сортируем их по годам
+    industrialprods = IndustrialProd.objects.all()
+
+    context = {
+        'industrialprods': industrialprods,
+        'title': 'Промышленное производство | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'yeardata/industrialprod.html', context)

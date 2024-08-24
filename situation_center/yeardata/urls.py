@@ -38,4 +38,6 @@ urlpatterns = [
     path('yeardata-vrp/', views.vrp, name='vrp'),
     # Инвестиции
     path('yeardata-investing/', views.investing, name='investing'),
+    # Промышленное производство
+    path('yeardata-industrialprod/', views.industrialprod, name='industrialprod'),
 ]
