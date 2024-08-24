@@ -18,4 +18,6 @@ urlpatterns = [
     path('yeardata-capitalassets/', views.capitalassets, name='capitalassets'),
     # Предприятия и организации
     path('yeardata-organization/', views.organization, name='organization'),
+    # С/X и т.д.
+    path('yeardata-shlrr/', views.shlrr, name='shlrr'),
 ]

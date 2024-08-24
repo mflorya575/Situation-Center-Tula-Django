@@ -73,3 +73,14 @@ def organization(request):
         'title': 'Предприятия и организации | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'yeardata/organization.html', context)
+
+
+def shlrr(request):
+    # Получаем данные из базы данных и сортируем их по годам
+    shlrrs = SHLRR.objects.all()
+
+    context = {
+        'shlrrs': shlrrs,
+        'title': 'Сельское, лесное хозяйство, рыболовство и рыбоводство | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'yeardata/shlrr.html', context)
