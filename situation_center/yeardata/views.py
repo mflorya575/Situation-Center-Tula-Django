@@ -216,3 +216,14 @@ def transport(request):
         'title': 'Транспорт | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'yeardata/transport.html', context)
+
+
+def science(request):
+    # Получаем данные из базы данных и сортируем их по годам
+    sciences = Science.objects.all()
+
+    context = {
+        'sciences': sciences,
+        'title': 'Наука и инновации | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'yeardata/science.html', context)

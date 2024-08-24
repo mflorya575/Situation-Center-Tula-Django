@@ -44,4 +44,6 @@ urlpatterns = [
     path('yeardata-building/', views.building, name='building'),
     # Транспорт
     path('yeardata-transport/', views.transport, name='transport'),
+    # Наука
+    path('yeardata-science/', views.science, name='science'),
 ]
