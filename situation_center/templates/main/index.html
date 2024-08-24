@@ -385,6 +385,101 @@
             <!-- Конец обертки карточек -->
         </div>
     </section>
+    <!-- Секция годовых данных -->
+    <section class="third-section">
+        <div class="third-section__container">
+            <!-- Заголовок -->
+            <h3 class="container third-section__title">ГОДОВЫЕ ДАННЫЕ</h3>
+            <!-- Обертка карточек -->
+            <div class="third-section__wrapper">
+                <!-- Карточка промышленности -->
+                <div class="third-section__card">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'operdata:industry' %}">
+                            <img src="{% static 'assets/icons/hospital-image.png' %}" alt="иконка здравоохранения" class="third-section__img1">
+                        </a>
+                        <a href="{% url 'operdata:industry' %}" class="third-section__text">Промышленность</a>
+                    {% else %}
+                        <a href="{% url 'userauth:login' %}">
+                            <img src="{% static 'assets/icons/hospital-image.png' %}" alt="иконка здравоохранения" class="third-section__img1">
+                        </a>
+                        <a href="{% url 'userauth:login' %}" class="third-section__text">Промышленность</a>
+                    {% endif %}
+                </div>
+                <!-- Карточка с/х -->
+                <div class="third-section__card">
+                    <a href="{% url "operdata:agro" %}"><img src="{% static "./assets/icons/study-image.png" %}" alt="иконка образования" class="third-section__img2"></a>
+                    <a href="{% url "operdata:agro" %}" class="third-section__text">Сельское<br> хозяйство</a>
+                </div>
+                <!-- Карточка строительства -->
+                <div class="third-section__card">
+                    <a href="{% url "operdata:building" %}"><img src="{% static "./assets/icons/demographics-image.png" %}" alt="иконка демографии" class="third-section__img3"></a>
+                    <a href="{% url "operdata:building" %}" class="third-section__text">Строительство</a>
+                </div>
+                <!-- Карточка транспорта -->
+                <div class="third-section__card">
+                    <a href="{% url "operdata:transport" %}"><img src="{% static "./assets/icons/culture-image.png" %}" alt="иконка культуры" class="third-section__img4"></a>
+                    <a href="{% url "operdata:transport" %}" class="third-section__text">Транспорт</a>
+                </div>
+                <!-- Карточка финансы предприятий -->
+                <div class="third-section__card">
+                    <a href="{% url "operdata:finpr" %}"><img src="{% static "./assets/icons/road-image.png" %}" alt="иконка безопасных дорог" class="third-section__img5"></a>
+                    <a href="{% url "operdata:finpr" %}" class="third-section__text">Финансы<br> предприятий</a>
+                </div>
+                <!-- Карточка потребительские цены -->
+                <div class="third-section__card">
+                    <a href="{% url "operdata:price" %}"><img src="{% static "./assets/icons/science-image.png" %}" alt="иконка науки и университетов" class="third-section__img6"></a>
+                    <a href="{% url "operdata:price" %}" class="third-section__text">Потребительские<br> цены</a>
+                </div>
+                <!-- Карточка инвестиции -->
+                <div class="third-section__card">
+                    <a href="{% url "operdata:investing" %}"><img src="{% static "./assets/icons/ecology-image.png" %}" alt="иконка экологии" class="third-section__img8"></a>
+                    <a href="{% url "operdata:investing" %}" class="third-section__text">Инвестиции</a>
+                </div>
+                <!-- Карточка услуги -->
+                <div class="third-section__card">
+                    <a href="{% url "operdata:uslugi" %}"><img src="{% static "./assets/icons/ecology-image.png" %}" alt="иконка экологии" class="third-section__img8"></a>
+                    <a href="{% url "operdata:uslugi" %}" class="third-section__text">Услуги</a>
+                </div>
+                <!-- Карточка торговли -->
+                <div class="third-section__card">
+                    <a href="{% url "operdata:trading" %}"><img src="{% static "./assets/icons/ecology-image.png" %}" alt="иконка экологии" class="third-section__img8"></a>
+                    <a href="{% url "operdata:trading" %}" class="third-section__text">Торговля</a>
+                </div>
+                <!-- Карточка доходы -->
+                <div class="third-section__card">
+                    <a href="{% url "operdata:revenue" %}"><img src="{% static "./assets/icons/entrepreneurship-image.png" %}" alt="иконка предпринимательства" class="third-section__img9"></a>
+                    <a href="{% url "operdata:revenue" %}" class="third-section__text">Доходы</a>
+                </div>
+                <!-- Карточка зарплата -->
+                <div class="third-section__card">
+                    <a href="{% url "operdata:salary" %}"><img src="{% static "./assets/icons/entrepreneurship-image.png" %}" alt="иконка предпринимательства" class="third-section__img9"></a>
+                    <a href="{% url "operdata:salary" %}" class="third-section__text">Зарплата</a>
+                </div>
+                <!-- Карточка безработица -->
+                <div class="third-section__card">
+                    <a href="{% url "operdata:joblessness" %}"><img src="{% static "./assets/icons/entrepreneurship-image.png" %}" alt="иконка предпринимательства" class="third-section__img9"></a>
+                    <a href="{% url "operdata:joblessness" %}" class="third-section__text">Безработица</a>
+                </div>
+                <!-- Карточка цены производителей -->
+                <div class="third-section__card">
+                    <a href="{% url "operdata:prodprice" %}"><img src="{% static "./assets/icons/turism.png" %}" alt="иконка туризма" class="third-section__img10"></a>
+                    <a href="{% url "operdata:prodprice" %}" class="third-section__text">Цены<br> производителей</a>
+                </div>
+                <!-- Карточка рынок труда -->
+                <div class="third-section__card">
+                    <a href="{% url "operdata:jobmarket" %}"><img src="{% static "./assets/icons/housing-image.png" %}" alt="иконка жилья и городской среды" class="third-section__img11"></a>
+                    <a href="{% url "operdata:jobmarket" %}" class="third-section__text">Рынок труда</a>
+                </div>
+                <!-- Карточка малые и средние предприятия -->
+                <div class="third-section__card">
+                    <a href="{% url "operdata:smcompany" %}"><img src="{% static "./assets/icons/world-image.png" %}" alt="иконка международной кооперации и экспорта" class="third-section__img12"></a>
+                    <a href="{% url "operdata:smcompany" %}" class="third-section__text2">Малые и средние<br> предприятия</a>
+                </div>
+            </div>
+            <!-- Конец обертки карточек -->
+        </div>
+    </section>
     <!-- Секция Росстата -->
     <section class="third-section">
         <div class="container third-section__container">
