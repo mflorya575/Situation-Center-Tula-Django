@@ -95,3 +95,14 @@ def trading(request):
         'title': 'Торговля и услуги населению | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'yeardata/trading.html', context)
+
+
+def infotechnology(request):
+    # Получаем данные из базы данных и сортируем их по годам
+    infotechnologies = InfoTechnology.objects.all()
+
+    context = {
+        'infotechnologies': infotechnologies,
+        'title': 'Информационные и комунникационные технологии | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'yeardata/infotechnology.html', context)
