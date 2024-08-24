@@ -406,15 +406,15 @@
                         <a href="{% url 'userauth:login' %}" class="third-section__text">Население</a>
                     {% endif %}
                 </div>
-                <!-- Карточка с/х -->
+                <!-- Карточка уровня жизни населения -->
                 <div class="third-section__card">
                     <a href="{% url "yeardata:levelhealth" %}"><img src="{% static "./assets/icons/study-image.png" %}" alt="иконка образования" class="third-section__img2"></a>
                     <a href="{% url "yeardata:levelhealth" %}" class="third-section__text">Уровень жизни<br> населения</a>
                 </div>
-                <!-- Карточка строительства -->
+                <!-- Карточка здравоохранения -->
                 <div class="third-section__card">
-                    <a href="{% url "operdata:building" %}"><img src="{% static "./assets/icons/demographics-image.png" %}" alt="иконка демографии" class="third-section__img3"></a>
-                    <a href="{% url "operdata:building" %}" class="third-section__text">Строительство</a>
+                    <a href="{% url "yeardata:hospital" %}"><img src="{% static "./assets/icons/demographics-image.png" %}" alt="иконка демографии" class="third-section__img3"></a>
+                    <a href="{% url "yeardata:hospital" %}" class="third-section__text">Здравоохранение</a>
                 </div>
                 <!-- Карточка транспорта -->
                 <div class="third-section__card">

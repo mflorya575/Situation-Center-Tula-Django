@@ -29,3 +29,14 @@ def levelhealth(request):
         'title': 'Уровень жизни населения | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'yeardata/levelhealth.html', context)
+
+
+def hospital(request):
+    # Получаем данные из базы данных и сортируем их по годам
+    hospitals = Hospital.objects.all()
+
+    context = {
+        'hospitals': hospitals,
+        'title': 'Здравоохранение | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'yeardata/hospital.html', context)

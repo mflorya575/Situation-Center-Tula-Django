@@ -10,4 +10,6 @@ urlpatterns = [
     path('yeardata-population/', views.population, name='population'),
     # Уровень жизни населения
     path('yeardata-levelhealth/', views.levelhealth, name='levelhealth'),
+    # Здравоохранение
+    path('yeardata-hospital/', views.hospital, name='hospital'),
 ]
