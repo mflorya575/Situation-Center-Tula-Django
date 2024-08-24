@@ -150,3 +150,14 @@ def study(request):
         'title': 'Образование | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'yeardata/study.html', context)
+
+
+def culture(request):
+    # Получаем данные из базы данных и сортируем их по годам
+    cultures = Culture.objects.all()
+
+    context = {
+        'cultures': cultures,
+        'title': 'Культура, отдых и туризм | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'yeardata/culture.html', context)
