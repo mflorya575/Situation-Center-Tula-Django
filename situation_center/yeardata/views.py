@@ -205,3 +205,14 @@ def building(request):
         'title': 'Строительство | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'yeardata/building.html', context)
+
+
+def transport(request):
+    # Получаем данные из базы данных и сортируем их по годам
+    transports = Transport.objects.all()
+
+    context = {
+        'transports': transports,
+        'title': 'Транспорт | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'yeardata/transport.html', context)

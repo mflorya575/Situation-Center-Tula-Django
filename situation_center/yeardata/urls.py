@@ -42,4 +42,6 @@ urlpatterns = [
     path('yeardata-industrialprod/', views.industrialprod, name='industrialprod'),
     # Строительство
     path('yeardata-building/', views.building, name='building'),
+    # Транспорт
+    path('yeardata-transport/', views.transport, name='transport'),
 ]
