@@ -392,18 +392,18 @@
             <h3 class="container third-section__title">ГОДОВЫЕ ДАННЫЕ</h3>
             <!-- Обертка карточек -->
             <div class="third-section__wrapper">
-                <!-- Карточка промышленности -->
+                <!-- Карточка населения -->
                 <div class="third-section__card">
                     {% if user.is_authenticated %}
-                        <a href="{% url 'operdata:industry' %}">
+                        <a href="{% url 'yeardata:population' %}">
                             <img src="{% static 'assets/icons/hospital-image.png' %}" alt="иконка здравоохранения" class="third-section__img1">
                         </a>
-                        <a href="{% url 'operdata:industry' %}" class="third-section__text">Промышленность</a>
+                        <a href="{% url 'yeardata:population' %}" class="third-section__text">Население</a>
                     {% else %}
                         <a href="{% url 'userauth:login' %}">
                             <img src="{% static 'assets/icons/hospital-image.png' %}" alt="иконка здравоохранения" class="third-section__img1">
                         </a>
-                        <a href="{% url 'userauth:login' %}" class="third-section__text">Промышленность</a>
+                        <a href="{% url 'userauth:login' %}" class="third-section__text">Население</a>
                     {% endif %}
                 </div>
                 <!-- Карточка с/х -->
