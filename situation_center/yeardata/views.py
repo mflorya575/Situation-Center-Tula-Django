@@ -51,3 +51,14 @@ def securenature(request):
         'title': 'Охрана природы | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'yeardata/securenature.html', context)
+
+
+def capitalassets(request):
+    # Получаем данные из базы данных и сортируем их по годам
+    capitalassetses = CapitalAssets.objects.all()
+
+    context = {
+        'capitalassetses': capitalassetses,
+        'title': 'Основные фонды | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'yeardata/capitalassets.html', context)
