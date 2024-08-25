@@ -53,6 +53,7 @@ urlpatterns = [
     path('yeardata-vrp/<slug:slug>/', views.vrp_detail, name='vrp_detail'),
     # Инвестиции
     path('yeardata-investing/', views.investing, name='investing'),
+    path('yeardata-investing/<slug:slug>/', views.investing_detail, name='investing_detail'),
     # Промышленное производство
     path('yeardata-industrialprod/', views.industrialprod, name='industrialprod'),
     # Строительство
