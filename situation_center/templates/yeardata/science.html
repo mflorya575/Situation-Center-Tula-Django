@@ -39,7 +39,11 @@
         <div class="hospital-section__wrapper">
             <!-- Первый проект -->
 
-            
+            {% for science in sciences %}
+            <div class="hospital-section__card">
+                <a href="{% url 'yeardata:science_detail' slug=science.slug %}" class="hospital-section__link">{{ science.title }}</a>
+            </div>
+            {% endfor %}
 
         </div>
 
