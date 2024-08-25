@@ -39,7 +39,11 @@
         <div class="hospital-section__wrapper">
             <!-- Первый проект -->
 
-            
+            {% for foreigntrading in foreigntradings %}
+            <div class="hospital-section__card">
+                <a href="{% url 'yeardata:foreigntrading_detail' slug=foreigntrading.slug %}" class="hospital-section__link">{{ foreigntrading.title }}</a>
+            </div>
+            {% endfor %}
 
         </div>
 
