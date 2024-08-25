@@ -39,7 +39,11 @@
         <div class="hospital-section__wrapper">
             <!-- Первый проект -->
 
-            
+            {% for organization in organizations %}
+            <div class="hospital-section__card">
+                <a href="{% url 'yeardata:organization_detail' slug=organization.slug %}" class="hospital-section__link">{{ organization.title }}</a>
+            </div>
+            {% endfor %}
 
         </div>
 

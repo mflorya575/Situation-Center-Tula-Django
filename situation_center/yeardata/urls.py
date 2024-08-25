@@ -23,6 +23,7 @@ urlpatterns = [
     path('yeardata-capitalassets/<slug:slug>/', views.capitalassets_detail, name='capitalassets_detail'),
     # Предприятия и организации
     path('yeardata-organization/', views.organization, name='organization'),
+    path('yeardata-organization/<slug:slug>/', views.organization_detail, name='organization_detail'),
     # С/X и т.д.
     path('yeardata-shlrr/', views.shlrr, name='shlrr'),
     # Торговля
