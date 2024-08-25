@@ -8,6 +8,7 @@ app_name = 'yeardata'
 urlpatterns = [
     # Население
     path('yeardata-population/', views.population, name='population'),
+    path('yeardata-population/<slug:slug>/', views.population_detail, name='population_detail'),
     # Уровень жизни населения
     path('yeardata-levelhealth/', views.levelhealth, name='levelhealth'),
     # Здравоохранение
