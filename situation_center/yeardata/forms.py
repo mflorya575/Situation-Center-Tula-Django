@@ -478,3 +478,37 @@ class CultureForm(forms.Form):
             # Обработка ошибок чтения файла или поиска больницы
             print(f"Ошибка: {e}")
             self.fields['region'].choices = [('Ошибка', 'Ошибка загрузки данных')]
+
+
+class VRPForm(forms.Form):
+    region = forms.ChoiceField(
+        choices=[],  # Начальное значение, будет заменено в __init__
+        label='Выберите регион',
+        required=True,
+    )
+
+    def __init__(self, *args, **kwargs):
+        # Получаем slug больницы из kwargs
+        vrp_slug = kwargs.pop('vrp_slug')
+        super(VRPForm, self).__init__(*args, **kwargs)
+
+        try:
+            # Найти валовой региональный продукт по slug и загрузить CSV
+            vrp = VRP.objects.get(slug=vrp_slug)
+            csv_file_path = vrp.csv_file.path
+            df = pd.read_csv(csv_file_path)
+
+            # Проверьте, что столбец 'region' присутствует
+            if 'region' not in df.columns:
+                raise ValueError("Столбец 'region' не найден в CSV-файле.")
+
+            # Получить уникальные регионы из CSV-файла
+            unique_regions = df['region'].unique()
+
+            # Обновить choices на основе данных из CSV
+            self.fields['region'].choices = [(region, region) for region in unique_regions]
+
+        except Exception as e:
+            # Обработка ошибок чтения файла или поиска больницы
+            print(f"Ошибка: {e}")
+            self.fields['region'].choices = [('Ошибка', 'Ошибка загрузки данных')]
