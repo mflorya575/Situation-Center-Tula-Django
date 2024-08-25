@@ -11,6 +11,7 @@ urlpatterns = [
     path('yeardata-population/<slug:slug>/', views.population_detail, name='population_detail'),
     # Уровень жизни населения
     path('yeardata-levelhealth/', views.levelhealth, name='levelhealth'),
+    path('yeardata-levelhealth/<slug:slug>/', views.levelhealth_detail, name='levelhealth_detail'),
     # Здравоохранение
     path('yeardata-hospital/', views.hospital, name='hospital'),
     # Охрана природы
