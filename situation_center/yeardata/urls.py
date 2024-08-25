@@ -14,6 +14,7 @@ urlpatterns = [
     path('yeardata-levelhealth/<slug:slug>/', views.levelhealth_detail, name='levelhealth_detail'),
     # Здравоохранение
     path('yeardata-hospital/', views.hospital, name='hospital'),
+    path('yeardata-hospital/<slug:slug>/', views.hospital_detail, name='hospital_detail'),
     # Охрана природы
     path('yeardata-securenature/', views.securenature, name='securenature'),
     # Основные фонды
