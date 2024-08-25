@@ -47,6 +47,7 @@ urlpatterns = [
     path('yeardata-study/<slug:slug>/', views.study_detail, name='study_detail'),
     # Культура
     path('yeardata-culture/', views.culture, name='culture'),
+    path('yeardata-culture/<slug:slug>/', views.culture_detail, name='culture_detail'),
     # Валовой региональный продукт
     path('yeardata-vrp/', views.vrp, name='vrp'),
     # Инвестиции
