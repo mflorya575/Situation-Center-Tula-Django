@@ -39,7 +39,11 @@
         <div class="hospital-section__wrapper">
             <!-- Первый проект -->
 
-            
+            {% for securenature in securenatures %}
+            <div class="hospital-section__card">
+                <a href="{% url 'yeardata:securenature_detail' slug=securenature.slug %}" class="hospital-section__link">{{ securenature.title }}</a>
+            </div>
+            {% endfor %}
 
         </div>
 

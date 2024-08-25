@@ -17,6 +17,7 @@ urlpatterns = [
     path('yeardata-hospital/<slug:slug>/', views.hospital_detail, name='hospital_detail'),
     # Охрана природы
     path('yeardata-securenature/', views.securenature, name='securenature'),
+    path('yeardata-securenature/<slug:slug>/', views.securenature_detail, name='securenature_detail'),
     # Основные фонды
     path('yeardata-capitalassets/', views.capitalassets, name='capitalassets'),
     # Предприятия и организации
