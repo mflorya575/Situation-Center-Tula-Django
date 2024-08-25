@@ -39,7 +39,11 @@
         <div class="hospital-section__wrapper">
             <!-- Первый проект -->
 
-            
+            {% for vrp in vrps %}
+            <div class="hospital-section__card">
+                <a href="{% url 'yeardata:vrp_detail' slug=vrp.slug %}" class="hospital-section__link">{{ vrp.title }}</a>
+            </div>
+            {% endfor %}
 
         </div>
 
