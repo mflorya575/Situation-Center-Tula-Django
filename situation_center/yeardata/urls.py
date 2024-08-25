@@ -26,6 +26,7 @@ urlpatterns = [
     path('yeardata-organization/<slug:slug>/', views.organization_detail, name='organization_detail'),
     # С/X и т.д.
     path('yeardata-shlrr/', views.shlrr, name='shlrr'),
+    # path('yeardata-shlrr/<slug:slug>/', views.shlrr_detail, name='shlrr_detail'),
     # Торговля
     path('yeardata-trading/', views.trading, name='trading'),
     # Информационные технологии
