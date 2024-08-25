@@ -68,4 +68,5 @@ urlpatterns = [
     path('yeardata-science/<slug:slug>/', views.science_detail, name='science_detail'),
     # Цены и тарифы
     path('yeardata-price/', views.price, name='price'),
+    path('yeardata-price/<slug:slug>/', views.price_detail, name='price_detail'),
 ]
