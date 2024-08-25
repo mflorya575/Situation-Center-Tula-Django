@@ -20,6 +20,7 @@ urlpatterns = [
     path('yeardata-securenature/<slug:slug>/', views.securenature_detail, name='securenature_detail'),
     # Основные фонды
     path('yeardata-capitalassets/', views.capitalassets, name='capitalassets'),
+    path('yeardata-capitalassets/<slug:slug>/', views.capitalassets_detail, name='capitalassets_detail'),
     # Предприятия и организации
     path('yeardata-organization/', views.organization, name='organization'),
     # С/X и т.д.
