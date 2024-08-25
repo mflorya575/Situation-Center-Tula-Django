@@ -32,6 +32,7 @@ urlpatterns = [
     path('yeardata-trading/<slug:slug>/', views.trading_detail, name='trading_detail'),
     # Информационные технологии
     path('yeardata-infotechnology/', views.infotechnology, name='infotechnology'),
+    path('yeardata-infotechnology/<slug:slug>/', views.infotechnology_detail, name='infotechnology_detail'),
     # Финансы
     path('yeardata-finance/', views.finance, name='finance'),
     # Внешняя торговля
