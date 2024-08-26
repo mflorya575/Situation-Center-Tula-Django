@@ -149,3 +149,51 @@ class DemographicsDetailAPIView(APIView):
             "charts": charts
         }
         return Response(response)
+
+
+class CultureDetailAPIView(APIView):
+    def get(self, request, slug):
+        culture = get_object_or_404(Culture, slug=slug)
+
+        # Чтение CSV файла
+        csv_file_path = culture.csv_file.path
+        df = pd.read_csv(csv_file_path)
+
+        # Преобразование данных
+        df_melted = df.melt(id_vars=['region'], var_name='year', value_name='data')
+
+        # Формирование данных для API
+        years = df.columns[1:]  # Первый столбец — region, остальные — года
+        data_data = df[df['region'] == 'Российская Федерация'].iloc[0, 1:].tolist()  # Пример для одного региона
+
+        data = {
+            "years": years.tolist(),
+            "data": data_data
+        }
+
+        charts = {
+            "linear": {
+                "type": "line",
+                "labels": years.tolist(),
+                "datasets": [
+                    {"label": "Смертность", "data": data_data}
+                ]
+            },
+            "bar": {
+                "type": "bar",
+                "labels": years.tolist(),
+                "datasets": [
+                    {"label": "Количество", "data": data_data}
+                ]
+            }
+        }
+
+        # Формирование ответа
+        response = {
+            "id": culture.id,
+            "title": culture.title,
+            "slug": culture.slug,
+            "data": data,
+            "charts": charts
+        }
+        return Response(response)
