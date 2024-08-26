@@ -8,6 +8,7 @@ app_name = 'api'
 
 urlpatterns = [
     path('hospital/<slug:slug>/', HospitalDetailAPIView.as_view(), name='hospital-detail-api'),
+    path('study/<slug:slug>/', StudyDetailAPIView.as_view(), name='study-detail-api'),
 
     # Динамическая схема
     path("schema/", SpectacularAPIView.as_view(), name="schema"),
