@@ -3,22 +3,6 @@ from django.utils.text import slugify
 import os
 
 
-REGION_CHOICES = [
-    ('tula', 'Тульская область'),
-    ('moscow', 'Московская область'),
-    ('spb', 'Санкт-Петербург'),
-    ('saratov', 'Саратовская область'),
-    ('novosibirsk', 'Новосибирская область'),
-    ('yekaterinburg', 'Свердловская область'),
-    ('krasnodar', 'Краснодарский край'),
-    ('kazan', 'Республика Татарстан'),
-    ('vladivostok', 'Приморский край'),
-    ('krasnodar', 'Краснодарский край'),
-    ('nizhny_novgorod', 'Нижегородская область'),
-    ('rostov', 'Ростовская область'),
-]
-
-
 def csv_upload_to(instance, filename):
     # Генерация пути для сохранения файла
     return os.path.join('csv_datasets', f'{instance.slug}', filename)
