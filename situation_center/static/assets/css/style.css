@@ -493,6 +493,40 @@ body::-webkit-scrollbar-thumb {
   min-width: 800px; /* Минимальная ширина таблицы, чтобы принудительно включить скролл при переполнении */
 }
 
+/*********** preloader ***********/
+
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+}
+
+#preloader.hide-preloader {
+    animation: hidePreloader 1s;
+}
+
+#preloader.preloader-hidden {
+    display: none;
+}
+
+@keyframes hidePreloader {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
 /*********** index ***********/
 .mobile-menu {
   display: none;
