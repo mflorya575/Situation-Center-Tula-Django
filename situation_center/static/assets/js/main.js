@@ -119,5 +119,5 @@ window.onload = function() {
     preloader.classList.add('hide-preloader');
     setInterval(function() {
           preloader.classList.add('preloader-hidden');
-    }, 990);
+    }, 2990);
 }

@@ -508,7 +508,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 #preloader.hide-preloader {
-    animation: hidePreloader 1s;
+    animation: hidePreloader 3s;
 }
 
 #preloader.preloader-hidden {
@@ -518,9 +518,6 @@ body::-webkit-scrollbar-thumb {
 @keyframes hidePreloader {
     0% {
         opacity: 1;
-    }
-    50% {
-        opacity: 0.5;
     }
     100% {
         opacity: 0;
