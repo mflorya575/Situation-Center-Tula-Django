@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.core.cache import cache
 import plotly.express as px
 import pandas as pd
 import plotly.graph_objects as go
@@ -23,128 +24,135 @@ def industry(request):
 
 def industry_detail(request, slug):
     industry = get_object_or_404(Industry, slug=slug)
+    cache_key = f'industry_detail_{slug}_{request.GET.get("region", "all")}'
+    context = cache.get(cache_key)
 
-    # Изначально установим переменные для обработки ошибок
-    combined_chart_linear = "Ошибка при обработке данных"
-    combined_chart_log = "Ошибка при обработке данных"
-    map_chart_linear = "Ошибка при создании карты"
-    map_chart_log = "Ошибка при создании карты"
-    table_html = "Ошибка при создании таблицы"
+    if context is None:
+        # Изначально установим переменные для обработки ошибок
+        combined_chart_linear = "Ошибка при обработке данных"
+        combined_chart_log = "Ошибка при обработке данных"
+        map_chart_linear = "Ошибка при создании карты"
+        map_chart_log = "Ошибка при создании карты"
+        table_html = "Ошибка при создании таблицы"
 
-    csv_file_path = industry.csv_file.path
+        csv_file_path = industry.csv_file.path
 
-    try:
-        # Загрузка данных из CSV
-        df = pd.read_csv(csv_file_path)
+        try:
+            # Загрузка данных из CSV
+            df = pd.read_csv(csv_file_path)
 
-        # Проверка на наличие столбца 'region'
-        if 'region' not in df.columns:
-            raise ValueError("Столбец 'region' не найден в CSV-файле.")
+            # Проверка на наличие столбца 'region'
+            if 'region' not in df.columns:
+                raise ValueError("Столбец 'region' не найден в CSV-файле.")
 
-        # Фильтрация по выбранному региону
-        selected_region = request.GET.get('region')
-        if selected_region:
-            df = df[df['region'] == selected_region]
+            # Фильтрация по выбранному региону
+            selected_region = request.GET.get('region')
+            if selected_region:
+                df = df[df['region'] == selected_region]
 
-        # Преобразование данных для графика
-        df_melted = df.melt(id_vars=['region'], var_name='year', value_name='data')
+            # Преобразование данных для графика
+            df_melted = df.melt(id_vars=['region'], var_name='year', value_name='data')
 
-        # Удаление всех типов пробелов и табуляций в столбце 'region'
-        df['region'] = df['region'].str.strip()
+            # Удаление всех типов пробелов и табуляций в столбце 'region'
+            df['region'] = df['region'].str.strip()
 
-        # Преобразование данных для таблицы
-        table_html = df.to_html(index=False, classes='table table-striped')
+            # Преобразование данных для таблицы
+            table_html = df.to_html(index=False, classes='table table-striped')
 
-        # Оборачиваем таблицу в div с классом
-        table_html = f'<div class="table-container">{table_html}</div>'
+            # Оборачиваем таблицу в div с классом
+            table_html = f'<div class="table-container">{table_html}</div>'
 
-        # Проверка наличия данных
-        if df_melted.empty:
-            combined_chart_linear = "Нет данных для отображения."
-            map_chart_linear = "Нет данных для отображения на карте."
-        else:
-            # Создание комбинированного графика с линейной шкалой
-            fig_linear = go.Figure()
-            fig_linear.add_trace(
-                go.Scatter(x=df_melted['year'], y=df_melted['data'], mode='lines+markers', name='Линейный график'))
-            fig_linear.add_trace(go.Bar(x=df_melted['year'], y=df_melted['data'], name='Столбчатая диаграмма'))
-            fig_linear.update_layout(
-                title=f'{industry.title} - Комбинированный график (Линейная шкала)',
-                xaxis_title='Годы',
-                yaxis_title='Количество'
-            )
-            combined_chart_linear = fig_linear.to_html(full_html=False)
+            # Проверка наличия данных
+            if df_melted.empty:
+                combined_chart_linear = "Нет данных для отображения."
+                map_chart_linear = "Нет данных для отображения на карте."
+            else:
+                # Создание комбинированного графика с линейной шкалой
+                fig_linear = go.Figure()
+                fig_linear.add_trace(
+                    go.Scatter(x=df_melted['year'], y=df_melted['data'], mode='lines+markers', name='Линейный график'))
+                fig_linear.add_trace(go.Bar(x=df_melted['year'], y=df_melted['data'], name='Столбчатая диаграмма'))
+                fig_linear.update_layout(
+                    title=f'{industry.title} - Комбинированный график (Линейная шкала)',
+                    xaxis_title='Годы',
+                    yaxis_title='Количество'
+                )
+                combined_chart_linear = fig_linear.to_html(full_html=False)
 
-            # Создание комбинированного графика с логарифмической шкалой
-            fig_log = go.Figure()
-            fig_log.add_trace(
-                go.Scatter(x=df_melted['year'], y=df_melted['data'], mode='lines+markers', name='Линейный график'))
-            fig_log.add_trace(go.Bar(x=df_melted['year'], y=df_melted['data'], name='Столбчатая диаграмма'))
-            fig_log.update_layout(
-                title=f'{industry.title} - Комбинированный график (Логарифмическая шкала)',
-                xaxis_title='Годы',
-                yaxis_title='Количество',
-                yaxis_type='log'
-            )
-            combined_chart_log = fig_log.to_html(full_html=False)
+                # Создание комбинированного графика с логарифмической шкалой
+                fig_log = go.Figure()
+                fig_log.add_trace(
+                    go.Scatter(x=df_melted['year'], y=df_melted['data'], mode='lines+markers', name='Линейный график'))
+                fig_log.add_trace(go.Bar(x=df_melted['year'], y=df_melted['data'], name='Столбчатая диаграмма'))
+                fig_log.update_layout(
+                    title=f'{industry.title} - Комбинированный график (Логарифмическая шкала)',
+                    xaxis_title='Годы',
+                    yaxis_title='Количество',
+                    yaxis_type='log'
+                )
+                combined_chart_log = fig_log.to_html(full_html=False)
 
-            # Отображение карты для последнего доступного года
-            latest_year = df_melted['year'].max()
-            df_latest = df_melted[df_melted['year'] == latest_year]
+                # Отображение карты для последнего доступного года
+                latest_year = df_melted['year'].max()
+                df_latest = df_melted[df_melted['year'] == latest_year]
 
-            # Создание карты с линейной шкалой
-            map_fig_linear = px.choropleth(df_latest,
-                                           locations='region',
-                                           locationmode='geojson-id',
-                                           geojson='https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/russia.geojson',
-                                           featureidkey="properties.name",
-                                           color='data',
-                                           hover_name='region',
-                                           title=f'{industry.title} - {latest_year} (Линейная шкала)',
-                                           color_continuous_scale='Reds')
-            map_fig_linear.update_geos(fitbounds="locations", visible=False)
-            map_chart_linear = map_fig_linear.to_html(full_html=False)
+                # Создание карты с линейной шкалой
+                map_fig_linear = px.choropleth(df_latest,
+                                               locations='region',
+                                               locationmode='geojson-id',
+                                               geojson='https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/russia.geojson',
+                                               featureidkey="properties.name",
+                                               color='data',
+                                               hover_name='region',
+                                               title=f'{industry.title} - {latest_year} (Линейная шкала)',
+                                               color_continuous_scale='Reds')
+                map_fig_linear.update_geos(fitbounds="locations", visible=False)
+                map_chart_linear = map_fig_linear.to_html(full_html=False)
 
-            # Создание карты с логарифмической шкалой
-            map_fig_log = px.choropleth(df_latest,
-                                        locations='region',
-                                        locationmode='geojson-id',
-                                        geojson='https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/russia.geojson',
-                                        featureidkey="properties.name",
-                                        color='data',
-                                        hover_name='region',
-                                        title=f'{industry.title} - {latest_year} (Логарифмическая шкала)',
-                                        color_continuous_scale='Reds',
-                                        range_color=[df_latest['data'].min(), df_latest['data'].max()],
-                                        color_continuous_midpoint=0.1)
-            map_fig_log.update_geos(fitbounds="locations", visible=False)
-            map_fig_log.update_layout(
-                coloraxis_colorbar=dict(title="Количество", ticks="outside", tickvals=[10, 100, 1000],
-                                        ticktext=["10", "100", "1000"]))
-            map_chart_log = map_fig_log.to_html(full_html=False)
+                # Создание карты с логарифмической шкалой
+                map_fig_log = px.choropleth(df_latest,
+                                            locations='region',
+                                            locationmode='geojson-id',
+                                            geojson='https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/russia.geojson',
+                                            featureidkey="properties.name",
+                                            color='data',
+                                            hover_name='region',
+                                            title=f'{industry.title} - {latest_year} (Логарифмическая шкала)',
+                                            color_continuous_scale='Reds',
+                                            range_color=[df_latest['data'].min(), df_latest['data'].max()],
+                                            color_continuous_midpoint=0.1)
+                map_fig_log.update_geos(fitbounds="locations", visible=False)
+                map_fig_log.update_layout(
+                    coloraxis_colorbar=dict(title="Количество", ticks="outside", tickvals=[10, 100, 1000],
+                                            ticktext=["10", "100", "1000"]))
+                map_chart_log = map_fig_log.to_html(full_html=False)
 
-    except Exception as e:
-        # Если возникла ошибка, отобразить ее
-        combined_chart_linear = f"Ошибка при обработке данных: {e}"
-        combined_chart_log = f"Ошибка при обработке данных: {e}"
-        map_chart_linear = "Ошибка при создании карты."
-        map_chart_log = "Ошибка при создании карты."
-        table_html = f"Ошибка при создании таблицы: {e}"
+        except Exception as e:
+            # Если возникла ошибка, отобразить ее
+            combined_chart_linear = f"Ошибка при обработке данных: {e}"
+            combined_chart_log = f"Ошибка при обработке данных: {e}"
+            map_chart_linear = "Ошибка при создании карты."
+            map_chart_log = "Ошибка при создании карты."
+            table_html = f"Ошибка при создании таблицы: {e}"
 
-    # Создание формы для выбора региона
-    region_form = IndustryForm(request.GET or None, industry_slug=slug)
+        # Создание формы для выбора региона
+        region_form = IndustryForm(request.GET or None, industry_slug=slug)
 
-    context = {
-        'combined_chart_linear': combined_chart_linear,
-        'combined_chart_log': combined_chart_log,
-        'map_chart_linear': map_chart_linear,
-        'map_chart_log': map_chart_log,
-        'table_html': table_html,
-        'industry': industry,
-        'region_form': region_form,
-        'selected_region': request.GET.get('region') or 'Не выбран',
-        'title': 'СЦ РЭУ филиал им. Г.В. Плеханова',
-    }
+        context = {
+            'combined_chart_linear': combined_chart_linear,
+            'combined_chart_log': combined_chart_log,
+            'map_chart_linear': map_chart_linear,
+            'map_chart_log': map_chart_log,
+            'table_html': table_html,
+            'industry': industry,
+            'region_form': region_form,
+            'selected_region': request.GET.get('region') or 'Не выбран',
+            'title': 'СЦ РЭУ филиал им. Г.В. Плеханова',
+        }
+
+        # Кеширование результатов
+        cache.set(cache_key, context, timeout=30*24*60*60)  # Кеширование на 30 дней
+
     return render(request, 'operdata/industry_detail.html', context)
 
 
