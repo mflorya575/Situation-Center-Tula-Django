@@ -772,7 +772,7 @@
                             <input class="aboutform-section__input2" type="text" required="" name="Ваш Email*" placeholder="Ваш Email*" />
                         </div>
                         <div class="aboutform-section__form-group3">
-                            <input class="aboutform-section__input3 tel" value="" type="tel" required="" name="second-name" placeholder="Номер телефона*" />
+                            <input class="aboutform-section__input3 tel" id="phone" value="" type="tel" required="" name="second-name" placeholder="+7 (___) ___-__-__" />
                         </div>
                         <div class="aboutform-section__form-group4">
                             <input class="aboutform-section__input4" type="text" required="" name="second-name" placeholder="Название организации*" />
@@ -890,6 +890,10 @@
         integrity="sha256-huW7yWl7tNfP7lGk46XE+Sp0nCotjzYodhVKlwaNeco=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{% static "./assets/js/main.js" %}"></script>
+    <script>
+        // Вызов функции для применения маски
+        maskPhone('.tel');
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
