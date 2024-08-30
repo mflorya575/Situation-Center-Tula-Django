@@ -1670,7 +1670,7 @@ def joblessness_detail(request, slug):
     joblessness = get_object_or_404(Joblessness, slug=slug)
 
     # Создаем уникальный ключ для кэша
-    cache_key = f'agro_detail_{slug}_{request.GET.get("region", "all")}'
+    cache_key = f'joblessness_detail_{slug}_{request.GET.get("region", "all")}'
     cached_data = cache.get(cache_key)
 
     if cached_data:
@@ -1807,11 +1807,16 @@ def jobmarket_detail(request, slug):
     jobmarket = get_object_or_404(JobMarket, slug=slug)
 
     # Создаем уникальный ключ для кэша
-    cache_key = f'agro_detail_{slug}_{request.GET.get("region", "all")}'
-    context = cache.get(cache_key)
+    cache_key = f'jobmarket_detail_{slug}_{request.GET.get("region", "all")}'
+    cached_data = cache.get(cache_key)
 
-    if context is None:
-        # Изначально установим переменные для обработки ошибок
+    if cached_data:
+        combined_chart_linear = cached_data.get('combined_chart_linear')
+        combined_chart_log = cached_data.get('combined_chart_log')
+        map_chart_linear = cached_data.get('map_chart_linear')
+        map_chart_log = cached_data.get('map_chart_log')
+        table_html = cached_data.get('table_html')
+    else:
         combined_chart_linear = "Ошибка при обработке данных"
         combined_chart_log = "Ошибка при обработке данных"
         map_chart_linear = "Ошибка при создании карты"
@@ -1821,39 +1826,26 @@ def jobmarket_detail(request, slug):
         csv_file_path = jobmarket.csv_file.path
 
         try:
-            # Загрузка данных из CSV
             df = pd.read_csv(csv_file_path)
 
-            # Проверка на наличие столбца 'region'
             if 'region' not in df.columns:
                 raise ValueError("Столбец 'region' не найден в CSV-файле.")
 
-            # Фильтрация по выбранному региону
             selected_region = request.GET.get('region')
             if selected_region:
                 df = df[df['region'] == selected_region]
 
-            # Преобразование данных для графика
-            df_melted = df.melt(id_vars=['region'], var_name='year', value_name='data')
-
-            # Удаление всех типов пробелов и табуляций в столбце 'region'
-            df['region'] = df['region'].str.strip()
-
-            # Преобразование данных для таблицы
             table_html = df.to_html(index=False, classes='table table-striped')
-
-            # Оборачиваем таблицу в div с классом
             table_html = f'<div class="table-container">{table_html}</div>'
 
-            # Проверка наличия данных
+            df_melted = df.melt(id_vars=['region'], var_name='year', value_name='data')
+
             if df_melted.empty:
                 combined_chart_linear = "Нет данных для отображения."
                 map_chart_linear = "Нет данных для отображения на карте."
             else:
-                # Создание комбинированного графика с линейной шкалой
                 fig_linear = go.Figure()
-                fig_linear.add_trace(
-                    go.Scatter(x=df_melted['year'], y=df_melted['data'], mode='lines+markers', name='Линейный график'))
+                fig_linear.add_trace(go.Scatter(x=df_melted['year'], y=df_melted['data'], mode='lines+markers', name='Линейный график'))
                 fig_linear.add_trace(go.Bar(x=df_melted['year'], y=df_melted['data'], name='Столбчатая диаграмма'))
                 fig_linear.update_layout(
                     title=f'{jobmarket.title} - Комбинированный график (Линейная шкала)',
@@ -1862,10 +1854,8 @@ def jobmarket_detail(request, slug):
                 )
                 combined_chart_linear = fig_linear.to_html(full_html=False)
 
-                # Создание комбинированного графика с логарифмической шкалой
                 fig_log = go.Figure()
-                fig_log.add_trace(
-                    go.Scatter(x=df_melted['year'], y=df_melted['data'], mode='lines+markers', name='Линейный график'))
+                fig_log.add_trace(go.Scatter(x=df_melted['year'], y=df_melted['data'], mode='lines+markers', name='Линейный график'))
                 fig_log.add_trace(go.Bar(x=df_melted['year'], y=df_melted['data'], name='Столбчатая диаграмма'))
                 fig_log.update_layout(
                     title=f'{jobmarket.title} - Комбинированный график (Логарифмическая шкала)',
@@ -1875,11 +1865,9 @@ def jobmarket_detail(request, slug):
                 )
                 combined_chart_log = fig_log.to_html(full_html=False)
 
-                # Отображение карты для последнего доступного года
                 latest_year = df_melted['year'].max()
                 df_latest = df_melted[df_melted['year'] == latest_year]
 
-                # Создание карты с линейной шкалой
                 map_fig_linear = px.choropleth(df_latest,
                                                locations='region',
                                                locationmode='geojson-id',
@@ -1892,7 +1880,6 @@ def jobmarket_detail(request, slug):
                 map_fig_linear.update_geos(fitbounds="locations", visible=False)
                 map_chart_linear = map_fig_linear.to_html(full_html=False)
 
-                # Создание карты с логарифмической шкалой
                 map_fig_log = px.choropleth(df_latest,
                                             locations='region',
                                             locationmode='geojson-id',
@@ -1910,30 +1897,34 @@ def jobmarket_detail(request, slug):
                                             ticktext=["10", "100", "1000"]))
                 map_chart_log = map_fig_log.to_html(full_html=False)
 
+            cache.set(cache_key, {
+                'combined_chart_linear': combined_chart_linear,
+                'combined_chart_log': combined_chart_log,
+                'map_chart_linear': map_chart_linear,
+                'map_chart_log': map_chart_log,
+                'table_html': table_html
+            }, timeout=30*24*60*60)
+
         except Exception as e:
-            # Если возникла ошибка, отобразить ее
             combined_chart_linear = f"Ошибка при обработке данных: {e}"
             combined_chart_log = f"Ошибка при обработке данных: {e}"
             map_chart_linear = "Ошибка при создании карты."
             map_chart_log = "Ошибка при создании карты."
             table_html = f"Ошибка при создании таблицы: {e}"
 
-        # Создание формы для выбора региона
-        region_form = JobMarketForm(request.GET or None, jobmarket_slug=slug)
+    region_form = JobMarketForm(request.GET or None, jobmarket_slug=slug)
 
-        context = {
-            'combined_chart_linear': combined_chart_linear,
-            'combined_chart_log': combined_chart_log,
-            'map_chart_linear': map_chart_linear,
-            'map_chart_log': map_chart_log,
-            'table_html': table_html,
-            'jobmarket': jobmarket,
-            'region_form': region_form,
-            'selected_region': request.GET.get('region') or 'Не выбран',
-            'title': 'СЦ РЭУ филиал им. Г.В. Плеханова',
-        }
-        # Кэшируем результат на 1 месяц (30 дней)
-        cache.set(cache_key, context, timeout=30*24*60*60)
+    context = {
+        'combined_chart_linear': combined_chart_linear,
+        'combined_chart_log': combined_chart_log,
+        'map_chart_linear': map_chart_linear,
+        'map_chart_log': map_chart_log,
+        'table_html': table_html,
+        'jobmarket': jobmarket,
+        'region_form': region_form,
+        'selected_region': request.GET.get('region') or 'Не выбран',
+        'title': 'СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
 
     return render(request, 'operdata/jobmarket_detail.html', context)
 
