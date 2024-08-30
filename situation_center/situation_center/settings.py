@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'operdata.apps.OperdataConfig',
     'yeardata.apps.YeardataConfig',
+    'rosstat.apps.RosstatConfig',
 
     # Сторонние библиотеки
     'mptt',

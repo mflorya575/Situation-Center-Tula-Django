@@ -7,6 +7,7 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, Spec
 app_name = 'api'
 
 urlpatterns = [
+    # Национальные проекты
     path('hospital/<slug:slug>/', HospitalDetailAPIView.as_view(), name='hospital-detail-api'),
     path('study/<slug:slug>/', StudyDetailAPIView.as_view(), name='study-detail-api'),
     path('demographics/<slug:slug>/', DemographicsDetailAPIView.as_view(), name='demographics-detail-api'),
@@ -22,6 +23,8 @@ urlpatterns = [
     path('atom/<slug:slug>/', AtomDetailAPIView.as_view(), name='atom-detail-api'),
     path('econom/<slug:slug>/', EconomDetailAPIView.as_view(), name='econom-detail-api'),
     path('mainline/<slug:slug>/', MainlineDetailAPIView.as_view(), name='mainline-detail-api'),
+    # Оперативные данные
+    # Годовые данные
 
     # Динамическая схема
     path("schema/", SpectacularAPIView.as_view(), name="schema"),

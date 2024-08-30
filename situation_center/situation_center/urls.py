@@ -46,6 +46,7 @@ urlpatterns = [
     path('api/', include('api.urls', namespace='api')),
     path('operdata/', include('operdata.urls', namespace='operdata')),
     path('yeardata/', include('yeardata.urls', namespace='yeardata')),
+    path('rosstat/', include('rosstat.urls', namespace='rosstat')),
 
     # Карта сайта
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap')
