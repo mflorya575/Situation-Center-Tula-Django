@@ -17,6 +17,7 @@ urlpatterns = [
     path('business/<slug:slug>/', BusinessDetailAPIView.as_view(), name='business-detail-api'),
     path('turism/<slug:slug>/', TurismDetailAPIView.as_view(), name='turism-detail-api'),
     path('house/<slug:slug>/', HouseDetailAPIView.as_view(), name='house-detail-api'),
+    path('world/<slug:slug>/', WorldDetailAPIView.as_view(), name='world-detail-api'),
 
     # Динамическая схема
     path("schema/", SpectacularAPIView.as_view(), name="schema"),
