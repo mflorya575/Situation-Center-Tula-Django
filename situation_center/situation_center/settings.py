@@ -105,8 +105,8 @@ WSGI_APPLICATION = 'situation_center.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'centertula',
-        'USER': 'centertula',
+        'NAME': 'centertula2',
+        'USER': 'centertula2',
         'PASSWORD': '54321',
         'HOST': 'localhost',
         'PORT': '5433',

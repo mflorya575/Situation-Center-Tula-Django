@@ -291,3 +291,4 @@ class SmallMediumCompany(models.Model):
 
     def __str__(self):
         return self.title if self.title else 'Без названия'
+
