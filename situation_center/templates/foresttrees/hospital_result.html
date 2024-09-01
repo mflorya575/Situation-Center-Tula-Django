@@ -18,7 +18,7 @@
 <ul>
     {% for tree in trees %}
         <li>
-            <button onclick="toggleTree({{ forloop.counter }})">Дерево {{ forloop.counter }}</button>
+            <button onclick="toggleTree({{ forloop.counter }})">{{ forloop.counter }}</button>
             <pre id="tree{{ forloop.counter }}" style="display:none;">{{ tree }}</pre>
         </li>
     {% endfor %}
