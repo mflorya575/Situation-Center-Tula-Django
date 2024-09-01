@@ -48,7 +48,6 @@ def hospital_detail(request, slug):
     # Проверка наличия данных после фильтрации
     if df_melted.empty:
         combined_chart_linear = "Нет данных для отображения."
-        map_chart_linear = "Нет данных для отображения на карте."
     else:
         # Подготовка данных для прогнозирования
         X = df_melted['year'].values.reshape(-1, 1)
@@ -68,14 +67,27 @@ def hospital_detail(request, slug):
             'year': future_years.flatten(),
             'deaths': future_predictions
         })
-        df_melted = pd.concat([df_melted, future_df])
+
+        # Создаем отдельные DataFrame для фактических и прогнозных данных
+        df_actual = df_melted[df_melted['year'] <= df_melted['year'].max()]
+        df_forecast = future_df
 
         # Создание комбинированного графика с линейной шкалой
         fig_linear = go.Figure()
+
+        # Линия для фактических данных
         fig_linear.add_trace(
-            go.Scatter(x=df_melted['year'], y=df_melted['deaths'], mode='lines+markers', name='Линейный график')
+            go.Scatter(x=df_actual['year'], y=df_actual['deaths'], mode='lines+markers', name='Фактические данные', line=dict(color='blue'))
         )
-        fig_linear.add_trace(go.Bar(x=df_melted['year'], y=df_melted['deaths'], name='Столбчатая диаграмма'))
+        # Линия для прогнозных данных
+        fig_linear.add_trace(
+            go.Scatter(x=df_forecast['year'], y=df_forecast['deaths'], mode='lines+markers', name='Прогноз', line=dict(color='red', dash='dash'))
+        )
+        # Столбчатая диаграмма для всех данных
+        fig_linear.add_trace(
+            go.Bar(x=df_melted['year'], y=df_melted['deaths'], name='Смерти')
+        )
+
         fig_linear.update_layout(
             title=f'{hospital.title} - Комбинированный график с прогнозом (Линейная шкала)',
             xaxis_title='Годы',
@@ -83,8 +95,8 @@ def hospital_detail(request, slug):
         )
         combined_chart_linear = fig_linear.to_html(full_html=False)
 
-        # Создание формы для выбора региона
-        region_form = RegionForm(request.GET or None, hospital_slug=slug)
+    # Создание формы для выбора региона
+    region_form = RegionForm(request.GET or None, hospital_slug=slug)
 
     context = {
         'combined_chart_linear': combined_chart_linear,
