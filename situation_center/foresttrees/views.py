@@ -33,7 +33,8 @@ def hospital_view(request, slug):
             "test_mse": result["test_mse"],
             "feature_importances": zip(feature_columns, result["feature_importances"]),
             "trees": result["trees"],
-            "feature_importances_plot": result["feature_importances_plot"]
+            "feature_importances_plot": result["feature_importances_plot"],
+            'title': 'СЦ РЭУ филиал им. Г.В. Плеханова',
         }
         return render(request, "foresttrees/hospital_result.html", context)
 
@@ -42,5 +43,6 @@ def hospital_view(request, slug):
 
     return render(request, "foresttrees/hospital_detail.html", {
         "hospital": hospital,
-        "columns": columns
+        "columns": columns,
+        'title': 'СЦ РЭУ филиал им. Г.В. Плеханова',
     })
