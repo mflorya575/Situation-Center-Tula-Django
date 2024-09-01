@@ -493,6 +493,25 @@ body::-webkit-scrollbar-thumb {
   min-width: 800px; /* Минимальная ширина таблицы, чтобы принудительно включить скролл при переполнении */
 }
 
+.btn-tree {
+  border-radius: 2px;
+  background: #dbae8b;
+  color: #f5ebe9;
+  border: none;
+  margin: 2px
+}
+
+.btn-tree:hover {
+  transition: .2s all;
+  background: #e4ba99;
+  cursor: pointer;
+}
+
+.btn-tree:active {
+  transition: .1s all;
+  background: #ab866a;
+}
+
 /*********** preloader ***********/
 
 #preloader {

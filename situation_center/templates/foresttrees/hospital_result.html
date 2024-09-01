@@ -2,28 +2,40 @@
 {% load static %}
 
 {% block content %}
+<section class="detailpr-section">
+    <div class="container">
 
-<h2>Результаты для {{ hospital.title }}</h2>
+        <!-- Заголовок -->
+        <div class="detailpr-section__title">Результаты для "{{ hospital.title }}"</div>
 
-<p>Коэффициент детерминации на обучающей выборке: {{ train_r2_score }}</p>
-<p>Коэффициент детерминации на тестовой выборке: {{ test_r2_score }}</p>
-<p>Среднеквадратичная ошибка на обучающей выборке: {{ train_mse }}</p>
-<p>Среднеквадратичная ошибка на тестовой выборке: {{ test_mse }}</p>
+        <div class="detailpr-section__block">
+            <p class="detailpr-section__description">Коэффициент детерминации на обучающей выборке: {{ train_r2_score }}</p>
+            <p class="detailpr-section__description">Коэффициент детерминации на тестовой выборке: {{ test_r2_score }}</p>
+            <p class="detailpr-section__description">Среднеквадратичная ошибка на обучающей выборке: {{ train_mse }}</p>
+            <p class="detailpr-section__description">Среднеквадратичная ошибка на тестовой выборке: {{ test_mse }}</p>
+        </div>
 
-<h3>Значимость факторных переменных:</h3>
-<div>
-    {{ feature_importances_plot|safe }}
+        <div class="detailpr-section__img">
+            <h3>Значимость факторных переменных:</h3>
+            <div>
+                {{ feature_importances_plot|safe }}
+            </div>
+        </div>
+
+        <div class="detailpr-section__wrapper">
+            <h3 style="font-size: 20px; margin-bottom: 20px;">Деревья:</h3>
+            <ul style="display: flex; flex-wrap: wrap;">
+                {% for tree in trees %}
+                    <li>
+                        <button class="btn-tree" onclick="toggleTree({{ forloop.counter }})">{{ forloop.counter }}</button>
+                        <pre id="tree{{ forloop.counter }}" style="display:none;">{{ tree|safe }}</pre>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
 </div>
-
-<h3>Деревья:</h3>
-<ul>
-    {% for tree in trees %}
-        <li>
-            <button onclick="toggleTree({{ forloop.counter }})">Показать дерево {{ forloop.counter }}</button>
-            <pre id="tree{{ forloop.counter }}" style="display:none;">{{ tree|safe }}</pre>
-        </li>
-    {% endfor %}
-</ul>
+</section>
 
 <script>
     function toggleTree(id) {

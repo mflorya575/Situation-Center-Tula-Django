@@ -22,8 +22,6 @@ def hospital_view(request, slug):
         target_column = request.POST.get("target_column")
         feature_columns = request.POST.getlist("feature_columns")
 
-        print("Выбранные факторные переменные:", feature_columns)
-
         data = process_csv_data(hospital.csv_file.path)
         result = calculate_random_forest(data, target_column, feature_columns)
 
