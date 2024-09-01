@@ -1,0 +1,38 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h2>Результаты для {{ hospital.title }}</h2>
+
+<p>Коэффициент детерминации R2: {{ r2_score }}</p>
+
+<h3>Значимость факторных переменных:</h3>
+<ul>
+    {% for factor, importance in feature_importances %}
+        <li>{{ factor }}: {{ importance }}</li>
+    {% endfor %}
+</ul>
+
+<h3>Деревья:</h3>
+<ul>
+    {% for tree in trees %}
+        <li>
+            <button onclick="toggleTree({{ forloop.counter }})">Дерево {{ forloop.counter }}</button>
+            <pre id="tree{{ forloop.counter }}" style="display:none;">{{ tree }}</pre>
+        </li>
+    {% endfor %}
+</ul>
+
+<script>
+    function toggleTree(id) {
+        var x = document.getElementById("tree" + id);
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+</script>
+
+{% endblock content %}

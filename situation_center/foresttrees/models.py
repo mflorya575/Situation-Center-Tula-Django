@@ -1,7 +1,6 @@
 import os
 from django.utils.text import slugify
 from django.db import models
-from django.core.exceptions import ValidationError
 
 
 def csv_upload_to(instance, filename):
