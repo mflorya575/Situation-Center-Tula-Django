@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Hospital
+from .models import *
 from .random_forest import process_csv_data, calculate_random_forest
 
 
