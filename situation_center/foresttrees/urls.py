@@ -6,5 +6,6 @@ from . import views
 app_name = 'foresttrees'
 
 urlpatterns = [
-    path('hospital/<int:hospital_id>/', views.regression_view, name='regression_view'),
+    path('hospital/', views.hospital, name='hospital'),
+    path('hospital/<slug:slug>/', views.hospital_view, name='hospital_view'),
 ]

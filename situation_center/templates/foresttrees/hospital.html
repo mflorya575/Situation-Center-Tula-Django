@@ -3,26 +3,13 @@
 
 {% block content %}
 
-<form method="post">
-    {% csrf_token %}
-    <h2>{{ hospital.title }}</h2>
-    <p>{{ hospital.description }}</p>
-
-    <label for="target_column">Выберите целевую переменную:</label>
-    <select name="target_column">
-        {% for column in columns %}
-            <option value="{{ column }}">{{ column }}</option>
-        {% endfor %}
-    </select>
-
-    <label for="feature_columns">Выберите факторные переменные:</label>
-    <select name="feature_columns" multiple>
-        {% for column in columns %}
-            <option value="{{ column }}">{{ column }}</option>
-        {% endfor %}
-    </select>
-
-    <button type="submit">Рассчитать</button>
-</form>
+<h1>{{ title }}</h1>
+<ul>
+    {% for hospital in hospitals %}
+        <li>
+            <a href="{% url 'foresttrees:hospital_view' hospital.slug %}">{{ hospital.title }}</a>
+        </li>
+    {% endfor %}
+</ul>
 
 {% endblock content %}
