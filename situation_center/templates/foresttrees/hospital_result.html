@@ -5,21 +5,22 @@
 
 <h2>Результаты для {{ hospital.title }}</h2>
 
-<p>Коэффициент детерминации R2: {{ r2_score }}</p>
+<p>Коэффициент детерминации на обучающей выборке: {{ train_r2_score }}</p>
+<p>Коэффициент детерминации на тестовой выборке: {{ test_r2_score }}</p>
+<p>Среднеквадратичная ошибка на обучающей выборке: {{ train_mse }}</p>
+<p>Среднеквадратичная ошибка на тестовой выборке: {{ test_mse }}</p>
 
 <h3>Значимость факторных переменных:</h3>
-<ul>
-    {% for factor, importance in feature_importances %}
-        <li>{{ factor }}: {{ importance }}</li>
-    {% endfor %}
-</ul>
+<div>
+    {{ feature_importances_plot|safe }}
+</div>
 
 <h3>Деревья:</h3>
 <ul>
     {% for tree in trees %}
         <li>
-            <button onclick="toggleTree({{ forloop.counter }})">{{ forloop.counter }}</button>
-            <pre id="tree{{ forloop.counter }}" style="display:none;">{{ tree }}</pre>
+            <button onclick="toggleTree({{ forloop.counter }})">Показать дерево {{ forloop.counter }}</button>
+            <pre id="tree{{ forloop.counter }}" style="display:none;">{{ tree|safe }}</pre>
         </li>
     {% endfor %}
 </ul>

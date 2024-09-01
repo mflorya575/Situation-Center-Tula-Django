@@ -1,6 +1,10 @@
 import csv
+import plotly.express as px
+import plotly.io as pio
 import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split
 from sklearn.tree import export_text
 
@@ -21,11 +25,26 @@ def calculate_random_forest(data, target_column, feature_columns):
     model = RandomForestRegressor(n_estimators=89, random_state=42)
     model.fit(X_train, y_train)
 
-    # Коэффициент детерминации
-    r2_score = model.score(X_test, y_test)
+    # Предсказания
+    y_pred_train = model.predict(X_train)
+    y_pred_test = model.predict(X_test)
+
+    # Коэффициент детерминации и метрики ошибки
+    train_r2_score = r2_score(y_train, y_pred_train)
+    test_r2_score = r2_score(y_test, y_pred_test)
+    train_mse = mean_squared_error(y_train, y_pred_train)
+    test_mse = mean_squared_error(y_test, y_pred_test)
 
     # Значимость факторных переменных
     feature_importances = model.feature_importances_
+
+    # Визуализация важности признаков с помощью Plotly
+    feature_importances_df = pd.DataFrame({
+        'Feature': feature_columns,
+        'Importance': feature_importances
+    })
+    fig = px.bar(feature_importances_df, x='Feature', y='Importance', title='Feature Importance in Random Forest Model')
+    fig_html = pio.to_html(fig, full_html=False)
 
     # Список деревьев
     trees = []
@@ -34,7 +53,11 @@ def calculate_random_forest(data, target_column, feature_columns):
         trees.append(tree_rules)
 
     return {
-        "r2_score": r2_score,
+        "train_r2_score": train_r2_score,
+        "test_r2_score": test_r2_score,
+        "train_mse": train_mse,
+        "test_mse": test_mse,
         "feature_importances": feature_importances,
-        "trees": trees
+        "trees": trees,
+        "feature_importances_plot": fig_html
     }
