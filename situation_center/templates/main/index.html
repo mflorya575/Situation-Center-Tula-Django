@@ -609,6 +609,101 @@
             <!-- Конец обертки карточек -->
         </div>
     </section>
+    <!-- Секция нейронных сетей -->
+    <section class="third-section">
+        <div class="third-section__container">
+            <!-- Заголовок -->
+            <h3 class="third-section__title container">НЕЙРОННЫЕ СЕТИ</h3>
+            <!-- Обертка карточек -->
+            <div class="third-section__wrapper">
+                <!-- Карточка здравоохранения -->
+                <div class="third-section__card">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'ai:hospital' %}">
+                            <img src="{% static 'assets/icons/hospital-image.png' %}" alt="иконка здравоохранения" class="third-section__img1">
+                        </a>
+                        <a href="{% url 'ai:hospital' %}" class="third-section__text">Здравоохранение</a>
+                    {% else %}
+                        <a href="{% url 'userauth:login' %}">
+                            <img src="{% static 'assets/icons/hospital-image.png' %}" alt="иконка здравоохранения" class="third-section__img1">
+                        </a>
+                        <a href="{% url 'userauth:login' %}" class="third-section__text">Здравоохранение</a>
+                    {% endif %}
+                </div>
+                <!-- Карточка образования -->
+                <div class="third-section__card">
+                    <a href="{% url "nathprojects:study" %}"><img src="{% static "./assets/icons/study-image.png" %}" alt="иконка образования" class="third-section__img2"></a>
+                    <a href="{% url "nathprojects:study" %}" class="third-section__text">Образование</a>
+                </div>
+                <!-- Карточка демографии -->
+                <div class="third-section__card">
+                    <a href="{% url "nathprojects:demographics" %}"><img src="{% static "./assets/icons/demographics-image.png" %}" alt="иконка демографии" class="third-section__img3"></a>
+                    <a href="{% url "nathprojects:demographics" %}" class="third-section__text">Демография</a>
+                </div>
+                <!-- Карточка культуры -->
+                <div class="third-section__card">
+                    <a href="{% url "nathprojects:culture" %}"><img src="{% static "./assets/icons/culture-image.png" %}" alt="иконка культуры" class="third-section__img4"></a>
+                    <a href="{% url "nathprojects:culture" %}" class="third-section__text">Культура</a>
+                </div>
+                <!-- Карточка безопасных дорог -->
+                <div class="third-section__card">
+                    <a href="{% url "nathprojects:road" %}"><img src="{% static "./assets/icons/road-image.png" %}" alt="иконка безопасных дорог" class="third-section__img5"></a>
+                    <a href="{% url "nathprojects:road" %}" class="third-section__text">Безопасные дороги</a>
+                </div>
+                <!-- Карточка наука и университеты -->
+                <div class="third-section__card">
+                    <a href="{% url "nathprojects:science" %}"><img src="{% static "./assets/icons/science-image.png" %}" alt="иконка науки и университетов" class="third-section__img6"></a>
+                    <a href="{% url "nathprojects:science" %}" class="third-section__text">Наука и университеты</a>
+                </div>
+                <!-- Карточка экологии -->
+                <div class="third-section__card">
+                    <a href="{% url "nathprojects:ecology" %}"><img src="{% static "./assets/icons/ecology-image.png" %}" alt="иконка экологии" class="third-section__img8"></a>
+                    <a href="{% url "nathprojects:ecology" %}" class="third-section__text">Экология</a>
+                </div>
+                <!-- Карточка предпринимательства -->
+                <div class="third-section__card">
+                    <a href="{% url "nathprojects:business" %}"><img src="{% static "./assets/icons/entrepreneurship-image.png" %}" alt="иконка предпринимательства" class="third-section__img9"></a>
+                    <a href="{% url "nathprojects:business" %}" class="third-section__text">Предпринимательство</a>
+                </div>
+                <!-- Карточка туризма и индустрии гостеприимства -->
+                <div class="third-section__card">
+                    <a href="{% url "nathprojects:turism" %}"><img src="{% static "./assets/icons/turism.png" %}" alt="иконка туризма" class="third-section__img10"></a>
+                    <a href="{% url "nathprojects:turism" %}" class="third-section__text">Туризм и индустрия<br> гостеприимства</a>
+                </div>
+                <!-- Карточка жилья и городской среды -->
+                <div class="third-section__card">
+                    <a href="{% url "nathprojects:house" %}"><img src="{% static "./assets/icons/housing-image.png" %}" alt="иконка жилья и городской среды" class="third-section__img11"></a>
+                    <a href="{% url "nathprojects:house" %}" class="third-section__text">Жилье и городская среда</a>
+                </div>
+                <!-- Карточка международной кооперации и экспорта -->
+                <div class="third-section__card">
+                    <a href="{% url "nathprojects:world" %}"><img src="{% static "./assets/icons/world-image.png" %}" alt="иконка международной кооперации и экспорта" class="third-section__img12"></a>
+                    <a href="{% url "nathprojects:world" %}" class="third-section__text2">Международная кооперация<br> и экспорт</a>
+                </div>
+                <!-- Карточка производительности труда и поддержки занятости -->
+                <div class="third-section__card">
+                    <a href="{% url "nathprojects:labour" %}"><img src="{% static "./assets/icons/labour-image.png" %}" alt="иконка производительности труда" class="third-section__img13"></a>
+                    <a href="{% url "nathprojects:labour" %}" class="third-section__text2">Производительность труда<br> и поддержка занятости</a>
+                </div>
+                <!-- Карточка области атомной энергии -->
+                <div class="third-section__card">
+                    <a href="{% url "errors:development" %}"><img src="{% static "./assets/icons/atom-image.png" %}" alt="иконка области атомной энергии" class="third-section__img14"></a>
+                    <a href="{% url "errors:development" %}" class="third-section__text2">Развитие технологий<br> в области атомной энергии</a>
+                </div>
+                <!-- Карточка цифровой экономики РФ -->
+                <div class="third-section__card">
+                    <a href="{% url "nathprojects:econom" %}"><img src="{% static "./assets/icons/economy-image.png" %}" alt="иконка цифровой экономики РФ" class="third-section__img15"></a>
+                    <a href="{% url "nathprojects:econom" %}" class="third-section__text">Цифровая экономика РФ</a>
+                </div>
+                <!-- Карточка расширения магистральной инфраструктуры -->
+                <div class="third-section__card card-last__margin">
+                    <a href="{% url "errors:development" %}"><img src="{% static "./assets/icons/mainline-image.png" %}" alt="иконка расширения магистральной инфраструктуры" class="third-section__img16"></a>
+                    <a href="{% url "errors:development" %}" class="third-section__text2">Расширение магистральной<br> инфраструктуры</a>
+                </div>
+            </div>
+            <!-- Конец обертки карточек -->
+        </div>
+    </section>
     <!-- Секция активного прогноза -->
     <section class="third-section">
         <div class="third-section__container">
