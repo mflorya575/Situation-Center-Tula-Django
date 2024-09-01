@@ -1,0 +1,10 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1>Ошибка кластеризации</h1>
+<p>{{ error }}</p>
+<a href="{% url 'clustering:clustering_results' %}">Попробовать снова</a>
+
+{% endblock content %}

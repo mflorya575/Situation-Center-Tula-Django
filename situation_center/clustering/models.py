@@ -29,5 +29,11 @@ class Document(models.Model):
         if not self.slug:
             self.slug = slugify(self.title or os.path.splitext(self.txt_file.name)[0])
 
+        # Извлечение текста из файла и сохранение его в поле content
+        if self.txt_file:
+            self.txt_file.seek(0)  # Перемещаем указатель на начало файла
+            self.content = self.txt_file.read().decode('utf-8')
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return self.title if self.title else 'Без названия'
