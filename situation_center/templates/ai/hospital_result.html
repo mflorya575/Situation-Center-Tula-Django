@@ -22,18 +22,7 @@
             </div>
         </div>
 
-        <div class="detailpr-section__wrapper">
-            <h3 style="font-size: 20px; margin-bottom: 20px;">Деревья:</h3>
-            <ul style="display: flex; flex-wrap: wrap;">
-                {% for tree in trees %}
-                    <li>
-                        <button class="btn-tree" onclick="toggleTree({{ forloop.counter }})">{{ forloop.counter }}</button>
-                        <pre id="tree{{ forloop.counter }}" style="display:none;">{{ tree|safe }}</pre>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-        <h3>Скачать обученную модель</h3>
+        <h3 class="detailpr-section__description">Скачать обученную модель</h3>
         <a href="{% url 'ai:download_model' model_filename %}" class="btn btn-primary">Скачать модель</a>
 
 </div>
