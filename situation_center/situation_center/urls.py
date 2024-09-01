@@ -50,6 +50,7 @@ urlpatterns = [
     path('foresttrees/', include('foresttrees.urls', namespace='foresttrees')),
     path('activeforecast/', include('activeforecast.urls', namespace='activeforecast')),
     path('ai/', include('ai.urls', namespace='ai')),
+    path('clustering/', include('clustering.urls', namespace='clustering')),
 
     # Карта сайта
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap')
