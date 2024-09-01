@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'operdata.apps.OperdataConfig',
     'yeardata.apps.YeardataConfig',
     'rosstat.apps.RosstatConfig',
+    'foresttrees.apps.ForesttreesConfig',
 
     # Сторонние библиотеки
     'mptt',
