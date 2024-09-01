@@ -4,21 +4,35 @@
 {% block content %}
 
 <h1>Результаты кластеризации</h1>
-<ul>
-    {% for cluster_id, documents in clusters.items %}
-        <li>
-            <h2>Кластер {{ cluster_id }}</h2>
-            <ul>
-                {% for document in documents %}
-                    <li>{{ document.title }}</li>
-                {% empty %}
-                    <li>Нет документов в этом кластере.</li>
-                {% endfor %}
-            </ul>
-        </li>
-    {% empty %}
-        <li>Нет кластеров для отображения.</li>
-    {% endfor %}
-</ul>
+    <ul>
+        {% for cluster_id, cluster_data in cluster_visualizations.items %}
+            <li class="cluster">
+                <h2>Кластер {{ cluster_id }}</h2>
+                <div class="wordcloud">
+                    {% if cluster_data.wordcloud_img %}
+                        <img src="data:image/png;base64,{{ cluster_data.wordcloud_img }}" alt="Word Cloud">
+                    {% else %}
+                        <p>Нет облака слов для этого кластера.</p>
+                    {% endif %}
+                </div>
+                <div class="word-graph">
+                    {% if cluster_data.word_graph_img %}
+                        <img src="data:image/png;base64,{{ cluster_data.word_graph_img }}" alt="Word Graph">
+                    {% else %}
+                        <p>Нет графа слов для этого кластера.</p>
+                    {% endif %}
+                </div>
+                <ul>
+                    {% for document in cluster_data.documents %}
+                        <li>{{ document.title }}</li>
+                    {% empty %}
+                        <li>Нет документов в этом кластере.</li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% empty %}
+            <li>Нет кластеров для отображения.</li>
+        {% endfor %}
+    </ul>
 
 {% endblock content %}
