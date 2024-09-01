@@ -49,6 +49,7 @@ urlpatterns = [
     path('rosstat/', include('rosstat.urls', namespace='rosstat')),
     path('foresttrees/', include('foresttrees.urls', namespace='foresttrees')),
     path('activeforecast/', include('activeforecast.urls', namespace='activeforecast')),
+    path('ai/', include('ai.urls', namespace='ai')),
 
     # Карта сайта
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap')
