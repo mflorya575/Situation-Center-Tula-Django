@@ -21,4 +21,11 @@ def cluster_documents(num_clusters=5):
     model = KMeans(n_clusters=num_clusters, random_state=42)
     model.fit(X)
 
-    return list(zip(documents, model.labels_)), None
+    # Организуем результаты по кластерам
+    clusters = {}
+    for doc, label in zip(documents, model.labels_):
+        if label not in clusters:
+            clusters[label] = []
+        clusters[label].append(doc)
+
+    return clusters, None

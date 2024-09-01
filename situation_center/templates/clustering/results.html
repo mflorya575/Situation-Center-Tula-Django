@@ -1,0 +1,24 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1>Результаты кластеризации</h1>
+<ul>
+    {% for cluster_id, documents in clusters.items %}
+        <li>
+            <h2>Кластер {{ cluster_id }}</h2>
+            <ul>
+                {% for document in documents %}
+                    <li>{{ document.title }}</li>
+                {% empty %}
+                    <li>Нет документов в этом кластере.</li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% empty %}
+        <li>Нет кластеров для отображения.</li>
+    {% endfor %}
+</ul>
+
+{% endblock content %}

@@ -9,4 +9,5 @@ def clustering_view(request):
     if error:
         return render(request, 'clustering/error.html', {'error': error})
 
-    return render(request, 'clustering/clustering.html', {'clusters': clusters})
+    # Передаем данные в шаблон
+    return render(request, 'clustering/results.html', {'clusters': clusters})
