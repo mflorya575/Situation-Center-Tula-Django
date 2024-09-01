@@ -7,6 +7,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split
 from sklearn.tree import export_text
+import joblib
+import os
 
 
 def process_csv_data(csv_file_path):
@@ -24,6 +26,16 @@ def calculate_random_forest(data, target_column, feature_columns):
     # Обучение модели случайного леса
     model = RandomForestRegressor(n_estimators=89, random_state=42)
     model.fit(X_train, y_train)
+
+    # Убедитесь, что директория "models" существует
+    model_dir = 'models'
+    if not os.path.exists(model_dir):
+        os.makedirs(model_dir)
+
+    # Сохранение модели в файл
+    model_filename = 'random_forest_model.pkl'
+    model_path = os.path.join(model_dir, model_filename)
+    joblib.dump(model, model_path)
 
     # Предсказания
     y_pred_train = model.predict(X_train)
@@ -59,5 +71,6 @@ def calculate_random_forest(data, target_column, feature_columns):
         "test_mse": test_mse,
         "feature_importances": feature_importances,
         "trees": trees,
-        "feature_importances_plot": fig_html
+        "feature_importances_plot": fig_html,
+        "model_filename": model_filename
     }

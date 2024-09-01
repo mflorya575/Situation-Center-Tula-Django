@@ -1,6 +1,16 @@
 from django.shortcuts import render, get_object_or_404
 from foresttrees.models import *
 from .ai import process_csv_data, calculate_random_forest
+from django.http import FileResponse, Http404
+import os
+
+
+def download_model(request, filename):
+    file_path = os.path.join('models', filename)
+    if os.path.exists(file_path):
+        return FileResponse(open(file_path, 'rb'), as_attachment=True, filename=filename)
+    else:
+        raise Http404("File does not exist")
 
 
 def hospital(request):
@@ -34,6 +44,7 @@ def hospital_view(request, slug):
             "feature_importances": zip(feature_columns, result["feature_importances"]),
             "trees": result["trees"],
             "feature_importances_plot": result["feature_importances_plot"],
+            "model_filename": result["model_filename"],
             'title': 'СЦ РЭУ филиал им. Г.В. Плеханова',
         }
         return render(request, "ai/hospital_result.html", context)
