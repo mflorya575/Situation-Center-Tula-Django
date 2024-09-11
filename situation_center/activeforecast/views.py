@@ -106,3 +106,15 @@ def hospital_detail(request, slug):
         'title': 'СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'activeforecast/hospital_detail.html', context)
+
+
+def study(request):
+    # Получаем все объекты Hospital из базы данных
+    studies = Study.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'studies': studies,
+        'title': 'Образование | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'activeforecast/study.html', context)

@@ -1,0 +1,73 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="hospital-section">
+    <div class="container">
+        <!-- Заголовок главный -->
+        <h1 class="hospital-section__title">НАЦИОНАЛЬНЫЙ ПРОЕКТ</h1>
+        <!-- Заголовок проекта -->
+        <h2 class="hospital-section__title-project">Здравоохранение</h2>
+        <!-- Тексты -->
+        <p class="hospital-section__text1">
+            В данном разделе представлены аналитические отчеты, охватывающие широкий
+            спектр данных в сфере образования. Эти отчеты представлены в форме
+            графиков, диаграмм и дашбордов, обеспечивая наглядное и информативное представление
+            информации.
+        </p>
+        <p class="hospital-section__text2">
+            Графики, используемые здесь, помогают визуализировать разнообразные аспекты
+            образования. Они отображают динамику обучения, распределение учащихся по возрастным
+            группам, эффективность учебных программ и многое другое. Эти графики помогают
+            анализировать и понимать текущее состояние образовательной системы в различных
+            регионах или странах, а также выявлять тенденции и прогнозировать возможные изменения.
+        </p>
+        <p class="hospital-section__text3">
+            Диаграммы в отчетах предоставляют дополнительные инсайты, позволяя сравнивать
+            различные показатели образования, выявлять зависимости между различными переменными
+            и идентифицировать ключевые факторы, влияющие на уровень образованности населения.
+        </p>
+        <p class="hospital-section__text4">
+            Дашборды, в свою очередь, представляют собой комплексные инструменты аналитики,
+            собирающие в себе различные графики, диаграммы и ключевые показатели образования
+            на одной панели управления. Они облегчают мониторинг текущей ситуации в образования,
+            а также помогают принимать информированные решения на основе актуальных данных.
+        </p>
+
+        {% comment %} <div id="chart">{{ chart|safe }}</div> {% endcomment %}
+
+        <!-- Обертка проектов -->
+        <div class="hospital-section__wrapper">
+            <!-- Первый проект -->
+
+            {% for study in studies %}
+            <div class="hospital-section__card">
+                {% comment %} <img src="{% static "./assets/images/project-img1.jpg" %}" alt="изображение графиков" class="hospital-section__img"> {% endcomment %}
+                <a href="{% url 'activeforecast:study_detail' slug=study.slug %}" class="hospital-section__link">{{ study.title }}</a>
+            </div>
+            {% endfor %}
+
+        </div>
+        <!-- Пагинация -->
+        {% comment %} <nav aria-label="news-section__nav">
+            <ul class="news-section__ul">
+                <div class="news-section__block-btns">
+                    <li class="news-section__li disabled">
+                      <a class="news-section__link-pgg">Назад</a>
+                    </li>
+                    <li class="news-section__li"><a class="news-section__link-pg" href="#">1</a></li>
+                    <li class="news-section__li"><a class="news-section__link-pg" href="#">2</a></li>
+                    <li class="news-section__li"><a class="news-section__link-pg" href="#">3</a></li>
+                    <li class="news-section__li"><a class="news-section__link-pg" href="#">4</a></li>
+                    <li class="news-section__li">
+                      <a class="news-section__link-pgg" href="#">Далее</a>
+                    </li>
+                </div>
+            </ul>
+        </nav> {% endcomment %}
+
+    </div>
+</section>
+
+{% endblock content %}
