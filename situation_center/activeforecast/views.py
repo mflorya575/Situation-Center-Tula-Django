@@ -207,3 +207,15 @@ def study_detail(request, slug):
         'title': 'СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'activeforecast/study_detail.html', context)
+
+
+def demographics(request):
+    # Получаем все объекты Hospital из базы данных
+    demographicses = Demographics.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'demographicses': demographicses,
+        'title': 'Демография | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'activeforecast/demographics.html', context)
