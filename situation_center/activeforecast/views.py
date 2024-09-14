@@ -328,3 +328,14 @@ def atom(request):
         'title': 'Развитие технологий в области атомной энергии | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'activeforecast/atom.html', context)
+
+
+def econom(request):
+    economs = Econom.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'economs': economs,
+        'title': 'Цифровая экономика РФ | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'activeforecast/econom.html', context)

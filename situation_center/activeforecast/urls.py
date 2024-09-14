@@ -34,4 +34,6 @@ urlpatterns = [
     path('labour/', views.labour, name='labour'),
     # Атомка
     path('atom/', views.atom, name='atom'),
+    # Цифровая экономика РФ
+    path('econom/', views.econom, name='econom'),
 ]
