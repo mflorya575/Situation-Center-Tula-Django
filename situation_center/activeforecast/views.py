@@ -416,3 +416,14 @@ def uslugi(request):
         'title': 'Услуги | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'activeforecast/uslugi.html', context)
+
+
+def investing(request):
+    investings = Investing.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'investings': investings,
+        'title': 'Инвестиции | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'activeforecast/investing.html', context)
