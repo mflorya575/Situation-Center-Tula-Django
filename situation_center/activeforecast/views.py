@@ -240,3 +240,14 @@ def road(request):
         'title': 'Безопасные дороги | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'activeforecast/road.html', context)
+
+
+def science(request):
+    sciences = Science.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'sciences': sciences,
+        'title': 'Наука | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'activeforecast/science.html', context)
