@@ -339,3 +339,14 @@ def econom(request):
         'title': 'Цифровая экономика РФ | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'activeforecast/econom.html', context)
+
+
+def mainline(request):
+    mainlines = Mainline.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'mainlines': mainlines,
+        'title': 'Расширение магистральной инфраструктуры | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'activeforecast/mainline.html', context)
