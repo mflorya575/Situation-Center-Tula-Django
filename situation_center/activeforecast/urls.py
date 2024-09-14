@@ -32,4 +32,6 @@ urlpatterns = [
     path('world/', views.world, name='world'),
     # Труд
     path('labour/', views.labour, name='labour'),
+    # Атомка
+    path('atom/', views.atom, name='atom'),
 ]
