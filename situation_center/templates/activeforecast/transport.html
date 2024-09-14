@@ -1,0 +1,73 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="hospital-section">
+    <div class="container">
+        <!-- Заголовок главный -->
+        <h1 class="hospital-section__title">АКТИВНЫЙ ПРОГНОЗ</h1>
+        <!-- Заголовок проекта -->
+        <h2 class="hospital-section__title-project">Транспорт</h2>
+        <!-- Тексты -->
+        <p class="hospital-section__text1">
+            В данном разделе представлены аналитические отчеты, охватывающие широкий
+            спектр данных в сфере транспорта. Эти отчеты представлены в форме
+            графиков, диаграмм и дашбордов, обеспечивая наглядное и информативное представление
+            информации.
+        </p>
+        <p class="hospital-section__text2">
+            Графики, представленные здесь, позволяют визуализировать различные аспекты транспортной деятельности,
+            такие как динамика пассажиропотока, распределение транспортных средств по типам и регионам,
+            эффективность транспортных маршрутов и многое другое. Они помогают анализировать и понимать текущее
+            состояние транспортной системы в различных регионах или странах, а также выявлять тенденции и прогнозировать
+            возможные изменения.
+        </p>
+        <p class="hospital-section__text3">
+            Диаграммы в отчетах предоставляют дополнительные инсайты, позволяя сравнивать
+            различные показатели транспортной деятельности, выявлять зависимости между различными переменными
+            и идентифицировать ключевые факторы.
+        </p>
+        <p class="hospital-section__text4">
+            Дашборды, в свою очередь, представляют собой комплексные инструменты аналитики,
+            собирающие в себе различные графики, диаграммы и ключевые показатели транспорта
+            на одной панели управления. Они облегчают мониторинг текущей ситуации в транспортной системе,
+            а также помогают принимать информированные решения на основе актуальных данных.
+        </p>
+
+        {% comment %} <div id="chart">{{ chart|safe }}</div> {% endcomment %}
+
+        <!-- Обертка проектов -->
+        <div class="hospital-section__wrapper">
+            <!-- Первый проект -->
+
+            {% for transport in transports %}
+            <div class="hospital-section__card">
+                {% comment %} <img src="{% static "./assets/images/project-img1.jpg" %}" alt="изображение графиков" class="hospital-section__img"> {% endcomment %}
+                <a href="{% url 'activeforecast:transport_detail' slug=transport.slug %}" class="hospital-section__link">{{ transport.title }}</a>
+            </div>
+            {% endfor %}
+
+        </div>
+        <!-- Пагинация -->
+        {% comment %} <nav aria-label="news-section__nav">
+            <ul class="news-section__ul">
+                <div class="news-section__block-btns">
+                    <li class="news-section__li disabled">
+                      <a class="news-section__link-pgg">Назад</a>
+                    </li>
+                    <li class="news-section__li"><a class="news-section__link-pg" href="#">1</a></li>
+                    <li class="news-section__li"><a class="news-section__link-pg" href="#">2</a></li>
+                    <li class="news-section__li"><a class="news-section__link-pg" href="#">3</a></li>
+                    <li class="news-section__li"><a class="news-section__link-pg" href="#">4</a></li>
+                    <li class="news-section__li">
+                      <a class="news-section__link-pgg" href="#">Далее</a>
+                    </li>
+                </div>
+            </ul>
+        </nav> {% endcomment %}
+
+    </div>
+</section>
+
+{% endblock content %}

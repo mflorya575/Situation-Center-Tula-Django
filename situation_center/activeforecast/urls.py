@@ -44,4 +44,6 @@ urlpatterns = [
     path('agro/', views.agro, name='agro'),
     # Строительство
     path('building/', views.building, name='building'),
+    # Транспорт
+    path('transport/', views.transport, name='transport'),
 ]
