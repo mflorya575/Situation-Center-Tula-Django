@@ -38,4 +38,6 @@ urlpatterns = [
     path('econom/', views.econom, name='econom'),
     # Расширение магистральной инфраструктуры
     path('mainline/', views.mainline, name='mainline'),
+    # Промышленность
+    path('industry/', views.industry, name='industry'),
 ]
