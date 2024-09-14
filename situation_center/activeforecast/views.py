@@ -210,7 +210,6 @@ def study_detail(request, slug):
 
 
 def demographics(request):
-    # Получаем все объекты Hospital из базы данных
     demographicses = Demographics.objects.all()
 
     # Передаем данные в контекст
@@ -219,3 +218,14 @@ def demographics(request):
         'title': 'Демография | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'activeforecast/demographics.html', context)
+
+
+def culture(request):
+    cultures = Culture.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'cultures': cultures,
+        'title': 'Культура | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'activeforecast/culture.html', context)
