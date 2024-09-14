@@ -20,4 +20,6 @@ urlpatterns = [
     path('road/', views.road, name='road'),
     # Наука
     path('science/', views.science, name='science'),
+    # Экология
+    path('ecology/', views.ecology, name='ecology'),
 ]

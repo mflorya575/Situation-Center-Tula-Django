@@ -251,3 +251,14 @@ def science(request):
         'title': 'Наука | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'activeforecast/science.html', context)
+
+
+def ecology(request):
+    ecologies = Ecology.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'ecologies': ecologies,
+        'title': 'Экология | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'activeforecast/ecology.html', context)
