@@ -1,0 +1,73 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="hospital-section">
+    <div class="container">
+        <!-- Заголовок главный -->
+        <h1 class="hospital-section__title">АКТИВНЫЙ ПРОГНОЗ</h1>
+        <!-- Заголовок проекта -->
+        <h2 class="hospital-section__title-project">Цены производителей</h2>
+        <!-- Тексты -->
+        <p class="hospital-section__text1">
+            В данном разделе представлены аналитические отчеты, охватывающие широкий
+            спектр данных в сфере цен производителей. Эти отчеты представлены в форме
+            графиков, диаграмм и дашбордов, обеспечивая наглядное и информативное представление
+            информации.
+        </p>
+        <p class="hospital-section__text2">
+            Графики, представленные здесь, позволяют визуализировать различные аспекты изменения цен производителей,
+            такие как динамика цен на продукцию, распределение цен по отраслям, влияние производственных
+            затрат на конечную стоимость и многое другое. Они помогают анализировать и понимать текущее
+            состояние ценовой политики производителей в различных регионах или странах, а также
+            выявлять тенденции и прогнозировать возможные изменения.
+        </p>
+        <p class="hospital-section__text3">
+            Диаграммы в отчетах предоставляют дополнительные инсайты, позволяя сравнивать
+            различные показатели цен производителей, выявлять зависимости между различными переменными
+            и идентифицировать ключевые факторы.
+        </p>
+        <p class="hospital-section__text4">
+            Дашборды, в свою очередь, представляют собой комплексные инструменты аналитики,
+            собирающие в себе различные графики, диаграммы и ключевые показатели цен производителей
+            на одной панели управления. Они облегчают мониторинг текущей ситуации с ценами производителей,
+            а также помогают принимать информированные решения на основе актуальных данных.
+        </p>
+
+        {% comment %} <div id="chart">{{ chart|safe }}</div> {% endcomment %}
+
+        <!-- Обертка проектов -->
+        <div class="hospital-section__wrapper">
+            <!-- Первый проект -->
+
+            {% for prodprice in prodprices %}
+            <div class="hospital-section__card">
+                {% comment %} <img src="{% static "./assets/images/project-img1.jpg" %}" alt="изображение графиков" class="hospital-section__img"> {% endcomment %}
+                <a href="{% url 'activeforecast:prodprice_detail' slug=prodprice.slug %}" class="hospital-section__link">{{ prodprice.title }}</a>
+            </div>
+            {% endfor %}
+
+        </div>
+        <!-- Пагинация -->
+        {% comment %} <nav aria-label="news-section__nav">
+            <ul class="news-section__ul">
+                <div class="news-section__block-btns">
+                    <li class="news-section__li disabled">
+                      <a class="news-section__link-pgg">Назад</a>
+                    </li>
+                    <li class="news-section__li"><a class="news-section__link-pg" href="#">1</a></li>
+                    <li class="news-section__li"><a class="news-section__link-pg" href="#">2</a></li>
+                    <li class="news-section__li"><a class="news-section__link-pg" href="#">3</a></li>
+                    <li class="news-section__li"><a class="news-section__link-pg" href="#">4</a></li>
+                    <li class="news-section__li">
+                      <a class="news-section__link-pgg" href="#">Далее</a>
+                    </li>
+                </div>
+            </ul>
+        </nav> {% endcomment %}
+
+    </div>
+</section>
+
+{% endblock content %}
