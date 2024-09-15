@@ -122,6 +122,7 @@ urlpatterns = [
     path('finance/<slug:slug>/', views.finance_detail, name='finance_detail'),
     # Внешняя торговля
     path('foreigntrading/', views.foreigntrading, name='foreigntrading'),
+    path('foreigntrading/<slug:slug>/', views.foreigntrading_detail, name='foreigntrading_detail'),
     # Валовой региональный продукт
     path('vrp/', views.vrp, name='vrp'),
     # Промышленное производство
