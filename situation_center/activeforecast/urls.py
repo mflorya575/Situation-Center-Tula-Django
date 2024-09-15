@@ -113,6 +113,7 @@ urlpatterns = [
     path('organization/<slug:slug>/', views.organization_detail, name='organization_detail'),
     # С/х, лесное, рыболовство, рыбоводство
     path('shlrr/', views.shlrr, name='shlrr'),
+    path('shlrr/<slug:slug>/', views.shlrr_detail, name='shlrr_detail'),
     # Информационные и коммуникационные технологии
     path('infotechnology/', views.infotechnology, name='infotechnology'),
     # Финансы
