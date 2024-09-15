@@ -86,6 +86,7 @@ urlpatterns = [
     path('revenue/<slug:slug>/', views.revenue_detail, name='revenue_detail'),
     # Зарплата
     path('salary/', views.salary, name='salary'),
+    path('salary/<slug:slug>/', views.salary_detail, name='salary_detail'),
     # Безработица
     path('joblessness/', views.joblessness, name='joblessness'),
     # Рынок труда
