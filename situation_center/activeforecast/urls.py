@@ -41,6 +41,7 @@ urlpatterns = [
     path('world/<slug:slug>/', views.world_detail, name='world_detail'),
     # Труд
     path('labour/', views.labour, name='labour'),
+    path('labour/<slug:slug>/', views.labour_detail, name='labour_detail'),
     # Атомка
     path('atom/', views.atom, name='atom'),
     # Цифровая экономика РФ
