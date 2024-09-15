@@ -116,6 +116,7 @@ urlpatterns = [
     path('shlrr/<slug:slug>/', views.shlrr_detail, name='shlrr_detail'),
     # Информационные и коммуникационные технологии
     path('infotechnology/', views.infotechnology, name='infotechnology'),
+    path('infotechnology/<slug:slug>/', views.infotechnology_detail, name='infotechnology_detail'),
     # Финансы
     path('finance/', views.finance, name='finance'),
     # Внешняя торговля
