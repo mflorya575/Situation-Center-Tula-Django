@@ -29,6 +29,7 @@ urlpatterns = [
     path('ecology/<slug:slug>/', views.ecology_detail, name='ecology_detail'),
     # Предпринимательство
     path('business/', views.business, name='business'),
+    path('business/<slug:slug>/', views.business_detail, name='business_detail'),
     # Туризм
     path('turism/', views.turism, name='turism'),
     # Жилье и городская среда
