@@ -32,17 +32,33 @@ def hospital_detail(request, slug):
     # Удаление пробелов в столбце 'region'
     df['region'] = df['region'].str.strip()
 
+    # Преобразование столбцов с датами
+    try:
+        # Переименовываем столбцы, убирая месяца, оставляя только год
+        df.columns = [col.split(',')[0] if col != 'region' else col for col in df.columns]
+
+        # Группируем данные по годам, если в одном году несколько значений, суммируем их
+        df = df.groupby('region', as_index=False).sum()
+    except Exception as e:
+        raise ValueError(f"Ошибка при обработке дат: {e}")
+
     # Фильтрация по выбранному региону
     selected_region = request.GET.get('region')
     if selected_region:
         df = df[df['region'] == selected_region]
 
     # Преобразование DataFrame в длинный формат для удобства обработки
-    df_melted = df.melt(id_vars=['region'], var_name='year', value_name='deaths')
+    df_melted = df.melt(id_vars=['region'], var_name='year', value_name='data')
 
-    # Преобразование столбцов 'year' и 'deaths' в числовой формат
-    df_melted['year'] = pd.to_numeric(df_melted['year'])
-    df_melted['deaths'] = pd.to_numeric(df_melted['deaths'])
+    # Преобразование столбцов 'year' и 'data' в числовой формат
+    try:
+        df_melted['year'] = pd.to_numeric(df_melted['year'], errors='coerce')
+        df_melted['data'] = pd.to_numeric(df_melted['data'], errors='coerce')
+    except ValueError as e:
+        raise ValueError(f"Ошибка при преобразовании данных: {e}")
+
+    # Удаление или заполнение пропущенных значений
+    df_melted = df_melted.dropna(subset=['data'])  # Удаление строк с NaN
 
     # Проверка наличия данных после фильтрации
     if df_melted.empty:
@@ -50,7 +66,7 @@ def hospital_detail(request, slug):
     else:
         # Подготовка данных для прогнозирования
         X = df_melted['year'].values.reshape(-1, 1)
-        y = df_melted['deaths'].values
+        y = df_melted['data'].values
 
         # Создание и обучение модели
         model = LinearRegression()
@@ -64,7 +80,7 @@ def hospital_detail(request, slug):
         future_df = pd.DataFrame({
             'region': selected_region,
             'year': future_years.flatten(),
-            'deaths': future_predictions
+            'data': future_predictions
         })
 
         # Создаем отдельные DataFrame для фактических и прогнозных данных
@@ -76,21 +92,23 @@ def hospital_detail(request, slug):
 
         # Линия для фактических данных
         fig_linear.add_trace(
-            go.Scatter(x=df_actual['year'], y=df_actual['deaths'], mode='lines+markers', name='Фактические данные', line=dict(color='blue'))
+            go.Scatter(x=df_actual['year'], y=df_actual['data'], mode='lines+markers', name='Фактические данные',
+                       line=dict(color='blue'))
         )
         # Линия для прогнозных данных
         fig_linear.add_trace(
-            go.Scatter(x=df_forecast['year'], y=df_forecast['deaths'], mode='lines+markers', name='Прогноз', line=dict(color='red', dash='dash'))
+            go.Scatter(x=df_forecast['year'], y=df_forecast['data'], mode='lines+markers', name='Прогноз',
+                       line=dict(color='red', dash='dash'))
         )
         # Столбчатая диаграмма для всех данных
         fig_linear.add_trace(
-            go.Bar(x=df_melted['year'], y=df_melted['deaths'], name='Смерти')
+            go.Bar(x=df_melted['year'], y=df_melted['data'], name='Количество')
         )
 
         fig_linear.update_layout(
             title=f'{hospital.title} - Комбинированный график с прогнозом (Линейная шкала)',
             xaxis_title='Годы',
-            yaxis_title='Смертей'
+            yaxis_title='Количество'
         )
         combined_chart_linear = fig_linear.to_html(full_html=False)
 
@@ -132,6 +150,16 @@ def study_detail(request, slug):
     # Удаление пробелов в столбце 'region'
     df['region'] = df['region'].str.strip()
 
+    # Преобразование столбцов с датами
+    try:
+        # Переименовываем столбцы, убирая месяца, оставляя только год
+        df.columns = [col.split(',')[0] if col != 'region' else col for col in df.columns]
+
+        # Группируем данные по годам, если в одном году несколько значений, суммируем их
+        df = df.groupby('region', as_index=False).sum()
+    except Exception as e:
+        raise ValueError(f"Ошибка при обработке дат: {e}")
+
     # Фильтрация по выбранному региону
     selected_region = request.GET.get('region')
     if selected_region:
@@ -140,9 +168,15 @@ def study_detail(request, slug):
     # Преобразование DataFrame в длинный формат для удобства обработки
     df_melted = df.melt(id_vars=['region'], var_name='year', value_name='data')
 
-    # Преобразование столбцов 'year' и 'deaths' в числовой формат
-    df_melted['year'] = pd.to_numeric(df_melted['year'])
-    df_melted['data'] = pd.to_numeric(df_melted['data'])
+    # Преобразование столбцов 'year' и 'data' в числовой формат
+    try:
+        df_melted['year'] = pd.to_numeric(df_melted['year'], errors='coerce')
+        df_melted['data'] = pd.to_numeric(df_melted['data'], errors='coerce')
+    except ValueError as e:
+        raise ValueError(f"Ошибка при преобразовании данных: {e}")
+
+    # Удаление или заполнение пропущенных значений
+    df_melted = df_melted.dropna(subset=['data'])  # Удаление строк с NaN
 
     # Проверка наличия данных после фильтрации
     if df_melted.empty:
@@ -176,11 +210,13 @@ def study_detail(request, slug):
 
         # Линия для фактических данных
         fig_linear.add_trace(
-            go.Scatter(x=df_actual['year'], y=df_actual['data'], mode='lines+markers', name='Фактические данные', line=dict(color='blue'))
+            go.Scatter(x=df_actual['year'], y=df_actual['data'], mode='lines+markers', name='Фактические данные',
+                       line=dict(color='blue'))
         )
         # Линия для прогнозных данных
         fig_linear.add_trace(
-            go.Scatter(x=df_forecast['year'], y=df_forecast['data'], mode='lines+markers', name='Прогноз', line=dict(color='red', dash='dash'))
+            go.Scatter(x=df_forecast['year'], y=df_forecast['data'], mode='lines+markers', name='Прогноз',
+                       line=dict(color='red', dash='dash'))
         )
         # Столбчатая диаграмма для всех данных
         fig_linear.add_trace(
@@ -232,6 +268,16 @@ def demographics_detail(request, slug):
     # Удаление пробелов в столбце 'region'
     df['region'] = df['region'].str.strip()
 
+    # Преобразование столбцов с датами
+    try:
+        # Переименовываем столбцы, убирая месяца, оставляя только год
+        df.columns = [col.split(',')[0] if col != 'region' else col for col in df.columns]
+
+        # Группируем данные по годам, если в одном году несколько значений, суммируем их
+        df = df.groupby('region', as_index=False).sum()
+    except Exception as e:
+        raise ValueError(f"Ошибка при обработке дат: {e}")
+
     # Фильтрация по выбранному региону
     selected_region = request.GET.get('region')
     if selected_region:
@@ -240,9 +286,15 @@ def demographics_detail(request, slug):
     # Преобразование DataFrame в длинный формат для удобства обработки
     df_melted = df.melt(id_vars=['region'], var_name='year', value_name='data')
 
-    # Преобразование столбцов 'year' и 'deaths' в числовой формат
-    df_melted['year'] = pd.to_numeric(df_melted['year'])
-    df_melted['data'] = pd.to_numeric(df_melted['data'])
+    # Преобразование столбцов 'year' и 'data' в числовой формат
+    try:
+        df_melted['year'] = pd.to_numeric(df_melted['year'], errors='coerce')
+        df_melted['data'] = pd.to_numeric(df_melted['data'], errors='coerce')
+    except ValueError as e:
+        raise ValueError(f"Ошибка при преобразовании данных: {e}")
+
+    # Удаление или заполнение пропущенных значений
+    df_melted = df_melted.dropna(subset=['data'])  # Удаление строк с NaN
 
     # Проверка наличия данных после фильтрации
     if df_melted.empty:
@@ -276,11 +328,13 @@ def demographics_detail(request, slug):
 
         # Линия для фактических данных
         fig_linear.add_trace(
-            go.Scatter(x=df_actual['year'], y=df_actual['data'], mode='lines+markers', name='Фактические данные', line=dict(color='blue'))
+            go.Scatter(x=df_actual['year'], y=df_actual['data'], mode='lines+markers', name='Фактические данные',
+                       line=dict(color='blue'))
         )
         # Линия для прогнозных данных
         fig_linear.add_trace(
-            go.Scatter(x=df_forecast['year'], y=df_forecast['data'], mode='lines+markers', name='Прогноз', line=dict(color='red', dash='dash'))
+            go.Scatter(x=df_forecast['year'], y=df_forecast['data'], mode='lines+markers', name='Прогноз',
+                       line=dict(color='red', dash='dash'))
         )
         # Столбчатая диаграмма для всех данных
         fig_linear.add_trace(
@@ -332,6 +386,16 @@ def culture_detail(request, slug):
     # Удаление пробелов в столбце 'region'
     df['region'] = df['region'].str.strip()
 
+    # Преобразование столбцов с датами
+    try:
+        # Переименовываем столбцы, убирая месяца, оставляя только год
+        df.columns = [col.split(',')[0] if col != 'region' else col for col in df.columns]
+
+        # Группируем данные по годам, если в одном году несколько значений, суммируем их
+        df = df.groupby('region', as_index=False).sum()
+    except Exception as e:
+        raise ValueError(f"Ошибка при обработке дат: {e}")
+
     # Фильтрация по выбранному региону
     selected_region = request.GET.get('region')
     if selected_region:
@@ -340,9 +404,15 @@ def culture_detail(request, slug):
     # Преобразование DataFrame в длинный формат для удобства обработки
     df_melted = df.melt(id_vars=['region'], var_name='year', value_name='data')
 
-    # Преобразование столбцов 'year' и 'deaths' в числовой формат
-    df_melted['year'] = pd.to_numeric(df_melted['year'])
-    df_melted['data'] = pd.to_numeric(df_melted['data'])
+    # Преобразование столбцов 'year' и 'data' в числовой формат
+    try:
+        df_melted['year'] = pd.to_numeric(df_melted['year'], errors='coerce')
+        df_melted['data'] = pd.to_numeric(df_melted['data'], errors='coerce')
+    except ValueError as e:
+        raise ValueError(f"Ошибка при преобразовании данных: {e}")
+
+    # Удаление или заполнение пропущенных значений
+    df_melted = df_melted.dropna(subset=['data'])  # Удаление строк с NaN
 
     # Проверка наличия данных после фильтрации
     if df_melted.empty:
@@ -376,11 +446,13 @@ def culture_detail(request, slug):
 
         # Линия для фактических данных
         fig_linear.add_trace(
-            go.Scatter(x=df_actual['year'], y=df_actual['data'], mode='lines+markers', name='Фактические данные', line=dict(color='blue'))
+            go.Scatter(x=df_actual['year'], y=df_actual['data'], mode='lines+markers', name='Фактические данные',
+                       line=dict(color='blue'))
         )
         # Линия для прогнозных данных
         fig_linear.add_trace(
-            go.Scatter(x=df_forecast['year'], y=df_forecast['data'], mode='lines+markers', name='Прогноз', line=dict(color='red', dash='dash'))
+            go.Scatter(x=df_forecast['year'], y=df_forecast['data'], mode='lines+markers', name='Прогноз',
+                       line=dict(color='red', dash='dash'))
         )
         # Столбчатая диаграмма для всех данных
         fig_linear.add_trace(
@@ -432,6 +504,16 @@ def road_detail(request, slug):
     # Удаление пробелов в столбце 'region'
     df['region'] = df['region'].str.strip()
 
+    # Преобразование столбцов с датами
+    try:
+        # Переименовываем столбцы, убирая месяца, оставляя только год
+        df.columns = [col.split(',')[0] if col != 'region' else col for col in df.columns]
+
+        # Группируем данные по годам, если в одном году несколько значений, суммируем их
+        df = df.groupby('region', as_index=False).sum()
+    except Exception as e:
+        raise ValueError(f"Ошибка при обработке дат: {e}")
+
     # Фильтрация по выбранному региону
     selected_region = request.GET.get('region')
     if selected_region:
@@ -440,9 +522,15 @@ def road_detail(request, slug):
     # Преобразование DataFrame в длинный формат для удобства обработки
     df_melted = df.melt(id_vars=['region'], var_name='year', value_name='data')
 
-    # Преобразование столбцов 'year' и 'deaths' в числовой формат
-    df_melted['year'] = pd.to_numeric(df_melted['year'])
-    df_melted['data'] = pd.to_numeric(df_melted['data'])
+    # Преобразование столбцов 'year' и 'data' в числовой формат
+    try:
+        df_melted['year'] = pd.to_numeric(df_melted['year'], errors='coerce')
+        df_melted['data'] = pd.to_numeric(df_melted['data'], errors='coerce')
+    except ValueError as e:
+        raise ValueError(f"Ошибка при преобразовании данных: {e}")
+
+    # Удаление или заполнение пропущенных значений
+    df_melted = df_melted.dropna(subset=['data'])  # Удаление строк с NaN
 
     # Проверка наличия данных после фильтрации
     if df_melted.empty:
@@ -476,11 +564,13 @@ def road_detail(request, slug):
 
         # Линия для фактических данных
         fig_linear.add_trace(
-            go.Scatter(x=df_actual['year'], y=df_actual['data'], mode='lines+markers', name='Фактические данные', line=dict(color='blue'))
+            go.Scatter(x=df_actual['year'], y=df_actual['data'], mode='lines+markers', name='Фактические данные',
+                       line=dict(color='blue'))
         )
         # Линия для прогнозных данных
         fig_linear.add_trace(
-            go.Scatter(x=df_forecast['year'], y=df_forecast['data'], mode='lines+markers', name='Прогноз', line=dict(color='red', dash='dash'))
+            go.Scatter(x=df_forecast['year'], y=df_forecast['data'], mode='lines+markers', name='Прогноз',
+                       line=dict(color='red', dash='dash'))
         )
         # Столбчатая диаграмма для всех данных
         fig_linear.add_trace(
