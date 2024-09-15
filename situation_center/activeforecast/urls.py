@@ -64,4 +64,6 @@ urlpatterns = [
     path('salary/', views.salary, name='salary'),
     # Безработица
     path('joblessness/', views.joblessness, name='joblessness'),
+    # Рынок труда
+    path('jobmarket/', views.jobmarket, name='jobmarket'),
 ]

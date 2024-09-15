@@ -493,3 +493,14 @@ def joblessness(request):
         'title': 'Безработица | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'activeforecast/joblessness.html', context)
+
+
+def jobmarket(request):
+    jobmarkets = JobMarket.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'jobmarkets': jobmarkets,
+        'title': 'Рынок труда | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'activeforecast/jobmarket.html', context)
