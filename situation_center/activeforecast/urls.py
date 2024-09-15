@@ -74,6 +74,7 @@ urlpatterns = [
     path('investing/<slug:slug>/', views.investing_detail, name='investing_detail'),
     # Финансы предприятий
     path('finpr/', views.finpr, name='finpr'),
+    path('finpr/<slug:slug>/', views.finpr_detail, name='finpr_detail'),
     # Потребительские цены
     path('price/', views.price, name='price'),
     # Цены производителей
