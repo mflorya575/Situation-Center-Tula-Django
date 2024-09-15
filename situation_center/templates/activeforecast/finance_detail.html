@@ -1,0 +1,66 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="detailpr-section">
+    <div class="container">
+        <!-- Заголовок -->
+        <div class="detailpr-section__title">{{ finance.title }}</div>
+        <!-- Обертка графиков -->
+        <div class="detailpr-section__wrapper">
+            <form class="custom-form-pr" method="get" action="{% url 'activeforecast:finance_detail' slug=finance.slug %}">
+                <div class="form-group">
+                    <select name="region" id="id_region">
+                        {% for value, display in region_form.fields.region.choices %}
+                            <option value="{{ value }}" {% if value == selected_region %}selected{% endif %}>
+                                {{ display }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button class="custom-form-btn" type="submit">Фильтр</button>
+            </form>
+            <!-- Первый график -->
+            {% comment %} <div id="chart" class="detailpr-section__img">{{ chart|safe }}</div> {% endcomment %}
+            {% comment %} <div id="chart" class="detailpr-section__img">
+                <h2>Линейный график</h2>
+                <div>{{ line_chart|safe }}</div>
+            </div>
+            
+            <div id="chart" class="detailpr-section__img">
+                <h2>Столбчатая диаграмма</h2>
+                <div>{{ bar_chart|safe }}</div>
+            </div> {% endcomment %}
+            {% if selected_region %}
+                <h2>Выбранный регион: {{ selected_region }}</h2>
+            {% endif %}
+            <div id="chart" class="detailpr-section__img">
+                <h2>Комбинированный график</h2>
+                <div>{{ combined_chart_linear|safe }}</div>
+            </div>
+            <div class="detailpr-section__block">
+                <p class="detailpr-section__description">{{ finance.description }}</p>
+            </div>
+
+            
+            {% comment %} <div>
+                <h2>Круговая диаграмма</h2>
+                <div>{{ pie_chart|safe }}</div>
+            </div> {% endcomment %}
+            <!-- Второй график -->
+            {% comment %} <div class="detailpr-section__block">
+                <img src="./assets/images/graph-img2.png" alt="график" class="detailpr-section__img">
+                <p class="detailpr-section__description">Диаграмма аналитики по ТО то того</p>
+            </div> {% endcomment %}
+            <!-- Третий график -->
+            {% comment %} <div class="detailpr-section__block">
+                <img src="./assets/images/graph-img3.png" alt="график" class="detailpr-section__img">
+                <p class="detailpr-section__description">Диаграмма аналитики по ТО то того</p>
+            </div> {% endcomment %}
+        </div>
+
+    </div>
+</section>
+
+{% endblock content %}
