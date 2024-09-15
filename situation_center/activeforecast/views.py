@@ -603,3 +603,14 @@ def finance(request):
         'title': 'Финансы | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'activeforecast/finance.html', context)
+
+
+def foreigntrading(request):
+    foreigntradings = ForeignTrading.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'foreigntradings': foreigntradings,
+        'title': 'Внешняя торговля | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'activeforecast/foreigntrading.html', context)
