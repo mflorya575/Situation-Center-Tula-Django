@@ -78,4 +78,6 @@ urlpatterns = [
     path('capitalassets/', views.capitalassets, name='capitalassets'),
     # Предприятия и организации
     path('organization/', views.organization, name='organization'),
+    # С/х, лесное, рыболовство, рыбоводство
+    path('shlrr/', views.shlrr, name='shlrr'),
 ]
