@@ -128,4 +128,5 @@ urlpatterns = [
     path('vrp/<slug:slug>/', views.vrp_detail, name='vrp_detail'),
     # Промышленное производство
     path('industrialprod/', views.industrialprod, name='industrialprod'),
+    path('industrialprod/<slug:slug>/', views.industrialprod_detail, name='industrialprod_detail'),
 ]
