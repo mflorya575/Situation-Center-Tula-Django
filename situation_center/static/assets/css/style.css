@@ -976,8 +976,33 @@ a:hover span {
   overflow-x: auto;
   white-space: nowrap;
   scroll-snap-type: x mandatory;
-  scrollbar-width: none;
+  scrollbar-width: none; /* Для Firefox */
   padding-bottom: 70px;
+  position: relative; /* Для позиционирования псевдоэлемента */
+}
+
+.third-section__wrapper::-webkit-scrollbar {
+  height: 8px; /* Устанавливаем высоту скроллбара */
+}
+
+.third-section__wrapper::-webkit-scrollbar-track {
+  background: #dbae8b; /* Цвет трека скроллбара */
+}
+
+.third-section__wrapper::-webkit-scrollbar-thumb {
+  background-color: #715c4f; /* Цвет полоски прокрутки */
+  border-radius: 20px; /* Скругление */
+  border: 1px solid #b48460;
+}
+
+.third-section__wrapper::-webkit-scrollbar-thumb:hover {
+  background: #dbae8b; /* Цвет при наведении */
+}
+
+/* Для Firefox */
+.third-section__wrapper {
+  scrollbar-color: #715c4f #dbae8b; /* Цвет трека и полоски прокрутки */
+  scrollbar-width: thin; /* Тонкий скроллбар */
 }
 
 .third-section__text {
@@ -1082,9 +1107,9 @@ a:hover span {
   cursor: pointer;
 }
 
-.third-section__wrapper::-webkit-scrollbar {
+/* .third-section__wrapper::-webkit-scrollbar {
   scrollbar-width: none;
-}
+} */
 
 #card-text__margin {
   margin-bottom: 10px;
