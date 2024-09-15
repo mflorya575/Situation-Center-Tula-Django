@@ -65,6 +65,7 @@ urlpatterns = [
     path('transport/<slug:slug>/', views.transport_detail, name='transport_detail'),
     # Торговля
     path('trading/', views.trading, name='trading'),
+    path('trading/<slug:slug>/', views.trading_detail, name='trading_detail'),
     # Услуги
     path('uslugi/', views.uslugi, name='uslugi'),
     # Инвестиции
