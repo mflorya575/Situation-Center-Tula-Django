@@ -54,4 +54,6 @@ urlpatterns = [
     path('investing/', views.investing, name='investing'),
     # Финансы предприятий
     path('finpr/', views.finpr, name='finpr'),
+    # Потребительские цены
+    path('price/', views.price, name='price'),
 ]

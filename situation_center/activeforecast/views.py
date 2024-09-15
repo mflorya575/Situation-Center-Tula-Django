@@ -438,3 +438,14 @@ def finpr(request):
         'title': 'Финансы предприятий | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'activeforecast/finpr.html', context)
+
+
+def price(request):
+    prices = Price.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'prices': prices,
+        'title': 'Потребительские цены | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'activeforecast/price.html', context)
