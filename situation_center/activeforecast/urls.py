@@ -38,6 +38,7 @@ urlpatterns = [
     path('house/<slug:slug>/', views.house_detail, name='house_detail'),
     # Международная кооперация и экспорт
     path('world/', views.world, name='world'),
+    path('world/<slug:slug>/', views.world_detail, name='world_detail'),
     # Труд
     path('labour/', views.labour, name='labour'),
     # Атомка
