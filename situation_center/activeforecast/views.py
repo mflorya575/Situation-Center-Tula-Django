@@ -8,7 +8,6 @@ import numpy as np
 
 
 def hospital(request):
-    # Получаем все объекты Hospital из базы данных
     hospitals = Hospital.objects.all()
 
     # Передаем данные в контекст
@@ -109,7 +108,6 @@ def hospital_detail(request, slug):
 
 
 def study(request):
-    # Получаем все объекты Hospital из базы данных
     studies = Study.objects.all()
 
     # Передаем данные в контекст
