@@ -107,6 +107,7 @@ urlpatterns = [
     path('securenature/<slug:slug>/', views.securenature_detail, name='securenature_detail'),
     # Основные фонды
     path('capitalassets/', views.capitalassets, name='capitalassets'),
+    path('capitalassets/<slug:slug>/', views.capitalassets_detail, name='capitalassets_detail'),
     # Предприятия и организации
     path('organization/', views.organization, name='organization'),
     # С/х, лесное, рыболовство, рыбоводство
