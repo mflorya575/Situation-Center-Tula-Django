@@ -88,4 +88,6 @@ urlpatterns = [
     path('foreigntrading/', views.foreigntrading, name='foreigntrading'),
     # Валовой региональный продукт
     path('vrp/', views.vrp, name='vrp'),
+    # Промышленное производство
+    path('industrialprod/', views.industrialprod, name='industrialprod'),
 ]
