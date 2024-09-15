@@ -532,6 +532,16 @@ def science_detail(request, slug):
     # Удаление пробелов в столбце 'region'
     df['region'] = df['region'].str.strip()
 
+    # Преобразование столбцов с датами
+    try:
+        # Переименовываем столбцы, убирая месяца, оставляя только год
+        df.columns = [col.split(',')[0] if col != 'region' else col for col in df.columns]
+
+        # Группируем данные по годам, если в одном году несколько значений, суммируем их
+        df = df.groupby('region', as_index=False).sum()
+    except Exception as e:
+        raise ValueError(f"Ошибка при обработке дат: {e}")
+
     # Фильтрация по выбранному региону
     selected_region = request.GET.get('region')
     if selected_region:
@@ -541,12 +551,14 @@ def science_detail(request, slug):
     df_melted = df.melt(id_vars=['region'], var_name='year', value_name='data')
 
     # Преобразование столбцов 'year' и 'data' в числовой формат
-    df_melted['year'] = pd.to_numeric(df_melted['year'])
-    df_melted['data'] = pd.to_numeric(df_melted['data'])
+    try:
+        df_melted['year'] = pd.to_numeric(df_melted['year'], errors='coerce')
+        df_melted['data'] = pd.to_numeric(df_melted['data'], errors='coerce')
+    except ValueError as e:
+        raise ValueError(f"Ошибка при преобразовании данных: {e}")
 
     # Удаление или заполнение пропущенных значений
     df_melted = df_melted.dropna(subset=['data'])  # Удаление строк с NaN
-    # df_melted['data'].fillna(df_melted['data'].mean(), inplace=True)  # Можно использовать заполнение средним
 
     # Проверка наличия данных после фильтрации
     if df_melted.empty:
@@ -580,11 +592,13 @@ def science_detail(request, slug):
 
         # Линия для фактических данных
         fig_linear.add_trace(
-            go.Scatter(x=df_actual['year'], y=df_actual['data'], mode='lines+markers', name='Фактические данные', line=dict(color='blue'))
+            go.Scatter(x=df_actual['year'], y=df_actual['data'], mode='lines+markers', name='Фактические данные',
+                       line=dict(color='blue'))
         )
         # Линия для прогнозных данных
         fig_linear.add_trace(
-            go.Scatter(x=df_forecast['year'], y=df_forecast['data'], mode='lines+markers', name='Прогноз', line=dict(color='red', dash='dash'))
+            go.Scatter(x=df_forecast['year'], y=df_forecast['data'], mode='lines+markers', name='Прогноз',
+                       line=dict(color='red', dash='dash'))
         )
         # Столбчатая диаграмма для всех данных
         fig_linear.add_trace(
