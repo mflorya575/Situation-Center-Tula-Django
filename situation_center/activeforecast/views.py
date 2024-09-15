@@ -537,3 +537,14 @@ def levelhealth(request):
         'title': 'Уровень жизни населения | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'activeforecast/levelhealth.html', context)
+
+
+def securenature(request):
+    securenatures = SecureNature.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'securenatures': securenatures,
+        'title': 'Охрана природы | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'activeforecast/securenature.html', context)
