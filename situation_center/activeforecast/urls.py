@@ -74,4 +74,6 @@ urlpatterns = [
     path('levelhealth/', views.levelhealth, name='levelhealth'),
     # Охрана природы
     path('securenature/', views.securenature, name='securenature'),
+    # Основные фонды
+    path('capitalassets/', views.capitalassets, name='capitalassets'),
 ]
