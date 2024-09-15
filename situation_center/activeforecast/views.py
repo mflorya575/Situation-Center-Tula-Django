@@ -471,3 +471,14 @@ def revenue(request):
         'title': 'Доходы | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'activeforecast/revenue.html', context)
+
+
+def salary(request):
+    salaries = Salary.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'salaries': salaries,
+        'title': 'Зарплата | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'activeforecast/salary.html', context)
