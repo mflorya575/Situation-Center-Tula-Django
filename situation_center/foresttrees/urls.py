@@ -27,4 +27,6 @@ urlpatterns = [
     path('turism/', views.turism, name='turism'),
     # Жилье
     path('house/', views.house, name='house'),
+    # Международная кооперация и экспорт
+    path('world/', views.world, name='world'),
 ]

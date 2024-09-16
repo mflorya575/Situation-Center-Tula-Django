@@ -144,3 +144,14 @@ def house(request):
         'title': 'Жилье | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'foresttrees/house.html', context)
+
+
+def world(request):
+    worlds = World.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'worlds': worlds,
+        'title': 'Международная кооперация и экспорт | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'foresttrees/world.html', context)
