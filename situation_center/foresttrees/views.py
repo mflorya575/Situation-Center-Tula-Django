@@ -122,3 +122,14 @@ def business(request):
         'title': 'Предпринимательство | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'foresttrees/business.html', context)
+
+
+def turism(request):
+    turisms = Turism.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'turisms': turisms,
+        'title': 'Туризм | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'foresttrees/turism.html', context)
