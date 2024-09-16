@@ -9,4 +9,6 @@ urlpatterns = [
     # Здравоохранение
     path('hospital/', views.hospital, name='hospital'),
     path('hospital/<slug:slug>/', views.hospital_view, name='hospital_view'),
+    # Образование
+    path('study/', views.study, name='study'),
 ]
