@@ -276,3 +276,14 @@ def investing(request):
         'title': 'Инвестиции | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'foresttrees/investing.html', context)
+
+
+def finpr(request):
+    finprs = FinPr.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'finprs': finprs,
+        'title': 'Финансы предприятий | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'foresttrees/finpr.html', context)
