@@ -47,4 +47,6 @@ urlpatterns = [
     path('transport/', views.transport, name='transport'),
     # Торговля
     path('trading/', views.trading, name='trading'),
+    # Услуги
+    path('uslugi/', views.uslugi, name='uslugi'),
 ]

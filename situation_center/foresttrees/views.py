@@ -254,3 +254,14 @@ def trading(request):
         'title': 'Торговля | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'foresttrees/trading.html', context)
+
+
+def uslugi(request):
+    uslugis = Uslugi.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'uslugis': uslugis,
+        'title': 'Услуги | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'foresttrees/uslugi.html', context)
