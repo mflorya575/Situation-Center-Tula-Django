@@ -35,4 +35,6 @@ urlpatterns = [
     path('atom/', views.atom, name='atom'),
     # Экономика
     path('econom/', views.econom, name='econom'),
+    # Магистральная
+    path('mainline/', views.mainline, name='mainline'),
 ]

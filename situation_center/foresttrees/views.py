@@ -188,3 +188,14 @@ def econom(request):
         'title': 'Экономика | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'foresttrees/econom.html', context)
+
+
+def mainline(request):
+    mainlines = Mainline.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'mainlines': mainlines,
+        'title': 'Расширение магистральной инфраструктуры | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'foresttrees/mainline.html', context)
