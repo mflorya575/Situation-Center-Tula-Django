@@ -166,3 +166,14 @@ def labour(request):
         'title': 'Труд | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'foresttrees/labour.html', context)
+
+
+def atom(request):
+    atoms = Atom.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'atoms': atoms,
+        'title': 'Развитие технологий в области атомной энергии | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'foresttrees/atom.html', context)
