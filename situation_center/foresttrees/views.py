@@ -463,3 +463,14 @@ def foreigntrading(request):
         'title': 'Внешняя торговля | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'foresttrees/foreigntrading.html', context)
+
+
+def vrp(request):
+    vrps = VRP.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'vrps': vrps,
+        'title': 'Валовой региональный продукт | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'foresttrees/vrp.html', context)
