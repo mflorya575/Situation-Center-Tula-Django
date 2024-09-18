@@ -309,3 +309,14 @@ def prodprice(request):
         'title': 'Цены производителей | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'foresttrees/prodprice.html', context)
+
+
+def revenue(request):
+    revenues = Revenue.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'revenues': revenues,
+        'title': 'Доходы | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'foresttrees/revenue.html', context)
