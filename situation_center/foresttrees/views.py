@@ -331,3 +331,14 @@ def salary(request):
         'title': 'Зарплата | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'foresttrees/salary.html', context)
+
+
+def joblessness(request):
+    joblessnesses = Joblessness.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'joblessnesses': joblessnesses,
+        'title': 'Безработица | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'foresttrees/joblessness.html', context)

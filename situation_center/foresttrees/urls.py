@@ -61,4 +61,6 @@ urlpatterns = [
     path('revenue/', views.revenue, name='revenue'),
     # Зарплата
     path('salary/', views.salary, name='salary'),
+    # Безработица
+    path('joblessness/', views.joblessness, name='joblessness'),
 ]
