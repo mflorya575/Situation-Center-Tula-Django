@@ -81,4 +81,6 @@ urlpatterns = [
     path('shlrr/', views.shlrr, name='shlrr'),
     # Информационные и коммуникационные технологии
     path('infotechnology/', views.infotechnology, name='infotechnology'),
+    # Финансы
+    path('finance/', views.finance, name='finance'),
 ]
