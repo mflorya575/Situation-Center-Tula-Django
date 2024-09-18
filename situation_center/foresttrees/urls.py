@@ -67,4 +67,6 @@ urlpatterns = [
     path('jobmarket/', views.jobmarket, name='jobmarket'),
     # Малые и средние предприятия
     path('smcompany/', views.smcompany, name='smcompany'),
+    # Население
+    path('population/', views.population, name='population'),
 ]
