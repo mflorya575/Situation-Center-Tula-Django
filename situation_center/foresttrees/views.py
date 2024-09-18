@@ -375,3 +375,14 @@ def population(request):
         'title': 'Население | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'foresttrees/population.html', context)
+
+
+def levelhealth(request):
+    levelhealths = LevelHealth.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'levelhealths': levelhealths,
+        'title': 'Уровень жизни населения | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'foresttrees/levelhealth.html', context)
