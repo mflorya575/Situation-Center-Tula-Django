@@ -397,3 +397,14 @@ def securenature(request):
         'title': 'Охрана природы | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'foresttrees/securenature.html', context)
+
+
+def capitalassets(request):
+    capitalassetses = CapitalAssets.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'capitalassetses': capitalassetses,
+        'title': 'Основные фонды | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'foresttrees/capitalassets.html', context)
