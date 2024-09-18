@@ -23,6 +23,7 @@ urlpatterns = [
     path('road/<slug:slug>/', views.road_view, name='road_view'),
     # Наука
     path('science/', views.science, name='science'),
+    path('science/<slug:slug>/', views.science_view, name='science_view'),
     # Экология
     path('ecology/', views.ecology, name='ecology'),
     # Предпринимательство
