@@ -22,8 +22,16 @@ def calculate_random_forest(data, target_column, feature_columns):
     X = data[feature_columns]
     y = data[target_column]
 
+    # Проверка количества данных
+    if len(X) < 2:
+        raise ValueError("Недостаточно данных для разделения на обучающую и тестовую выборки.")
+
     # Разделение данных на обучающую и тестовую выборки
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+    try:
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+    except ValueError as e:
+        # Вывод сообщения о проблеме
+        raise ValueError(f"Ошибка при разделении данных: {e}")
 
     # Обучение модели случайного леса
     model = RandomForestRegressor(n_estimators=89, random_state=42)
@@ -42,7 +50,7 @@ def calculate_random_forest(data, target_column, feature_columns):
     # Значимость факторных переменных
     feature_importances = model.feature_importances_
 
-    # Визуализация важности признаков с помощью Plotly
+    # Визуализация важности признаков
     feature_importances_df = pd.DataFrame({
         'Feature': feature_columns,
         'Importance': feature_importances
