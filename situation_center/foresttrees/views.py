@@ -674,6 +674,39 @@ def industry(request):
     return render(request, 'foresttrees/industry.html', context)
 
 
+def industry_view(request, slug):
+    industry = get_object_or_404(Industry, slug=slug)
+
+    if request.method == "POST":
+        target_column = request.POST.get("target_column")
+        feature_columns = request.POST.getlist("feature_columns")
+
+        data = process_csv_data(industry.csv_file.path)
+        result = calculate_random_forest(data, target_column, feature_columns)
+
+        context = {
+            "industry": industry,
+            "train_r2_score": result["train_r2_score"],
+            "test_r2_score": result["test_r2_score"],
+            "train_mse": result["train_mse"],
+            "test_mse": result["test_mse"],
+            "feature_importances": zip(feature_columns, result["feature_importances"]),
+            "trees": result["trees"],
+            "feature_importances_plot": result["feature_importances_plot"],
+            'title': 'СЦ РЭУ филиал им. Г.В. Плеханова',
+        }
+        return render(request, "foresttrees/industry_result.html", context)
+
+    data = process_csv_data(industry.csv_file.path)
+    columns = data.columns
+
+    return render(request, "foresttrees/industry_detail.html", {
+        "industry": industry,
+        "columns": columns,
+        'title': 'СЦ РЭУ филиал им. Г.В. Плеханова',
+    })
+
+
 def agro(request):
     agros = Agro.objects.all()
 
