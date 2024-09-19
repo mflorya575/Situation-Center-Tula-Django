@@ -110,6 +110,7 @@ urlpatterns = [
     path('capitalassets/<slug:slug>/', views.capitalassets_view, name='capitalassets_view'),
     # Предприятия и организации
     path('organization/', views.organization, name='organization'),
+    path('organization/<slug:slug>/', views.organization_view, name='organization_view'),
     # С/х, лесное, рыболовство, рыбоводство
     path('shlrr/', views.shlrr, name='shlrr'),
     # Информационные и коммуникационные технологии
