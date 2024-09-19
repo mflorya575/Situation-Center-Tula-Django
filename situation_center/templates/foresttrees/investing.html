@@ -14,7 +14,7 @@
         <div class="hospital-section__wrapper">
             <!-- Первый проект -->
             <ol>
-                {% for hospital in hospitals %}
+                {% for investing in investings %}
                 <li style="list-style: auto; font-size: 30px; font-weight: 500;">
                     <div class="hospital-section__card">
                         <a href="{% url 'foresttrees:investing_view' investing.slug %}" class="hospital-section__link">{{ investing.title }}</a>
