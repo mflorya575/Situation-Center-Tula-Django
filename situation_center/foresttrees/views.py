@@ -1334,6 +1334,39 @@ def population(request):
     return render(request, 'foresttrees/population.html', context)
 
 
+def population_view(request, slug):
+    population = get_object_or_404(Population, slug=slug)
+
+    if request.method == "POST":
+        target_column = request.POST.get("target_column")
+        feature_columns = request.POST.getlist("feature_columns")
+
+        data = process_csv_data(population.csv_file.path)
+        result = calculate_random_forest(data, target_column, feature_columns)
+
+        context = {
+            "population": population,
+            "train_r2_score": result["train_r2_score"],
+            "test_r2_score": result["test_r2_score"],
+            "train_mse": result["train_mse"],
+            "test_mse": result["test_mse"],
+            "feature_importances": zip(feature_columns, result["feature_importances"]),
+            "trees": result["trees"],
+            "feature_importances_plot": result["feature_importances_plot"],
+            'title': 'СЦ РЭУ филиал им. Г.В. Плеханова',
+        }
+        return render(request, "foresttrees/population_result.html", context)
+
+    data = process_csv_data(population.csv_file.path)
+    columns = data.columns
+
+    return render(request, "foresttrees/population_detail.html", {
+        "population": population,
+        "columns": columns,
+        'title': 'СЦ РЭУ филиал им. Г.В. Плеханова',
+    })
+
+
 def levelhealth(request):
     levelhealths = LevelHealth.objects.all()
 

@@ -98,6 +98,7 @@ urlpatterns = [
     path('smcompany/<slug:slug>/', views.smcompany_view, name='smcompany_view'),
     # Население
     path('population/', views.population, name='population'),
+    path('population/<slug:slug>/', views.population_view, name='population_view'),
     # Уровень жизни населения
     path('levelhealth/', views.levelhealth, name='levelhealth'),
     # Охрана природы
