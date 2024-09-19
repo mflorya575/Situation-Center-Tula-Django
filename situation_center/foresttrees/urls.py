@@ -77,6 +77,7 @@ urlpatterns = [
     path('finpr/<slug:slug>/', views.finpr_view, name='finpr_view'),
     # Потребительские цены
     path('price/', views.price, name='price'),
+    path('price/<slug:slug>/', views.price_view, name='price_view'),
     # Цены производителей
     path('prodprice/', views.prodprice, name='prodprice'),
     # Доходы
