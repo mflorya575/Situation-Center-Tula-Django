@@ -14,7 +14,7 @@
         <div class="hospital-section__wrapper">
             <!-- Первый проект -->
             <ol>
-                {% for hospital in hospitals %}
+                {% for world in worlds %}
                 <li style="list-style: auto; font-size: 30px; font-weight: 500;">
                     <div class="hospital-section__card">
                         <a href="{% url 'foresttrees:world_view' world.slug %}" class="hospital-section__link">{{ world.title }}</a>
