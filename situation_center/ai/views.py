@@ -67,3 +67,14 @@ def study(request):
         'title': 'Образование | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'ai/study.html', context)
+
+
+def demographics(request):
+    demographicses = Demographics.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'demographicses': demographicses,
+        'title': 'Демография | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'ai/demographics.html', context)
