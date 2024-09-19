@@ -3271,6 +3271,7 @@ select#id_region {
   border: none;
   background: #dbae8b;
   color: #f5ebe9;
+  transition: .3s all;
 }
 
 .custom-form-btn:hover {
