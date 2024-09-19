@@ -13,6 +13,8 @@ urlpatterns = [
     path('study/', views.study, name='study'),
     # Демография
     path('demographics/', views.demographics, name='demographics'),
+    # Культура
+    path('culture/', views.culture, name='culture'),
 
     # Модель
     path('download_model/<str:filename>/', views.download_model, name='download_model'),

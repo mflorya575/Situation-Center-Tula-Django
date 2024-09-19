@@ -78,3 +78,14 @@ def demographics(request):
         'title': 'Демография | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'ai/demographics.html', context)
+
+
+def culture(request):
+    cultures = Culture.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'cultures': cultures,
+        'title': 'Культура | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'ai/culture.html', context)
