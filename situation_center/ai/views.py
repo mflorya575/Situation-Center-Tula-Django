@@ -14,7 +14,6 @@ def download_model(request, filename):
 
 
 def hospital(request):
-    # Получаем все объекты Hospital из базы данных
     hospitals = Hospital.objects.all()
 
     # Передаем данные в контекст
@@ -57,3 +56,14 @@ def hospital_view(request, slug):
         "columns": columns,
         'title': 'СЦ РЭУ филиал им. Г.В. Плеханова',
     })
+
+
+def study(request):
+    studies = Study.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'studies': studies,
+        'title': 'Образование | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'ai/study.html', context)
