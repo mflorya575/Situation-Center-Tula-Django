@@ -35,6 +35,7 @@ urlpatterns = [
     path('turism/<slug:slug>/', views.turism_view, name='turism_view'),
     # Жилье
     path('house/', views.house, name='house'),
+    path('house/<slug:slug>/', views.house_view, name='house_view'),
     # Международная кооперация и экспорт
     path('world/', views.world, name='world'),
     # Труд
