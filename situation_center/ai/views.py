@@ -419,3 +419,14 @@ def capitalassets(request):
         'title': 'Основные фонды | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'ai/capitalassets.html', context)
+
+
+def organization(request):
+    organizations = Organization.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'organizations': organizations,
+        'title': 'Предприятия и организации | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'ai/organization.html', context)
