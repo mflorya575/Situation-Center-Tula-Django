@@ -35,6 +35,8 @@ urlpatterns = [
     path('labour/', views.labour, name='labour'),
     # Экономика
     path('econom/', views.econom, name='econom'),
+    # Расширение магистральной инфраструктуры
+    path('mainline/', views.mainline, name='mainline'),
 
     # Модель
     path('download_model/<str:filename>/', views.download_model, name='download_model'),
