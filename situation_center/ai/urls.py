@@ -6,6 +6,8 @@ from . import views
 app_name = 'ai'
 
 urlpatterns = [
+    # Атомка
+    path('atom/', views.atom, name='atom'),
     # Здравоохранение
     path('hospital/', views.hospital, name='hospital'),
     path('hospital/<slug:slug>/', views.hospital_view, name='hospital_view'),
