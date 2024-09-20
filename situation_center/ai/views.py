@@ -89,3 +89,14 @@ def culture(request):
         'title': 'Культура | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'ai/culture.html', context)
+
+
+def road(request):
+    roads = Road.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'roads': roads,
+        'title': 'Безопасные дороги | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'ai/road.html', context)

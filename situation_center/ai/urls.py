@@ -15,6 +15,8 @@ urlpatterns = [
     path('demographics/', views.demographics, name='demographics'),
     # Культура
     path('culture/', views.culture, name='culture'),
+    # Дороги
+    path('road/', views.road, name='road'),
 
     # Модель
     path('download_model/<str:filename>/', views.download_model, name='download_model'),
