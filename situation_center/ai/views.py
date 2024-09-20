@@ -254,3 +254,14 @@ def transport(request):
         'title': 'Транспорт | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'ai/transport.html', context)
+
+
+def trading(request):
+    tradings = Trading.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'tradings': tradings,
+        'title': 'Торговля | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'ai/trading.html', context)
