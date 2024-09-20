@@ -364,3 +364,14 @@ def jobmarket(request):
         'title': 'Рынок труда | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'ai/jobmarket.html', context)
+
+
+def smcompany(request):
+    smcompanies = SmallMediumCompany.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'smcompanies': smcompanies,
+        'title': 'Малые и средние предприятия | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'ai/smcompany.html', context)
