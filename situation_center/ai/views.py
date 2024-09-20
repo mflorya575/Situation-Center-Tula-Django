@@ -309,3 +309,14 @@ def price(request):
         'title': 'Потребительские цены | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'ai/price.html', context)
+
+
+def prodprice(request):
+    prodprices = ProdPrice.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'prodprices': prodprices,
+        'title': 'Цены производителей | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'ai/prodprice.html', context)
