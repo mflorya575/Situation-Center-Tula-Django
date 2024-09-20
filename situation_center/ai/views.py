@@ -210,3 +210,14 @@ def mainline(request):
         'title': 'Расширение магистральной инфраструктуры | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'ai/mainline.html', context)
+
+
+def industry(request):
+    industries = Industry.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'industries': industries,
+        'title': 'Промышленность | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'ai/industry.html', context)
