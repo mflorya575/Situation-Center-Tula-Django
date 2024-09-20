@@ -122,3 +122,14 @@ def ecology(request):
         'title': 'Экология | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'ai/ecology.html', context)
+
+
+def business(request):
+    businesses = Business.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'businesses': businesses,
+        'title': 'Предпринимательство | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'ai/business.html', context)

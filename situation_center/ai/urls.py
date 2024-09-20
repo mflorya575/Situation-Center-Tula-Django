@@ -21,6 +21,8 @@ urlpatterns = [
     path('science/', views.science, name='science'),
     # Экология
     path('ecology/', views.ecology, name='ecology'),
+    # Предпринимательство
+    path('business/', views.business, name='business'),
 
     # Модель
     path('download_model/<str:filename>/', views.download_model, name='download_model'),
