@@ -188,3 +188,14 @@ def atom(request):
         'title': 'Развитие технологий в области атомной энергии | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'ai/atom.html', context)
+
+
+def econom(request):
+    economs = Econom.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'economs': economs,
+        'title': 'Экономика | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'ai/econom.html', context)
