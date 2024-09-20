@@ -221,3 +221,14 @@ def industry(request):
         'title': 'Промышленность | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'ai/industry.html', context)
+
+
+def agro(request):
+    agros = Agro.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'agros': agros,
+        'title': 'Сельское хозяйство | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'ai/agro.html', context)
