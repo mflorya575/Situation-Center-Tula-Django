@@ -57,6 +57,8 @@ urlpatterns = [
     path('price/', views.price, name='price'),
     # Цены производителей
     path('prodprice/', views.prodprice, name='prodprice'),
+    # Доходы
+    path('revenue/', views.revenue, name='revenue'),
 
     # Модель
     path('download_model/<str:filename>/', views.download_model, name='download_model'),
