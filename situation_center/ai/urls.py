@@ -53,6 +53,8 @@ urlpatterns = [
     path('investing/', views.investing, name='investing'),
     # Финансы предприятий
     path('finpr/', views.finpr, name='finpr'),
+    # Потребительские цены
+    path('price/', views.price, name='price'),
 
     # Модель
     path('download_model/<str:filename>/', views.download_model, name='download_model'),
