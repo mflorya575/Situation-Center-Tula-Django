@@ -232,3 +232,14 @@ def agro(request):
         'title': 'Сельское хозяйство | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'ai/agro.html', context)
+
+
+def building(request):
+    buildings = Building.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'buildings': buildings,
+        'title': 'Строительство | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'ai/building.html', context)
