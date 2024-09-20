@@ -166,3 +166,14 @@ def world(request):
         'title': 'Международная кооперация и экспорт | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'ai/world.html', context)
+
+
+def labour(request):
+    labours = Labour.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'labours': labours,
+        'title': 'Труд | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'ai/labour.html', context)

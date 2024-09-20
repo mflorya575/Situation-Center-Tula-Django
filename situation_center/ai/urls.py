@@ -29,6 +29,8 @@ urlpatterns = [
     path('house/', views.house, name='house'),
     # Международная кооперация и экспорт
     path('world/', views.world, name='world'),
+    # Труд
+    path('labour/', views.labour, name='labour'),
 
     # Модель
     path('download_model/<str:filename>/', views.download_model, name='download_model'),
