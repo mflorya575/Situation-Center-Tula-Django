@@ -331,3 +331,14 @@ def revenue(request):
         'title': 'Доходы | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'ai/revenue.html', context)
+
+
+def salary(request):
+    salaries = Salary.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'salaries': salaries,
+        'title': 'Зарплата | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'ai/salary.html', context)
