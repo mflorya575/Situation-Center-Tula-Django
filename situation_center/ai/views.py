@@ -144,3 +144,14 @@ def turism(request):
         'title': 'Туризм | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'ai/turism.html', context)
+
+
+def house(request):
+    houses = House.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'houses': houses,
+        'title': 'Жилье | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'ai/house.html', context)
