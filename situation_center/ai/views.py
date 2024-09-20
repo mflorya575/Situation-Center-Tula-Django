@@ -408,3 +408,14 @@ def securenature(request):
         'title': 'Охрана природы | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'ai/securenature.html', context)
+
+
+def capitalassets(request):
+    capitalassetses = CapitalAssets.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'capitalassetses': capitalassetses,
+        'title': 'Основные фонды | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'ai/capitalassets.html', context)

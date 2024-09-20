@@ -73,6 +73,8 @@ urlpatterns = [
     path('levelhealth/', views.levelhealth, name='levelhealth'),
     # Охрана природы
     path('securenature/', views.securenature, name='securenature'),
+    # Основные фонды
+    path('capitalassets/', views.capitalassets, name='capitalassets'),
 
     # Модель
     path('download_model/<str:filename>/', views.download_model, name='download_model'),
