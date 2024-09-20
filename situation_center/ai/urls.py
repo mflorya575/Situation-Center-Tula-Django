@@ -47,6 +47,8 @@ urlpatterns = [
     path('transport/', views.transport, name='transport'),
     # Торговля
     path('trading/', views.trading, name='trading'),
+    # Услуги
+    path('uslugi/', views.uslugi, name='uslugi'),
 
     # Модель
     path('download_model/<str:filename>/', views.download_model, name='download_model'),
