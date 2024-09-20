@@ -243,3 +243,14 @@ def building(request):
         'title': 'Строительство | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'ai/building.html', context)
+
+
+def transport(request):
+    transports = Transport.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'transports': transports,
+        'title': 'Транспорт | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'ai/transport.html', context)
