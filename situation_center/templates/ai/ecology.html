@@ -1,0 +1,31 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="hospital-section">
+    <div class="container">
+        <!-- Заголовок главный -->
+        <h1 class="hospital-section__title">НЕЙРОННЫЕ СЕТИ</h1>
+        <!-- Заголовок проекта -->
+        <h2 class="hospital-section__title-project">Экология</h2>
+        
+        <!-- Обертка проектов -->
+        <div class="hospital-section__wrapper">
+            <!-- Первый проект -->
+            <ol>
+                {% for hospital in hospitals %}
+                <li style="list-style: auto; font-size: 30px; font-weight: 500;">
+                    <div class="hospital-section__card">
+                        <a href="{% url 'ai:ecology_view' ecology.slug %}" class="hospital-section__link">{{ ecology.title }}</a>
+                    </div>
+                </li>
+            {% endfor %}
+            </ol>
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock content %}
