@@ -375,3 +375,14 @@ def smcompany(request):
         'title': 'Малые и средние предприятия | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'ai/smcompany.html', context)
+
+
+def population(request):
+    populations = Population.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'populations': populations,
+        'title': 'Население | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'ai/population.html', context)

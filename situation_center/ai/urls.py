@@ -67,6 +67,8 @@ urlpatterns = [
     path('jobmarket/', views.jobmarket, name='jobmarket'),
     # Малые и средние предприятия
     path('smcompany/', views.smcompany, name='smcompany'),
+    # Население
+    path('population/', views.population, name='population'),
 
     # Модель
     path('download_model/<str:filename>/', views.download_model, name='download_model'),
