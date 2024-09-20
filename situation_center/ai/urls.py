@@ -69,6 +69,8 @@ urlpatterns = [
     path('smcompany/', views.smcompany, name='smcompany'),
     # Население
     path('population/', views.population, name='population'),
+    # Уровень жизни населения
+    path('levelhealth/', views.levelhealth, name='levelhealth'),
 
     # Модель
     path('download_model/<str:filename>/', views.download_model, name='download_model'),
