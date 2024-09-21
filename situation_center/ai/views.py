@@ -441,3 +441,14 @@ def shlrr(request):
         'title': 'С/х, лесное, рыболовство, рыбоводство | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'ai/shlrr.html', context)
+
+
+def infotechnology(request):
+    infotechnologies = InfoTechnology.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'infotechnologies': infotechnologies,
+        'title': 'Информационные и коммуникационные технологии | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'ai/infotechnology.html', context)
