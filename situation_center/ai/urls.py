@@ -13,6 +13,7 @@ urlpatterns = [
     path('hospital/<slug:slug>/', views.hospital_view, name='hospital_view'),
     # Образование
     path('study/', views.study, name='study'),
+    path('study/<slug:slug>/', views.study_view, name='study_view'),
     # Демография
     path('demographics/', views.demographics, name='demographics'),
     # Культура
