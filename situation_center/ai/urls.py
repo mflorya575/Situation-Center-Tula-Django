@@ -19,6 +19,7 @@ urlpatterns = [
     path('demographics/<slug:slug>/', views.demographics_view, name='demographics_view'),
     # Культура
     path('culture/', views.culture, name='culture'),
+    path('culture/<slug:slug>/', views.culture_view, name='culture_view'),
     # Дороги
     path('road/', views.road, name='road'),
     # Наука
