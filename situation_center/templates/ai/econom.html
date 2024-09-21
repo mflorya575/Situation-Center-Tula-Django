@@ -14,7 +14,7 @@
         <div class="hospital-section__wrapper">
             <!-- Первый проект -->
             <ol>
-                {% for hospital in hospitals %}
+                {% for econom in economs %}
                 <li style="list-style: auto; font-size: 30px; font-weight: 500;">
                     <div class="hospital-section__card">
                         <a href="{% url 'ai:econom_view' econom.slug %}" class="hospital-section__link">{{ econom.title }}</a>
