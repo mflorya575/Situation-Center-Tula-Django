@@ -452,3 +452,14 @@ def infotechnology(request):
         'title': 'Информационные и коммуникационные технологии | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'ai/infotechnology.html', context)
+
+
+def finance(request):
+    finances = Finance.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'finances': finances,
+        'title': 'Финансы | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'ai/finance.html', context)
