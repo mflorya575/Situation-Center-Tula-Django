@@ -519,6 +519,40 @@ def labour(request):
     return render(request, 'ai/labour.html', context)
 
 
+def labour_view(request, slug):
+    labour = get_object_or_404(Labour, slug=slug)
+
+    if request.method == "POST":
+        target_column = request.POST.get("target_column")
+        feature_columns = request.POST.getlist("feature_columns")
+
+        data = process_csv_data(labour.csv_file.path)
+        result = calculate_random_forest(data, target_column, feature_columns)
+
+        context = {
+            "labour": labour,
+            "train_r2_score": result["train_r2_score"],
+            "test_r2_score": result["test_r2_score"],
+            "train_mse": result["train_mse"],
+            "test_mse": result["test_mse"],
+            "feature_importances": zip(feature_columns, result["feature_importances"]),
+            "trees": result["trees"],
+            "feature_importances_plot": result["feature_importances_plot"],
+            "model_filename": result["model_filename"],
+            'title': 'СЦ РЭУ филиал им. Г.В. Плеханова',
+        }
+        return render(request, "ai/labour_result.html", context)
+
+    data = process_csv_data(labour.csv_file.path)
+    columns = data.columns
+
+    return render(request, "ai/labour_detail.html", {
+        "labour": labour,
+        "columns": columns,
+        'title': 'СЦ РЭУ филиал им. Г.В. Плеханова',
+    })
+
+
 def atom(request):
     atoms = Atom.objects.all()
 

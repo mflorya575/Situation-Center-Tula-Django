@@ -43,6 +43,7 @@ urlpatterns = [
     path('world/<slug:slug>/', views.world_view, name='world_view'),
     # Труд
     path('labour/', views.labour, name='labour'),
+    path('labour/<slug:slug>/', views.labour_view, name='labour_view'),
     # Экономика
     path('econom/', views.econom, name='econom'),
     # Расширение магистральной инфраструктуры
