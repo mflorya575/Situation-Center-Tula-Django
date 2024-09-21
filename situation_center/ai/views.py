@@ -430,3 +430,14 @@ def organization(request):
         'title': 'Предприятия и организации | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'ai/organization.html', context)
+
+
+def shlrr(request):
+    shlrrs = SHLRR.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'shlrrs': shlrrs,
+        'title': 'С/х, лесное, рыболовство, рыбоводство | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'ai/shlrr.html', context)
