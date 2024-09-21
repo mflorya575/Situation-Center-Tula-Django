@@ -50,6 +50,7 @@ urlpatterns = [
     path('econom/<slug:slug>/', views.econom_view, name='econom_view'),
     # Расширение магистральной инфраструктуры
     path('mainline/', views.mainline, name='mainline'),
+    path('mainline/<slug:slug>/', views.mainline_view, name='mainline_view'),
     # Промышленность
     path('industry/', views.industry, name='industry'),
     # Сельское хозяйство
