@@ -83,6 +83,8 @@ urlpatterns = [
     path('infotechnology/', views.infotechnology, name='infotechnology'),
     # Финансы
     path('finance/', views.finance, name='finance'),
+    # Внешняя торговля
+    path('foreigntrading/', views.foreigntrading, name='foreigntrading'),
 
     # Модель
     path('download_model/<str:filename>/', views.download_model, name='download_model'),
