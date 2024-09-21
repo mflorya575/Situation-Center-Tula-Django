@@ -87,6 +87,8 @@ urlpatterns = [
     path('foreigntrading/', views.foreigntrading, name='foreigntrading'),
     # Валовой региональный продукт
     path('vrp/', views.vrp, name='vrp'),
+    # Промышленное производство
+    path('industrialprod/', views.industrialprod, name='industrialprod'),
 
     # Модель
     path('download_model/<str:filename>/', views.download_model, name='download_model'),

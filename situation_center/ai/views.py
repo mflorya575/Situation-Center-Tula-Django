@@ -485,3 +485,14 @@ def vrp(request):
         'title': 'Валовой региональный продукт | СЦ РЭУ филиал им. Г.В. Плеханова',
     }
     return render(request, 'ai/vrp.html', context)
+
+
+def industrialprod(request):
+    industrialprods = IndustrialProd.objects.all()
+
+    # Передаем данные в контекст
+    context = {
+        'industrialprods': industrialprods,
+        'title': 'Промышленное производство | СЦ РЭУ филиал им. Г.В. Плеханова',
+    }
+    return render(request, 'ai/industrialprod.html', context)
