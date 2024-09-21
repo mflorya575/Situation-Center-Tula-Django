@@ -12,7 +12,11 @@ import os
 
 
 def process_csv_data(csv_file_path):
+    # Чтение данных из CSV
     data = pd.read_csv(csv_file_path)
+
+    # Удаление строк с пропусками (NaN)
+    data = data.dropna()
     return data
 
 
