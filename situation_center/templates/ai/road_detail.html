@@ -1,0 +1,38 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="detailpr-section">
+    <div class="container">
+        <!-- Заголовок -->
+        <div class="detailpr-section__title">{{ road.title }}</div>
+        <!-- Обертка графиков -->
+        <div class="detailpr-section__wrapper">
+            <form class="custom-form-pr" method="post" style="display: block !important;">
+                {% csrf_token %}
+                <div class="detailpr-section__img">
+                    <label for="target_column">Выберите целевую переменную:</label><br>
+                    <select name="target_column">
+                        {% for column in columns %}
+                            <option value="{{ column }}">{{ column }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            
+                <div class="detailpr-section__img">
+                    <label for="feature_columns">Выберите факторные переменные:</label><br>
+                    {% for column in columns %}
+                        <input type="checkbox" name="feature_columns" value="{{ column }}">{{ column }}<br>
+                    {% endfor %}
+                </div>
+            
+                <button class="custom-form-btn" type="submit">Рассчитать</button>
+            </form>
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock content %}
