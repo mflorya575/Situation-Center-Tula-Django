@@ -969,6 +969,40 @@ def investing(request):
     return render(request, 'ai/investing.html', context)
 
 
+def investing_view(request, slug):
+    investing = get_object_or_404(Investing, slug=slug)
+
+    if request.method == "POST":
+        target_column = request.POST.get("target_column")
+        feature_columns = request.POST.getlist("feature_columns")
+
+        data = process_csv_data(investing.csv_file.path)
+        result = calculate_random_forest(data, target_column, feature_columns)
+
+        context = {
+            "investing": investing,
+            "train_r2_score": result["train_r2_score"],
+            "test_r2_score": result["test_r2_score"],
+            "train_mse": result["train_mse"],
+            "test_mse": result["test_mse"],
+            "feature_importances": zip(feature_columns, result["feature_importances"]),
+            "trees": result["trees"],
+            "feature_importances_plot": result["feature_importances_plot"],
+            "model_filename": result["model_filename"],
+            'title': 'СЦ РЭУ филиал им. Г.В. Плеханова',
+        }
+        return render(request, "ai/investing_result.html", context)
+
+    data = process_csv_data(investing.csv_file.path)
+    columns = data.columns
+
+    return render(request, "ai/investing_detail.html", {
+        "investing": investing,
+        "columns": columns,
+        'title': 'СЦ РЭУ филиал им. Г.В. Плеханова',
+    })
+
+
 def finpr(request):
     finprs = FinPr.objects.all()
 
