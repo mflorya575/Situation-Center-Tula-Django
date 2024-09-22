@@ -95,6 +95,7 @@ urlpatterns = [
     path('jobmarket/<slug:slug>/', views.jobmarket_view, name='jobmarket_view'),
     # Малые и средние предприятия
     path('smcompany/', views.smcompany, name='smcompany'),
+    path('jobmarket/<slug:slug>/', views.jobmarket_view, name='jobmarket_view'),
     # Население
     path('population/', views.population, name='population'),
     # Уровень жизни населения
