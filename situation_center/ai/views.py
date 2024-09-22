@@ -1014,6 +1014,40 @@ def finpr(request):
     return render(request, 'ai/finpr.html', context)
 
 
+def finpr_view(request, slug):
+    finpr = get_object_or_404(FinPr, slug=slug)
+
+    if request.method == "POST":
+        target_column = request.POST.get("target_column")
+        feature_columns = request.POST.getlist("feature_columns")
+
+        data = process_csv_data(finpr.csv_file.path)
+        result = calculate_random_forest(data, target_column, feature_columns)
+
+        context = {
+            "finpr": finpr,
+            "train_r2_score": result["train_r2_score"],
+            "test_r2_score": result["test_r2_score"],
+            "train_mse": result["train_mse"],
+            "test_mse": result["test_mse"],
+            "feature_importances": zip(feature_columns, result["feature_importances"]),
+            "trees": result["trees"],
+            "feature_importances_plot": result["feature_importances_plot"],
+            "model_filename": result["model_filename"],
+            'title': 'СЦ РЭУ филиал им. Г.В. Плеханова',
+        }
+        return render(request, "ai/finpr_result.html", context)
+
+    data = process_csv_data(finpr.csv_file.path)
+    columns = data.columns
+
+    return render(request, "ai/finpr_detail.html", {
+        "finpr": finpr,
+        "columns": columns,
+        'title': 'СЦ РЭУ филиал им. Г.В. Плеханова',
+    })
+
+
 def price(request):
     prices = Price.objects.all()
 
