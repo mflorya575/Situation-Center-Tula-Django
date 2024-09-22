@@ -80,6 +80,7 @@ urlpatterns = [
     path('price/<slug:slug>/', views.price_view, name='price_view'),
     # Цены производителей
     path('prodprice/', views.prodprice, name='prodprice'),
+    path('prodprice/<slug:slug>/', views.prodprice_view, name='prodprice_view'),
     # Доходы
     path('revenue/', views.revenue, name='revenue'),
     # Зарплата
