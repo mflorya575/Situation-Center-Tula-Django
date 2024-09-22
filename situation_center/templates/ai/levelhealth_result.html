@@ -1,0 +1,42 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="detailpr-section">
+    <div class="container">
+
+        <!-- Заголовок -->
+        <div class="detailpr-section__title">Результаты для "{{ levelhealth.title }}"</div>
+
+        <div class="detailpr-section__block">
+            <p class="detailpr-section__description">Коэффициент детерминации на обучающей выборке: {{ train_r2_score }}</p>
+            <p class="detailpr-section__description">Коэффициент детерминации на тестовой выборке: {{ test_r2_score }}</p>
+            <p class="detailpr-section__description">Среднеквадратичная ошибка на обучающей выборке: {{ train_mse }}</p>
+            <p class="detailpr-section__description">Среднеквадратичная ошибка на тестовой выборке: {{ test_mse }}</p>
+        </div>
+
+        <div class="detailpr-section__img">
+            <h3>Значимость факторных переменных:</h3>
+            <div>
+                {{ feature_importances_plot|safe }}
+            </div>
+        </div>
+
+        <h3 class="detailpr-section__description">Скачать обученную модель</h3>
+        <a href="{% url 'ai:download_model' model_filename %}" class="btn btn-primary">Скачать модель</a>
+
+</div>
+</section>
+
+<script>
+    function toggleTree(id) {
+        var x = document.getElementById("tree" + id);
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+</script>
+
+{% endblock content %}

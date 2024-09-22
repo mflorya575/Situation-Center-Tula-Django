@@ -101,6 +101,7 @@ urlpatterns = [
     path('population/<slug:slug>/', views.population_view, name='population_view'),
     # Уровень жизни населения
     path('levelhealth/', views.levelhealth, name='levelhealth'),
+    path('levelhealth/<slug:slug>/', views.levelhealth_view, name='levelhealth_view'),
     # Охрана природы
     path('securenature/', views.securenature, name='securenature'),
     # Основные фонды
