@@ -744,6 +744,40 @@ def agro(request):
     return render(request, 'ai/agro.html', context)
 
 
+def agro_view(request, slug):
+    agro = get_object_or_404(Agro, slug=slug)
+
+    if request.method == "POST":
+        target_column = request.POST.get("target_column")
+        feature_columns = request.POST.getlist("feature_columns")
+
+        data = process_csv_data(agro.csv_file.path)
+        result = calculate_random_forest(data, target_column, feature_columns)
+
+        context = {
+            "agro": agro,
+            "train_r2_score": result["train_r2_score"],
+            "test_r2_score": result["test_r2_score"],
+            "train_mse": result["train_mse"],
+            "test_mse": result["test_mse"],
+            "feature_importances": zip(feature_columns, result["feature_importances"]),
+            "trees": result["trees"],
+            "feature_importances_plot": result["feature_importances_plot"],
+            "model_filename": result["model_filename"],
+            'title': 'СЦ РЭУ филиал им. Г.В. Плеханова',
+        }
+        return render(request, "ai/agro_result.html", context)
+
+    data = process_csv_data(agro.csv_file.path)
+    columns = data.columns
+
+    return render(request, "ai/agro_detail.html", {
+        "agro": agro,
+        "columns": columns,
+        'title': 'СЦ РЭУ филиал им. Г.В. Плеханова',
+    })
+
+
 def building(request):
     buildings = Building.objects.all()
 
