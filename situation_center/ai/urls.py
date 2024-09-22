@@ -59,6 +59,7 @@ urlpatterns = [
     path('agro/<slug:slug>/', views.agro_view, name='agro_view'),
     # Строительство
     path('building/', views.building, name='building'),
+    path('building/<slug:slug>/', views.building_view, name='building_view'),
     # Транспорт
     path('transport/', views.transport, name='transport'),
     # Торговля
