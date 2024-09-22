@@ -89,6 +89,7 @@ urlpatterns = [
     path('salary/<slug:slug>/', views.salary_view, name='salary_view'),
     # Безработица
     path('joblessness/', views.joblessness, name='joblessness'),
+    path('joblessness/<slug:slug>/', views.joblessness_view, name='joblessness_view'),
     # Рынок труда
     path('jobmarket/', views.jobmarket, name='jobmarket'),
     # Малые и средние предприятия
