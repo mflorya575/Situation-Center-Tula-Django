@@ -14,7 +14,7 @@
         <div class="hospital-section__wrapper">
             <!-- Первый проект -->
             <ol>
-                {% for hospital in hospitals %}
+                {% for vrp in vrps %}
                 <li style="list-style: auto; font-size: 30px; font-weight: 500;">
                     <div class="hospital-section__card">
                         <a href="{% url 'ai:vrp_view' vrp.slug %}" class="hospital-section__link">{{ vrp.title }}</a>
