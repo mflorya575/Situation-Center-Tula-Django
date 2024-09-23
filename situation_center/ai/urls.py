@@ -119,6 +119,7 @@ urlpatterns = [
     path('infotechnology/<slug:slug>/', views.infotechnology_view, name='infotechnology_view'),
     # Финансы
     path('finance/', views.finance, name='finance'),
+    path('finance/<slug:slug>/', views.finance_view, name='finance_view'),
     # Внешняя торговля
     path('foreigntrading/', views.foreigntrading, name='foreigntrading'),
     # Валовой региональный продукт
