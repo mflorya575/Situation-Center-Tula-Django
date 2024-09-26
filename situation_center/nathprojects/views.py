@@ -3,8 +3,6 @@ import plotly.express as px
 import pandas as pd
 import plotly.graph_objects as go
 import os
-import folium
-from folium.plugins import MarkerCluster
 
 from .models import *
 from .forms import *
